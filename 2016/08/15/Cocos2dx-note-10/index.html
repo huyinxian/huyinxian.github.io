@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学完了动画，让我们来学习学习新的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（10）——帧循环">
+<meta property="og:url" content="http://yoursite.com/2016/08/15/Cocos2dx-note-10/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="学完了动画，让我们来学习学习新的知识。">
+<meta property="og:updated_time" content="2016-08-16T07:03:07.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（10）——帧循环">
+<meta name="twitter:description" content="学完了动画，让我们来学习学习新的知识。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/15/Cocos2dx-note-10/"/>
+
+  <title> Cocos2dx学习笔记（10）——帧循环 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（10）——帧循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T16:10:29+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/15/Cocos2dx-note-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/Cocos2dx-note-10/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学完了动画，让我们来学习学习新的知识。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="什么是帧循环"><a href="#什么是帧循环" class="headerlink" title="什么是帧循环"></a><strong>什么是帧循环</strong></h2><p>我们之前对于帧已经有了一个基本的概念，事实上，游戏乃至图形界面都是不断的绘图，然而这些绘图必须遵守一定的逻辑，也就是所谓的游戏逻辑。游戏逻辑控制游戏的内容，会根据用户的输入和时间的流逝而改变。因此，游戏可以抽象为不断地重复以下动作：</p>
+<ul>
+<li>处理用户输入</li>
+<li>处理定时事件</li>
+<li>绘图</li>
+</ul>
+<p>游戏的主循环基本上就是如此，它会反复执行以上的动作，保持游戏的进程，直到玩家退出游戏。</p>
+<h2 id="mainLoop方法"><a href="#mainLoop方法" class="headerlink" title="mainLoop方法"></a><strong>mainLoop方法</strong></h2><p>CCDirector::mainLoop()方法是定义在CCDirector中的抽象方法，它的具体实现在CCDisplayLinkDirector类（3.0找不到的话就把CC去掉）。这个方法负责调用定时器、绘图、发送全局通知、并处理内存回收池。该方法按帧调用，每帧调用一次，而帧间间隔取决于两个因素：预设频率（默认为60帧每秒）和每帧计算量的大小。我们在玩游戏的时候都知道，如果电脑的配置较低，哪怕你设置的帧率为60，电脑的计算力也无法达到60帧每秒。因此，就会出现游戏画面不流畅。下面是从DisplayLinkDirector类中找到的关于mainLoop()方法的实现：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> DisplayLinkDirector::mainLoop()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (_purgeDirectorInNextLoop)</div><div class="line">    &#123;</div><div class="line">        _purgeDirectorInNextLoop = <span class="keyword">false</span>;</div><div class="line">        purgeDirector();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(_restartDirectorInNextLoop)</span></span></div><div class="line">    &#123;</div><div class="line">        _restartDirectorInNextLoop = <span class="keyword">false</span>;</div><div class="line">        restartDirector();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(! _invalid)</span></span></div><div class="line">    &#123;</div><div class="line">        drawScene();</div><div class="line">     </div><div class="line">        <span class="comment">// release the objects</span></div><div class="line">        PoolManager::getInstance()-&gt;getCurrentPool()-&gt;clear();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>mainLoop()主要是先查看是否需要释放Director，一般是游戏结束时执行。第三个有一个drawScene()方法，从字面意义上来看就是绘制场景，遍历每一个节点进行绘图。最后将这一帧弹出内存回收池，删除这一帧的内容。具体代码如下：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">void Director::drawScene()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// calculate "global" dt</span></div><div class="line">    calculateDeltaTime();</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (_openGLView)</div><div class="line">    &#123;</div><div class="line">        _<span class="function"><span class="title">openGLView</span>-&gt;</span>pollEvents();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//tick before glClear: issue #533</span></div><div class="line">    <span class="keyword">if</span> (! _paused)</div><div class="line">    &#123;</div><div class="line">        _<span class="function"><span class="title">eventDispatcher</span>-&gt;</span>dispatchEvent(_eventBeforeUpdate);</div><div class="line">        _<span class="function"><span class="title">scheduler</span>-&gt;</span>update(_deltaTime);</div><div class="line">        _<span class="function"><span class="title">eventDispatcher</span>-&gt;</span>dispatchEvent(_eventAfterUpdate);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _<span class="function"><span class="title">renderer</span>-&gt;</span>clear();</div><div class="line">    experimental::FrameBuffer::clearAllFBOs();</div><div class="line">    <span class="comment">/* to avoid flickr, nextScene MUST be here: after tick and before draw.</span></div><div class="line">     * <span class="doctag">FIXME:</span> Which bug is this one. It seems that it can't be reproduced with v0.9</div><div class="line">     */</div><div class="line">    <span class="keyword">if</span> (_nextScene)</div><div class="line">    &#123;</div><div class="line">        setNextScene();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (_runningScene)</div><div class="line">    &#123;</div><div class="line">#<span class="keyword">if</span> (CC_USE_PHYSICS || (CC_USE_3D_PHYSICS &amp;&amp; CC_ENABLE_BULLET_INTEGRATION) || CC_USE_NAVMESH)</div><div class="line">        _<span class="function"><span class="title">runningScene</span>-&gt;</span>stepPhysicsAndNavigation(_deltaTime);</div><div class="line">#endif</div><div class="line">        <span class="comment">//clear draw stats</span></div><div class="line">        _<span class="function"><span class="title">renderer</span>-&gt;</span>clearDrawStats();</div><div class="line">        </div><div class="line">        <span class="comment">//render the scene</span></div><div class="line">        _<span class="function"><span class="title">runningScene</span>-&gt;</span>render(_renderer);</div><div class="line">        </div><div class="line">        _<span class="function"><span class="title">eventDispatcher</span>-&gt;</span>dispatchEvent(_eventAfterVisit);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// draw the notifications node</span></div><div class="line">    <span class="keyword">if</span> (_notificationNode)</div><div class="line">    &#123;</div><div class="line">        _<span class="function"><span class="title">notificationNode</span>-&gt;</span>visit(_renderer, Mat4::IDENTITY, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (_displayStats)</div><div class="line">    &#123;</div><div class="line">        showStats();</div><div class="line">    &#125;</div><div class="line">    _<span class="function"><span class="title">renderer</span>-&gt;</span>render();</div><div class="line"></div><div class="line">    _<span class="function"><span class="title">eventDispatcher</span>-&gt;</span>dispatchEvent(_eventAfterDraw);</div><div class="line"></div><div class="line">    popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);</div><div class="line"></div><div class="line">    _totalFrames++;</div><div class="line"></div><div class="line">    <span class="comment">// swap buffers</span></div><div class="line">    <span class="keyword">if</span> (_openGLView)</div><div class="line">    &#123;</div><div class="line">        _<span class="function"><span class="title">openGLView</span>-&gt;</span>swapBuffers();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (_displayStats)</div><div class="line">    &#123;</div><div class="line">        calculateMPF();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以发现drawScene主要用于处理OpenGL和一些细节，如计算FPS、帧间时间差等，这里我们主要进行了以下操作：</p>
+<ul>
+<li>计算时间差， 2帧之前的时间差，calculateDeltaTime()</li>
+<li>定时任务调用 _scheduler-&gt;update(_deltaTime);</li>
+<li>事件处理 EventAfterUpdate</li>
+<li>设置当前的下一个场景， 主要就是把当前场景释放掉， 之后把_nextScene 设置为当前的场景</li>
+<li>调用当前场景的渲染方法        _runningScene-&gt;render(_renderer);</li>
+<li>事件处理意思是Visit调用完了， _eventAfterVisit</li>
+<li>调用渲染引擎进行渲染  _renderer-&gt;render();</li>
+<li>事件处理 _eventAfterDraw</li>
+<li>调用 openGLView 平台提供的屏幕显示方法， _openGLView-&gt;swapBuffers();</li>
+</ul>
+<h2 id="游戏的开始"><a href="#游戏的开始" class="headerlink" title="游戏的开始"></a><strong>游戏的开始</strong></h2><p>说起来，我们介绍了那么多概念，貌似还没有讲游戏是如何开始的。事实上，游戏的开始文件是main，也就是游戏的入口函数，位于win32目录下。查看源文件，能够发现如下代码：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">int APIENTRY _tWinMain(HINSTANCE hInstance,</div><div class="line">                       HINSTANCE hPrevInstance,</div><div class="line">                       LPTSTR    lpCmdLine,</div><div class="line">                      <span class="built_in"> int </span>      nCmdShow)</div><div class="line">&#123;</div><div class="line">    UNREFERENCED_PARAMETER(hPrevInstance);</div><div class="line">    UNREFERENCED_PARAMETER(lpCmd<span class="class">Line);</span></div><div class="line"></div><div class="line">    // create the application<span class="built_in"> instance</span></div><div class="line">    AppDelegate app;</div><div class="line">   <span class="built_in"> return </span>Application::getInstance()-&gt;run();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里可以看出，在入口函数中,首先创建了一个AppDelegate对象，AppDelegate继承自CCApplication，在创建AppDelegate对象的时候就会隐式调用CCApplication构造函数，在这个构造函数里边会将AppDelegate的this指针传递给全局共享对象sm_pSharedApplication，如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Application::Application() :</div><div class="line"><span class="comment">// 初始化win32应用程序对象</span></div><div class="line">m_openURLDelegate(<span class="literal">nullptr</span>)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 用于控制帧数的计数值</span></div><div class="line">    m_nAnimationInterval.QuadPart = <span class="number">0</span>;</div><div class="line">    CC_ASSERT(! sm_pSharedApplication);</div><div class="line">    <span class="comment">// 全局共享对象</span></div><div class="line">    sm_pSharedApplication = <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来调用Application::getInstance()-&gt;run()启动游戏，如下:</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">int Application::run()</div><div class="line">&#123;</div><div class="line">    // Initialize<span class="built_in"> instance </span>and cocos2d.</div><div class="line">   <span class="built_in"> if </span>(!applicationDidFinishLaunching())</div><div class="line">    &#123;</div><div class="line">       <span class="built_in"> return </span>0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    GLViewImpl::sharedOpenGLView()-&gt;Run();</div><div class="line">   <span class="built_in"> return </span>0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里可以看到，run()启动了applicationDidFinishLaunching()方法。我们之前介绍过，这个方法用于设置游戏启动相关参数，同时也执行我们自定义的代码。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">director-&gt;<span class="selector-tag">setOpenGLView</span>(glview);</div></pre></td></tr></table></figure>
+<p>另外呢，在applicationDidFinishLaunching()方法中可以找到上面这一行代码。它设置了glview对象之后就开始运行场景，GLView主要就是就是负责窗口管理的工作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> GLViewImpl::Run() </div><div class="line">&#123;</div><div class="line">    <span class="comment">// XAML version does not have a run loop</span></div><div class="line">    m_running = <span class="literal">true</span>; </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>至于Run()方法就是将m_running设置为true，用于启动。我们再来看看使用了m_running的方法：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> GLViewImpl::Render()</div><div class="line">&#123;</div><div class="line">    OnRendering();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> GLViewImpl::OnRendering()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(m_running &amp;&amp; m_initialized)</div><div class="line">    &#123;</div><div class="line">        Director::getInstance()-&gt;mainLoop();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到，Rander()渲染方法执行了OnRendering()。而当m_running和m_initialized全为true时，便调用我们的mainLoop()方法。至此，便是游戏的主循环。至于具体的渲染过程，之后再讲。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/14/Cocos2dx-note-9/" rel="next" title="Cocos2dx学习笔记（9）——序列帧动画">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（9）——序列帧动画
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/17/Cocos2dx-note-11/" rel="prev" title="Cocos2dx学习笔记（11）——定时器">
+                Cocos2dx学习笔记（11）——定时器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/15/Cocos2dx-note-10/"
+           data-title="Cocos2dx学习笔记（10）——帧循环" data-url="http://yoursite.com/2016/08/15/Cocos2dx-note-10/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是帧循环"><span class="nav-number">1.</span> <span class="nav-text">什么是帧循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mainLoop方法"><span class="nav-number">2.</span> <span class="nav-text">mainLoop方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏的开始"><span class="nav-number">3.</span> <span class="nav-text">游戏的开始</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

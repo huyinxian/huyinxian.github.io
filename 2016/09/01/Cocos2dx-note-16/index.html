@@ -1,0 +1,760 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对于之前出现的ccp，你是不是不了解呢？没关系，这一章我们将学习Cocos中的数学类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（16）——数学类">
+<meta property="og:url" content="http://yoursite.com/2016/09/01/Cocos2dx-note-16/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="对于之前出现的ccp，你是不是不了解呢？没关系，这一章我们将学习Cocos中的数学类。">
+<meta property="og:updated_time" content="2016-09-03T02:54:05.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（16）——数学类">
+<meta name="twitter:description" content="对于之前出现的ccp，你是不是不了解呢？没关系，这一章我们将学习Cocos中的数学类。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/01/Cocos2dx-note-16/"/>
+
+  <title> Cocos2dx学习笔记（16）——数学类 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（16）——数学类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-01T13:18:51+08:00" content="2016-09-01">
+              2016-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/01/Cocos2dx-note-16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/01/Cocos2dx-note-16/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于之前出现的ccp，你是不是不了解呢？没关系，这一章我们将学习Cocos中的数学类。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="常用数学类"><a href="#常用数学类" class="headerlink" title="常用数学类"></a><strong>常用数学类</strong></h2><p>在2.x版本中，我们使用setPosition时经常要使用到ccp()这样一个宏。那么事实上，这个ccp()是有关于向量的运算。在3.x版本中，各种类型的ccp都整合到了Vec2这个类中。一般来讲，我们用到的有下面几个类：</p>
+<ul>
+<li>Vec2</li>
+<li>Size</li>
+<li>Rect</li>
+</ul>
+<h2 id="Vec2"><a href="#Vec2" class="headerlink" title="Vec2"></a><strong>Vec2</strong></h2><h3 id="Vec2类的介绍"><a href="#Vec2类的介绍" class="headerlink" title="Vec2类的介绍"></a><strong>Vec2类的介绍</strong></h3><p>Vec2表示一个二维坐标点，也可以表示一个二维向量。2.x版本中的ccp()整合到了Vec2中，所以坐标和向量我们可以使用这个类。当然，我们还可以使用<strong>Vec3</strong>和<strong>Vec4</strong>来表示三维坐标和四维坐标。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Vec2();  <span class="comment">// 设置为(0, 0)</span></div><div class="line">Vec2(<span class="keyword">float</span> xx, <span class="keyword">float</span> yy);</div><div class="line">Vec2(<span class="keyword">const</span> <span class="keyword">float</span>* <span class="built_in">array</span>);</div><div class="line">Vec2(<span class="keyword">const</span> Vec2&amp; copy);</div><div class="line">Vec2(<span class="keyword">const</span> Vec2&amp; p1, <span class="keyword">const</span> Vec2&amp; p2);  <span class="comment">// p2-p1的位置</span></div></pre></td></tr></table></figure>
+<p>上面是Vec2类的几种不同的构造方法，另外，这个类只有x、y两个float变量来存储位置信息。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">float</span> xx, <span class="keyword">float</span> yy)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">const</span> <span class="keyword">float</span>* <span class="built_in">array</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">const</span> Vec2&amp; p1, <span class="keyword">const</span> Vec2&amp; p2)</span></span>;</div></pre></td></tr></table></figure>
+<p>使用set()方法可以重新设定坐标值。</p>
+<h3 id="向量运算"><a href="#向量运算" class="headerlink" title="向量运算"></a><strong>向量运算</strong></h3><p>这里罗列了各种向量有关的运算，代码注释是借用了别人的，感兴趣的可以自己查看Vec2类的实现：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 向量运算</div><div class="line"> *     void     : 自身运算    , 值会改变</div><div class="line"> *     有返回值 : 返回运算结果, 值不会改变</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>)</span>;                      <span class="comment">// 相加( x+v.x , y+v.y )</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">subtract</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>)</span>;                 <span class="comment">// 相减( x-v.x , y-v.y )</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clamp</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; min, <span class="keyword">const</span> Vec2&amp; max</span>)</span>; <span class="comment">// 将向量值限制在[min,max]区间内</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">negate</span>(<span class="params"></span>)</span>;                                <span class="comment">// 向量取负( -x , -y )</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">normalize</span>(<span class="params"></span>)</span>;                             <span class="comment">// 标准化向量. 若为零向量,忽略</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">scale</span>(<span class="params"><span class="keyword">float</span> scalar</span>)</span>;                     <span class="comment">// x,y坐标同时放缩</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">scale</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; scale</span>)</span>;                <span class="comment">// x,y坐标分别放缩</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rotate</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; point, <span class="keyword">float</span> angle</span>)</span>;  <span class="comment">// 绕point点, 旋转angle弧度</span></div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">dot</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;               <span class="comment">// 点积: x*v.x + y*v.y</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">cross</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;             <span class="comment">// 叉积: x*v.y - y*v.x</span></div><div class="line">    <span class="function">Vec2  <span class="title">project</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;           <span class="comment">// 投影: 向量在v上的投影向量</span></div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">distance</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;          <span class="comment">// 与v的距离.</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">distanceSquared</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;   <span class="comment">// 与v的距离平方.</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">length</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                         <span class="comment">// 向量长度.     即与原点的距离</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">lengthSquared</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                  <span class="comment">// 向量长度平方. 即与原点的距离平方</span></div><div class="line">     </div><div class="line">    <span class="function">Vec2 <span class="title">getNormalized</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                   <span class="comment">// 获取向量的标准化形式. 若为零向量,返回(0,0)</span></div><div class="line"> </div><div class="line">    <span class="function">inline Vec2 <span class="title">getPerp</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                  <span class="comment">// 逆时针旋转90度. Vec2(-y, x);</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">getRPerp</span>(<span class="params"></span>) <span class="keyword">const</span>                  <span class="comment">// 顺时针旋转90度. Vec2(y, -x);</span></span></div><div class="line">     </div><div class="line">    inline <span class="keyword">float</span> <span class="title">getAngle</span>(<span class="params"></span>) <span class="keyword">const</span>;                <span class="comment">// 与X轴的夹角(弧度)</span></div><div class="line">    <span class="function"><span class="keyword">float</span>        <span class="title">getAngle</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>;   <span class="comment">// 与v向量的夹角(弧度)</span></div><div class="line">     </div><div class="line">    <span class="function">inline Vec2 <span class="title">getMidpoint</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; v</span>) <span class="keyword">const</span></span>; <span class="comment">// 计算两点间的中点</span></div><div class="line">     </div><div class="line"> </div><div class="line">    <span class="comment">// 将向量值限制在[min,max]区间内，返回该点</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">getClampPoint</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; min, <span class="keyword">const</span> Vec2&amp; max</span>) <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> Vec2(clampf(x, min.x, max.x), clampf(y, min.y, max.y));</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isZero</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// 是否为(0,0)</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isOne</span>(<span class="params"></span>) <span class="keyword">const</span></span>;  <span class="comment">// 是否为(1,1)</span></div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 判断target是否在坐标点模糊偏差为var的范围内.</span></div><div class="line">    <span class="comment">// if( (x - var &lt;= target.x &amp;&amp; target.x &lt;= x + var) &amp;&amp; (y - var &lt;= target.y &amp;&amp; target.y &lt;= y + var) ) </span></div><div class="line">    <span class="comment">//      return true;</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">fuzzyEquals</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; target, <span class="keyword">float</span> variance</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 以pivot为轴, 逆时针旋转angle度(弧度)</span></div><div class="line">    <span class="function">Vec2 <span class="title">rotateByAngle</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; pivot, <span class="keyword">float</span> angle</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 绕other向量旋转</span></div><div class="line">    <span class="comment">// 返回向量: 角度 this.getAngle() + other.getAngle();</span></div><div class="line">    <span class="comment">//           长度 this.getLength() * other.getLength();</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">rotate</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; other</span>) <span class="keyword">const</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Vec2(x*other.x - y*other.y, x*other.y + y*other.x);</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 绕other向量旋转前的向量值</span></div><div class="line">    <span class="comment">// 返回向量: 角度 this.getAngle() - other.getAngle(); </span></div><div class="line">    <span class="comment">//          长度 this.getLength() * other.getLength();</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">unrotate</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; other</span>) <span class="keyword">const</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Vec2(x*other.x + y*other.y, y*other.x - x*other.y);</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 两个点a和b之间的线性插值</span></div><div class="line">    <span class="comment">// alpha ==0 ? a alpha ==1 ? b 否则为a和b之间的一个值</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">lerp</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; other, <span class="keyword">float</span> alpha</span>) <span class="keyword">const</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> *<span class="keyword">this</span> * (<span class="number">1.</span>f - alpha) + other * alpha;</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">     </div><div class="line">    <span class="comment">// 平滑更新向量的当前位置，指向目标向量target.</span></div><div class="line">    <span class="comment">// responseTime定义了平滑时间量，该值越大结果越平滑，相应的延迟时间越长。</span></div><div class="line">    <span class="comment">// 如果希望向量紧跟target向量，提供一个相对elapsedTime小很多的responseTime值即可。</span></div><div class="line">    <span class="comment">// 参数</span></div><div class="line">    <span class="comment">// target        目标值</span></div><div class="line">    <span class="comment">// elapsedTime   消逝时间</span></div><div class="line">    <span class="comment">// responseTime  响应时间</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">smooth</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; target, <span class="keyword">float</span> elapsedTime, <span class="keyword">float</span> responseTime</span>)</span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义运算</div><div class="line"> *     compOp </div><div class="line"> */</div><div class="line">    <span class="comment">// 对该点向量形式的各分量进行function参数来指定的运算， </span></div><div class="line">    <span class="comment">// 如absf,floorf,ceilf,roundf等，</span></div><div class="line">    <span class="comment">// 任何函数拥有如下形式：float func(float)均可。</span></div><div class="line">    <span class="comment">// 例如：我们对x,y进行floor运算，则调用方法为p.compOp(floorf);</span></div><div class="line">    <span class="comment">// 3.0</span></div><div class="line">    <span class="function">inline Vec2 <span class="title">compOp</span>(<span class="params">std::function&lt;<span class="keyword">float</span>(<span class="keyword">float</span></span>)&gt; function) <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> Vec2(function(x), function(y));</div><div class="line">    &#125;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 兼容代码</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">void</span>  <span class="title">setPoint</span>(<span class="params"><span class="keyword">float</span> xx, <span class="keyword">float</span> yy</span>)</span>;           <span class="comment">// 同set(float xx, float yy)</span></div><div class="line">    <span class="function"><span class="keyword">bool</span>  <span class="title">equals</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; target</span>) <span class="keyword">const</span></span>;       <span class="comment">// 同==</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getLength</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                      <span class="comment">// 同length()</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getLengthSq</span>(<span class="params"></span>) <span class="keyword">const</span></span>;                    <span class="comment">// 同lengthSquared()</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getDistance</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; other</span>) <span class="keyword">const</span></span>;   <span class="comment">// 同distance(const Vec2&amp; v)</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getDistanceSq</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; other</span>) <span class="keyword">const</span></span>; <span class="comment">// 同distanceSquared(const Vec2&amp; v)</span></div></pre></td></tr></table></figure>
+<h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a><strong>运算符重载</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Vec2 <span class="keyword">operator</span>+(<span class="keyword">const</span> Vec2&amp; v) <span class="keyword">const</span>; <span class="comment">// ( x+v.x , y+v.y )</span></div><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Vec2 <span class="keyword">operator</span>-(<span class="keyword">const</span> Vec2&amp; v) <span class="keyword">const</span>; <span class="comment">// ( x-v.x , y-v.y )</span></div><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Vec2 <span class="keyword">operator</span>*(<span class="keyword">float</span> s) <span class="keyword">const</span>;       <span class="comment">// ( x*s , y*s )</span></div><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Vec2 <span class="keyword">operator</span>/(<span class="keyword">float</span> s) <span class="keyword">const</span>;       <span class="comment">// ( x/s , y/s )</span></div><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Vec2 <span class="keyword">operator</span>-() <span class="keyword">const</span>;              <span class="comment">// ( -x , -y )</span></div><div class="line"> </div><div class="line"><span class="keyword">inline</span> Vec2&amp; <span class="keyword">operator</span>+=(<span class="keyword">const</span> Vec2&amp; v);           <span class="comment">// (x,y) = ( x+v.x , y+v.y )</span></div><div class="line"><span class="keyword">inline</span> Vec2&amp; <span class="keyword">operator</span>-=(<span class="keyword">const</span> Vec2&amp; v);           <span class="comment">// (x,y) = ( x-v.x , y-v.y )</span></div><div class="line"><span class="keyword">inline</span> Vec2&amp; <span class="keyword">operator</span>*=(<span class="keyword">float</span> s);                 <span class="comment">// (x,y) = ( x*s , y*s )</span></div><div class="line"> </div><div class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Vec2&amp; v) <span class="keyword">const</span>;</div><div class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Vec2&amp; v) <span class="keyword">const</span>;</div><div class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>!=(<span class="keyword">const</span> Vec2&amp; v) <span class="keyword">const</span>;</div></pre></td></tr></table></figure>
+<h3 id="静态函数与常量"><a href="#静态函数与常量" class="headerlink" title="静态函数与常量"></a><strong>静态函数与常量</strong></h3><p>Vec2类还定义了不少静态的方法和常量，方便使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 静态方法</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v1, <span class="keyword">const</span> Vec2&amp; v2, Vec2* dst)</span></span>;                    <span class="comment">// dst = v1 + v2</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">subtract</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v1, <span class="keyword">const</span> Vec2&amp; v2, Vec2* dst)</span></span>;               <span class="comment">// dst = v1 - v2</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clamp</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v, <span class="keyword">const</span> Vec2&amp; min, <span class="keyword">const</span> Vec2&amp; max, Vec2* dst)</span></span>; <span class="comment">// 将向量v限制在[min,max]区间内，结果存入dst</span></div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">float</span> <span class="title">angle</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v1, <span class="keyword">const</span> Vec2&amp; v2)</span></span>;                            <span class="comment">// 两向量夹角(弧度)</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">float</span> <span class="title">dot</span><span class="params">(<span class="keyword">const</span> Vec2&amp; v1, <span class="keyword">const</span> Vec2&amp; v2)</span></span>;                              <span class="comment">// 两向量点积</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> Vec2 <span class="title">forAngle</span><span class="params">(<span class="keyword">const</span> <span class="keyword">float</span> a)</span></span>;                                    <span class="comment">// 返回向量坐标 x=cos(a) , y=sin(a)</span></div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 静态常量</div><div class="line"> */</div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ZERO;                 <span class="comment">// Vec2(0, 0)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ONE;                  <span class="comment">// Vec2(1, 1)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 UNIT_X;               <span class="comment">// Vec2(1, 0)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 UNIT_Y;               <span class="comment">// Vec2(0, 1)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_MIDDLE;        <span class="comment">// Vec2(0.5, 0.5)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_BOTTOM_LEFT;   <span class="comment">// Vec2(0, 0)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_TOP_LEFT;      <span class="comment">// Vec2(0, 1)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_BOTTOM_RIGHT;  <span class="comment">// Vec2(1, 0)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_TOP_RIGHT;     <span class="comment">// Vec2(1, 1)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_MIDDLE_RIGHT;  <span class="comment">// Vec2(1, 0.5)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_MIDDLE_LEFT;   <span class="comment">// Vec2(0, 0.5)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_MIDDLE_TOP;    <span class="comment">// Vec2(0.5, 1)</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Vec2 ANCHOR_MIDDLE_BOTTOM; <span class="comment">// Vec2(0.5, 0)</span></div></pre></td></tr></table></figure>
+<h3 id="线段相交检测"><a href="#线段相交检测" class="headerlink" title="线段相交检测"></a><strong>线段相交检测</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    线段相交检测 v3.0</div><div class="line">    参数:</div><div class="line">        A   为线段L1起点. L1 = (A - B)</div><div class="line">        B   为L1终点    . L1 = (A - B)</div><div class="line">        C   为线段L2起点. L2 = (C - D)</div><div class="line">        D   为L2终点    . L2 = (C - D)</div><div class="line">        S   为L1上计算各点的插值参数，计算方法为：p = A + S*(B - A)</div><div class="line">        T   为L2上计算各点的插值参数，计算方法为：p = C + T*(D - C)</div><div class="line"> */</div><div class="line"> </div><div class="line">    <span class="comment">// 直线AB与线段CD是否平行</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">isLineParallel</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D)</span></span>;</div><div class="line">    <span class="comment">// 直线AB与线段CD是否重叠</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">isLineOverlap</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D)</span></span>;</div><div class="line">    <span class="comment">// 直线AB与直线CD是否相交    </span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">isLineIntersect</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D,</span></span></div><div class="line">                                 <span class="keyword">float</span> *S = <span class="literal">nullptr</span>, <span class="keyword">float</span> *T = <span class="literal">nullptr</span>);</div><div class="line"> </div><div class="line">    <span class="comment">// 线段AB与线段CD是否重叠</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">isSegmentOverlap</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D,</span></span></div><div class="line">                                 Vec2* S = <span class="literal">nullptr</span>, Vec2* E = <span class="literal">nullptr</span>);</div><div class="line">    <span class="comment">// 线段AB与线段CD是否相交</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">isSegmentIntersect</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 返回直线AB与直线CD的交点</span></div><div class="line">    <span class="function"><span class="keyword">static</span> Vec2 <span class="title">getIntersectPoint</span><span class="params">(<span class="keyword">const</span> Vec2&amp; A, <span class="keyword">const</span> Vec2&amp; B, <span class="keyword">const</span> Vec2&amp; C, <span class="keyword">const</span> Vec2&amp; D)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="Size"><a href="#Size" class="headerlink" title="Size"></a><strong>Size</strong></h2><p>Size类很简单，类似于2.x的CCSize，只有width和height两个成员变量。Size和Vec2可以转换。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 构造函数</div><div class="line"> */</div><div class="line">    Size();                           <span class="comment">// (0, 0)</span></div><div class="line">    Size(<span class="keyword">float</span> <span class="built_in">width</span>, <span class="keyword">float</span> <span class="built_in">height</span>);  <span class="comment">// (width, height)</span></div><div class="line">    Size(<span class="keyword">const</span> Size&amp; other);          <span class="comment">// other</span></div><div class="line">    <span class="keyword">explicit</span> Size(<span class="keyword">const</span> Vec2&amp; <span class="built_in">point</span>); <span class="comment">// (显式)构造函数. 构造时Size size = Size(Vec2&amp;), 而不能Size size = vec2;</span></div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 相关操作</div><div class="line"> *     - setSize</div><div class="line"> *     - equals</div><div class="line"> *     - Vec2()</div><div class="line"> */</div><div class="line">    <span class="keyword">void</span> setSize(<span class="keyword">float</span> <span class="built_in">width</span>, <span class="keyword">float</span> <span class="built_in">height</span>); <span class="comment">// 设置尺寸</span></div><div class="line">    <span class="keyword">bool</span> equals(<span class="keyword">const</span> Size&amp; target) <span class="keyword">const</span>;   <span class="comment">// 判断是否等于target</span></div><div class="line"> </div><div class="line">    <span class="comment">// Size::Vec2()</span></div><div class="line">    <span class="comment">// 返回类型为Vec2</span></div><div class="line">    <span class="keyword">operator</span> Vec2() <span class="keyword">const</span> &#123; <span class="built_in">return</span> Vec2(<span class="built_in">width</span>, <span class="built_in">height</span>); &#125;  </div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 静态常量</div><div class="line"> */</div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Size ZERO; <span class="comment">// (0, 0)</span></div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 运算符重载</div><div class="line"> */</div><div class="line">    Size&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Size&amp; other);</div><div class="line">    Size&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Vec2&amp; <span class="built_in">point</span>); <span class="comment">// 可以用Vec2赋值</span></div><div class="line">    Size <span class="keyword">operator</span>+(<span class="keyword">const</span> Size&amp; right) <span class="keyword">const</span>;</div><div class="line">    Size <span class="keyword">operator</span>-(<span class="keyword">const</span> Size&amp; right) <span class="keyword">const</span>;</div><div class="line">    Size <span class="keyword">operator</span>*(<span class="keyword">float</span> a) <span class="keyword">const</span>;</div><div class="line">    Size <span class="keyword">operator</span>/(<span class="keyword">float</span> a) <span class="keyword">const</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Rect"><a href="#Rect" class="headerlink" title="Rect"></a><strong>Rect</strong></h2><p>我们在初始化精灵时，可以传入Rect()这个参数。那么事实上，Rect的意思是矩形。也就是说，我们可以规定精灵的显示内容有多少。Rect以左下角为原点，注意，之前我们在纹理一章提到过Rect，不过那个Rect使用的是UI坐标系，以左上角为原点。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">Rect</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Vec2 origin; <span class="comment">// 起始坐标: 矩形左下角坐标</span></div><div class="line">    Size  size;  <span class="comment">// 尺寸大小</span></div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 构造函数</div><div class="line"> */</div><div class="line">    Rect();</div><div class="line">    Rect(<span class="keyword">float</span> x, <span class="keyword">float</span> y, <span class="keyword">float</span> width, <span class="keyword">float</span> height);</div><div class="line">    Rect(<span class="keyword">const</span> Rect&amp; other);</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 运算符重载</div><div class="line"> *     只重载了 “=” 运算符</div><div class="line"> */</div><div class="line">    Rect&amp; <span class="keyword">operator</span>= (<span class="keyword">const</span> Rect&amp; other);</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 相关操作</div><div class="line"> *     - setRect</div><div class="line"> *     - getMinX , getMidX , getMaxX</div><div class="line"> *     - getMinY , getMidY , getMaxY</div><div class="line"> *     - equals , containsPoint , intersectsRect</div><div class="line"> *     - unionWithRect</div><div class="line"> */</div><div class="line">    <span class="comment">// 设置矩形</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setRect</span>(<span class="params"><span class="keyword">float</span> x, <span class="keyword">float</span> y, <span class="keyword">float</span> width, <span class="keyword">float</span> height</span>)</span>;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 获取矩形信息</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMinX</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.x</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMidX</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.x + size.width/2</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMaxX</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.x + size.width</span></div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMinY</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.y</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMidY</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.y + size.height/2</span></div><div class="line">    <span class="function"><span class="keyword">float</span> <span class="title">getMaxY</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// origin.y + size.height</span></div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 判断是否与rect相同. 原点相同,尺寸相同.</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">equals</span>(<span class="params"><span class="keyword">const</span> Rect&amp; rect</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 判断point是否包含在矩形内或四条边上</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsPoint</span>(<span class="params"><span class="keyword">const</span> Vec2&amp; point</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 判断矩形是否相交. 常常用作碰撞检测.</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">intersectsRect</span>(<span class="params"><span class="keyword">const</span> Rect&amp; rect</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 与rect矩形合并. 并返回结果. v3.0</span></div><div class="line">    <span class="comment">// 不会改变原矩形的值</span></div><div class="line">    <span class="function">Rect <span class="title">unionWithRect</span>(<span class="params"><span class="keyword">const</span> Rect &amp; rect</span>) <span class="keyword">const</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 静态常量</div><div class="line"> *     Rect::ZERO</div><div class="line"> */</div><div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> Rect ZERO;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/Cocos2dx-note-15/" rel="next" title="Cocos2dx学习笔记（15）——标签Label">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（15）——标签Label
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/03/Cocos2dx-note-17/" rel="prev" title="Cocos2dx学习笔记（17）——菜单CCMenuItem">
+                Cocos2dx学习笔记（17）——菜单CCMenuItem <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/01/Cocos2dx-note-16/"
+           data-title="Cocos2dx学习笔记（16）——数学类" data-url="http://yoursite.com/2016/09/01/Cocos2dx-note-16/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用数学类"><span class="nav-number">1.</span> <span class="nav-text">常用数学类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vec2"><span class="nav-number">2.</span> <span class="nav-text">Vec2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vec2类的介绍"><span class="nav-number">2.1.</span> <span class="nav-text">Vec2类的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量运算"><span class="nav-number">2.2.</span> <span class="nav-text">向量运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符重载"><span class="nav-number">2.3.</span> <span class="nav-text">运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态函数与常量"><span class="nav-number">2.4.</span> <span class="nav-text">静态函数与常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段相交检测"><span class="nav-number">2.5.</span> <span class="nav-text">线段相交检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Size"><span class="nav-number">3.</span> <span class="nav-text">Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rect"><span class="nav-number">4.</span> <span class="nav-text">Rect</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

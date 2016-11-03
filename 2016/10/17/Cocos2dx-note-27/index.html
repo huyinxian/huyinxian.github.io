@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="想要做一个游戏，游戏的音效可不能少。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（27）——音效SimpleAudioEngine">
+<meta property="og:url" content="http://yoursite.com/2016/10/17/Cocos2dx-note-27/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="想要做一个游戏，游戏的音效可不能少。">
+<meta property="og:updated_time" content="2016-10-17T13:06:50.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（27）——音效SimpleAudioEngine">
+<meta name="twitter:description" content="想要做一个游戏，游戏的音效可不能少。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/17/Cocos2dx-note-27/"/>
+
+  <title> Cocos2dx学习笔记（27）——音效SimpleAudioEngine | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（27）——音效SimpleAudioEngine
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T20:23:40+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/Cocos2dx-note-27/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/17/Cocos2dx-note-27/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>想要做一个游戏，游戏的音效可不能少。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="音效类"><a href="#音效类" class="headerlink" title="音效类"></a><strong>音效类</strong></h2><p>该类是一个单例类，可以在任意的地方加载和播放音乐。</p>
+<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><ul>
+<li>sharedEngine()改为getInstance()</li>
+<li>实现了音量调节的功能</li>
+<li>修改了播放音效playEffect()的参数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">playEffect</span>  <span class="params">(</span></span></div><div class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* pszFilePath, <span class="comment">// 音效文件的路径</span></div><div class="line">        <span class="keyword">bool</span>  bLoop = <span class="literal">false</span>,     <span class="comment">// 是否循环播放,默认为false,不循环</span></div><div class="line">        <span class="keyword">float</span> pitch = <span class="number">1.0f</span>,      <span class="comment">// 频率，正常情况下为1.0,在播放时也可以改变该值</span></div><div class="line">        <span class="keyword">float</span> pan = <span class="number">0.0f</span>,        <span class="comment">// 声道，范围为-1到1，为-1时表示只有左声道，为1时表示只有右声道</span></div><div class="line">        <span class="keyword">float</span> gain = <span class="number">1.0f</span>        <span class="comment">// 音量增益, 范围为0到1，默认值为1</span></div><div class="line">    )</div></pre></td></tr></table></figure>
+<h2 id="音乐文件类型"><a href="#音乐文件类型" class="headerlink" title="音乐文件类型"></a><strong>音乐文件类型</strong></h2><p>这里分为两种声音：背景音乐和音效。背景音乐一般是贯穿整个游戏，时间长重复少，而音效类似于爆炸、击打等等短暂但很频繁的声音。下面罗列了各个平台支持的音乐文件类型：</p>
+<ul>
+<li>win32：背景音乐MP3、MID、WAV，音效MID、WAV</li>
+<li>Android：背景音乐MP3、MID、WAV，音效OGG</li>
+<li>IOS：背景音乐MP3、CAF，音效CAF</li>
+</ul>
+<p>虽然MP3可以用于背景音乐，但是用于音效时还是有损音质，所以最好根据平台来选择文件类型。</p>
+<h2 id="引入头文件"><a href="#引入头文件" class="headerlink" title="引入头文件"></a><strong>引入头文件</strong></h2><p>使用SimpleAudioEngine类需要引入头文件以及命名空间：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SimpleAudioEngine.h"</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> CocosDenshion;</div></pre></td></tr></table></figure>
+<h2 id="获取单例对象"><a href="#获取单例对象" class="headerlink" title="获取单例对象"></a><strong>获取单例对象</strong></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> SimpleAudioEngine* <span class="title">sharedEngine</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="背景音乐的函数"><a href="#背景音乐的函数" class="headerlink" title="背景音乐的函数"></a><strong>背景音乐的函数</strong></h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preloadBackgroundMusic</span>(<span class="params"><span class="string">'音乐路径const char*'</span></span>)</span>;                  <span class="comment">// 预加载</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">playBackgroundMusic</span>(<span class="params"><span class="string">'音乐路径const char*'</span>, <span class="keyword">bool</span> bLoop = <span class="literal">false</span></span>)</span>; <span class="comment">// 播放，是否循环，默认不循环</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">stopBackgroundMusic</span>(<span class="params"><span class="keyword">bool</span> bReleaseData = <span class="literal">false</span></span>)</span>;                 <span class="comment">// 停止，是否释放音乐资源</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pauseBackgroundMusic</span>(<span class="params"></span>)</span>;                                         <span class="comment">// 暂停</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">resumeBackgroundMusic</span>(<span class="params"></span>)</span>;                                        <span class="comment">// 恢复</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewindBackgroundMusic</span>(<span class="params"></span>)</span>;                                        <span class="comment">// 重播</span></div><div class="line">     </div><div class="line"></div><div class="line"><span class="comment">// 返回是否将要播放背景音乐</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">willPlayBackgroundMusic</span>(<span class="params"></span>)</span>;</div><div class="line"></div><div class="line"><span class="comment">// 返回是否正在播放背景音乐</span></div><div class="line"><span class="comment">// 注意：暂停也算正在播放，只有停止了才算未播放。</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isBackgroundMusicPlaying</span>(<span class="params"></span>)</span>; </div><div class="line"></div><div class="line"><span class="comment">// 设置音量，取值范围0~1.0</span></div><div class="line"><span class="comment">// 在2.x中，调节音量永远是1.0，只有在3.x中才实现了这一功能</span></div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">getBackgroundMusicVolume</span>(<span class="params"></span>)</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setBackgroundMusicVolume</span>(<span class="params"><span class="keyword">float</span> volume</span>)</span>;</div></pre></td></tr></table></figure>
+<h2 id="音效的函数"><a href="#音效的函数" class="headerlink" title="音效的函数"></a><strong>音效的函数</strong></h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preloadEffect</span>(<span class="params"><span class="string">'音乐路径const char*'</span></span>)</span>;                          <span class="comment">// 预加载</span></div><div class="line"><span class="function">unsigned <span class="keyword">int</span> <span class="title">playEffect</span>(<span class="params"><span class="string">'音乐路径const char*'</span>, <span class="keyword">bool</span> bLoop = <span class="literal">false</span></span>)</span>; <span class="comment">// 播放，返回该音效的ID。是否循环</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">stopEffect</span>(<span class="params">unsigned <span class="keyword">int</span> nSoundId</span>)</span>;                             <span class="comment">// 停止指定ID的音效</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">stopAllEffects</span>(<span class="params"></span>)</span>;                                              <span class="comment">// 停止所有音效</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pauseEffect</span>(<span class="params">unsigned <span class="keyword">int</span> nSoundId</span>)</span>;                            <span class="comment">// 暂停指定ID的音效</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pauseAllEffects</span>(<span class="params"></span>)</span>;                                             <span class="comment">// 暂停所有音效</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">resumeEffect</span>(<span class="params">unsigned <span class="keyword">int</span> nSoundId</span>)</span>;                           <span class="comment">// 恢复指定ID的音效</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">resumeAllEffects</span>(<span class="params"></span>)</span>;                                            <span class="comment">// 恢复所有音效</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">unloadEffect</span>(<span class="params"><span class="keyword">const</span> <span class="keyword">char</span>* pszFilePath</span>)</span>;                         <span class="comment">// 卸载音效资源</span></div><div class="line"></div><div class="line"> </div><div class="line"><span class="comment">// 设置音量，取值范围0~1.0</span></div><div class="line"><span class="comment">// 在2.x中，调节音量永远是1.0，只有在3.x中才实现了这一功能</span></div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">getEffectsVolume</span>(<span class="params"></span>)</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setEffectsVolume</span>(<span class="params"><span class="keyword">float</span> volume</span>)</span>;</div></pre></td></tr></table></figure>
+<h2 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a><strong>预加载</strong></h2><p>一般来说，在游戏的初始化过程中就要加载这些声音文件：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MUSIC_FILE是文件的路径</span></div><div class="line">SimpleAudioEngine::sharedEngine()-&gt;preloadBackgroundMusic(MUSIC_FILE);</div></pre></td></tr></table></figure>
+<h2 id="音乐的释放"><a href="#音乐的释放" class="headerlink" title="音乐的释放"></a><strong>音乐的释放</strong></h2><p>游戏结束时通过下面的方法释放音乐资源：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">SimpleAudioEngine:</span><span class="symbol">:sharedEngine</span>()-&gt;<span class="keyword">end</span>()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/07/Cocos2dx-note-26/" rel="next" title="Cocos2dx学习笔记（26）——缓冲动作类">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（26）——缓冲动作类
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/18/Cocos2dx-practice-4/" rel="prev" title="Cocos2dx项目实战（4）——一个都不能死">
+                Cocos2dx项目实战（4）——一个都不能死 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/17/Cocos2dx-note-27/"
+           data-title="Cocos2dx学习笔记（27）——音效SimpleAudioEngine" data-url="http://yoursite.com/2016/10/17/Cocos2dx-note-27/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#音效类"><span class="nav-number">1.</span> <span class="nav-text">音效类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x版本改变"><span class="nav-number">2.</span> <span class="nav-text">3.x版本改变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音乐文件类型"><span class="nav-number">3.</span> <span class="nav-text">音乐文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入头文件"><span class="nav-number">4.</span> <span class="nav-text">引入头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取单例对象"><span class="nav-number">5.</span> <span class="nav-text">获取单例对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景音乐的函数"><span class="nav-number">6.</span> <span class="nav-text">背景音乐的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音效的函数"><span class="nav-number">7.</span> <span class="nav-text">音效的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预加载"><span class="nav-number">8.</span> <span class="nav-text">预加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音乐的释放"><span class="nav-number">9.</span> <span class="nav-text">音乐的释放</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法,数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章讲一讲比较重要的搜索算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索">
+<meta property="og:url" content="http://yoursite.com/2016/08/26/Algorithm-note-3/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章讲一讲比较重要的搜索算法。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asfwefs.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asdawfw.png">
+<meta property="og:updated_time" content="2016-09-07T11:44:13.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索">
+<meta name="twitter:description" content="本章讲一讲比较重要的搜索算法。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/asfwefs.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/26/Algorithm-note-3/"/>
+
+  <title> 数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-26T09:16:07+08:00" content="2016-08-26">
+              2016-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/26/Algorithm-note-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/Algorithm-note-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章讲一讲比较重要的搜索算法。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a><strong>问题引入</strong></h2><p>小学的时候我们可能做过这样一个题目：给你1-9的自然数，将它们组成三个三位数，使得其中两个数相加等于另外一个数，自然数可以重复使用。如果现在让我们编程实现这个问题，我们应该怎么做呢？不要急，让我们一步步地解决这个问题。</p>
+<h2 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a><strong>深度优先搜索</strong></h2><p>我们先来看看这样一个问题：写出123的全排列。什么是全排列？其实就是将各个位置的数进行交换，得到的所有可能的数。比如123的全排列就是123、132、213、231、312、321。那么，让我们用代码来实现这个全排列：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for(<span class="name">a</span> = <span class="number">1</span><span class="comment">; a &lt;= 3; a++)</span></div><div class="line">    for(<span class="name">b</span> = <span class="number">1</span><span class="comment">; b &lt;= 3; b++)</span></div><div class="line">        for(<span class="name">c</span> = <span class="number">1</span><span class="comment">; c &lt;= 3; c++)</span></div><div class="line">            if(<span class="name">a</span> != b <span class="symbol">&amp;&amp;</span> a != c <span class="symbol">&amp;&amp;</span> b != c)</div><div class="line">                printf(<span class="string">"%d%d%d\n"</span>, a, b, c)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>至于1234的全排列，无非就是多加一层循环，再修改一下判断条件即可。不过呢，这样一来代码就显得较为臃肿。递归一章提到，所有的循环都可以用递归来表达，那么显然我们可以用递归来简化代码。</p>
+<p>现在假设有3个盒子，代表着全排列中对应的百位、十位、个位，我们要做的就是将1、2、3放入三个盒子中。首先我们按照顺序，将1放入1号盒子，2放入2号盒子，3放入3号盒子，形成了123这个数。产生排列之后，我们将3取走，并且尝试着向3号盒子放入其他的数。当然，我们手中只有3，并没有其他的数，所以我们只能退回到2号盒子。来到2号盒子前，我们取回2，并且尝试着放入其他的数。很显然，我们可以放入3。放入3后，我们来到3号盒子，我们可以放入2，形成排列132。</p>
+<p>按照刚刚的步骤进行模拟，就可以得到所有的排列，下面是这个过程的代码实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> sum = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="keyword">int</span> book[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;  <span class="comment">// 表示纸牌，0为没有打出，1为已经打出</span></div><div class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;     <span class="comment">// 表示盒子</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DepthFirstSearch</span><span class="params">(<span class="keyword">int</span> step)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">if</span>(step == n + <span class="number">1</span>)  <span class="comment">// 盒子越界</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第%d种排列："</span>, sum++);</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>, a[i]);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)  <span class="comment">// 循环遍历每一张牌，尝试每一种可能</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(book[i] == <span class="number">0</span>)     <span class="comment">// 表示第i张牌还没有打出去</span></div><div class="line">        &#123;</div><div class="line">            a[step] = i;               <span class="comment">// 将第i张牌放入第step个盒子</span></div><div class="line">            book[i] = <span class="number">1</span>;               <span class="comment">// 表示第i张牌已经打出去</span></div><div class="line">            DepthFirstSearch(step + <span class="number">1</span>);  <span class="comment">// 在这个排列的基础上进行下一个盒子的排列</span></div><div class="line">            book[i] = <span class="number">0</span>;               <span class="comment">// 在一种排列结束后需要马上将牌收回来</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"输入1-9的整数："</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    DepthFirstSearch(<span class="number">1</span>);  <span class="comment">// 从第一个盒子开始</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比较关键的是数组a和b，a表示盒子中有没有数，b表示1-9这9个数有没有被使用。当达到第十个盒子时，我们就形成了一种全排列。八皇后问题和这个过程类似，将一层层的循环写进递归之中，简化了代码量。深度优先搜索之所以冠以深度的名字，那是因为这个算法讲究的是先往下探索，一直深入到无法深入后，再回退一步，探索这个深度的其他可能。然后一直回退，最后回到第一层。</p>
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a><strong>广度优先搜索</strong></h2><p>现在有一位探险家降落在一个海岛上，他携带了一张地图，地图上标识了他的位置为(6, 8)。但是呢，他并不知道这个海岛的面积有多大。那么，如果让你来引导这位探险家，你会用什么样的方式来探索出海岛的面积？</p>
+<p>这里就不得不介绍一下广度优先搜索。所谓的广度优先，指的是将同一深度探索完成后，才进入下一深度，与深度优先那种直达最深层的方式有所区别。我们的探险家降落在(6, 8)的位置，他能够走的方向有上下左右四个方向，因此，(6, 9)、(6, 7)、(5, 8)、(7, 8)就是属于同一深度，我们就先探索这四个位置。然后呢，这四个位置同样可以往四个方向移动，不过(6, 8)已经走过了，所以我们将它标记一下，以免重复探索，所以我们下一步要探索的一共有8个位置（记住，探索过的位置一定要标记）。如下图：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/asfwefs.png" alt="示例图"></center>
+
+<p>红色的为起始位置，黄色的是第一深度，绿色的是第二深度。广度优先搜索就是像这样展开，一直到碰到海水时结束。这样，我们就能够将整个海岛的面积计算出来。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">struct note</div><div class="line">&#123;</div><div class="line">    int x;</div><div class="line">    int y;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    struct note que[<span class="number">2501</span>];</div><div class="line">    int head,tail;</div><div class="line">    int i, j, k, n, m, startx, starty, p, q, sum, max=<span class="number">0</span>, tx, ty;</div><div class="line">    int a[<span class="number">51</span>][<span class="number">51</span>] = &#123;<span class="number">0</span>&#125;, book[<span class="number">51</span>][<span class="number">51</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">    int next[<span class="number">4</span>][<span class="number">2</span>] = &#123;</div><div class="line">        &#123;<span class="number">0</span>,<span class="number">1</span>&#125;,  <span class="comment">// 向右走</span></div><div class="line">        &#123;<span class="number">1</span>,<span class="number">0</span>&#125;,</div><div class="line">        &#123;<span class="number">0</span>,<span class="number">-1</span>&#125;,</div><div class="line">        &#123;<span class="number">-1</span>,<span class="number">0</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    printf(<span class="string">"输入长和宽："</span>);</div><div class="line">    scanf(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">    printf(<span class="string">"输入地图：<span class="subst">\n</span>"</span>);</div><div class="line">    for(i = <span class="number">1</span>; i &lt;= n; i++)</div><div class="line">        for(j = <span class="number">1</span>; j &lt;= m; j++)</div><div class="line">            scanf(<span class="string">"%d"</span>, &amp;a[i][j]);</div><div class="line">    printf(<span class="string">"输入起始位置："</span>);</div><div class="line">    scanf(<span class="string">"%d%d"</span>, &amp;startx, &amp;starty);</div><div class="line"></div><div class="line">    head = <span class="number">1</span>, tail = <span class="number">1</span>;</div><div class="line">    que[tail].x = startx;</div><div class="line">    que[tail].y = starty;</div><div class="line">    sum = <span class="number">1</span>;</div><div class="line">    tail++;</div><div class="line">    book[startx][starty] = <span class="number">1</span>;</div><div class="line"></div><div class="line">    while(head &lt; tail)</div><div class="line">    &#123;</div><div class="line">        for(k = <span class="number">0</span>; k &lt;= <span class="number">3</span>; k++)</div><div class="line">        &#123;</div><div class="line">            tx = que[head].x + next[k][<span class="number">0</span>];</div><div class="line">            ty = que[head].y + next[k][<span class="number">1</span>];</div><div class="line"></div><div class="line">            if(tx &lt; <span class="number">1</span> || tx &gt; n || ty &lt; <span class="number">1</span> || ty &gt; m)</div><div class="line">                continue;</div><div class="line"></div><div class="line">            if(a[tx][ty] &gt; <span class="number">0</span> &amp;&amp; book[tx][ty] == <span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                book[tx][ty] = <span class="number">1</span>;</div><div class="line">                que[tail].x = tx;</div><div class="line">                que[tail].y = ty;</div><div class="line">                tail++;</div><div class="line">                sum++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        head++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    printf(<span class="string">"面积为%d"</span>, sum);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里我们创建了一个结构体来存储坐标，另外呢，我们创建了一个结构体数组，代表一个队列，来存放需要搜索的位置。还需要注意的是，这里使用的next数组用于指示所走的方向。那么呢，我们按照顺时针的探索方式，先从右开始搜索。</p>
+<p>下面这组数据可以用于验证代码正确与否，0代表海洋，1-9代表陆地：</p>
+<pre><code>1 2 1 0 0 0 0 0 2 3
+3 0 2 0 1 2 1 0 1 2
+4 0 1 0 1 2 3 2 0 1
+3 2 0 0 0 1 2 4 0 0
+0 0 0 0 0 0 1 5 3 0
+0 1 2 1 0 1 5 4 3 0
+0 1 2 3 1 3 6 2 1 0
+0 0 3 4 8 9 7 5 0 0
+0 0 0 3 7 8 6 0 1 2
+0 0 0 0 0 0 0 0 1 0
+</code></pre><p>如果你的答案是38，那么证明你的代码是正确的。</p>
+<h2 id="深度优先与广度优先的区别"><a href="#深度优先与广度优先的区别" class="headerlink" title="深度优先与广度优先的区别"></a><strong>深度优先与广度优先的区别</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/asdawfw.png" alt="示例图"></center>
+
+<p>看看上面这个图，如果是深度优先的话，探索的顺序应该是1-2-4-5-3-6。如果是广度优先的话，探索的顺序应该是1-2-3-4-5-6。注意，这里规定左边优先探索。深度优先时，我们优先探索纵深，而广度优先时应该优先探索同一层。示例图所表示的是一种名为“树”的数据结构，我们之后会学习到。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/24/Algorithm-note-2/" rel="next" title="数据结构与算法学习笔记（2）——背包问题">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法学习笔记（2）——背包问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/27/Cocos2dx-note-14/" rel="prev" title="Cocos2dx学习笔记（14）——内存管理">
+                Cocos2dx学习笔记（14）——内存管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/26/Algorithm-note-3/"
+           data-title="数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索" data-url="http://yoursite.com/2016/08/26/Algorithm-note-3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题引入"><span class="nav-number">1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度优先搜索"><span class="nav-number">2.</span> <span class="nav-text">深度优先搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先搜索"><span class="nav-number">3.</span> <span class="nav-text">广度优先搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度优先与广度优先的区别"><span class="nav-number">4.</span> <span class="nav-text">深度优先与广度优先的区别</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

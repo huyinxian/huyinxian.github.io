@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（17）——菜单CCMenuItem">
+<meta property="og:url" content="http://yoursite.com/2016/09/03/Cocos2dx-note-17/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/menu.png">
+<meta property="og:updated_time" content="2016-09-05T15:19:27.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（17）——菜单CCMenuItem">
+<meta name="twitter:description" content="菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/menu.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/03/Cocos2dx-note-17/"/>
+
+  <title> Cocos2dx学习笔记（17）——菜单CCMenuItem | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（17）——菜单CCMenuItem
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-03T16:45:29+08:00" content="2016-09-03">
+              2016-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/03/Cocos2dx-note-17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/03/Cocos2dx-note-17/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="菜单的作用"><a href="#菜单的作用" class="headerlink" title="菜单的作用"></a><strong>菜单的作用</strong></h2><p>不管是开始界面还是游戏设置界面以及等等，都需要设计菜单。菜单可不仅仅就是一张图片，我们点击了按键之后还必须有一定的反应，比如跳转到某个界面等等。</p>
+<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><p>其实也没什么改变的，就是把CC去掉了而已。可能有一些小地方改动，不过影响不大。</p>
+<h2 id="CCMenu"><a href="#CCMenu" class="headerlink" title="CCMenu"></a><strong>CCMenu</strong></h2><p>菜单CCMenu是一个CCLayer，但是子节点只能够存放CCMenuItem以及其子类。换句话说，CCMenu是用来存放菜单按钮的。我们一般先创建CCMenuItem，全部设置好了之后，统一加入到CCMenu，最后将CCMenu加入到当前图层中。</p>
+<p>CCMenuItem可以直接加入层中，但是没有办法响应回调事件，因为CCMenu继承自CCLayer，而CCMenuItem继承自CCNode。注意以下几点：</p>
+<ul>
+<li>CCMenu的锚点为(0, 0)，默认原点坐标为屏幕中央</li>
+<li>CCMenuItem的锚点为(0.5, 0.5)，默认原点坐标为(0, 0)</li>
+</ul>
+<p>由于CCMenuItem的坐标是相对于CCMenu而言的，因此，CCMenuItem看起来是位于图层中心，实际上位于CCMenu的左下角。所以为了方便，我们一般将CCMenu的位置设置为(0, 0)，让它与当前图层重合，方便调整CCMenuItem的位置。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCMenu menu = CCMenu<span class="type">::create</span>(<span class="attr">...</span>, <span class="built_in">NULL</span>);</div></pre></td></tr></table></figure>
+<p>CCMenu的初始化需要我们传入所有CCMenuItem，并且以NULL结尾来表示参数列表结束。这里的create()使用的是可变参数列表。</p>
+<p>部分重要方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenu : <span class="keyword">public</span> CCLayerRGBA</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建菜单的三个常用方法</div><div class="line"> */</div><div class="line">    <span class="comment">// 创建一个空菜单</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenu* <span class="title">create</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// CCMenu::create(item1,item2,item3,NULL);</span></div><div class="line">    <span class="comment">// 用CCMenuItem菜单项创建菜单,最后以NULL表示结束.</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenu* <span class="title">create</span><span class="params">(CCMenuItem* item, ...)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 用一个包含CCMenuItem的CCArray数组来创建菜单</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenu* <span class="title">createWithArray</span><span class="params">(CCArray* pArrayOfItems)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     菜单布局方式</div><div class="line"> *     注意：使用以下函数进行菜单布局时，将会把整体菜单项的相对于CCMenu的偏移坐标设置到（0,0）。</div><div class="line"> *             所以布局后，应该设置CCMenu菜单的坐标为屏幕正中心(winSize.width/2, winSize.height/2)，效果更加。</div><div class="line"> *     alignItemsVertically , alignItemsHorizontally , </div><div class="line"> *     alignItemsInColumns , alignItemsInRows</div><div class="line"> */</div><div class="line">    <span class="comment">// 让menu的所有item竖着布局</span></div><div class="line">    <span class="comment">// item1</span></div><div class="line">    <span class="comment">// item2</span></div><div class="line">    <span class="comment">// item3</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsVertically</span><span class="params">()</span></span>; <span class="comment">//默认间隙：5个像素</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsVerticallyWithPadding</span><span class="params">(<span class="keyword">float</span> padding)</span></span>; <span class="comment">//相连两个item间隔为padding</span></div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 让menu的所有item横着布局</span></div><div class="line">    <span class="comment">// item1  item2    item3</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsHorizontally</span><span class="params">()</span></span>; <span class="comment">//默认间隙：5个像素</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsHorizontallyWithPadding</span><span class="params">(<span class="keyword">float</span> padding)</span></span>; <span class="comment">//相连两个item间隔为padding</span></div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 将items进行分组，然后按列(columns)进行排列</span></div><div class="line">    <span class="comment">// 每一组在同一行，参数columns表示每一组的菜单项个数，并以NULL表示结束。</span></div><div class="line">    <span class="comment">// alignItemsInColumns(3,2,1,NULL);</span></div><div class="line">    <span class="comment">// item1 item2 item3</span></div><div class="line">    <span class="comment">//   item4 item5</span></div><div class="line">    <span class="comment">//      item6</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsInColumns</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> columns, ...)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line">    <span class="comment">// 将items进行分组，然后按行(rows)进行排列。与上述类似。</span></div><div class="line">    <span class="comment">// alignItemsInRows(3,2,1,NULL);</span></div><div class="line">    <span class="comment">// item1</span></div><div class="line">    <span class="comment">//           item4</span></div><div class="line">    <span class="comment">// item2                 item6</span></div><div class="line">    <span class="comment">//           item5</span></div><div class="line">    <span class="comment">// item3</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alignItemsInRows</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> rows, ...)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     添加、删除item菜单项</div><div class="line"> *     addChild , removeChild</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(CCNode * child)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(CCNode * child, <span class="keyword">int</span> zOrder)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">addChild</span><span class="params">(CCNode * child, <span class="keyword">int</span> zOrder, <span class="keyword">int</span> tag)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">removeChild</span><span class="params">(CCNode* child, <span class="keyword">bool</span> cleanup)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     设置菜单是否可用</div><div class="line"> *     setEnabled</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setEnabled</span><span class="params">(<span class="keyword">bool</span> value)</span> </span>&#123; m_bEnabled = value; &#125;;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isEnabled</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> m_bEnabled; &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>比较有用的是调整菜单按钮的排列方式，其他的用的不多。</p>
+<h2 id="CCMenuItem"><a href="#CCMenuItem" class="headerlink" title="CCMenuItem"></a><strong>CCMenuItem</strong></h2><p>CCMenuItem是菜单项的父类，一般不直接使用，因为无法显示字体之类的内容。至于功能以下几个：</p>
+<ul>
+<li>三个按钮状态：正常、选中、禁用</li>
+<li>点击按钮之后，会自动执行回调函数</li>
+<li>点击按钮后会放大</li>
+</ul>
+<p>菜单项可以分为三个类别：</p>
+<ul>
+<li>文字菜单项：CCMenuItemLabel、CCMenuItemAtlasFont、CCMenuItemFont</li>
+<li>图片菜单项：CCMenuItemSprite、CCMenuItemImage</li>
+<li>切换菜单项：CCMenuItemToggle</li>
+</ul>
+<p>下面我们将一一介绍。</p>
+<h2 id="CCMenuItemLabel"><a href="#CCMenuItemLabel" class="headerlink" title="CCMenuItemLabel"></a><strong>CCMenuItemLabel</strong></h2><p>看到名字我们就可以知道，CCMenuItemLabel可以存放文字标签：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemLabel : <span class="keyword">public</span> CCMenuItem</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemLabel</div><div class="line"> *     支持字体标签类：CCLabelBMFont , CCLabelAtlas , CCLabelTTF </div><div class="line"> */</div><div class="line">    <span class="comment">// 用label字体标签创建，不设置回调响应事件。</span></div><div class="line">    <span class="comment">// label可以是CCLabelBMFont , CCLabelAtlas , CCLabelTTF三种文字标签。</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemLabel* <span class="title">create</span><span class="params">(CCNode *label)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 用label字体标签创建，并设置回调响应事件。</span></div><div class="line">    <span class="comment">//      target：执行当前按钮的对象，一般为this。表示由CCLayer图层执行回调响应事件。</span></div><div class="line">    <span class="comment">//      selector：使用菜单回调函数menu_selector。一般在当前CCLayer图层中定义。</span></div><div class="line">    <span class="comment">//create( label, this , menu_selector( HelloWorld::func1 ) );</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemLabel * <span class="title">create</span><span class="params">(CCNode*label, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     属性设置</div><div class="line"> *     setString , setEnabled , setDisabledColor , setLabel</div><div class="line"> */</div><div class="line">    <span class="comment">// 设置内部字体标签(CCLabel)的显示文字内容</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setString</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * label)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置该CCMenuItemLabel对象是否可用</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setEnabled</span><span class="params">(<span class="keyword">bool</span> enabled)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isSelected</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 禁用时的颜色</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setDisabledColor</span><span class="params">(ccColor3B&amp;)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> ccColor3B&amp; <span class="title">getDisabledColor</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 被渲染的字体，可以是CCLabelBMFont , CCLabelAtlas , CCLabelTTF。</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setLabel</span><span class="params">(CCNode*)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCNode* <span class="title">getLabel</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="CCMenuItemAtlasFont"><a href="#CCMenuItemAtlasFont" class="headerlink" title="CCMenuItemAtlasFont"></a><strong>CCMenuItemAtlasFont</strong></h2><p>这个是CCMenuItemLabel的子类，使用CCLabelAtlas来创建文字标签的菜单项按钮，需要提供显示的字符串内容以及.png文件：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemFont : <span class="keyword">public</span> CCMenuItemLabel</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemFont</div><div class="line"> */</div><div class="line">    <span class="comment">// 创建基于CCLabelAtlas字体标签的CCMenuItemAtlasFont，不带回调响应事件。</span></div><div class="line">    <span class="comment">// create("20140818" , "digit.png" , 20 , 20 , '0' );</span></div><div class="line">    <span class="comment">// create("20140818" , "digit.png" , 20 , 20 , '0' , this , menu_selector( HelloWorld::func2 ) );</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemAtlasFont* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *value, <span class="keyword">const</span> <span class="keyword">char</span> *charMapFile, <span class="keyword">int</span> itemWidth, <span class="keyword">int</span> itemHeight, <span class="keyword">char</span> startCharMap)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemAtlasFont* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *value, <span class="keyword">const</span> <span class="keyword">char</span> *charMapFile, <span class="keyword">int</span> itemWidth, <span class="keyword">int</span> itemHeight, <span class="keyword">char</span> startCharMap, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="CCMenuItemFont"><a href="#CCMenuItemFont" class="headerlink" title="CCMenuItemFont"></a><strong>CCMenuItemFont</strong></h2><p>这个同样也是CCMenuItemLabel的子类，使用CCLabelTTF创建菜单项，可以直接设置字符串内容，无需提供字体文件：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemFont : <span class="keyword">public</span> CCMenuItemLabel</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemFont</div><div class="line"> */</div><div class="line">    <span class="comment">// create(要显示的字符串)</span></div><div class="line">    <span class="comment">// create(要显示的字符串,执行当前按钮的对象,回调函数)</span></div><div class="line">    <span class="comment">//      target：执行当前按钮的对象，一般为this。表示由CCLayer图层执行回调响应事件。</span></div><div class="line">    <span class="comment">//      selector：使用菜单回调函数menu_selector。一般在当前CCLayer图层中定义。</span></div><div class="line">    <span class="comment">// create( "hello" , this , menu_selector( HelloWorld::func3 ) );</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemFont * <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *value)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemFont * <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *value, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line"> </div><div class="line">     </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     属性设置</div><div class="line"> */</div><div class="line">    <span class="comment">// 这是一个全局静态方法，用来设置新创建CCMenuItemFont时的默认字体大小的</span></div><div class="line">    <span class="comment">// 在不进行设置时，创建的CCMenuItemFont，默认大小为32。</span></div><div class="line">    <span class="comment">// CCMenuItemFont::setFontSize(32);</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setFontSize</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> s)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">fontSize</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 这是一个全局静态方法，用来设置新创建CCMenuItemFont时的默认字体资源.fnt的</span></div><div class="line">    <span class="comment">// 在不进行设置时，创建的CCMenuItemFont，默认字体为"Marker Felt"。</span></div><div class="line">    <span class="comment">//CCMenuItemFont::setFontName("Arial");</span></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setFontName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">fontName</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置该对象的字体大小及使用的字体资源名.fnt</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setFontSizeObj</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> s)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">fontSizeObj</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setFontNameObj</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* name)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="title">fontNameObj</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="CCMenuItemSprite"><a href="#CCMenuItemSprite" class="headerlink" title="CCMenuItemSprite"></a><strong>CCMenuItemSprite</strong></h2><p>顾名思义，这是一个由精灵组成的菜单按钮，内部有三个精灵，分别为正常、选中、禁用，所以我们可以根据三种状态设置不同的图案：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemSprite : <span class="keyword">public</span> CCMenuItem</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemSprite</div><div class="line"> */</div><div class="line">    <span class="comment">// 参数：</span></div><div class="line">    <span class="comment">//      normalSprite：  正常时的默认精灵normalSprite</span></div><div class="line">    <span class="comment">//      selectedSprite：被选中时的精灵selectedSprite</span></div><div class="line">    <span class="comment">//      disabledSprite：禁用时的精灵disabledSprite</span></div><div class="line">    <span class="comment">//      target：执行当前按钮的对象，一般为this。表示由CCLayer图层执行回调响应事件。</span></div><div class="line">    <span class="comment">//      selector：使用菜单回调函数menu_selector。一般在当前CCLayer图层中定义。</span></div><div class="line">    <span class="comment">// CCSprite* normalSprite = CCSprite::create("sp1.png");</span></div><div class="line">    <span class="comment">// CCSprite* selectedSprite = CCSprite::create("sp2.png");</span></div><div class="line">    <span class="comment">// CCSprite* disabledSprite = CCSprite::create("sp3.png");</span></div><div class="line">    <span class="comment">// create(normalSprite, selectedSprite, disabledSprite, this, menu_selector(HelloWorld::func4) );</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemSprite * <span class="title">create</span><span class="params">(CCNode* normalSprite, CCNode* selectedSprite, CCNode* disabledSprite = <span class="literal">NULL</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemSprite * <span class="title">create</span><span class="params">(CCNode* normalSprite, CCNode* selectedSprite, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemSprite * <span class="title">create</span><span class="params">(CCNode* normalSprite, CCNode* selectedSprite, CCNode* disabledSprite, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     设置三种状态的精灵CCSprite</div><div class="line"> */</div><div class="line">    <span class="comment">// 正常时的默认图片normalSprite</span></div><div class="line">    <span class="comment">// 被选中时的图片selectedSprite</span></div><div class="line">    <span class="comment">// 禁用时的图片disabledSprite</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setNormalImage</span><span class="params">(CCNode* normalSprite)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCNode* <span class="title">getNormalImage</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setSelectedImage</span><span class="params">(CCNode* selectedSprite)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCNode* <span class="title">getSelectedImage</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setDisabledImage</span><span class="params">(CCNode* disabledSprite)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCNode* <span class="title">getDisabledImage</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     设置选中、禁用</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">selected</span><span class="params">()</span></span>; <span class="comment">// 选中</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">unselected</span><span class="params">()</span></span>; <span class="comment">// 取消选中</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setEnabled</span><span class="params">(<span class="keyword">bool</span> bEnabled)</span></span>; <span class="comment">// 是否启用。false禁用。</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="CCMenuItemImage"><a href="#CCMenuItemImage" class="headerlink" title="CCMenuItemImage"></a><strong>CCMenuItemImage</strong></h2><p>这个继承自CCMenuItemSprite，我们无需创建精灵便可以直接创建菜单项：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemImage : <span class="keyword">public</span> CCMenuItemSprite</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemImage</div><div class="line"> */</div><div class="line">    <span class="comment">// 与CCMenuItemSprite创建方式差不多。就是参数变成了图片资源(如*.png)</span></div><div class="line">    <span class="comment">// create("sp1.png", "sp2.png", "sp3.png", this, menu_selector(HelloWorld::func5) );</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemImage* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *normalImage, <span class="keyword">const</span> <span class="keyword">char</span> *selectedImage)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemImage* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *normalImage, <span class="keyword">const</span> <span class="keyword">char</span> *selectedImage, <span class="keyword">const</span> <span class="keyword">char</span> *disabledImage)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemImage* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *normalImage, <span class="keyword">const</span> <span class="keyword">char</span> *selectedImage, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemImage* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *normalImage, <span class="keyword">const</span> <span class="keyword">char</span> *selectedImage, <span class="keyword">const</span> <span class="keyword">char</span> *disabledImage, CCObject* target, SEL_MenuHandler selector)</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     属性设置</div><div class="line"> */</div><div class="line">    <span class="comment">// 用CCSpriteFrame精灵帧，设置正常时的精灵帧Normal</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setNormalSpriteFrame</span><span class="params">(CCSpriteFrame* frame)</span></span>;</div><div class="line">    <span class="comment">// 用CCSpriteFrame精灵帧，设置选中时的精灵帧Selected</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setSelectedSpriteFrame</span><span class="params">(CCSpriteFrame* frame)</span></span>;</div><div class="line">    <span class="comment">// 用CCSpriteFrame精灵帧，设置禁用时的精灵帧Disabled</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setDisabledSpriteFrame</span><span class="params">(CCSpriteFrame* frame)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="CCMenuItemToggle"><a href="#CCMenuItemToggle" class="headerlink" title="CCMenuItemToggle"></a><strong>CCMenuItemToggle</strong></h2><p>此类是一个菜单项按钮对象的集合，能够包含很多的菜单项按钮状态，方便开发者进行切换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CC_DLL CCMenuItemToggle : <span class="keyword">public</span> CCMenuItem</div><div class="line">&#123;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *     创建CCMenuItemToggle</div><div class="line"> *     create 或 createWithTarget</div><div class="line"> */</div><div class="line">    <span class="comment">// 使用一个菜单项创建CCMenuItemToggle对象</span></div><div class="line">    <span class="comment">// CCMenuItemFont* item = CCMenuItemFont::create("hello");</span></div><div class="line">    <span class="comment">// CCMenuItemToggle::create(item);</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemToggle* <span class="title">create</span><span class="params">(CCMenuItem *item)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 使用菜单项参数列表创建，以NULL结束列表</span></div><div class="line">    <span class="comment">// item1 = CCMenuItemFont::create("hello");</span></div><div class="line">    <span class="comment">// item2 = CCSprite::create("sp1.png"):</span></div><div class="line">    <span class="comment">// createWithTarget(this, menu_selector(HelloWorld::func6), item1, item2, NULL);</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemToggle* <span class="title">createWithTarget</span><span class="params">(CCObject* target, SEL_MenuHandler selector, CCMenuItem* item, ...)</span></span>;  </div><div class="line"> </div><div class="line">    <span class="comment">// 使用包含菜单项的数组创建</span></div><div class="line">    <span class="comment">// createWithTarget(this, menu_selector(HelloWorld::func6), pArray);</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCMenuItemToggle * <span class="title">createWithTarget</span><span class="params">(CCObject* target, SEL_MenuHandler selector, CCArray* menuItems)</span></span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> *     菜单项数组集合相关</div><div class="line"> *     setSelectedIndex , selectedItem ,</div><div class="line"> *     setSubItems , addSubItem</div><div class="line"> */</div><div class="line">    <span class="comment">// 设置当前选中的CCMenuItem的索引值(即数组下标)</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setSelectedIndex</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> )</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">getSelectedIndex</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 返回当前选中的菜单项</span></div><div class="line">    <span class="function">CCMenuItem* <span class="title">selectedItem</span><span class="params">()</span></span>; </div><div class="line"> </div><div class="line">    <span class="comment">// 设置CCMenuItem菜单项数组集合</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setSubItems</span><span class="params">(CCArray* )</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCArray* <span class="title">getSubItems</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 添加新的子菜单项</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addSubItem</span><span class="params">(CCMenuItem *item)</span></span>; </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h2><p>类的实现有些枯燥，我们来实际的创建一个菜单：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> T11CCMenu::init()</div><div class="line">&#123;</div><div class="line">    CCLayer::init();</div><div class="line">    CCMenuItem *fontItem = CCMenuItemFont::create(<span class="string">"fontmenu"</span>);</div><div class="line">    fontItem-&gt;setTarget(this, menu_selector(T11CCMenu::menuCallBack));</div><div class="line"></div><div class="line">    CCMenu *menu = CCMenu::create();</div><div class="line">    menu-&gt;addChild(fontItem);</div><div class="line"></div><div class="line">    this-&gt;addChild(menu);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void T11CCMenu::menuCallBack()</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一个很简单的菜单，我们只加入了一个菜单项，同时也没有对回调函数编写其他的功能。不出意外的话，你可以看到屏幕中间出现“fontmenu”的字样。但是呢，它的结构其实是这样的：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/menu.png" alt=""></center>
+
+<p>CCMenu的锚点为(0, 0)，坐标为层的中央。CCMenuItem的锚点为(0.5, 0.5)，坐标为(0, 0)。所以呢，我们就能看到现在的结构。不过为了方便调整菜单项的位置，我们一般将菜单的位置调整为(0, 0)，让它与层重合。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">menu-&gt;<span class="selector-tag">getContentSize</span>()<span class="selector-class">.width</span>;</div><div class="line">menu-&gt;<span class="selector-tag">getContentSize</span>()<span class="selector-class">.height</span>;</div></pre></td></tr></table></figure>
+<p>我们可以调用一下子方法，就会发现CCMenu和CCLayer是一样大的。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CCMenuItem *fontItem2 = <span class="symbol">CCMenuItemFont:</span><span class="symbol">:create</span>(<span class="string">"fontmenu2"</span>);</div><div class="line">fontItem2-&gt;setTarget(this, menu_selector(<span class="symbol">T11CCMenu:</span><span class="symbol">:menuCallBack</span>));</div><div class="line"></div><div class="line">menu-&gt;addChild(fontItem2);</div></pre></td></tr></table></figure>
+<p>我们再加入一个菜单项，会发现两个菜单项的位置重叠在了一起，这时候怎么办呢？</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">menu-&gt;<span class="selector-tag">alignItemsVertically</span>();</div></pre></td></tr></table></figure>
+<p>不用手动去调整位置，这样就可以让菜单项上下排列好。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">menu-&gt;<span class="selector-tag">alignItemsVerticallyWithPadding</span>(<span class="number">40</span>);</div></pre></td></tr></table></figure>
+<p>我们还可以改变一下菜单项的上下间隔。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/Cocos2dx-note-16/" rel="next" title="Cocos2dx学习笔记（16）——数学类">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（16）——数学类
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/03/Cocos2dx-practice-1/" rel="prev" title="Cocos2dx项目实战（1）——简易时钟">
+                Cocos2dx项目实战（1）——简易时钟 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/03/Cocos2dx-note-17/"
+           data-title="Cocos2dx学习笔记（17）——菜单CCMenuItem" data-url="http://yoursite.com/2016/09/03/Cocos2dx-note-17/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单的作用"><span class="nav-number">1.</span> <span class="nav-text">菜单的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x版本改变"><span class="nav-number">2.</span> <span class="nav-text">3.x版本改变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenu"><span class="nav-number">3.</span> <span class="nav-text">CCMenu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItem"><span class="nav-number">4.</span> <span class="nav-text">CCMenuItem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemLabel"><span class="nav-number">5.</span> <span class="nav-text">CCMenuItemLabel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemAtlasFont"><span class="nav-number">6.</span> <span class="nav-text">CCMenuItemAtlasFont</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemFont"><span class="nav-number">7.</span> <span class="nav-text">CCMenuItemFont</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemSprite"><span class="nav-number">8.</span> <span class="nav-text">CCMenuItemSprite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemImage"><span class="nav-number">9.</span> <span class="nav-text">CCMenuItemImage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCMenuItemToggle"><span class="nav-number">10.</span> <span class="nav-text">CCMenuItemToggle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">11.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

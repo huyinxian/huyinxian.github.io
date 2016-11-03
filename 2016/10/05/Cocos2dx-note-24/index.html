@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Cocos中定义了一系列基本动作，可以方便我们制作简单的效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（24）——动作类CCAction">
+<meta property="og:url" content="http://yoursite.com/2016/10/05/Cocos2dx-note-24/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="Cocos中定义了一系列基本动作，可以方便我们制作简单的效果。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asdfawef.gif">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/djfoig.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/aisdfi.gif">
+<meta property="og:updated_time" content="2016-10-15T00:54:30.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（24）——动作类CCAction">
+<meta name="twitter:description" content="Cocos中定义了一系列基本动作，可以方便我们制作简单的效果。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/asdfawef.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/05/Cocos2dx-note-24/"/>
+
+  <title> Cocos2dx学习笔记（24）——动作类CCAction | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（24）——动作类CCAction
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-05T09:46:13+08:00" content="2016-10-05">
+              2016-10-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/05/Cocos2dx-note-24/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/05/Cocos2dx-note-24/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Cocos中定义了一系列基本动作，可以方便我们制作简单的效果。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="3-x版本变化"><a href="#3-x版本变化" class="headerlink" title="3.x版本变化"></a><strong>3.x版本变化</strong></h2><ul>
+<li>去掉CC</li>
+<li>更新了一些动作</li>
+<li>CallFunc有了新用法，具体请看回调函数一章</li>
+</ul>
+<h2 id="CCAction"><a href="#CCAction" class="headerlink" title="CCAction"></a><strong>CCAction</strong></h2><p>CCAction只是一个基类，它的派生类才是我们实际使用的动作。派生类如下：</p>
+<ul>
+<li>CCFiniteTimeAction：与时间相关的动作类</li>
+<li>CCFollow：跟随动作类</li>
+<li>CCSpeed：速度类</li>
+</ul>
+<h2 id="动作管理"><a href="#动作管理" class="headerlink" title="动作管理"></a><strong>动作管理</strong></h2><p>下面是一些常见操作，适用于所有的动作：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sp-&gt;<span class="selector-tag">runAction</span>(<span class="string">"action对象"</span>);     <span class="comment">// 执行</span></div><div class="line">sp-&gt;<span class="selector-tag">pauseSchedulerAndActions</span>();  <span class="comment">// 暂停</span></div><div class="line">sp-&gt;<span class="selector-tag">resumeSchedulerAndActions</span>(); <span class="comment">// 继续</span></div><div class="line">sp-&gt;<span class="selector-tag">stopAction</span>(<span class="string">"action对象"</span>);    <span class="comment">// 停止对象的某个action动作</span></div><div class="line">sp-&gt;<span class="selector-tag">stopActionByTag</span>(<span class="string">"tag值"</span>);    <span class="comment">// 停止对象的tag动作</span></div><div class="line">sp-&gt;<span class="selector-tag">stopAllActions</span>();            <span class="comment">// 停止对象的所有动作</span></div></pre></td></tr></table></figure>
+<p>下面将分别介绍三个类各自的操作。</p>
+<h2 id="时间动作类CCFiniteTimeAction"><a href="#时间动作类CCFiniteTimeAction" class="headerlink" title="时间动作类CCFiniteTimeAction"></a><strong>时间动作类CCFiniteTimeAction</strong></h2><p>CCFiniteTimeAction又分为CCActionInstant（瞬时动作）和CCActionInterval（持续动作）两个子类。</p>
+<h3 id="瞬时动作CCActionInstant"><a href="#瞬时动作CCActionInstant" class="headerlink" title="瞬时动作CCActionInstant"></a><strong>瞬时动作CCActionInstant</strong></h3><p>常见操作如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 翻转</span></div><div class="line"><span class="string">CCFlipX:</span>:create(<span class="string">'是否左右翻转bool'</span>);</div><div class="line"><span class="string">CCFlipY:</span>:create(<span class="string">'是否上下翻转bool'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 设置坐标</span></div><div class="line"><span class="string">CCPlace:</span>:create(<span class="string">'位置CCPoint'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 显示、隐藏</span></div><div class="line"><span class="comment">// 即：setVisible()，来设置可见/不可见</span></div><div class="line"><span class="string">CCShow:</span>:create();</div><div class="line"><span class="string">CCHide:</span>:create();</div><div class="line"></div><div class="line"><span class="comment">// 可见切换</span></div><div class="line"><span class="comment">// 即可见变不可见，不可见变可见。</span></div><div class="line"><span class="string">CCToggleVisibility:</span>:create();</div></pre></td></tr></table></figure>
+<p>使用举例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 瞬间翻转Y的动作</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"Icon.png"</span>);</div><div class="line">CCFlipY* flipY = CCFlipY::create(<span class="keyword">true</span>); </div><div class="line">sp-&gt;runAction(flipY);</div></pre></td></tr></table></figure>
+<h3 id="函数回调动作CCCallFunc"><a href="#函数回调动作CCCallFunc" class="headerlink" title="函数回调动作CCCallFunc"></a><strong>函数回调动作CCCallFunc</strong></h3><p>CCCallFunc是瞬时动作CCActionInstant的子类。它主要有三种函数回调动作类。三种函数回调的区别在于所带的参数个数：0、1、2。CCActionInstant在执行动作时，会调用这个函数。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">CCCallFunc:</span>:create(<span class="string">'对象this'</span>, <span class="string">'回调函数'</span>);                   <span class="comment">// 回调函数：不带参数</span></div><div class="line"><span class="string">CCCallFuncN:</span>:create(<span class="string">'对象this'</span>, <span class="string">'回调函数'</span>);                  <span class="comment">// 回调函数：传递着本身作为参数(CCNode* node)</span></div><div class="line"><span class="string">CCCallFuncND:</span>:create(<span class="string">'对象this'</span>, <span class="string">'回调函数'</span>, <span class="string">'任意参数void'</span>); <span class="comment">// 回调函数：带2个参数(CCNode* node,void* a)</span></div></pre></td></tr></table></figure>
+<p>使用举例：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义函数回调动作</span></div><div class="line">CCCallFunc* back1 = CCCallFunc::create(<span class="keyword">this</span>, callfunc_selector(MyLayer::funback1));</div><div class="line">CCCallFuncN* back2 = CCCallFuncN::create(<span class="keyword">this</span>, callfuncN_selector(MyLayer::funback2));</div><div class="line">CCCallFuncND* back3 = CCCallFuncND::create(<span class="keyword">this</span>, callfuncND_selector(MyLayer::funback3),(<span class="keyword">void</span> *)10);</div><div class="line"></div><div class="line"><span class="comment">// 回调函数</span></div><div class="line"><span class="keyword">void</span> MyLayer::funback1() &#123; ... &#125;                     <span class="comment">// CCCallFunc回调函数</span></div><div class="line"><span class="keyword">void</span> MyLayer::funback2(CCNode* node) &#123; ... &#125;         <span class="comment">// CCCallFuncN回调函数</span></div><div class="line"><span class="keyword">void</span> MyLayer::funback3(CCNode* node,<span class="keyword">void</span>* a) &#123; ... &#125; <span class="comment">// CCCallFuncND回调函数</span></div></pre></td></tr></table></figure>
+<h3 id="持续动作CCActionInterval"><a href="#持续动作CCActionInterval" class="headerlink" title="持续动作CCActionInterval"></a><strong>持续动作CCActionInterval</strong></h3><p>常见操作如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// To：绝对动作</span></div><div class="line"><span class="comment">// By：相对动作</span></div><div class="line"><span class="comment">// 如果当前对象的坐标为(20, 20)</span></div><div class="line"><span class="comment">// CCMoveTo(50, 50)后，移动到了(50, 50)的位置</span></div><div class="line"><span class="comment">// CCMoveBy(50, 50)后，则是相对当前坐标进行移动，最后坐标为(70, 70)</span></div><div class="line"></div><div class="line"><span class="comment">// 移动相关</span></div><div class="line"><span class="comment">// 几秒后移动到坐标点</span></div><div class="line">CCMoveTo::create(<span class="string">"时间"</span>,<span class="string">"坐标"</span>);</div><div class="line">CCMoveBy::create(<span class="string">"时间"</span>,<span class="string">"坐标"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 几秒后经过几次弹跳到指定位置</span></div><div class="line">CCJumpTo::create(<span class="string">"时间"</span>,<span class="string">"目标位置"</span>,<span class="string">"高度"</span>,<span class="string">"到目标所需次数"</span>);</div><div class="line">CCJumpBy::create(<span class="string">"时间"</span>,<span class="string">"目标位置"</span>,<span class="string">"高度"</span>,<span class="string">"到目标所需次数"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// 几秒内按指定贝塞尔曲线运动</span></div><div class="line">CCBezierTo::create(<span class="string">"时间"</span>,<span class="string">"ccBezierConfig构造体"</span>);</div><div class="line">CCBezierBy::create(<span class="string">"时间"</span>,<span class="string">"ccBezierConfig构造体"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// 几秒内按曲线运动（拟合度0最柔和）</span></div><div class="line">CCCardinalSplineTo::create(<span class="string">"时间"</span>,<span class="string">"控制点坐标数组"</span>,<span class="string">"拟合度"</span>);</div><div class="line">CCCardinalSplineBy::create(<span class="string">"时间"</span>,<span class="string">"控制点坐标数组"</span>,<span class="string">"拟合度"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 几秒内完成一个样条插值轨迹（直线）</span></div><div class="line">CCCatmullRomTo::create(<span class="string">"时间"</span>,<span class="string">"控制点坐标数组"</span>);</div><div class="line">CCCatmullRomBy::create(<span class="string">"时间"</span>,<span class="string">"控制点坐标数组"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 几秒内球面运动</span></div><div class="line">CCOrbitCamera::create(<span class="string">"时间"</span>,<span class="string">"起始半径"</span>,<span class="string">"半径差"</span>,<span class="string">"起始z角"</span>,<span class="string">"旋转z角"</span>,<span class="string">"起始x角"</span>,<span class="string">"旋转x角"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 缩放相关</span></div><div class="line"><span class="comment">// 几秒后缩放到指定大小（1：原大小；大于1：放大；小于1：缩小）</span></div><div class="line">CCScaleTo::create(<span class="string">"时间"</span>,<span class="string">"缩放比例"</span>);</div><div class="line">CCScaleBy::create(<span class="string">"时间"</span>,<span class="string">"缩放比例"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 旋转相关</span></div><div class="line"><span class="comment">// 几秒后旋转多少度，单位：角度</span></div><div class="line">CCRotateTo::create(<span class="string">"时间"</span>,<span class="string">"角度"</span>);</div><div class="line">CCRotateBy::create(<span class="string">"时间"</span>,<span class="string">"角度"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 倾斜相关</span></div><div class="line"><span class="comment">// 几秒后倾斜指定角度，单位：角度</span></div><div class="line">CCSkewTo::create(<span class="string">"时间"</span>,<span class="string">"x轴角度"</span>,<span class="string">"y轴角度"</span>);</div><div class="line">CCSkewBy::create(<span class="string">"时间"</span>,<span class="string">"x轴角度"</span>,<span class="string">"y轴角度"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 颜色相关</span></div><div class="line"><span class="comment">// 几秒后变为指定RGB颜色，颜色取值[0,255]</span></div><div class="line">CCTintTo::create(<span class="string">"时间"</span>,<span class="string">"红"</span>,<span class="string">"绿"</span>,<span class="string">"蓝"</span>);</div><div class="line">CCTintBy::create(<span class="string">"时间"</span>,<span class="string">"红"</span>,<span class="string">"绿"</span>,<span class="string">"蓝"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 设置透明度[0,255]（255为不透明）</span></div><div class="line">CCFadeIn::create(<span class="string">"时间"</span>);  <span class="comment">//淡入，透明度从0到255</span></div><div class="line">CCFadeOut::create(<span class="string">"时间"</span>); <span class="comment">//淡出，透明度从255到0</span></div><div class="line">CCFadeTo::create(<span class="number">1.0f</span>,<span class="number">80</span>); <span class="comment">//透明度转化为指定值</span></div><div class="line"> </div><div class="line"><span class="comment">// 几秒内闪烁几次</span></div><div class="line">CCBlink::create(<span class="string">"时间"</span>,<span class="string">"次数"</span>);</div></pre></td></tr></table></figure>
+<p>使用举例：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.0秒内移动到(200,200)</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"Icon.png"</span>);</div><div class="line">CCMoveTo* moveTo = CCMoveTo::create(1.0f, ccp(200, 200)); </div><div class="line">sp-&gt;runAction(moveTo);</div></pre></td></tr></table></figure>
+<h3 id="组合动作"><a href="#组合动作" class="headerlink" title="组合动作"></a><strong>组合动作</strong></h3><p>组合动作的类是CCActionInterval的子类，主要分为序列动作和重复动作。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 序列动作</span></div><div class="line">CCSpawn<span class="type">::create</span>(<span class="string">"action对象1"</span>, <span class="string">"action对象2"</span>, <span class="attr">...</span>, <span class="built_in">NULL</span>);    <span class="comment">// 动作同时执行</span></div><div class="line">CCSequence<span class="type">::create</span>(<span class="string">"action对象1"</span>, <span class="string">"action对象2"</span>, <span class="attr">...</span>, <span class="built_in">NULL</span>); <span class="comment">// 动作按顺序执行</span></div><div class="line"></div><div class="line"><span class="comment">// 重复动作</span></div><div class="line">CCRepeat<span class="type">::create</span>(<span class="string">"action对象"</span>,<span class="string">"次数"</span>); <span class="comment">// 重复次数</span></div><div class="line">CCRepeatForever<span class="type">::create</span>(<span class="string">"action对象"</span>); <span class="comment">// 无限重复</span></div></pre></td></tr></table></figure>
+<p>使用举例：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 每次移动后闪烁3次，重复无限次。</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"Icon.png"</span>);</div><div class="line"> </div><div class="line">CCMoveBy* <span class="keyword">move</span> = CCMoveBy::create(<span class="number">1.0</span>f, ccp(<span class="number">10</span>, <span class="number">10</span>));</div><div class="line">CCBlink* blink = CCBlink::create(<span class="number">1.0</span>f, <span class="number">3</span>);</div><div class="line">CCSequence* seq = CCSequence::create(<span class="keyword">move</span>, blink, NULL);</div><div class="line">CCRepeatForever* repeatForever = CCRepeatForever::create(seq);</div><div class="line"> </div><div class="line">sp-&gt;runAction(repeatForever);</div></pre></td></tr></table></figure>
+<h3 id="延迟动作CCDelayTime"><a href="#延迟动作CCDelayTime" class="headerlink" title="延迟动作CCDelayTime"></a><strong>延迟动作CCDelayTime</strong></h3><p>CCDelayTime是CCActionInterval的子类，用于序列CCSequence中，在两个动作之间加上一个等待时间。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 移动后，等待3秒，再执行闪烁动作</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"Icon.png"</span>);</div><div class="line">CCMoveBy* moveBy = CCMoveBy::create(<span class="number">2.0</span>f, ccp(<span class="number">300</span>, <span class="number">300</span>));</div><div class="line">CCBlink* blink = CCBlink::create(<span class="number">2.0</span>f, <span class="number">10</span>);</div><div class="line">CCDelayTime* delay = CCDelayTime::create(<span class="number">3.0</span>);</div><div class="line">CCSequence* seq = CCSequence::create(moveBy, delay, blink, <span class="keyword">NULL</span>);</div><div class="line">sp-&gt;runAction(seq);</div></pre></td></tr></table></figure>
+<h3 id="缓动动作CCActionEase"><a href="#缓动动作CCActionEase" class="headerlink" title="缓动动作CCActionEase"></a><strong>缓动动作CCActionEase</strong></h3><p>CCActionEase也是CCActionInterval的子类，也是缓动动作的基类。这类动作在执行时速度可以变化，比如直线运动可以先加速再减速，又或者是自由落体运动是越来越快的，但是我们用的更多的是EaseRateAction类，该类继承了CCActionEase。</p>
+<p>缓动动作的速度可以分为以下三种：</p>
+<ul>
+<li>In：由慢变快</li>
+<li>Out：由快变慢</li>
+<li>InOut：由慢变快再变慢</li>
+</ul>
+<p>需要注意的是，CCActionEase只能够改变某个持续动作执行时的速度，但是这个动作的时间是不会变的。由于这个类的具体实现比较复杂，这里只简单地举几个例子。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 线性变化。</span></div><div class="line">CCEaseIn::create(<span class="string">"action对象"</span>, <span class="string">"加速率"</span>);     <span class="comment">// 由慢到快</span></div><div class="line">CCEaseOut::create(<span class="string">"action对象"</span>, <span class="string">"加速率"</span>);    <span class="comment">// 由快到慢</span></div><div class="line">CCEaseInOut::create(<span class="string">"action对象"</span>, <span class="string">"加速率"</span>);  <span class="comment">// 由慢到快再到慢</span></div><div class="line"></div><div class="line"><span class="comment">// 正弦变化。</span></div><div class="line">CCEaseSineIn::create(<span class="string">"action对象"</span>);           <span class="comment">// 由慢到快</span></div><div class="line">CCEaseSineOut::create(<span class="string">"action对象"</span>);          <span class="comment">// 由快到慢</span></div><div class="line">CCEaseSineInOut::create(<span class="string">"action对象"</span>);        <span class="comment">// 由慢到快再到慢</span></div><div class="line"></div><div class="line"><span class="comment">// 指数变化。速度的变化按指数增长。</span></div><div class="line">CCEaseExponentialIn::create(<span class="string">"action对象"</span>);    <span class="comment">// 缓慢开始</span></div><div class="line">CCEaseExponentialOut::create(<span class="string">"action对象"</span>);   <span class="comment">// 缓慢结束</span></div><div class="line">CCEaseExponentialInOut::create(<span class="string">"action对象"</span>); <span class="comment">// 缓慢开始并缓慢结束</span></div><div class="line"> </div><div class="line"><span class="comment">// 反弹变化。类似球碰到地面，不断落下与反弹。</span></div><div class="line">CCEaseBounceIn::create(<span class="string">"action对象"</span>);         <span class="comment">// 从起点反弹</span></div><div class="line">CCEaseBounceOut::create(<span class="string">"action对象"</span>);        <span class="comment">// 从终点反弹    </span></div><div class="line">CCEaseBounceInOut::create(<span class="string">"action对象"</span>);      <span class="comment">// 起点终点都反弹</span></div><div class="line"> </div><div class="line"><span class="comment">// 回力变化。类似拉弓、回力标。</span></div><div class="line">CCEaseBackIn::create(<span class="string">"action对象"</span>);           <span class="comment">// 起点作为回力点</span></div><div class="line">CCEaseBackOut::create(<span class="string">"action对象"</span>);          <span class="comment">// 终点作为回力点</span></div><div class="line">CCEaseBackInOut::create(<span class="string">"action对象"</span>);        <span class="comment">// 起点终点都作为回力点</span></div><div class="line"></div><div class="line"><span class="comment">// 伸缩式变化。</span></div><div class="line">CCEaseElasticIn::create(<span class="string">"action对象"</span>);        <span class="comment">// 起点具有弹性</span></div><div class="line">CCEaseElasticOut::create(<span class="string">"action对象"</span>);       <span class="comment">// 终点具有弹性</span></div><div class="line">CCEaseElasticInOut::create(<span class="string">"action对象"</span>);     <span class="comment">// 起点终点都具有弹性</span></div></pre></td></tr></table></figure>
+<h2 id="速度类CCSpeed"><a href="#速度类CCSpeed" class="headerlink" title="速度类CCSpeed"></a><strong>速度类CCSpeed</strong></h2><p>CCSpeed继承自CCAction，用于改变动作执行的速度。但不同于CCActionEase，动作执行的时间也会随着改变，也相当于一般意义上的加速。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以5倍速度执行moveBy，执行完动作只需1.0秒。</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"Icon.png"</span>);</div><div class="line">CCMoveBy* moveBy = CCMoveBy::create(5.0f, ccp(300, 300));</div><div class="line">CCSpeed* speed = CCSpeed::create(moveBy, 5.0);</div><div class="line">sp-&gt;runAction(speed);</div></pre></td></tr></table></figure>
+<h2 id="跟随动作类CCFollow"><a href="#跟随动作类CCFollow" class="headerlink" title="跟随动作类CCFollow"></a><strong>跟随动作类CCFollow</strong></h2><p>CCFollow继承自CCAction，它能够让某个CCNode对象跟随另外一个对象移动。就好比我们在玩超级马里奥时，我们控制人物向前走，背景也会跟着显示前面的内容，而不是让我们的马里奥走到屏幕外面去。</p>
+<p>使用方法：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获得屏幕尺寸</span></div><div class="line">CCS<span class="function"><span class="title">ize</span> mysize = CCDirector::sharedDirector()-&gt;</span>getVisibleSize();</div><div class="line"></div><div class="line"><span class="comment">// background.jpg尺寸678*331。作为参照物</span></div><div class="line">CCSprite* bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>);</div><div class="line"><span class="function"><span class="title">bg</span>-&gt;</span>setPosition(ccp(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line"><span class="function"><span class="title">bg</span>-&gt;</span>setAnchorPoint(ccp(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line"><span class="function"><span class="title">this</span>-&gt;</span>addChild(bg);</div><div class="line"></div><div class="line"><span class="comment">// 创建精灵sp</span></div><div class="line">CCSprite* sp = CCSprite::create(<span class="string">"sprite/plant.png"</span>);</div><div class="line"><span class="function"><span class="title">sp</span>-&gt;</span>setPosition(ccp(<span class="number">0</span>, <span class="number">160</span>));</div><div class="line"><span class="function"><span class="title">this</span>-&gt;</span>addChild(sp);</div><div class="line"></div><div class="line"><span class="comment">// sp执行移动动作，5秒移动到(678,160)</span></div><div class="line">CCMoveTo* moveTo = CCMoveTo::create(<span class="number">5.0</span>f, ccp(<span class="number">678</span>, <span class="number">160</span>));</div><div class="line"><span class="function"><span class="title">sp</span>-&gt;</span>runAction(moveTo);</div><div class="line"></div><div class="line"><span class="comment">// 图层this跟随sp移动，跟随范围678*331</span></div><div class="line">CCFollow* follow = CCFollow::create(sp, CCRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">678</span>, <span class="number">331</span>));</div><div class="line"><span class="function"><span class="title">this</span>-&gt;</span>runAction(follow);</div></pre></td></tr></table></figure>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/asdfawef.gif" alt=""></center>
+
+<h2 id="综合运用"><a href="#综合运用" class="headerlink" title="综合运用"></a><strong>综合运用</strong></h2><p>下面将结合几种常用动作，以及碰撞检测的知识，来做一个小的样例。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> T15Speed::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!CCLayer::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    hero = CCSprite::create(<span class="string">"animation/hero.png"</span>);</div><div class="line">    hero-&gt;setPosition(ccp(<span class="number">100</span>, <span class="number">160</span>));</div><div class="line">    addChild(hero);</div><div class="line"></div><div class="line">    by = CCMoveBy::create(<span class="number">10</span>, ccp(<span class="number">300</span>, <span class="number">0</span>));</div><div class="line"></div><div class="line">    food = CCSprite::create(<span class="string">"animation/food.png"</span>);</div><div class="line">    food-&gt;setPosition(ccp(<span class="number">250</span>, <span class="number">160</span>));</div><div class="line">    addChild(food);</div><div class="line"></div><div class="line">    CCSpeed *speed = CCSpeed::create(by, <span class="number">2</span>);</div><div class="line">    hero-&gt;runAction(speed);</div><div class="line"></div><div class="line">    CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;addSpriteFramesWithFile(<span class="string">"animation/run.plist"</span>);</div><div class="line">    CCAnimation *animation = CCAnimation::create();</div><div class="line"></div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">15</span>; i++)</div><div class="line">    &#123;</div><div class="line">        memset(buffer, <span class="number">0</span>, <span class="keyword">sizeof</span>(buffer));</div><div class="line">        sprintf(buffer, <span class="string">"run%d.png"</span>, i + <span class="number">1</span>);</div><div class="line">        animation-&gt;addSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(buffer));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">0.1</span>f);</div><div class="line">    animation-&gt;setLoops(-<span class="number">1</span>);</div><div class="line">    CCAnimate *animate = CCAnimate::create(animation);</div><div class="line">    hero-&gt;runAction(animate);</div><div class="line"></div><div class="line">    scheduleUpdate();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void T15Speed::update(<span class="keyword">float</span> dt)</div><div class="line">&#123;</div><div class="line">    CCRect heroRect = CCRect(</div><div class="line">        hero-&gt;boundingBox().origin.x + <span class="number">50</span>,</div><div class="line">        hero-&gt;boundingBox().origin.y,</div><div class="line">        hero-&gt;boundingBox().size.width - <span class="number">100</span>,</div><div class="line">        hero-&gt;boundingBox().size.height</div><div class="line">        );</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (food &amp;&amp; heroRect.intersectsRect(food-&gt;boundingBox()))</div><div class="line">    &#123;</div><div class="line">        food-&gt;removeFromParentAndCleanup(<span class="literal">true</span>);</div><div class="line">        food = NULL;</div><div class="line"></div><div class="line">        CCSpeed *speed = CCSpeed::create(by, <span class="number">5</span>);</div><div class="line">        hero-&gt;runAction(speed);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是init()方法以及定时器的update()方法的实现。这里我们创建了两个精灵，一个是英雄，一个是仙豆。那么，我们先让英雄以较慢的速度向右移动，当触碰到线仙豆时，英雄的速度加快。关于碰撞检测的实现，请看下面这张图：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/djfoig.png" alt=""></center>
+
+<p>由于英雄的boundingBox过大，所以我们只能够自定义一个矩形。origin代表着hero的boundingBox的当前坐标（Rect左上角为原点），origin.x加50代表着矩形向右移动了50。当然，宽度我们必须减去100，不然的话就会提前碰到敌人。注意，size.width在减时是两边同时减，在这里就是左右两边同时减50。当然，由于矩形锚点在左上角，所以看起来只是右边减去了100。</p>
+<p>效果如下：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/aisdfi.gif" alt=""></center>
+
+<p>我们会发现一点，hero不仅执行了动作，同时还执行了动画。runAction()可以同时运行动作和动画，但是不能同时运行两个动作或者两个动画。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/04/Cocos2dx-practice-3/" rel="next" title="Cocos2dx项目实战（3）——抢红包">
+                <i class="fa fa-chevron-left"></i> Cocos2dx项目实战（3）——抢红包
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/06/Cocos2dx-note-25/" rel="prev" title="Cocos2dx学习笔记（25）——回调函数">
+                Cocos2dx学习笔记（25）——回调函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/05/Cocos2dx-note-24/"
+           data-title="Cocos2dx学习笔记（24）——动作类CCAction" data-url="http://yoursite.com/2016/10/05/Cocos2dx-note-24/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x版本变化"><span class="nav-number">1.</span> <span class="nav-text">3.x版本变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCAction"><span class="nav-number">2.</span> <span class="nav-text">CCAction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作管理"><span class="nav-number">3.</span> <span class="nav-text">动作管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间动作类CCFiniteTimeAction"><span class="nav-number">4.</span> <span class="nav-text">时间动作类CCFiniteTimeAction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#瞬时动作CCActionInstant"><span class="nav-number">4.1.</span> <span class="nav-text">瞬时动作CCActionInstant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数回调动作CCCallFunc"><span class="nav-number">4.2.</span> <span class="nav-text">函数回调动作CCCallFunc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续动作CCActionInterval"><span class="nav-number">4.3.</span> <span class="nav-text">持续动作CCActionInterval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合动作"><span class="nav-number">4.4.</span> <span class="nav-text">组合动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟动作CCDelayTime"><span class="nav-number">4.5.</span> <span class="nav-text">延迟动作CCDelayTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓动动作CCActionEase"><span class="nav-number">4.6.</span> <span class="nav-text">缓动动作CCActionEase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#速度类CCSpeed"><span class="nav-number">5.</span> <span class="nav-text">速度类CCSpeed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跟随动作类CCFollow"><span class="nav-number">6.</span> <span class="nav-text">跟随动作类CCFollow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合运用"><span class="nav-number">7.</span> <span class="nav-text">综合运用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="之前我们在学习的过程中，总是提到回调函数这个概念，那么就让我们来了解一下Cocos中的回调函数吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（25）——回调函数">
+<meta property="og:url" content="http://yoursite.com/2016/10/06/Cocos2dx-note-25/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="之前我们在学习的过程中，总是提到回调函数这个概念，那么就让我们来了解一下Cocos中的回调函数吧。">
+<meta property="og:updated_time" content="2016-10-13T07:17:54.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（25）——回调函数">
+<meta name="twitter:description" content="之前我们在学习的过程中，总是提到回调函数这个概念，那么就让我们来了解一下Cocos中的回调函数吧。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/06/Cocos2dx-note-25/"/>
+
+  <title> Cocos2dx学习笔记（25）——回调函数 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（25）——回调函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-06T10:45:00+08:00" content="2016-10-06">
+              2016-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/06/Cocos2dx-note-25/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/Cocos2dx-note-25/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前我们在学习的过程中，总是提到回调函数这个概念，那么就让我们来了解一下Cocos中的回调函数吧。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="函数适配器"><a href="#函数适配器" class="headerlink" title="函数适配器"></a><strong>函数适配器</strong></h2><p>std::bind是C++11的函数适配器，我的另一篇文章中也介绍过。那么什么是函数适配器呢？比如我们使用find_if()查找vector中的某些元素时，需要我们提供一个一元函数对象。但是呢，如果我们提供的是二元函数对象，那么就无法使用find_if()。为了将二元函数对象转换成一元函数对象，我们使用函数适配器。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">vector</span>&lt;int&gt;::<span class="keyword">iterator </span><span class="keyword">ite </span>= ivec.<span class="keyword">begin();</span></div><div class="line"><span class="symbol">while</span>((<span class="keyword">ite </span>= find_if(<span class="keyword">ite, </span>ivec<span class="meta">.end</span>(), <span class="keyword">bind2nd(greater&lt;int&gt;(), </span><span class="number">5</span>))) != ivec<span class="meta">.end</span>())</div><div class="line">&#123;  </div><div class="line">    cout &lt;&lt; *<span class="keyword">ite </span>&lt;&lt; <span class="string">" "</span><span class="comment">;</span></div><div class="line">    <span class="keyword">ite++;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的greater<int>()是一个二元函数对象，我们把5绑定到greater<int>()的第二个参数。这样，find_if()只需传递一个参数给函数对象。</int></int></p>
+<p>可能有人有疑问，为什么会提供一个二元函数对象给find_if()，而不是直接写一个一元函数对象呢？那么举个简单的例子，我们提供的函数对象用于查找vector中大于5的数，那么你当然可以把vector中的元素和5比较。但如果我需要和6、7或者其他数比较呢？每次都要修改的话十分麻烦，而且如果你不能修改源码的话，那么就是一个很头疼的问题。这样，我们就只好写一个二元函数，而函数适配器的作用就体现出来了。</p>
+<h2 id="新版本回调函数"><a href="#新版本回调函数" class="headerlink" title="新版本回调函数"></a><strong>新版本回调函数</strong></h2><p>新版本的回调函数有以下几种：</p>
+<ul>
+<li>CC_CALLBACK_0</li>
+<li>CC_CALLBACK_1</li>
+<li>CC_CALLBACK_2</li>
+<li>CC_CALLBACK_3</li>
+</ul>
+<p>它们的区别就在于参数的多少，最后的数字就是参数的个数。之前的menu_selector之类的回调函数将被这些所取代。</p>
+<h2 id="回调函数与bind"><a href="#回调函数与bind" class="headerlink" title="回调函数与bind"></a><strong>回调函数与bind</strong></h2><p>说了这么多，最主要的还是得讲一讲bind和回调函数的关系。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CC_CALLBACK_0</span>(__selector__, __target__, ...) <span class="selector-tag">std</span><span class="selector-pseudo">::bind(</span><span class="selector-tag">&amp;</span><span class="selector-tag">__selector__</span>, <span class="selector-tag">__target__</span>, #<span class="selector-id">#__VA_ARGS__</span>)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CC_CALLBACK_1</span>(__selector__, __target__, ...) <span class="selector-tag">std</span><span class="selector-pseudo">::bind(</span><span class="selector-tag">&amp;</span><span class="selector-tag">__selector__</span>, <span class="selector-tag">__target__</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_1</span>, #<span class="selector-id">#__VA_ARGS__</span>)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CC_CALLBACK_2</span>(__selector__, __target__, ...) <span class="selector-tag">std</span><span class="selector-pseudo">::bind(</span><span class="selector-tag">&amp;</span><span class="selector-tag">__selector__</span>, <span class="selector-tag">__target__</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_1</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_2</span>, #<span class="selector-id">#__VA_ARGS__</span>)</div><div class="line"><span class="selector-id">#define</span> <span class="selector-tag">CC_CALLBACK_3</span>(__selector__, __target__, ...) <span class="selector-tag">std</span><span class="selector-pseudo">::bind(</span><span class="selector-tag">&amp;</span><span class="selector-tag">__selector__</span>, <span class="selector-tag">__target__</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_1</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_2</span>, <span class="selector-tag">std</span><span class="selector-pseudo">::placeholders</span><span class="selector-pseudo">::_3</span>, #<span class="selector-id">#__VA_ARGS__</span>)</div></pre></td></tr></table></figure>
+<p>std::placeholders::_1是不定参数，在调用的时候传入，而##<strong>VA_ARGS</strong>是可变参数宏。我们可以看到，回调函数其实就是bind。bind()的使用方法如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">auto newCallBack = bind(<span class="name">callback</span>, arg_list)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>arg_list就是可变参数列表，我们在调用newCallBack时，newCallBack就会调用callback，并且将arg_list传入到callback。我们再来说得详细一点：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">callback</span><span class="params">(<span class="keyword">int</span> one, <span class="keyword">char</span> two, <span class="keyword">double</span> three)</span></span>;</div><div class="line"><span class="keyword">auto</span> newCallBack = bind(callback, <span class="number">_1</span>, <span class="number">_2</span>, <span class="number">1.5</span>);</div><div class="line"><span class="keyword">int</span> x = newCallBack(<span class="number">10</span>,<span class="string">'h'</span>);  <span class="comment">// 这句相当于:int x = callback(10,'h',1.5);</span></div></pre></td></tr></table></figure>
+<p>这里”_1”代表着一个占位符对象，当callback通过newCallBack被调用时，指代newCallBack中的第一个参数在函数callback的参数列表中的位置。newCallBack的第一个参数就是”_1”，后面以此类推。1.5就是默认参数，这里就代表着three。”_1”等占位符定义在placeholders命名空间中，完整的使用就是std::placeholders::_1。</p>
+<h2 id="变更的回调函数"><a href="#变更的回调函数" class="headerlink" title="变更的回调函数"></a><strong>变更的回调函数</strong></h2><p>理清了回调函数与bind的关系，接下来就看看哪些回调函数被弃用了：</p>
+<ul>
+<li>动作函数：callfunc_selector/callfuncN_selector/callfuncND_selector</li>
+<li>菜单项函数：menu_selector</li>
+<li>触摸函数：onTouchBegan/onTouchMoved/onTouchEnded</li>
+</ul>
+<p>下面将一一介绍。</p>
+<h3 id="动作函数CallFunc"><a href="#动作函数CallFunc" class="headerlink" title="动作函数CallFunc"></a><strong>动作函数CallFunc</strong></h3><ul>
+<li>CallFunc：使用CC_CALLBACK_0</li>
+<li>CallFuncN：使用CC_CALLBACK_1，不定参数为执行动作的对象</li>
+<li>CallFuncND： 被弃用，用CallFuncN代替，使用CC_CALLBACK_1</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 2.x版本</span></div><div class="line"><span class="string">CallFunc:</span>:create    (<span class="keyword">this</span>, callfunc_selector(<span class="string">HelloWorld:</span>:callback0));</div><div class="line"><span class="string">CCCallFuncN:</span>:create (<span class="keyword">this</span>, callfuncN_selector(<span class="string">HelloWorld:</span>:callback1));</div><div class="line"><span class="string">CCCallFuncND:</span>:create(<span class="keyword">this</span>, callfuncND_selector(<span class="string">HelloWorld:</span>:callback2), (<span class="keyword">void</span> *)<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback0() &#123;&#125;                     <span class="comment">// CCCallFunc回调函数</span></div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback1(CCNode* node) &#123;&#125;         <span class="comment">// CCCallFuncN回调函数</span></div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback2(CCNode* node,<span class="keyword">void</span>* a) &#123;&#125; <span class="comment">// CCCallFuncND回调函数,参数必须为void*</span></div><div class="line"></div><div class="line"><span class="comment">// 3.x版本中CallFuncND被弃用，只能使用CallFuncN代替</span></div><div class="line"><span class="string">CallFunc:</span>:create (CC_CALLBACK_0(<span class="string">HelloWorld:</span>:callback0, <span class="keyword">this</span>));</div><div class="line"><span class="string">CallFuncN:</span>:create(CC_CALLBACK_1(<span class="string">HelloWorld:</span>:callback1, <span class="keyword">this</span>));</div><div class="line"><span class="string">CallFuncN:</span>:create(CC_CALLBACK_1(<span class="string">HelloWorld:</span>:callback2, <span class="keyword">this</span>, <span class="number">0.5</span>));</div><div class="line"></div><div class="line"><span class="comment">// bind也可以实现，sprite为执行该动作的精灵</span></div><div class="line"><span class="string">CallFunc:</span>:create (<span class="string">std:</span>:bind(&amp;<span class="string">HelloWorld:</span>:callback0, <span class="keyword">this</span> ) );</div><div class="line"><span class="string">CallFuncN:</span>:create(<span class="string">std:</span>:bind(&amp;<span class="string">HelloWorld:</span>:callback1, <span class="keyword">this</span>, sprite);</div><div class="line"><span class="string">CallFuncN:</span>:create(<span class="string">std:</span>:bind(&amp;<span class="string">HelloWorld:</span>:callback2, <span class="keyword">this</span>, sprite, <span class="number">0.5</span>));</div><div class="line"></div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback0() &#123;&#125;</div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback1(Node* node) &#123;&#125;</div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback2(Node* node, <span class="keyword">float</span> a) &#123;&#125;   <span class="comment">// 可自定义参数类型float</span></div></pre></td></tr></table></figure>
+<h3 id="菜单项回调menu-selector"><a href="#菜单项回调menu-selector" class="headerlink" title="菜单项回调menu_selector"></a><strong>菜单项回调menu_selector</strong></h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CC_CALLBACK_1</span></div><div class="line"><span class="string">MenuItemImage:</span>:create(<span class="string">"1.png"</span>, <span class="string">"2.png"</span>, CC_CALLBACK_1(<span class="string">HelloWorld:</span>:callback1, <span class="keyword">this</span>));</div><div class="line"></div><div class="line"><span class="comment">// std::bind</span></div><div class="line"><span class="string">MenuItemImage:</span>:create(<span class="string">"1.png"</span>, <span class="string">"2.png"</span>, <span class="string">std:</span>:bind(&amp;<span class="string">HelloWorld:</span>:callback1, <span class="keyword">this</span>, <span class="string">std:</span>:<span class="string">placeholders:</span>:_1));</div><div class="line"></div><div class="line"><span class="comment">// 回调函数</span></div><div class="line"><span class="keyword">void</span> <span class="string">HelloWorld:</span>:callback(Node* sender) &#123;&#125;</div></pre></td></tr></table></figure>
+<h3 id="触摸函数"><a href="#触摸函数" class="headerlink" title="触摸函数"></a><strong>触摸函数</strong></h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个事件监听器类型为 单点触摸</span></div><div class="line">auto touchLisner = EventListenerTouchOneByOne::create();</div><div class="line"></div><div class="line"><span class="comment">// 绑定事件</span></div><div class="line">touchLisner-&gt;onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);</div><div class="line">touchLisner-&gt;onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);</div><div class="line">touchLisner-&gt;onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);</div><div class="line"></div><div class="line"><span class="comment">// 回调函数</span></div><div class="line"><span class="keyword">virtual</span> <span class="keyword">bool</span> HelloWorld::onTouchBegan(Touch *touch, Event *unused_event); </div><div class="line"><span class="keyword">virtual</span> void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event); </div><div class="line"><span class="keyword">virtual</span> void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event);</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>除了上述所说的回调函数，其他的都没有发生变化，依旧使用原来的回调函数。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/05/Cocos2dx-note-24/" rel="next" title="Cocos2dx学习笔记（24）——动作类CCAction">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（24）——动作类CCAction
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/07/Cocos2dx-note-26/" rel="prev" title="Cocos2dx学习笔记（26）——缓冲动作类">
+                Cocos2dx学习笔记（26）——缓冲动作类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/06/Cocos2dx-note-25/"
+           data-title="Cocos2dx学习笔记（25）——回调函数" data-url="http://yoursite.com/2016/10/06/Cocos2dx-note-25/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数适配器"><span class="nav-number">1.</span> <span class="nav-text">函数适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新版本回调函数"><span class="nav-number">2.</span> <span class="nav-text">新版本回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回调函数与bind"><span class="nav-number">3.</span> <span class="nav-text">回调函数与bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变更的回调函数"><span class="nav-number">4.</span> <span class="nav-text">变更的回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动作函数CallFunc"><span class="nav-number">4.1.</span> <span class="nav-text">动作函数CallFunc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单项回调menu-selector"><span class="nav-number">4.2.</span> <span class="nav-text">菜单项回调menu_selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触摸函数"><span class="nav-number">4.3.</span> <span class="nav-text">触摸函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

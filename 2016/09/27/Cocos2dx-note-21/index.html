@@ -1,0 +1,758 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章介绍UI控件之一的点九图。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（22）——点九图">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/Cocos2dx-note-21/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章介绍UI控件之一的点九图。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/wKiom1P1jjXgE2TMAADVtyZHzc0054.jpg">
+<meta property="og:updated_time" content="2016-10-21T14:48:51.577Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（22）——点九图">
+<meta name="twitter:description" content="本章介绍UI控件之一的点九图。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/wKiom1P1jjXgE2TMAADVtyZHzc0054.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/Cocos2dx-note-21/"/>
+
+  <title> Cocos2dx学习笔记（22）——点九图 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（22）——点九图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T09:46:12+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/Cocos2dx-note-21/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/Cocos2dx-note-21/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章介绍UI控件之一的点九图。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="3-x版本"><a href="#3-x版本" class="headerlink" title="3.x版本"></a><strong>3.x版本</strong></h2><p>3.x版本除了去掉CC，其他再无变化。不过在3.3版本之后，出现了新的UI模块，原来的ControlSlider、ControlButton等等都改为了全新的类。当然，这个部分以后再说。</p>
+<h2 id="CCScale9Sprite"><a href="#CCScale9Sprite" class="headerlink" title="CCScale9Sprite"></a><strong>CCScale9Sprite</strong></h2><p>点九图、九宫图、九妹图，总之随便你怎么称呼它，我们的关注点在于它是个什么东西。看看这个类的名字，很显然，这个图由9个精灵构成，而且与缩放密切相关。事实上，我们在使用scale缩放时，图片会失真。为了解决这个问题，cocos采用了点九图的方式来解决。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a><strong>原理</strong></h3><p>点九图将纹理分成九个部分，依据以下步骤：</p>
+<ul>
+<li>保持4个角部分不变形</li>
+<li>单向拉伸4条边（即在4个角两两之间的边，比如上边，只做横向拉伸）</li>
+<li>双向拉伸中间部分（即九宫图的中间部分，横向，纵向同时拉伸，PS：拉伸比例不一定相同）</li>
+</ul>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/wKiom1P1jjXgE2TMAADVtyZHzc0054.jpg" alt=""></center>
+
+<p>拉伸完毕后，将九个部分拼接在一起，就形成了缩放后的图片。</p>
+<h3 id="头文件和命名空间"><a href="#头文件和命名空间" class="headerlink" title="头文件和命名空间"></a><strong>头文件和命名空间</strong></h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"cocos-ext.h"</span></span></div><div class="line">USING_NS_CC_EXT<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a><strong>常用操作</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CCScale9Sprite : <span class="keyword">public</span> CCNodeRGBA</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 使用图片资源名来创建</span></div><div class="line">    <span class="comment">// 参数说明：</span></div><div class="line">    <span class="comment">//       rect是整个图的矩形大小</span></div><div class="line">    <span class="comment">//       capInsets是中间部分区域对应的矩形大小</span></div><div class="line">    <span class="comment">// rect = CCRectMake(0, 0, 80, 80);</span></div><div class="line">    <span class="comment">// capInsets = CCRectMake( 12, 12, 56, 56);</span></div><div class="line">    <span class="comment">// create("sp.png", rect, capInsets);</span></div><div class="line">    <span class="comment">// create(capInsets, "sp.png");</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file, CCRect rect)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file, CCRect rect,  CCRect capInsets)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(CCRect capInsets, <span class="keyword">const</span> <span class="keyword">char</span>* file)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 使用精灵帧来创建</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrame</span><span class="params">(CCSpriteFrame* spriteFrame)</span></span>;  </div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrame</span><span class="params">(CCSpriteFrame* spriteFrame, CCRect capInsets)</span></span>; </div><div class="line"> </div><div class="line">    <span class="comment">// 使用精灵帧的名称来创建</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrameName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* spriteFrameName)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrameName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* spriteFrameName, CCRect capInsets)</span></span>; </div><div class="line"> </div><div class="line">    <span class="comment">// 设置精灵帧</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setSpriteFrame</span><span class="params">(CCSpriteFrame * spriteFrame)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置中间部分区域对应的矩形大小</span></div><div class="line">    CC_PROPERTY(CCRect, m_capInsets, CapInsets);</div><div class="line"> </div><div class="line">    <span class="comment">// 设置需要生成的尺寸大小，默认为精灵图的原始大小</span></div><div class="line">    CC_PROPERTY(CCSize, m_preferredSize, PreferredSize); </div><div class="line"> </div><div class="line">    <span class="comment">// CCScale9Sprite是通过这个来拉伸的，而CCSprtie是通过setScale来拉伸。</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setContentSize</span><span class="params">(<span class="keyword">const</span> CCSize &amp; size)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置透明度</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setOpacity</span><span class="params">(GLubyte opacity)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> GLubyte <span class="title">getOpacity</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置颜色</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(<span class="keyword">const</span> ccColor3B&amp; color)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> ccColor3B&amp; <span class="title">getColor</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="图片拉伸"><a href="#图片拉伸" class="headerlink" title="图片拉伸"></a><strong>图片拉伸</strong></h3><p>点九图不使用setScale()进行缩放，而是使用setContentSize(const CCSize &amp; size)。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a><strong>代码示例</strong></h2><figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">void HelloWorld::test(const char* file, int index)</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取可视区域尺寸大小</span></div><div class="line">    CCS<span class="function"><span class="title">ize</span> mysize = CCDirector::sharedDirector()-&gt;</span>getVisibleSize();</div><div class="line">    <span class="comment">// 获取可视区域的原点位置</span></div><div class="line">    CCP<span class="function"><span class="title">oint</span> origin = CCDirector::sharedDirector()-&gt;</span>getVisibleOrigin();</div><div class="line">    <span class="comment">// 屏幕正中心位置</span></div><div class="line">    CCPoint midPos = ccp(mysize.width/<span class="number">2</span>, mysize.height/<span class="number">2</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// CCSprite，精灵拉伸</span></div><div class="line">    CCSprite* sprite1 = CCSprite::create(file);</div><div class="line">    <span class="function"><span class="title">sprite1</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, mysize.height - <span class="number">60</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(sprite1);</div><div class="line"></div><div class="line">    <span class="comment">// 精灵拉伸</span></div><div class="line">    <span class="function"><span class="title">sprite1</span>-&gt;</span>setScale(<span class="number">2.0</span>f);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// scale9Sprite1，不设置capInsets</span></div><div class="line">    CCScale9Sprite* scale9Sprite1 = CCScale9Sprite::create(file);</div><div class="line">    <span class="function"><span class="title">scale9Sprite1</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, mysize.height/<span class="number">2</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(scale9Sprite1);</div><div class="line"></div><div class="line">    <span class="comment">// 不设置capInsets，拉伸</span></div><div class="line">    <span class="function"><span class="title">scale9Sprite1</span>-&gt;</span>setContentSize( CCSizeMake(<span class="number">80</span>, <span class="number">80</span>) );</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// scale9Sprite2，设置capInsets</span></div><div class="line">    CCScale9Sprite* scale9Sprite2 = CCScale9Sprite::create(file);</div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, <span class="number">60</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(scale9Sprite2);</div><div class="line"></div><div class="line">    <span class="comment">// 设置capInsets，并拉伸</span></div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setCapInsets( CCRectMake(<span class="number">3</span>, <span class="number">3</span>, <span class="number">34</span>, <span class="number">34</span>) );</div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setContentSize( CCSizeMake(<span class="number">80</span>, <span class="number">80</span>) );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>未设置capInsets时，图片九等分。设置了capInsets后，那么中间区域的大小就是capInsets的值。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/25/Cocos2dx-note-20/" rel="next" title="Cocos2dx学习笔记（20）——开关控件">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（20）——开关控件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/Cocos2dx-note-22/" rel="prev" title="Cocos2dx学习笔记（21）——按钮控件">
+                Cocos2dx学习笔记（21）——按钮控件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/27/Cocos2dx-note-21/"
+           data-title="Cocos2dx学习笔记（22）——点九图" data-url="http://yoursite.com/2016/09/27/Cocos2dx-note-21/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x版本"><span class="nav-number">1.</span> <span class="nav-text">3.x版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCScale9Sprite"><span class="nav-number">2.</span> <span class="nav-text">CCScale9Sprite</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件和命名空间"><span class="nav-number">2.2.</span> <span class="nav-text">头文件和命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">2.3.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片拉伸"><span class="nav-number">2.4.</span> <span class="nav-text">图片拉伸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">3.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

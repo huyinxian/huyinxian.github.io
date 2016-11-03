@@ -1,0 +1,785 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法,数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章简单地讲一讲递归以及涉及到的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法学习笔记（1）——递归">
+<meta property="og:url" content="http://yoursite.com/2016/08/23/Algorithm-note-1/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章简单地讲一讲递归以及涉及到的问题。">
+<meta property="og:updated_time" content="2016-10-28T01:13:50.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法学习笔记（1）——递归">
+<meta name="twitter:description" content="本章简单地讲一讲递归以及涉及到的问题。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/23/Algorithm-note-1/"/>
+
+  <title> 数据结构与算法学习笔记（1）——递归 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构与算法学习笔记（1）——递归
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T16:44:02+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/Algorithm-note-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/Algorithm-note-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章简单地讲一讲递归以及涉及到的问题。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="递归的概念"><a href="#递归的概念" class="headerlink" title="递归的概念"></a><strong>递归的概念</strong></h2><p>所谓的递归，最开始是由汉诺塔问题提出的。简单来讲，我们如果要解决一个大的问题，不妨先想一想小一点的问题如何解决。假如这个小问题也解决不了，那么就想一想更小的。将这个过程一直持续下去，那么总会出现一个最小的问题，能够被我们轻松解决。那么反过来，最大的问题也能够被层层推出，得到最终的答案。汉诺塔问题我就不再赘述了，这里只讲一讲其他有代表性的问题。</p>
+<h2 id="用递归将数据转换成二进制"><a href="#用递归将数据转换成二进制" class="headerlink" title="用递归将数据转换成二进制"></a><strong>用递归将数据转换成二进制</strong></h2><p>我们如何将一个十进制数转换成二进制数？步骤我们都知道，就是用短除法来转换。看一看短除法的过程，是不是有点像递归呢？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        change(n / <span class="number">2</span>);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>, n % <span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"请输入你要转换的十进制数："</span>);</div><div class="line">    scanf_s(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    getchar();</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n转换的结果为："</span>);</div><div class="line">    change(n);</div><div class="line"></div><div class="line">    getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们使用短除法就是将数值除以2，保留每次的余数，一直到数值为0时，将余数倒序输出，就是该数值的二进制表达了。这里的change()递归调用之所以在printf()前面，是因为我们需要倒序输出，所以必须从最后一个余数开始输出。当然，这个程序不仅仅用于转换二进制，我们只需要修改一下，就能变成转换三进制或其他进制等等。</p>
+<h2 id="斐波拉契数列"><a href="#斐波拉契数列" class="headerlink" title="斐波拉契数列"></a><strong>斐波拉契数列</strong></h2><h3 id="跳阶梯"><a href="#跳阶梯" class="headerlink" title="跳阶梯"></a><strong>跳阶梯</strong></h3><p>这里有一个比较有意思的问题：现在有一个阶梯，你可以一次跨1阶或者2阶。如果这个阶梯有50阶，那么走完这个阶梯有多少种方法？不要被这个长长的阶梯给吓住了，试着将问题缩小：</p>
+<ul>
+<li>当阶梯数为1时，我们就只能跨1阶，共有1种方法</li>
+<li>当阶梯数为2时，我们既可以跨两次1阶，也可以跨2阶，共有2种方法</li>
+</ul>
+<p>很显然，这两种情况就是阶梯问题的基本答案，我们递归时就要从这两个方面来寻找答案。如果我们想要走上第3阶，我们可以通过两种方式：</p>
+<ul>
+<li>从第1阶跨2阶</li>
+<li>从第2阶跨1阶</li>
+</ul>
+<p>而当我们处在第1或第2阶时，答案已经知道了，所以共有<strong>1+2=3</strong>种方法。至于往上走，同样也是这种解决方法。通式：digui(n - 1) + digui(n - 2)。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">digui</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">2</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> digui(n - <span class="number">1</span>) + digui(n - <span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">xunhuan</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">double</span> n1 = <span class="number">1</span>;</div><div class="line">    <span class="keyword">double</span> n2 = <span class="number">2</span>;</div><div class="line">    <span class="keyword">double</span> n3;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> i;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">2</span>; i++)</div><div class="line">    &#123;</div><div class="line">        n3 = n1 + n2;</div><div class="line">        n1 = n2;</div><div class="line">        n2 = n3;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> n3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于3阶以上的，无非就是跨1阶还是跨2阶，所以将这两种情况相加即可。这里还给出来另外一种解法，那就是使用循环，不过这个循环其实就相当于递归中的三种情况。n3代表的是当前阶数所用的方法数，n2代表的是前1阶所用的方法数，n1代表的是前2阶所用的方法数，本质上就是不断往上移动。</p>
+<p>这里要注意的是，数据类型使用的是double。其实对于50阶来说，总方法数很多，所以要使用double。另外，大家也不用真的去计算走到50阶有多少种方法，因为这个数值太大，一般的计算机无法在短时间内计算出来。</p>
+<h3 id="跳阶梯升级版"><a href="#跳阶梯升级版" class="headerlink" title="跳阶梯升级版"></a><strong>跳阶梯升级版</strong></h3><p>假如我们加大一下难度，我们一次可以跨1、2。。。n阶，那么跨上第n阶有多少种方法？这里不用急，我们一个个的看：</p>
+<ul>
+<li>digui(1) = 1</li>
+<li>digui(2) = digui(1)</li>
+<li>digui(3) = digui(1) + digui(2)</li>
+<li>digui(n - 1) = digui(1) + … + digui(n - 2)</li>
+<li>digui(n) = digui(1) + … + digui(n - 2) + digui(n - 1)</li>
+</ul>
+<p>请注意，digui(n - 1)其实就是digui(1) + … + digui(n - 2)，而这两者相加则等于digui(n)，也就是说digui(n)其实就是2 * digui(n - 1)。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">digui</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">2</span> * digui(n - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="矩形覆盖"><a href="#矩形覆盖" class="headerlink" title="矩形覆盖"></a><strong>矩形覆盖</strong></h3><p>再来看一个问题：现在有无数个2<em>1的小矩形，以及一个2</em>n的大矩形（n为非负整数），请问要让小矩形不重叠的覆盖大矩形，共有多少种方法？问题看似复杂，其实也是斐波拉契数列的应用。小矩形有横和竖两种摆法，分情况讨论如下：</p>
+<ul>
+<li>n = 0，0种方法</li>
+<li>n = 1，1种方法</li>
+<li>n = 2，2种方法</li>
+<li>n = 3，f(2) + f(1)</li>
+<li>n = n，f(n - 1) + f(n - 2)</li>
+</ul>
+<p>当n为3时，我们可以竖着摆一个小矩形，然后剩下的就是f(2)。或者是横着摆两个小矩形，剩下的就是f(1)。当问题被扩展时，就成为了斐波拉契数列。</p>
+<h2 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a><strong>八皇后问题</strong></h2><p>这个问题比较经典，说的是在8*8的棋盘上，如果摆放上八个皇后，使得八个皇后之间没有冲突，问有多少种摆法。在国际象棋中，皇后能够向上下左右以及对角线等八个方向移动，也就是说八个皇后所能够移动的方向，都不能够有皇后出现。</p>
+<p>其实这个问题并不复杂，既然是在8行8列的棋盘上放8个皇后，那么肯定每行每列都只能有一个皇后。也就是说，我们可以从第1行第1列开始摆放皇后，尝试它所有的可能，然后再尝试第2列等等。至于第2个皇后，自然就是在第1个皇后的基础上递归产生的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> a[<span class="number">100</span>], n, count;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_2</span> <span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 多次被调用，只需一重循环 </span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>((<span class="built_in">abs</span>(a[i] - a[n]) == n - i) || (a[i] == a[n]))</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;      </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (k &gt; n)<span class="comment">//找到解</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">8</span>; i++)  </div><div class="line">        &#123;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; a[i];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        count++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</div><div class="line">        &#123;</div><div class="line">            a[k] = i;</div><div class="line">            <span class="keyword">if</span> (check_2(a,k) == <span class="number">1</span>)</div><div class="line">            &#123;</div><div class="line">                backtrack(k+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    n = <span class="number">8</span>, count = <span class="number">0</span>;</div><div class="line">    backtrack(<span class="number">1</span>);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; count &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>递归中的逻辑很简单，简单来讲就是从第一行第一列开始，往下探索所有的可能性，对每一个位置安排进行检验，不符合就尝试下一种可能。当达到最后一行，同时检验合格时，一个解就诞生了。当第一列的所有可能性探索完后，开始探索第一行第二列。总而言之，对于每一行，其实都是和第一行一样的，只不过这种循环是层层嵌套的：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">void queens_2()</div><div class="line">&#123;</div><div class="line">    int a[<span class="number">9</span>];</div><div class="line">    int count = <span class="number">0</span>;</div><div class="line">    for(a[<span class="number">1</span>] = <span class="number">1</span>; a[<span class="number">1</span>] &lt;= <span class="number">8</span>; a[<span class="number">1</span>]++)</div><div class="line">    &#123;</div><div class="line">        for(a[<span class="number">2</span>] = <span class="number">1</span>; a[<span class="number">2</span>] &lt;= <span class="number">8</span>; a[<span class="number">2</span>]++)</div><div class="line">        &#123;</div><div class="line">            if (!check_2(a, <span class="number">2</span>))  continue;</div><div class="line">            for(a[<span class="number">3</span>] = <span class="number">1</span>; a[<span class="number">3</span>] &lt;= <span class="number">8</span>; a[<span class="number">3</span>]++)</div><div class="line">            &#123;</div><div class="line">                if (!check_2(a, <span class="number">3</span>))  continue;</div><div class="line">                for(a[<span class="number">4</span>] = <span class="number">1</span>; a[<span class="number">4</span>] &lt;= <span class="number">8</span>; a[<span class="number">4</span>]++)</div><div class="line">                &#123;</div><div class="line">                    if (!check_2(a, <span class="number">4</span>))  continue;</div><div class="line">                    for(a[<span class="number">5</span>] = <span class="number">1</span>; a[<span class="number">5</span>] &lt;= <span class="number">8</span>; a[<span class="number">5</span>]++)</div><div class="line">                    &#123;</div><div class="line">                        if (!check_2(a, <span class="number">5</span>))  continue;</div><div class="line">                        for(a[<span class="number">6</span>] = <span class="number">1</span>; a[<span class="number">6</span>] &lt;= <span class="number">8</span>; a[<span class="number">6</span>]++)</div><div class="line">                        &#123;</div><div class="line">                            if (!check_2(a, <span class="number">6</span>))  continue;</div><div class="line">                            for(a[<span class="number">7</span>] = <span class="number">1</span>; a[<span class="number">7</span>] &lt;= <span class="number">8</span>; a[<span class="number">7</span>]++)</div><div class="line">                            &#123;</div><div class="line">                                if (!check_2(a, <span class="number">7</span>))  continue;</div><div class="line">                                for(a[<span class="number">8</span>] = <span class="number">1</span>; a[<span class="number">8</span>] &lt;= <span class="number">8</span>; a[<span class="number">8</span>]++)</div><div class="line">                                &#123;</div><div class="line">                                    if (!check_2(a, <span class="number">8</span>))  </div><div class="line">                                        continue;</div><div class="line">                                    else</div><div class="line">                                    &#123;</div><div class="line">                                        for(int i = <span class="number">1</span>; i &lt;= <span class="number">8</span>; i++)  </div><div class="line">                                        &#123;</div><div class="line">                                            cout &lt;&lt; a[i];</div><div class="line">                                        &#125;</div><div class="line">                                        cout &lt;&lt; endl;</div><div class="line">                                        count++;</div><div class="line">                                    &#125;</div><div class="line">                                &#125;</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; count &lt;&lt; endl;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>事实上，所有的循环，都能够用递归来表示。但是呢，并不是所有的递归都能用循环来表示。不过，对于大部分情况，我们在理解递归时，可以适当的用循环的思想来辅助理解。递归相对于循环，大大地简化了代码量，不过逻辑没有循环那么清楚。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/C++-note-2/" rel="next" title="C++学习笔记（2）——字节对齐">
+                <i class="fa fa-chevron-left"></i> C++学习笔记（2）——字节对齐
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/Algorithm-note-2/" rel="prev" title="数据结构与算法学习笔记（2）——背包问题">
+                数据结构与算法学习笔记（2）——背包问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/Algorithm-note-1/"
+           data-title="数据结构与算法学习笔记（1）——递归" data-url="http://yoursite.com/2016/08/23/Algorithm-note-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归的概念"><span class="nav-number">1.</span> <span class="nav-text">递归的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用递归将数据转换成二进制"><span class="nav-number">2.</span> <span class="nav-text">用递归将数据转换成二进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斐波拉契数列"><span class="nav-number">3.</span> <span class="nav-text">斐波拉契数列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跳阶梯"><span class="nav-number">3.1.</span> <span class="nav-text">跳阶梯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳阶梯升级版"><span class="nav-number">3.2.</span> <span class="nav-text">跳阶梯升级版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形覆盖"><span class="nav-number">3.3.</span> <span class="nav-text">矩形覆盖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八皇后问题"><span class="nav-number">4.</span> <span class="nav-text">八皇后问题</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

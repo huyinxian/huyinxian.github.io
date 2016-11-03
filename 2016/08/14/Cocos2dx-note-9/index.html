@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章知识较多，总结了之前所讲的知识，内容较复杂。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（9）——序列帧动画">
+<meta property="og:url" content="http://yoursite.com/2016/08/14/Cocos2dx-note-9/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章知识较多，总结了之前所讲的知识，内容较复杂。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160815154104.gif">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20161008170458.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161008171139.png">
+<meta property="og:updated_time" content="2016-10-08T09:24:40.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（9）——序列帧动画">
+<meta name="twitter:description" content="本章知识较多，总结了之前所讲的知识，内容较复杂。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160815154104.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/14/Cocos2dx-note-9/"/>
+
+  <title> Cocos2dx学习笔记（9）——序列帧动画 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（9）——序列帧动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T13:24:54+08:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/14/Cocos2dx-note-9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/14/Cocos2dx-note-9/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章知识较多，总结了之前所讲的知识，内容较复杂。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="与动画相关的类"><a href="#与动画相关的类" class="headerlink" title="与动画相关的类"></a><strong>与动画相关的类</strong></h2><ul>
+<li>Animation，存储动画相关信息</li>
+<li>AnimationCache，动画缓存</li>
+<li>AnimationFrame，动画帧</li>
+<li>Animate，动画动作</li>
+<li>SpriteFrame，精灵帧</li>
+<li>SpriteFrameCache，精灵帧缓存</li>
+</ul>
+<h2 id="3-0版本的改变"><a href="#3-0版本的改变" class="headerlink" title="3.0版本的改变"></a><strong>3.0版本的改变</strong></h2><ul>
+<li>去掉CC</li>
+<li>单例改为getInstance()，销毁单例改为destoryInstance()</li>
+<li>createWithSpriteFrames()中的CCArray参数改为Vector的SpriteFrame指针的引用</li>
+<li>create()、setFrames()/getFrames()中的CCArray参数改为Vector的AnimationFrame指针的引用</li>
+<li>addSpriteFrameWithFileName()改为addSpriteFrameWithFile()</li>
+</ul>
+<h2 id="动画帧"><a href="#动画帧" class="headerlink" title="动画帧"></a><strong>动画帧</strong></h2><p>所谓的动画帧，就是在精灵帧的基础上，设置每帧之间的间隔帧数。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CCArray*<span class="built_in"> array </span>=<span class="built_in"> new </span>CCArray();</div><div class="line">char str[] = <span class="string">"xxx.png"</span>;</div><div class="line">         </div><div class="line">CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(str);</div><div class="line">         </div><div class="line">CCAnimationFrame* animationFrame =<span class="built_in"> new </span>CCAnimationFrame();</div><div class="line">         </div><div class="line">animationFrame-&gt;setSpriteFrame(frame);</div><div class="line">animationFrame-&gt;setDelayUnits(i);</div><div class="line">         </div><div class="line">array-&gt;addObject(animationFrame);</div></pre></td></tr></table></figure>
+<p>创建一个数组，将图片加载入精灵帧缓存，同时创建动画帧，使用精灵帧初始化动画帧，设置每帧之间间隔帧数，最后将动画帧加入到数组。无论是动画帧还是精灵帧（实际上动画帧就是精灵帧，精灵帧的内部创建的动画帧间隔为1），一般来讲都是先载入缓存，随后加入到数组中，然后对Animation类进行初始化。</p>
+<h2 id="Animation类实例化"><a href="#Animation类实例化" class="headerlink" title="Animation类实例化"></a><strong>Animation类实例化</strong></h2><p>Animation类的初始化大致有下述三种方法，分别是创建空动画、使用精灵帧创建、使用动画帧创建对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个空动画</span></div><div class="line">CCAnimation::create();</div><div class="line">     </div><div class="line"><span class="comment">// 使用CCSpriteFrame精灵帧数组，单位帧间隔delay秒</span></div><div class="line"><span class="comment">// 实际上在内部创建了动画帧CCAnimationFrame，且间隔帧数为：1</span></div><div class="line">CCAnimation::createWithSpriteFrames(CCArray* arrayOfSpriteFrameNames, <span class="keyword">float</span> delay = <span class="number">0.0f</span>);</div><div class="line">     </div><div class="line"><span class="comment">// 使用CCAnimationFrame动画帧数组，单位帧间隔delayPerUnit秒，重复次数loops</span></div><div class="line"><span class="comment">// 其中loops：0为执行动画；1为执行一次，……，-1为无限循环</span></div><div class="line"><span class="function"><span class="keyword">static</span> CCAnimation* <span class="title">create</span><span class="params">(CCArray *arrayOfAnimationFrameNames, <span class="keyword">float</span> delayPerUnit, <span class="keyword">unsigned</span> <span class="keyword">int</span> loops = <span class="number">1</span>)</span></span>;</div></pre></td></tr></table></figure>
+<p>关于如何添加动画帧，有以下四种方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用精灵帧来添加一个动画帧，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrame</span><span class="params">(CCSpriteFrame *pFrame)</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">// 使用图片资源(jpg,png等)来添加一个动画帧，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrameWithFileName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line">     </div><div class="line"><span class="comment">// 从图片纹理中截取CCRect部分区域的图片，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrameWithTexture</span><span class="params">(CCTexture2D* pobTexture, <span class="keyword">const</span> CCRect&amp; rect)</span></span>;</div><div class="line">     </div><div class="line"><span class="comment">// 直接设置动画帧CCAnimationFrames数组</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFrames</span><span class="params">(CCArray* pAnimationFrames)</span></span>;</div><div class="line"><span class="function">CCArray* <span class="title">getFrames</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<p>下面介绍一下其他的属性设置：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置单位帧间隔delayPerUnit秒</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDelayPerUnit</span><span class="params">(<span class="keyword">float</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">getDelayPerUnit</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">// 间隔帧数的总和totalDelayUnits</span></div><div class="line"><span class="comment">// 即：每个精灵帧到下一精灵帧的间隔帧数之和</span></div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">getTotalDelayUnits</span><span class="params">()</span></span>; </div><div class="line"> </div><div class="line"><span class="comment">// 动画总时间：delayPerUnit * totalDelayUnits</span></div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">getDuration</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 设置动画帧CCAnimationFrames数组</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFrames</span><span class="params">(CCArray* pAnimationFrames)</span></span>;</div><div class="line"><span class="function">CCArray* <span class="title">getFrames</span><span class="params">()</span></span>;</div><div class="line">     </div><div class="line"><span class="comment">// 当动画结束时，是否还原为第一帧</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setRestoreOriginalFrame</span><span class="params">(<span class="keyword">bool</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getRestoreOriginalFrame</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">// 动画执行次数</span></div><div class="line"><span class="comment">// 0表示不执行动画，1表示执行1次，……，-1表示无限循环</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setLoops</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> )</span></span>;</div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">getLoops</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="Animate类"><a href="#Animate类" class="headerlink" title="Animate类"></a><strong>Animate类</strong></h2><p>事实上，光有动画不行，必须有动画动作来执行它：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCAnimate* animate = <span class="symbol">CCAnimate:</span><span class="symbol">:create</span>(animation);</div><div class="line">sprite-&gt;runAction(animate);</div></pre></td></tr></table></figure>
+<p>这里是让一个精灵来执行动画动作，注意，一般来讲要将精灵设置为动画的第一张图。</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a><strong>具体实现</strong></h2><p>我们可以直接添加所有图片来创建动画：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> T05Animation::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!CCLayer::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    CCSize winsize = CCDirector::sharedDirector()-&gt;getWinSize();</div><div class="line"></div><div class="line">    CCSprite *bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>);</div><div class="line">    bg-&gt;setAnchorPoint(ccp(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line">    bg-&gt;setPosition(ccp(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line">    addChild(bg);</div><div class="line"></div><div class="line">    <span class="comment">// 创建精灵sprite，设置为动画的第一张图</span></div><div class="line">    CCSprite* sprite = CCSprite::create(<span class="string">"sprite/framecache/z_1_attack_01.png"</span>);</div><div class="line">    sprite-&gt;setPosition(winsize / <span class="number">2</span>);</div><div class="line">    this-&gt;addChild(sprite);</div><div class="line"></div><div class="line">    <span class="comment">// 创建CCAnimation</span></div><div class="line">    CCAnimation* animation = CCAnimation::create();</div><div class="line"></div><div class="line">    <span class="comment">// 直接添加图片资源</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i != <span class="number">11</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> <span class="keyword">str</span>[<span class="number">50</span>];</div><div class="line">        sprintf(<span class="keyword">str</span>, <span class="string">"sprite/framecache/z_1_attack_%02d.png"</span>, i);</div><div class="line"></div><div class="line">        animation-&gt;addSpriteFrameWithFileName(<span class="keyword">str</span>); <span class="comment">//添加动画帧</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 设置属性</span></div><div class="line">    animation-&gt;setRestoreOriginalFrame(<span class="literal">true</span>);  <span class="comment">// 还原第一帧</span></div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">2.0</span> / <span class="number">18.0</span>);    <span class="comment">// 单位帧间隔</span></div><div class="line">    animation-&gt;setLoops(-<span class="number">1</span>);                   <span class="comment">// -1无限循环</span></div><div class="line"></div><div class="line">    <span class="comment">// 创建CCAnimate</span></div><div class="line">    CCAnimate* animate = CCAnimate::create(animation);</div><div class="line"></div><div class="line">    <span class="comment">// 执行动画动作</span></div><div class="line">    sprite-&gt;runAction(animate);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果精灵帧的话，只需要更改添加资源的步骤以及单位帧间隔：</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将plist批处理的多张图片，添加到精灵帧缓冲池中</span></div><div class="line">CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;addSpriteFramesWithFile(<span class="string">"sprite/zombie.plist"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// 创建精灵帧CCSpriteFrame数组</span></div><div class="line">CCArray* <span class="keyword">array</span> = <span class="keyword">new</span> CCArray();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i != <span class="number">11</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">    sprintf(str, <span class="string">"z_1_attack_%02d"</span>, i);</div><div class="line">         </div><div class="line">    CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(str);</div><div class="line">    <span class="keyword">array</span>-&gt;addObject(frame);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用精灵帧数组创建，单位帧间隔为2.0/14.0秒</span></div><div class="line">CCAnimation* animation = CCAnimation::createWithSpriteFrames(<span class="keyword">array</span>, <span class="number">2.0</span>/<span class="number">14.0</span>);</div></pre></td></tr></table></figure>
+<p>使用动画帧其实就是用精灵帧初始化而已：</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将plist批处理的多张图片，添加到精灵帧缓冲池中</span></div><div class="line">CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;addSpriteFramesWithFile(<span class="string">"sprite/zombie.plist"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 创建动画帧CCAnimationFrame数组</span></div><div class="line">CCArray* <span class="keyword">array</span> = <span class="keyword">new</span> CCArray();</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>; i != <span class="number">11</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">    sprintf(str, <span class="string">"z_1_attack_%02d"</span>, i);</div><div class="line"> </div><div class="line">    CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(str);</div><div class="line">    CCAnimationFrame* animationFrame = <span class="keyword">new</span> CCAnimationFrame();</div><div class="line"> </div><div class="line">    animationFrame-&gt;setSpriteFrame(frame); <span class="comment">//设置精灵帧</span></div><div class="line">    animationFrame-&gt;setDelayUnits( i );    <span class="comment">//设置间隔帧数</span></div><div class="line"> </div><div class="line">    <span class="keyword">array</span>-&gt;addObject(animationFrame);</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// 使用动画帧数组创建，单位帧间隔0.2秒</span></div><div class="line">CCAnimation* animation = CCAnimation::create(<span class="keyword">array</span>, <span class="number">0.2</span>f);</div></pre></td></tr></table></figure>
+<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a><strong>最后效果</strong></h2><p>如果没问题的话，就能看见小僵尸在愉快的啃空气→_→</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160815154104.gif" alt="效果图"></center>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>这里讲一个内存优化的知识，我们知道，将一张.plist的大图加载进入缓存时，图片越大，那么消耗的资源越多。让我们先看看下面这张图片：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/20161008170458.png" alt=""></center>
+
+<p>我们可以看到，这张图片有很多空白的地方被浪费了。于是有人可能会问，能不能这么做呢：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161008171139.png" alt=""></center>
+
+<p>确实，如果按照图中箭头方向进行裁剪，图片无疑被大大的缩小了。但是，这张图片是用TexturePacker软件做出来的，难道这个软件有错误的地方吗？很显然不是，因为TexturePacker这么做是为了符合Cocosdx的要求。</p>
+<p>事实上，Cocos底层加载.plist文件时，规格都是用的2的n次方。比如我们之前用到的僵尸图片，就是<strong>256×512</strong>，而这个植物的图片则是<strong>256×256</strong>。举个例子，如果长和宽为256时无法摆放所有精灵，那么就会尝试长为512的情况。如果还不行，那么就尝试长和宽都为512。这样一来，图片就大了不少。当精灵越多，图片越大时，经常发生这种状况。哪怕你的精灵只多了一个，但只要无法放下，那么就会尝试下一级。我们知道，2的n次方成指数型增长，越到后面数字变化越大，对于内存的消耗自然不用说。因此，我们在制作图片时，应当考虑到这些问题。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/13/Cocos2dx-note-8/" rel="next" title="Cocos2dx学习笔记（8）——三大缓存">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（8）——三大缓存
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/Cocos2dx-note-10/" rel="prev" title="Cocos2dx学习笔记（10）——帧循环">
+                Cocos2dx学习笔记（10）——帧循环 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/14/Cocos2dx-note-9/"
+           data-title="Cocos2dx学习笔记（9）——序列帧动画" data-url="http://yoursite.com/2016/08/14/Cocos2dx-note-9/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#与动画相关的类"><span class="nav-number">1.</span> <span class="nav-text">与动画相关的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-0版本的改变"><span class="nav-number">2.</span> <span class="nav-text">3.0版本的改变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画帧"><span class="nav-number">3.</span> <span class="nav-text">动画帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Animation类实例化"><span class="nav-number">4.</span> <span class="nav-text">Animation类实例化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Animate类"><span class="nav-number">5.</span> <span class="nav-text">Animate类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">6.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后效果"><span class="nav-number">7.</span> <span class="nav-text">最后效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">8.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

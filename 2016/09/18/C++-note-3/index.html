@@ -1,0 +1,770 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++,operator," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="操作运算符operator在C++中运用的很频繁，各种类的运算符重载都要用到它，但是本章是为函数对象做铺垫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++学习笔记（3）——operator">
+<meta property="og:url" content="http://yoursite.com/2016/09/18/C++-note-3/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="操作运算符operator在C++中运用的很频繁，各种类的运算符重载都要用到它，但是本章是为函数对象做铺垫。">
+<meta property="og:updated_time" content="2016-09-22T11:19:51.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++学习笔记（3）——operator">
+<meta name="twitter:description" content="操作运算符operator在C++中运用的很频繁，各种类的运算符重载都要用到它，但是本章是为函数对象做铺垫。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/18/C++-note-3/"/>
+
+  <title> C++学习笔记（3）——operator | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C++学习笔记（3）——operator
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T16:19:55+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/C++-note-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/C++-note-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>操作运算符operator在C++中运用的很频繁，各种类的运算符重载都要用到它，但是本章是为函数对象做铺垫。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="函数运算符operator"><a href="#函数运算符operator" class="headerlink" title="函数运算符operator()"></a><strong>函数运算符operator()</strong></h2><p>重载运算符的部分不再赘述，我们这里只针对函数运算符operator()进行分析。函数运算符一般用于标准模板库（STL）中，通常是STL算法中。一般来说，函数对象可分为单目谓词和双目谓词。</p>
+<h3 id="简单举例"><a href="#简单举例" class="headerlink" title="简单举例"></a><strong>简单举例</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> CDisplay</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="built_in">string</span> Input)</span> <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; Input &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    CDisplay mDisplayFuncObject;</div><div class="line"></div><div class="line">    mDisplayFuncObject(<span class="string">"Dispaly this string!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是一个十分简单的例子，我们在CDisplay类中对()进行了定义，使得对象可以像函数一样。事实上，这个运算符被称作operator()函数，对象CDisplay也被称为函数对象或者functor。</p>
+<h2 id="移动构造函数和移动赋值运算符"><a href="#移动构造函数和移动赋值运算符" class="headerlink" title="移动构造函数和移动赋值运算符"></a><strong>移动构造函数和移动赋值运算符</strong></h2><p>这两个主要用于性能优化，避免复制不必要的临时值。</p>
+<h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a><strong>问题引入</strong></h3><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="built_in">Date</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">int</span> <span class="built_in">Day</span>, <span class="built_in">Month</span>, <span class="built_in">Year</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">Date</span> operator + (<span class="built_in">int</span> DaysToAdd)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">Date</span> newDate(<span class="built_in">Day</span> + DaysToAdd, <span class="built_in">Month</span>, <span class="built_in">Year</span>);</div><div class="line">        return newDate;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>类似于上面的这个类，如果对加法运算符进行了重载，那么一般就会返回一个拷贝，减法运算符也是如此。如果我们新建一个MyString类，也使用这种重载方法会怎么样呢？</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MyString Hello(<span class="string">"Hello "</span>)<span class="comment">;</span></div><div class="line">MyString World(<span class="string">"World"</span>)<span class="comment">;</span></div><div class="line">MyString CPP(<span class="string">" of C++"</span>)<span class="comment">;</span></div><div class="line">MyString sayHello(<span class="name">Hello</span> + World + CPP)<span class="comment">;</span></div><div class="line">MyString sayHelloAgain(<span class="string">"overwrite this"</span>)<span class="comment">;</span></div><div class="line">sayHelloAgain = Hello + World + CPP<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>如果一个类重载了加法运算符，那么就会返回一个拷贝。虽然加法运算符可以轻松地拼接字符串，不过也会导致一些性能问题。创建sayHello时，需要执行加法运算符两次，每次都要创建一个按值返回的临时拷贝。也就是说，我们在这里使用了两次复制构造函数，执行了深复制。但事实上，临时拷贝在表达式执行完毕之后就不需要了，我们并不需要深复制。</p>
+<h3 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a><strong>代码实例</strong></h3><p>为了解决这个问题，我们需要使用移动构造函数和移动赋值运算符：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="type">MyClass</span></span></div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    <span class="type">Type</span> *<span class="type">PtrResource</span>;</div><div class="line"></div><div class="line">public:</div><div class="line">    <span class="type">MyClass</span>();</div><div class="line">    <span class="type">MyClass</span>(<span class="title">const</span> <span class="type">MyClass</span> &amp;<span class="type">CopySource</span>);</div><div class="line">    <span class="type">MyClass</span> &amp;operator = (<span class="title">const</span> <span class="type">MyClass</span> &amp;<span class="type">CopySource</span>);</div><div class="line"></div><div class="line">    <span class="type">MyClass</span>(<span class="type">MyClass</span> &amp;&amp;<span class="type">MoveSource</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="type">PtrResource</span> = <span class="type">MoveSource</span>.<span class="type">PtrResource</span>;</div><div class="line">        <span class="type">MoveSource</span>.<span class="type">PtrResource</span> = <span class="type">NULL</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="type">MyClass</span> &amp;operator = (<span class="type">MyClass</span> &amp;&amp;<span class="type">MoveSource</span>)</div><div class="line">    &#123;</div><div class="line">        if(<span class="title">this</span> != &amp;<span class="type">MoveSource</span>)</div><div class="line">        &#123;</div><div class="line">            delete [] <span class="type">PtrResource</span>;</div><div class="line">            <span class="type">PtrResource</span> = <span class="type">MoveSource</span>.<span class="type">PtrResource</span>;</div><div class="line">            <span class="type">MoveSource</span>.<span class="type">PtrResource</span> = <span class="type">NULL</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>相比于常规赋值构造函数和复制赋值运算符的声明，移动构造函数和移动赋值运算符的不同之处就在于，输入参数的类型为MyClass &amp;&amp;。这两种只是将资源从源移动到目的地。两个&amp;&amp;代表右值引用，不会进行复制。</p>
+<p>这里为了详细的解释这四种函数，提供了一个模板：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> MyString</div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">char</span> *Buffer;</div><div class="line">    MyString(): Buffer(<span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Default constructor called"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    ~MyString()</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(Buffer != <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">delete</span> [] Buffer;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">GetLength</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">strlen</span>(Buffer);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">operator</span> <span class="keyword">const</span> <span class="keyword">char</span> *()</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> Buffer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MyString <span class="keyword">operator</span> + (<span class="keyword">const</span> MyString &amp;AddThis)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"operator + called:"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        MyString NewString;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(AddThis.Buffer != <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            NewString.Buffer = <span class="keyword">new</span> <span class="keyword">char</span>[GetLength() + <span class="built_in">strlen</span>(AddThis.Buffer) + <span class="number">1</span>];</div><div class="line"></div><div class="line">            <span class="built_in">strcpy</span>(NewString.Buffer, Buffer);</div><div class="line">            <span class="built_in">strcat</span>(NewString.Buffer, AddThis.Buffer);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> NewString;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MyString(<span class="keyword">const</span> <span class="keyword">char</span> *InitialInput)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Constructor called for:"</span> &lt;&lt; InitialInput &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">if</span>(InitialInput != <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            Buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(InitialInput) + <span class="number">1</span>];</div><div class="line">            <span class="built_in">strcpy</span>(Buffer, InitialInput);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            Buffer = <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MyString &amp;<span class="keyword">operator</span> = (<span class="keyword">const</span> MyString &amp;CopySource)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Copy assignment operator to copy from:"</span> &lt;&lt; CopySource.Buffer &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">if</span>((<span class="keyword">this</span> != &amp;CopySource) &amp;&amp; (CopySource.Buffer != <span class="literal">NULL</span>))</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(Buffer != <span class="literal">NULL</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">delete</span> [] Buffer;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            Buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(CopySource.Buffer) + <span class="number">1</span>];</div><div class="line">            <span class="built_in">strcpy</span>(Buffer, CopySource.Buffer);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MyString(MyString &amp;&amp;MoveSource)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Move constructor to move from:"</span> &lt;&lt; MoveSource.Buffer &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">if</span>(MoveSource.Buffer != <span class="literal">NULL</span>)</div><div class="line">        &#123;</div><div class="line">            Buffer = MoveSource.Buffer;</div><div class="line">            MoveSource.Buffer = <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MyString &amp;<span class="keyword">operator</span> = (MyString &amp;&amp;MoveSource)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Move assignment operator to move from:"</span> &lt;&lt; MoveSource.Buffer &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">if</span>((MoveSource.Buffer != <span class="literal">NULL</span>) &amp;&amp; (<span class="keyword">this</span> != &amp;MoveSource))</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">delete</span> Buffer;</div><div class="line"></div><div class="line">            Buffer = MoveSource.Buffer;</div><div class="line">            MoveSource.Buffer = <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function">MyString <span class="title">Hello</span><span class="params">(<span class="string">"Hello "</span>)</span></span>;</div><div class="line">    <span class="function">MyString <span class="title">World</span><span class="params">(<span class="string">"World"</span>)</span></span>;</div><div class="line">    <span class="function">MyString <span class="title">CPP</span><span class="params">(<span class="string">" of C++"</span>)</span></span>;</div><div class="line"></div><div class="line">    <span class="function">MyString <span class="title">sayHelloAgain</span><span class="params">(<span class="string">"overwrite this"</span>)</span></span>;</div><div class="line">    sayHelloAgain = Hello + World + CPP;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>控制台输出如下：</p>
+<pre><code>Constructor called for:Hello
+Constructor called for:World
+Constructor called for: of C++
+Constructor called for:overwrite this
+operator + called:
+Default constructor called
+Move constructor to move from:Hello World
+operator + called:
+Default constructor called
+Move constructor to move from:Hello World of C++
+Move assignment operator to move from:Hello World of C++
+</code></pre><p>事实上，移动的就是传入参数为MyClass &amp;&amp;。另外呢，由于输入参数是要移动的源对象，所以不能使用cosnt限定。总之，只要创建临时右值时，C++编译器便会使用移动的函数。</p>
+<p>移动的函数其实就是接管移动源中的资源所有权，而复制的则是分配新的空间，然后将移动源的信息拷贝进来。</p>
+<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a><strong>题外话</strong></h2><p>事实上，把构造函数、复制赋值运算符、复制构造函数等等声明为私有，是为了实现单例模式。当然，如果单纯只是想阻止栈上实例化（比如占据内存较大的数据库类），就可以将析构函数声明为私有。这样一来，编译器在编译过程中就会因为析构函数为私有，从而终止栈上实例化。但是呢，堆上的实例化是可行的，不过我们需要定义一个类成员函数，用来执行delete。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag">#C++</a>
+          
+            <a href="/tags/operator/" rel="tag">#operator</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/13/Cocos2dx-note-18/" rel="next" title="Cocos2dx学习笔记（18）——Cocos数据结构">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（18）——Cocos数据结构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/24/Cocos2dx-note-19/" rel="prev" title="Cocos2dx学习笔记（19）——滑块控件">
+                Cocos2dx学习笔记（19）——滑块控件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/18/C++-note-3/"
+           data-title="C++学习笔记（3）——operator" data-url="http://yoursite.com/2016/09/18/C++-note-3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数运算符operator"><span class="nav-number">1.</span> <span class="nav-text">函数运算符operator()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单举例"><span class="nav-number">1.1.</span> <span class="nav-text">简单举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动构造函数和移动赋值运算符"><span class="nav-number">2.</span> <span class="nav-text">移动构造函数和移动赋值运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题引入"><span class="nav-number">2.1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实例"><span class="nav-number">2.2.</span> <span class="nav-text">代码实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-number">3.</span> <span class="nav-text">题外话</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
