@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/24/Algorithm-note-2/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章讲一讲动态规划的基础。">
-<meta property="og:updated_time" content="2016-08-24T05:26:13.079Z">
+<meta property="og:updated_time" content="2016-11-05T05:24:35.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法学习笔记（2）——背包问题">
 <meta name="twitter:description" content="本章讲一讲动态规划的基础。">
@@ -372,15 +372,16 @@
 <li>把背包装满好还是不装满好</li>
 </ul>
 <p>我之所以用可能这个词，是因为全部选择性价比高的宝石并不一定是最好的选择。你可能又会奇怪，性价比高不是最好吗？但是呢，宝石的体积不同，我们如果全部选择性价比高的宝石，不一定能将背包刚好装满。那么，如果我们选择体积大价值大的宝石，可能会比选择几个性价比高的宝石要更好。仔细思考你会发现，这个问题很复杂，直接想是很难得出答案的。因此，我们最好将大的问题缩小成一个同类型的问题，那么这也就是动态规划的核心。</p>
-<h2 id="动态规划方程"><a href="#动态规划方程" class="headerlink" title="动态规划方程"></a><strong>动态规划方程</strong></h2><p>假如有i个宝石，宝石从0到i-1编号，背包的体积为j，w[i]表示第i号宝石的价值，v[i]表示第i号宝石的体积。我们规定d[i][j]代表的是用j体积的背包装入i个宝石所能得到的最大价值。我们现在试着将问题缩小，考虑装入第i-1号宝石的情况：</p>
+<h2 id="动态规划方程"><a href="#动态规划方程" class="headerlink" title="动态规划方程"></a><strong>动态规划方程</strong></h2><p>假如有<code>i</code>个宝石，宝石从<code>0</code>到<code>i-1</code>编号，背包的体积为<code>j</code>，<code>w[i]</code>表示第i号宝石的价值，<code>v[i]</code>表示第<code>i</code>号宝石的体积。我们规定<code>d[i][j]</code>代表的是用<code>j</code>体积的背包装入<code>i</code>个宝石所能得到的最大价值。我们现在试着将问题缩小，考虑装入第<code>i-1</code>号宝石的情况：</p>
 <ul>
-<li>如果不装第i-1号宝石，那么d[i][j]就等于d[i - 1][j]</li>
-<li>如果装入第i-1号宝石，那么d[i][j]就等于d[i - 1][j - v[i - 1]] + w[i - 1]</li>
-<li>在能够装入第i-1号宝石的前提下，装与不装哪个的价值大</li>
+<li>如果不装第<code>i-1</code>号宝石，那么<code>d[i][j]</code>就等于<code>d[i - 1][j]</code></li>
+<li>如果装入第<code>i-1</code>号宝石，那么<code>d[i][j]</code>就等于<code>d[i - 1][j - v[i - 1]] + w[i - 1]</code></li>
+<li>在能够装入第<code>i-1</code>号宝石的前提下，装与不装哪个的价值大</li>
 </ul>
-<p>其实最关键的就是第三个情况，我们需要判断装还是不装。当然，这个是最后一块宝石，能够装进去的话当然要装。事实上，我们需要考虑是前面的情况，那就是对于第i-2号宝石，我们应不应该装？对于第i-2号宝石，我们又需要考虑第i-3号宝石。当我们将问题缩小到最小时，我们能够很简单的得出一个答案。那么，参考递归的思想，反过来便能够推出最终的结果。动态规划实际上就是通过局部最优解来推出全局最优解，而所谓的动态规划方程就是解决问题的方法。</p>
-<p>我们首先找到一个变化的状态，在这里就是d[i][j]。然后找到动态规划方程，在这里就是max{d[i - 1][j], d[i - 1][j - v[i - 1]] + w[i - 1]}，也就是装与不装哪个价值大。只要找到了动态规划方程，问题就很简单了。</p>
+<p>其实最关键的就是第三个情况，我们需要判断装还是不装。当然，这个是最后一块宝石，能够装进去的话当然要装。事实上，我们需要考虑是前面的情况，那就是对于第<code>i-2</code>号宝石，我们应不应该装？对于第<code>i-2</code>号宝石，我们又需要考虑第<code>i-3</code>号宝石。当我们将问题缩小到最小时，我们能够很简单的得出一个答案。那么，参考递归的思想，反过来便能够推出最终的结果。动态规划实际上就是通过局部最优解来推出全局最优解，而所谓的动态规划方程就是解决问题的方法。</p>
+<p>我们首先找到一个变化的状态，在这里就是<code>d[i][j]</code>。然后找到动态规划方程，在这里就是<code>max{d[i - 1][j], d[i - 1][j - v[i - 1]] + w[i - 1]}</code>，也就是装与不装哪个价值大。只要找到了动态规划方程，问题就很简单了。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="keyword">int</span> v[<span class="number">1000</span>];          <span class="comment">// 记录宝石的体积</span></div><div class="line"><span class="keyword">int</span> w[<span class="number">1000</span>];          <span class="comment">// 记录宝石的价值</span></div><div class="line"><span class="keyword">int</span> x[<span class="number">1000</span>];          <span class="comment">// 记录宝石是否装入背包，0为未装入，1为装入</span></div><div class="line"><span class="keyword">int</span> d[<span class="number">1000</span>][<span class="number">100000</span>];  <span class="comment">// 记录用j体积的背包装入i个宝石所能得到的最大价值</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> w1 = d[i][j];                            <span class="comment">// 不装入i - 1号宝石</span></div><div class="line">    <span class="keyword">int</span> w2 = d[i - <span class="number">1</span>][j - v[i - <span class="number">1</span>]] + w[i - <span class="number">1</span>];  <span class="comment">// 装入i - 1号宝石</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> w1 &gt; w2 ? w1 : w2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> n, c;  <span class="comment">// 记录宝石数量和背包体积</span></div><div class="line">    <span class="keyword">int</span> i, j;</div><div class="line"></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;c);</div><div class="line"></div><div class="line">    <span class="comment">// 读入宝石的体积和价值，宝石从0开始计数</span></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)  </div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;v[i], &amp;w[i]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 最大价值d从1开始计数，i为0时直接等于0</span></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; i++)  </div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt;= c; j++)</div><div class="line">        &#123;</div><div class="line">            d[i][j] = i == <span class="number">0</span> ? <span class="number">0</span> : d[i - <span class="number">1</span>][j];  <span class="comment">// i为0，最大价值为0，否则便初始化为前一子问题的值</span></div><div class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; j &gt;= v[i - <span class="number">1</span>])           <span class="comment">// 只有当宝石能够装进背包剩下空间时，才去考虑装进去的价值大还是不装的价值大</span></div><div class="line">            &#123;</div><div class="line">                d[i][j] = getMax(i, j);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"最大价值为：%d\n"</span>, d[n][c]);</div><div class="line"></div><div class="line">    <span class="comment">// 判断宝石是否装入背包</span></div><div class="line">    <span class="keyword">for</span>(i = n, j = c; i &gt; <span class="number">0</span>; --i)  </div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(d[i][j] &gt; d[i - <span class="number">1</span>][j])</div><div class="line">        &#123;</div><div class="line">            x[i - <span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">            j = j - v[i - <span class="number">1</span>];  <span class="comment">// 装入第i-1个宝石后背包能装入的体积就只剩下j - v[i-1]</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, x[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -518,7 +519,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -526,7 +527,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -535,7 +536,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

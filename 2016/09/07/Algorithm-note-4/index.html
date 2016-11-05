@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/12423141.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/1352345.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/dsfgs.png">
-<meta property="og:updated_time" content="2016-09-08T07:05:42.801Z">
+<meta property="og:updated_time" content="2016-11-05T06:27:05.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法学习笔记（4）——图的遍历">
 <meta name="twitter:description" content="图论是一个新的知识点，也是数据结构中很重要的一部分。">
@@ -383,14 +383,14 @@
 <li>1-2-5，路径长为9</li>
 <li>1-5，路径长为10</li>
 </ul>
-<p>很显然，1-2-5就是最短路径。关于代码的实现，有几个需要注意的地方：</p>
+<p>很显然，<code>1-2-5</code>就是最短路径。关于代码的实现，有几个需要注意的地方：</p>
 <ul>
-<li>用一个变量min来记录每次找到的最小值</li>
-<li>用book数组标记哪些城市已经搜索过，避免死循环</li>
+<li>用一个变量<code>min</code>来记录每次找到的最小值</li>
+<li>用<code>book</code>数组标记哪些城市已经搜索过，避免死循环</li>
 <li>前一步探索完毕后，记得取消标记，为下一次探索做准备</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> wuxian = <span class="number">99999999</span>;</div><div class="line"><span class="keyword">int</span> book[<span class="number">101</span>];</div><div class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">101</span>][<span class="number">101</span>];</div><div class="line"><span class="keyword">int</span> n;  <span class="comment">// 城市数量</span></div><div class="line"><span class="keyword">int</span> min = <span class="number">999999999</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span> dis)</span>  <span class="comment">// 第几个城市，累计路程</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">if</span>(dis &gt; min)  <span class="comment">// 如果循环到这里时dis已经大于了最小路径，往下循环没有意义，直接退出</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(cur == n)  <span class="comment">// 如果到达了目标城市，就判断该路径是否最短</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(dis &lt; min)</div><div class="line">            min = dis;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">map</span>[cur][i] != wuxian &amp;&amp; book[i] == <span class="number">0</span>)  <span class="comment">// 如果当前城市cur到下一个城市i有路，且还没有走过</span></div><div class="line">        &#123;</div><div class="line">            book[i] = <span class="number">1</span>;</div><div class="line">            dfs(i, dis + <span class="built_in">map</span>[cur][i]);</div><div class="line">            book[i] = <span class="number">0</span>;  <span class="comment">// 该点探索完毕后要取消标记</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i, j, m, a, b, c;  <span class="comment">// m表示公路数</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"请输入城市数量和公路数量："</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</div><div class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n; j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(i == j)</div><div class="line">                <span class="built_in">map</span>[i][j] = <span class="number">0</span>;  <span class="comment">// i == j表示自己，距离自然为0</span></div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="built_in">map</span>[i][j] = wuxian;  <span class="comment">// 否则将赋值为无穷大，也就是无法达到</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);  <span class="comment">// 输入从第a号城市到第b号城市需要走的路程c</span></div><div class="line">        <span class="built_in">map</span>[a][b] = c;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    book[<span class="number">1</span>] = <span class="number">1</span>;  <span class="comment">// 从1号城市出发</span></div><div class="line">    dfs(<span class="number">1</span>, <span class="number">0</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"最短路程为%d"</span>, min);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里简要的解释一下dfs()。首先，得判断目前的路径长有没有超过最短路径，如果超过，剩下的探索没有意义，直接返回。如果到达了目标城市，就判断目前的路径是不是更短，是的话就将min值替换。再往下，就是深度优先中比较重要的循环。对于当前的节点，我们往下探索的条件有两个：</p>
+<p>这里简要的解释一下<code>dfs()</code>。首先，得判断目前的路径长有没有超过最短路径，如果超过，剩下的探索没有意义，直接返回。如果到达了目标城市，就判断目前的路径是不是更短，是的话就将<code>min</code>值替换。再往下，就是深度优先中比较重要的循环。对于当前的节点，我们往下探索的条件有两个：</p>
 <ul>
 <li>必须能够直接到达</li>
 <li>之前没有走过</li>
@@ -412,7 +412,7 @@
 3 4
 3 5
 4 5
-</code></pre><p>注意，当一个点扩展完后，一定要head++让队首出队。</p>
+</code></pre><p>注意，当一个点扩展完后，一定要<code>head++</code>让队首出队。</p>
 <h2 id="选择哪种算法"><a href="#选择哪种算法" class="headerlink" title="选择哪种算法"></a><strong>选择哪种算法</strong></h2><p>相比较而言，广度优先搜索更加适用于所有的边距离相同的情况。对于这个问题，广度优先搜索会更快一些。</p>
 
       
@@ -552,7 +552,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -560,7 +560,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -569,7 +569,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

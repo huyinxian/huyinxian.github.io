@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/21/C++-note-2/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="很多编程语言的书中并未提到这个概念，但是如果不加注意有可能会出现问题。">
-<meta property="og:updated_time" content="2016-08-21T10:01:30.824Z">
+<meta property="og:updated_time" content="2016-11-05T05:14:49.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习笔记（2）——字节对齐">
 <meta name="twitter:description" content="很多编程语言的书中并未提到这个概念，但是如果不加注意有可能会出现问题。">
@@ -371,22 +371,22 @@
 <li>结构体每个成员相对于结构体首地址的偏移量都是<strong>成员</strong>大小的整数倍，如有需要编译器会在成员之间加上填充字节</li>
 <li>结构体的总大小为结构体<strong>最宽基本类型成员</strong>大小的整数倍，如有需要会在最末一个成员之后加上填充字节</li>
 </ul>
-<p>注意，字节对齐一定要是基本类型，也就是诸如char、short、int、float、double之类的内置数据类型。那么话不多说，让我们看看具体的例子：</p>
+<p>注意，字节对齐一定要是基本类型，也就是诸如<code>char</code>、<code>short</code>、<code>int</code>、<code>float</code>、<code>double</code>之类的内置数据类型。那么话不多说，让我们看看具体的例子：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">struct info1</div><div class="line">&#123;</div><div class="line">    char c<span class="comment">;</span></div><div class="line">    <span class="keyword">short </span><span class="keyword">sh;</span></div><div class="line">    char ch[<span class="number">9</span>]<span class="comment">;</span></div><div class="line">&#125;<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>看看上面这个结构体，按照你的理解，是不是大小就是12呢？很显然不是，正确结果应该是14。首先，结构体字节对齐的第一个要点，就是找到最宽基本类型。注意，这里最宽的基本类型是short，而不是char[9]。看看第一个要求，结构体变量的大小能被short整除，也就是说char必须补充1个字节，而char[9]补充一个字节。这样一来，所有的变量都能被short整除。所以，结构体变量的大小就是<strong>2+2+10=14</strong>。</p>
+<p>看看上面这个结构体，按照你的理解，是不是大小就是<code>12</code>呢？很显然不是，正确结果应该是<code>14</code>。首先，结构体字节对齐的第一个要点，就是找到最宽基本类型。注意，这里最宽的基本类型是<code>short</code>，而不是<code>char[9]</code>。看看第一个要求，结构体变量的大小能被<code>short</code>整除，也就是说<code>char</code>必须补充一个字节，而<code>char[9]</code>补充一个字节。这样一来，所有的变量都能被<code>short</code>整除。所以，结构体变量的大小就是<code>2+2+10=14</code>。</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">info2</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> c;</div><div class="line">    <span class="keyword">int</span> sh;</div><div class="line">    <span class="keyword">char</span> ch[<span class="number">9</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>同样的，如果把short换成int，那么char就需要补充3个字节，而char[9]也需要补充3个字节。所以，总的大小就是<strong>4+4+12=20</strong>。</p>
+<p>同样的，如果把<code>short</code>换成<code>int</code>，那么<code>char</code>就需要补充三个字节，而<code>char[9]</code>也需要补充三个字节。所以，总的大小就是<code>4+4+12=20</code>。</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">struct info3</div><div class="line">&#123;</div><div class="line">    char c<span class="comment">;</span></div><div class="line">    char ch[<span class="number">9</span>]<span class="comment">;</span></div><div class="line">    <span class="keyword">short </span><span class="keyword">sh;</span></div><div class="line">&#125;<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>你是不是掌握了这个技巧呢？看看上面这个，是不是和第一个很像呢？不过我要告诉你，正确答案是12。你可能会觉得莫名其妙，这不过只是换了一个顺序，怎么就和第一个的大小不一样？让我们接着往下看：</p>
+<p>你是不是掌握了这个技巧呢？看看上面这个，是不是和第一个很像呢？不过我要告诉你，正确答案是<code>12</code>。你可能会觉得莫名其妙，这不过只是换了一个顺序，怎么就和第一个的大小不一样？让我们接着往下看：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">struct info4</div><div class="line">&#123;</div><div class="line">    char ch<span class="comment">;</span></div><div class="line">    int num<span class="comment">;</span></div><div class="line">    <span class="keyword">short </span><span class="keyword">sh;</span></div><div class="line">&#125;<span class="comment">;</span></div><div class="line"></div><div class="line">struct info5</div><div class="line">&#123;</div><div class="line">    char ch<span class="comment">;</span></div><div class="line">    <span class="keyword">short </span><span class="keyword">sh;</span></div><div class="line">    int num<span class="comment">;</span></div><div class="line">&#125;<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>info4的大小很明显是12，然而info5的大小却是8。为什么会这样呢？其实关于那三条准则，我觉得有必要说一下，那就是第二条准则是我们进行字节对齐最关键的。具体的还是看看例子吧：</p>
+<p><code>info4</code>的大小很明显是<code>12</code>，然而<code>info5</code>的大小却是<code>8</code>。为什么会这样呢？其实关于那三条准则，我觉得有必要说一下，那就是第二条准则是我们进行字节对齐最关键的。具体的还是看看例子吧：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> info3      <span class="comment">// 首地址为300500</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> c;       <span class="comment">// 首地址为300500  偏移量为0</span></div><div class="line">    <span class="keyword">char</span> ch[<span class="number">9</span>];   <span class="comment">// 首地址为300501  偏移量为1</span></div><div class="line">    <span class="keyword">short</span> sh;     <span class="comment">// 首地址为30050A  偏移量为10</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>我们可以看看第二条准则，每个成员相对于结构体首地址的偏移量都是该成员大小的整数倍，这里的成员类型必须是基本数据类型。我们可以看到，c的偏移量为0，是char的0倍。而ch的偏移量为1，是char的1倍。最后sh的偏移量为10，是short的5倍。</p>
+<p>我们可以看看第二条准则，每个成员相对于结构体首地址的偏移量都是该成员大小的整数倍，这里的成员类型必须是基本数据类型。我们可以看到，<code>c</code>的偏移量为0，是<code>char</code>的0倍。而<code>ch</code>的偏移量为1，是<code>char</code>的1倍。最后<code>sh</code>的偏移量为10，是<code>short</code>的5倍。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> info4      <span class="comment">// 首地址为300500</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> ch;      <span class="comment">// 首地址为300500  偏移量为0</span></div><div class="line">    <span class="keyword">int</span> num;      <span class="comment">// 首地址为300504  偏移量为4</span></div><div class="line">    <span class="keyword">short</span> sh;     <span class="comment">// 首地址为300508  偏移量为8</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> info5      <span class="comment">// 首地址为300500</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> ch;      <span class="comment">// 首地址为300500  偏移量为0</span></div><div class="line">    <span class="keyword">short</span> sh;     <span class="comment">// 首地址为300502  偏移量为2</span></div><div class="line">    <span class="keyword">int</span> num;      <span class="comment">// 首地址为300504  偏移量为4</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>对于info4，如果num的首地址为300501，偏移量就只有1，不是4的整数倍，所以要填充3个字节。而sh的偏移量为8，是2的4倍，满足准则2。但是呢，结构体的总大小必须是最宽基本类型的整数倍，不够的在末尾填充。那么这里是<strong>4+4+2=10</strong>，不满足准则3，所以要在sh后面填充两个字节。</p>
-<p>同样的，对于info5，ch满足准则2，sh的首地址如果为300501，那么偏移量就只有1，所以必须给ch填充一个字节。因此sh的首地址为300502，满足准则2。而num的偏移量为4，满足准则2。最后再看看总共的大小<strong>2+2+4=8</strong>，满足准则3。</p>
+<p>对于<code>info4</code>，如果<code>num</code>的首地址为<code>300501</code>，偏移量就只有1，不是4的整数倍，所以要填充3个字节。而<code>sh</code>的偏移量为8，是2的4倍，满足准则二。但是呢，结构体的总大小必须是最宽基本类型的整数倍，不够的在末尾填充。那么这里是<code>4+4+2=10</code>，不满足准则3，所以要在<code>sh</code>后面填充两个字节。</p>
+<p>同样的，对于<code>info5</code>，<code>ch</code>满足准则二，<code>sh</code>的首地址如果为<code>300501</code>，那么偏移量就只有1，所以必须给<code>ch</code>填充一个字节。因此<code>sh</code>的首地址为<code>300502</code>，满足准则二。而<code>num</code>的偏移量为4，满足准则二。最后再看看总共的大小<code>2+2+4=8</code>，满足准则三。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> info6      <span class="comment">// 首地址为300500</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> ch;      <span class="comment">// 首地址为300500  偏移量为0</span></div><div class="line">    <span class="keyword">short</span> sh;     <span class="comment">// 首地址为300502  偏移量为2</span></div><div class="line">    <span class="keyword">double</span> x;     <span class="comment">// 首地址为300508  偏移量为8</span></div><div class="line">    <span class="keyword">int</span> num;      <span class="comment">// 首地址为300510  偏移量为16</span></div><div class="line">    <span class="keyword">char</span> str[<span class="number">19</span>]; <span class="comment">// 首地址为300514  偏移量为20</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>注意一下，这里我用的是16进制。ch和sh的首地址不多说，x的首地址如果为300504的话，偏移量就只有4，所以必须给sh填充4个字节。至于num和str的首地址都满足准则2。看看总体的大小<strong>2+6+8+4+19=39</strong>，不满足准则3，所以必须给str填充一个字节。</p>
+<p>注意一下，这里我用的是十六进制。<code>ch</code>和<code>sh</code>的首地址不多说，<code>x</code>的首地址如果为<code>300504</code>的话，偏移量就只有4，所以必须给<code>sh</code>填充4个字节。至于<code>num</code>和<code>str</code>的首地址都满足准则二。看看总体的大小<code>2+6+8+4+19=39</code>，不满足准则三，所以必须给<code>str</code>填充1个字节。</p>
 <h2 id="共用体的大小"><a href="#共用体的大小" class="headerlink" title="共用体的大小"></a><strong>共用体的大小</strong></h2><p>共用体中只能有一个成员在占用内存，那么共用体的大小显然就是最大的那个成员所占的大小。不过我既然在这里提到了，那么显然共用体也需要遵循字节对齐。大致有以下几条：</p>
 <ul>
 <li>共用体变量的大小能够被其最宽基本类型成员的大小整除</li>
@@ -394,21 +394,21 @@
 </ul>
 <p>我们来看看几个例子：</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">union</span> <span class="title">exp1</span></span></div><div class="line">&#123;</div><div class="line">    int num;</div><div class="line">    char str[<span class="number">11</span>];</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">union</span> <span class="title">exp2</span></span></div><div class="line">&#123;</div><div class="line">    double x;</div><div class="line">    char str[<span class="number">11</span>];</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">union</span> <span class="title">exp3</span></span></div><div class="line">&#123;</div><div class="line">    short x;</div><div class="line">    char str[<span class="number">11</span>];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>很简单，exp1的大小为12，exp2的大小为16，exp3的大小为12。如果我们把exp1中的int类型换成char类型，那么大小就是11。</p>
+<p>很简单，<code>exp1</code>的大小为12，<code>exp2</code>的大小为16，<code>exp3</code>的大小为12。如果我们把<code>exp1</code>中的<code>int</code>类型换成<code>char</code>类型，那么大小就是11。</p>
 <h2 id="类的大小"><a href="#类的大小" class="headerlink" title="类的大小"></a><strong>类的大小</strong></h2><p>其实class和struct没有什么差别，它们的差别仅在以下几个地方：</p>
 <ul>
 <li>class默认私有继承，struct默认公有继承</li>
 <li>class默认成员为私有，struct默认成员为公有</li>
 </ul>
-<p>除了上面两个地方，class和struct都是一样的。只不过，C++中习惯使用class而已。</p>
+<p>除了上面两个地方，class和struct都是一样的。只不过，C++中习惯使用class而已。注意，C++中，如果类为空，那么默认大小为1，而不是0。其实这个也容易理解，因为必须要有一个空间来表示这个类的存在。</p>
 <h2 id="位字段的字节对齐"><a href="#位字段的字节对齐" class="headerlink" title="位字段的字节对齐"></a><strong>位字段的字节对齐</strong></h2><p>位字段的使用一般是在内存特别小，需要程序员精打细算分配内存的时候。比如，各种硬件设施的编程。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> data1</div><div class="line">&#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> int1: <span class="number">5</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> int2: <span class="number">4</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> int3: <span class="number">10</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> data2</div><div class="line">&#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> ch1: <span class="number">1</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> ch2: <span class="number">2</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> int1: <span class="number">10</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>对于包含相同类型的结构体，只需将位字段的位数简单相加，考虑该类型的整数倍能否容纳即可。看看data1，全部相加为19位，而int类型占32位（在win32中），所以必须填充至32位。如果超过32位，那么就必须保证是32的整数倍。这里data1就是4个字节。</p>
-<p>对于不同类型的结构体，得考虑不同类型间的字节对齐，例如data2，首先是char之间的对齐，小于1个字节，用1个字节即可，然后比较int与char，进行对齐，char要填充成4个字节。这里data2是8个字节。</p>
+<p>对于包含相同类型的结构体，只需将位字段的位数简单相加，考虑该类型的整数倍能否容纳即可。看看<code>data1</code>，全部相加为19位，而<code>int</code>类型占32位（在<code>win32</code>中），所以必须填充至32位。如果超过32位，那么就必须保证是32的整数倍。这里<code>data1</code>就是4个字节。</p>
+<p>对于不同类型的结构体，得考虑不同类型间的字节对齐，例如<code>data2</code>，首先是<code>char</code>之间的对齐，小于1个字节，用1个字节即可，然后比较<code>int</code>与<code>char</code>，进行对齐，<code>char</code>要填充成4个字节。这里<code>data2</code>是8个字节。</p>
 <p>总而言之，我们对于不同类型的位字段对齐，要做的就是把不同的类型进行字节对齐，对于相同的类型就可以计算它们所占的内存之和，然后根据是不是该类型大小的整数倍来填充字节。</p>
 <h2 id="为什么要使用字节对齐"><a href="#为什么要使用字节对齐" class="headerlink" title="为什么要使用字节对齐"></a><strong>为什么要使用字节对齐</strong></h2><p>你可能会觉得字节对齐无形之中给自己添加了烦恼，一个不小心可能就会计算错误。事实上，计算机使用字节对齐是为了寻址的方便。如果一个结构体中的变量类型相同，寻址时就只要按照这个变量的大小递增即可，非常方便。但是呢，如果变量的类型不相同，自然也就无法像那样递增。那么计算机为了方便寻址，便首先寻找结构体中的最宽基本类型，然后对其他的成员变量进行字节填充。这样一来，计算机便可以按照最宽基本类型的大小进行递增。</p>
 <p>有的人可能会问，填充空的字节是不是会浪费内存。事实上，如果不这么做，那么计算机势必不能按照最快的方式寻址。与其牺牲最重要的速度，还不如牺牲一些无关紧要的内存，这样能够大大地加快计算机的运行速度。</p>
-<h2 id="关于结构体字节对齐的补充"><a href="#关于结构体字节对齐的补充" class="headerlink" title="关于结构体字节对齐的补充"></a><strong>关于结构体字节对齐的补充</strong></h2><p>结构体的字节对齐可以说是最复杂的，准则1其实只是用于判断简单一点的结构体。对于复杂的结构体，我们还是采用准则2和准则3进行判断。</p>
+<h2 id="关于结构体字节对齐的补充"><a href="#关于结构体字节对齐的补充" class="headerlink" title="关于结构体字节对齐的补充"></a><strong>关于结构体字节对齐的补充</strong></h2><p>结构体的字节对齐可以说是最复杂的，准则一其实只是用于判断简单一点的结构体。对于复杂的结构体，我们还是采用准则2和准则3进行判断。</p>
 
       
     </div>
@@ -551,7 +551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -559,7 +559,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -568,7 +568,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

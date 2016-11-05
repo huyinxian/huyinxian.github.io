@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/13/Cocos2dx-note-8/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。">
-<meta property="og:updated_time" content="2016-08-14T11:16:47.092Z">
+<meta property="og:updated_time" content="2016-11-05T04:22:21.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（8）——三大缓存">
 <meta name="twitter:description" content="小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。">
@@ -366,18 +366,18 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a><strong>什么是缓存</strong></h2><p>缓存的目的就是：先将所需资源（如纹理图片）加载到内存中，之后再次使用该资源的时候，就可以直接从内存中取出，而不需要重新加载。从而减少了CPU和GPU的内存占用。</p>
-<h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>如果游戏需要用到大量纹理图片，比如某个界面需要很多图片，那么可以使用TextureCache。一旦纹理加载完成，下次使用时可使用它返回之前加载的纹理。我们所谓的精灵初始化方法，底层的实现都是将图片加入了纹理缓存。</p>
+<h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>如果游戏需要用到大量纹理图片，比如某个界面需要很多图片，那么可以使用<code>TextureCache</code>。一旦纹理加载完成，下次使用时可使用它返回之前加载的纹理。我们所谓的精灵初始化方法，底层的实现都是将图片加入了纹理缓存。</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Texture2D *texture = Director::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getTextureCache<span class="function"><span class="params">()</span>-&gt;</span>addImage(filename);</div><div class="line">Texture2D *texture = Director::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getTextureCache<span class="function"><span class="params">()</span>-&gt;</span>getTextureForKey(textureKeyName);</div></pre></td></tr></table></figure>
-<p>addImage()返回一个Texture2D的引用，如果加入文件失败，则返回之前加入的图片。getTextureForKey()是通过文件名来获取纹理对象，失败则返回nullptr。</p>
+<p><code>addImage()</code>返回一个<code>Texture2D</code>的引用，如果加入文件失败，则返回之前加入的图片。<code>getTextureForKey()</code>是通过文件名来获取纹理对象，失败则返回<code>nullptr</code>。</p>
 <figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 释放当前所有引用计数为1的纹理，即目前没有被使用的纹理。</span></div><div class="line"><span class="comment">// 比如新场景创建好后，使用此方法释放没有使用的纹理非常方便。</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeUnusedTextures();</div><div class="line"> </div><div class="line"><span class="comment">// 通过给定的纹理贴图（texture）的关键名（key name）从缓存中删除该纹理贴图</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeTextureForKey(<span class="string">"Images/grossinis.png"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// 清除加载纹理贴图的记录，如果你收到“内存警告”，请调用该方法。 </span></div><div class="line"><span class="comment">// 在短期内 : 会释放一些资源文件来防止你的app出现闪退现象 </span></div><div class="line"><span class="comment">// 在中期内 : 会分配更多资源 </span></div><div class="line"><span class="comment">// 长远来看 : 没有区别</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeAllTextures();</div></pre></td></tr></table></figure>
-<h2 id="精灵帧缓存"><a href="#精灵帧缓存" class="headerlink" title="精灵帧缓存"></a><strong>精灵帧缓存</strong></h2><p>精灵帧一般用于许多小图合成的大图，处理plist文件。所以，精灵帧的配套文件是一个plist文件和一张大图。精灵帧获取和销毁单例对象和纹理一样，这里不再赘述。</p>
+<h2 id="精灵帧缓存"><a href="#精灵帧缓存" class="headerlink" title="精灵帧缓存"></a><strong>精灵帧缓存</strong></h2><p>精灵帧一般用于许多小图合成的大图，处理plist文件。所以，精灵帧的配套文件是一个<code>.plist</code>文件和一张大图。精灵帧获取和销毁单例对象和纹理一样，这里不再赘述。</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SpriteFrameCache *frameCache = <span class="symbol">SpriteFrameCache:</span><span class="symbol">:getInstance</span>();</div><div class="line">frameCache-&gt;addSpriteFramesWithFile(<span class="string">"boy.plist"</span>, <span class="string">"boy.png"</span>);</div></pre></td></tr></table></figure>
 <p>其他的方法在精灵帧一章讲的已经很详细了，这里之讲讲清除缓存的方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 从精灵帧缓存中删除一个精灵帧.</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFrameByName(<span class="keyword">const</span> std::string &amp;name);</div><div class="line">     </div><div class="line"><span class="comment">// 清除载入精灵帧的字典。如果接收到“Memory Warning”, 请调用这个方法。</span></div><div class="line"><span class="comment">// 就眼前来说 : 它将释放一些资源来阻止你的应用崩溃掉。</span></div><div class="line"><span class="comment">// 中期的角度 : 它将分配更多的资源。</span></div><div class="line"><span class="comment">// 从长远来说 : 它将变成相同的。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFrames();</div><div class="line"></div><div class="line"><span class="comment">// 从一个.plist文件移除多个精灵帧。即：存储在这个文件的精灵帧将被删除。</span></div><div class="line"><span class="comment">// 当某个特定的纹理需要被删除时候调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFramesFromFile(<span class="keyword">const</span> std::string &amp;plist);</div><div class="line">     </div><div class="line"><span class="comment">// 移除与特定的纹理结合的所有的精灵帧。</span></div><div class="line"><span class="comment">// 当某个特定的纹理需要被删除时候调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFramesFromTexture(cocos2d::Texture2D *texture);</div><div class="line">     </div><div class="line"><span class="comment">// 移除没用的精灵帧。保留数为1的精灵帧将被删除。</span></div><div class="line"><span class="comment">// 在开始一个新的场景之后调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</div></pre></td></tr></table></figure>
-<h2 id="纹理和精灵帧的区别"><a href="#纹理和精灵帧的区别" class="headerlink" title="纹理和精灵帧的区别"></a><strong>纹理和精灵帧的区别</strong></h2><p>精灵帧主要用于许多小图片所合成的大图片，而纹理是最底层也是最有效的图片存储。精灵帧实际上只有一张图片，也就是一个纹理，它会存储必要的位置信息，方便截取精灵图片。</p>
-<h2 id="动画缓存"><a href="#动画缓存" class="headerlink" title="动画缓存"></a><strong>动画缓存</strong></h2><p>创建动画时，基本的步骤是创建精灵帧，按顺序添加到数组，用Animation读取数组创建动画，这个过程比较繁琐耗时。对于使用频率较高的动画，可以将它加载到动画缓存，要用时直接调用而不是重新加载。</p>
+<h2 id="纹理、精灵帧、动画帧"><a href="#纹理、精灵帧、动画帧" class="headerlink" title="纹理、精灵帧、动画帧"></a><strong>纹理、精灵帧、动画帧</strong></h2><p>精灵帧最开始是用于创建动画，而纹理是最底层也是最有效的图片存储。精灵帧实际上只有一张大图片，也就是一个纹理，它的<code>.plist</code>会存储必要的位置信息，方便截取精灵图片。至于精灵帧和动画帧其实区别不大，不过我们最好认为动画帧是动画的属性，精灵帧只是精灵的属性，而不是将二者混为一谈。</p>
+<h2 id="动画缓存"><a href="#动画缓存" class="headerlink" title="动画缓存"></a><strong>动画缓存</strong></h2><p>创建动画时，基本的步骤是创建精灵帧，按顺序添加到数组，用<code>Animation</code>读取数组创建动画，这个过程比较繁琐耗时。对于使用频率较高的动画，可以将它加载到动画缓存，要用时直接调用而不是重新加载。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addAnimation</span><span class="params">(Animation *animation, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addAnimationsWithFile</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; plist)</span></span>;</div><div class="line"><span class="function">Animation* <span class="title">getAnimation</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAnimation</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div></pre></td></tr></table></figure>
-<p>addAnimation()添加一段动画，并且为之取名，方便之后在缓存中提取这段动画。addAnimationsWithFile()是通过plist文件来添加动画。getAnimation()可以通过相对应的名字，提取动画，该方法返回Animation类指针。removeAnimation()用于移除指定动画。</p>
+<p><code>addAnimation()</code>添加一段动画，并且为之取名，方便之后在缓存中提取这段动画。<code>addAnimationsWithFile()</code>是通过plist文件来添加动画。<code>getAnimation()</code>可以通过相对应的名字，提取动画，该方法返回<code>Animation</code>类指针。<code>removeAnimation()</code>用于移除指定动画。</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Animation* animation = Animation::createWithSpriteFrames(arr, <span class="number">0.04</span>);</div><div class="line">AnimationCache::getInstance<span class="function"><span class="params">()</span>-&gt;</span>addAnimation(animation, <span class="string">"Explosion"</span>);</div><div class="line">Animation* animation = AnimationCache::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getAnimation(<span class="string">"Explosion"</span>);</div></pre></td></tr></table></figure>
 <p>上述代码简要的说明了如何创建动画并加入到缓存，同时从缓存中提取一段动画。</p>
 <h2 id="清理缓存顺序"><a href="#清理缓存顺序" class="headerlink" title="清理缓存顺序"></a><strong>清理缓存顺序</strong></h2><p>按照由高到低来，先动画缓存，再精灵帧缓存，最后纹理缓存。</p>
@@ -517,7 +517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -525,7 +525,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -534,7 +534,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -601,7 +601,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是缓存"><span class="nav-number">1.</span> <span class="nav-text">什么是缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理缓存"><span class="nav-number">2.</span> <span class="nav-text">纹理缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵帧缓存"><span class="nav-number">3.</span> <span class="nav-text">精灵帧缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理和精灵帧的区别"><span class="nav-number">4.</span> <span class="nav-text">纹理和精灵帧的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画缓存"><span class="nav-number">5.</span> <span class="nav-text">动画缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理缓存顺序"><span class="nav-number">6.</span> <span class="nav-text">清理缓存顺序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是缓存"><span class="nav-number">1.</span> <span class="nav-text">什么是缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理缓存"><span class="nav-number">2.</span> <span class="nav-text">纹理缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵帧缓存"><span class="nav-number">3.</span> <span class="nav-text">精灵帧缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理、精灵帧、动画帧"><span class="nav-number">4.</span> <span class="nav-text">纹理、精灵帧、动画帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画缓存"><span class="nav-number">5.</span> <span class="nav-text">动画缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理缓存顺序"><span class="nav-number">6.</span> <span class="nav-text">清理缓存顺序</span></a></li></ol></div>
             
           </div>
         </section>

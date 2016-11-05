@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="这一章要涉及到坐标系的基础知识，用心听讲！">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E6%97%A0%E6%A0%87%E9%A2%98.png">
-<meta property="og:updated_time" content="2016-08-12T03:56:49.582Z">
+<meta property="og:updated_time" content="2016-11-05T03:55:17.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（4）——Z轴">
 <meta name="twitter:description" content="这一章要涉及到坐标系的基础知识，用心听讲！">
@@ -372,7 +372,7 @@
 
 <p>如上图所示，层2的内容会把层1的内容遮住。当然，如果两个对象的大小不一样，遮挡自然也可能不全面，所表达出来的游戏画面也会有所不同。如果了解过PS，那么这个和PS的图层概念是一样的。</p>
 <h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a><strong>具体代码</strong></h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> T03LayerZorder::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!CCLayer::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    CCSize winsize = CCDirector::sharedDirector()-&gt;getWinSize();</div><div class="line"></div><div class="line">    CCSprite *plant = CCSprite::create(<span class="string">"sprite/plant.png"</span>);</div><div class="line">    CCSprite *sun = CCSprite::create(<span class="string">"sprite/p_1_01.png"</span>);</div><div class="line">    CCSprite *zombie = CCSprite::create(<span class="string">"sprite/framecache/z_1_attack_01.png"</span>);</div><div class="line"></div><div class="line">    plant-&gt;setPosition(ccp(winsize.width / <span class="number">2</span> + <span class="number">30</span>, winsize.height / <span class="number">2</span> - <span class="number">30</span>));</div><div class="line">    sun-&gt;setPosition(ccp(winsize.width / <span class="number">2</span>, winsize.height / <span class="number">2</span>));</div><div class="line">    zombie-&gt;setPosition(ccp(winsize.width / <span class="number">2</span> - <span class="number">30</span>, winsize.height / <span class="number">2</span> + <span class="number">30</span>));</div><div class="line"></div><div class="line">    addChild(plant);</div><div class="line">    addChild(sun);</div><div class="line">    addChild(zombie);</div><div class="line"></div><div class="line">    <span class="comment">//设置Z轴</span></div><div class="line">    plant-&gt;setZOrder(<span class="number">100</span>);</div><div class="line">    sun-&gt;setZOrder(<span class="number">50</span>);</div><div class="line">    zombie-&gt;setZOrder(<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Z轴的数值越大，那么代表对应的对象越处在上面。如上述代码所示，默认的Z轴值是递增的，越晚插入父节点的子节点，它就越处在上面。当然这里主要是手动设置，利用方法setZOrder()便能够更改对象的Z轴值。</p>
+<p>Z轴的数值越大，那么代表对应的对象越处在上面。如上述代码所示，默认的Z轴值是递增的，越晚插入父节点的子节点，它就越处在上面。当然这里主要是手动设置，利用方法<code>setZOrder()</code>便能够更改对象的Z轴值。</p>
 
       
     </div>
@@ -509,7 +509,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -517,7 +517,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -526,7 +526,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

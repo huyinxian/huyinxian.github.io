@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png">
-<meta property="og:updated_time" content="2016-09-03T04:15:30.863Z">
+<meta property="og:updated_time" content="2016-11-05T04:12:41.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（5）——纹理">
 <meta name="twitter:description" content="哟嚯，新的知识又来了，小伙伴们快坐下！">
@@ -381,16 +381,18 @@
 <p>第一种方法我们不陌生，至于第二种方法呢，便是规定图片的显示内容。Rect是矩形的意思，使用了UI坐标系，原点从左上角开始，显示长为400宽为320的内容，如下图所示：</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png" alt="示例"></center>
 
-<p>那么回归正题，什么是纹理？其实纹理是openGL的词汇，简单来讲就是图片。</p>
+<p>那么回归正题，什么是纹理？纹理是OpenGL的词汇，我们去查看底层代码就会发现，<code>Sprite::create()</code>其实就是创建了一个纹理。简单来说，纹理就是图片。</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CCImage *<span class="built_in">image</span> = <span class="keyword">new</span> CCImage();</div><div class="line"><span class="built_in">image</span>-&gt;initWithImageFile(<span class="string">"sprite/plant.png"</span>);</div><div class="line"></div><div class="line">CCTexture2D *<span class="built_in">texture</span> = <span class="keyword">new</span> CCTexture2D();</div><div class="line"><span class="built_in">texture</span>-&gt;autorelease();</div><div class="line"><span class="built_in">texture</span>-&gt;initWithImage(<span class="built_in">image</span>);</div></pre></td></tr></table></figure>
-<p>CCTexture2D没有create()方法，事实上，很多openGL的概念都没有create()方法。因此呢，我们需要自己创建对象，并送入自动回收池。至于纹理的初始化则需要图片，这里用到的CCImage同样没有create()方法。</p>
-<p>回顾学习笔记(2)，sprite除了可以直接用文件初始化以外，还可以用纹理初始化。</p>
+<p><code>CCTexture2D</code>没有<code>create()</code>方法，事实上，很多OpenGL的概念都没有<code>create()</code>方法。因此呢，我们需要自己创建对象，并送入自动回收池。至于纹理的初始化则需要图片，这里用到的<code>CCImage</code>同样没有<code>create()</code>方法。</p>
+<p>回顾学习笔记(2)，<code>sprite</code>除了可以直接用文件初始化以外，还可以用纹理初始化。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(CCTexture2D *pTexture)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(CCTexture2D *pTexture, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(CCTexture2D *pTexture)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(CCTexture2D *pTexture, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div></pre></td></tr></table></figure>
-<p>从本质上来说，Sprite的create()方法本质上是创建了一个纹理。</p>
-<h2 id="加快渲染"><a href="#加快渲染" class="headerlink" title="加快渲染"></a><strong>加快渲染</strong></h2><p>在游戏进行过程中，我们不能够加一张图片就渲染一张，那样重复的动作会占据很多资源。而纹理则可以用于内存优化。</p>
+<p>从本质上来说，<code>Sprite</code>的<code>create()</code>方法本质上是创建了一个纹理。</p>
+<h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>在游戏进行过程中，我们不能够加一张图片就渲染一张，那样重复的动作会占据很多资源。事实上，内存区开辟了一块缓存区域，我们可以把常用的图片加载入缓存，需要用的时候可以直接取用。</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CCTexture2D *texture2 = <span class="symbol">CCTextureCache:</span><span class="symbol">:sharedTextureCache</span>()-&gt;addImage(<span class="string">"sprite/bullet.png"</span>);</div><div class="line">CCSprite *bullet = <span class="symbol">CCSprite:</span><span class="symbol">:createWithTexture</span>(texture2);</div><div class="line">bullet-&gt;setPosition(ccp(<span class="number">200</span>, winsize.height / <span class="number">2</span> + <span class="number">20</span>));</div><div class="line">addChild(bullet);</div></pre></td></tr></table></figure>
-<p>sharedTextureCache()显然是一个单例，用于将图片加入缓存。addImage()直接返回一个CCTexture2D的指针，因此直接创建指针接收。接下用纹理创建精灵，并加入到层中。</p>
+<p><code>sharedTextureCache()</code>是一个单例，用于将图片加入缓存。<code>addImage()</code>直接返回一个<code>CCTexture2D</code>的指针，因此直接创建指针接收。接下用纹理创建精灵，并加入到层中。</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png" alt="示例"></center>
+
+<p>从缓存拿去图片好比是从书架拿书，方便快捷。而如果我们直接加载图片，那么就好比是到图书馆拿书，繁琐耗时。但是呢，由于书架比较小，所以我们不可能把所有的书全部放入，这也就意味着，程序员需要根据图片用到的时间和频率，合理的利用缓存，而不是一股脑地全部塞进去。</p>
 
       
     </div>
@@ -527,7 +529,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -535,7 +537,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -544,7 +546,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -611,7 +613,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开头补充"><span class="nav-number">1.</span> <span class="nav-text">开头补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解纹理"><span class="nav-number">2.</span> <span class="nav-text">了解纹理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加快渲染"><span class="nav-number">3.</span> <span class="nav-text">加快渲染</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开头补充"><span class="nav-number">1.</span> <span class="nav-text">开头补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解纹理"><span class="nav-number">2.</span> <span class="nav-text">了解纹理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理缓存"><span class="nav-number">3.</span> <span class="nav-text">纹理缓存</span></a></li></ol></div>
             
           </div>
         </section>

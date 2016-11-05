@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160815154104.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20161008170458.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161008171139.png">
-<meta property="og:updated_time" content="2016-10-08T09:24:40.715Z">
+<meta property="og:updated_time" content="2016-11-05T04:29:13.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（9）——序列帧动画">
 <meta name="twitter:description" content="本章知识较多，总结了之前所讲的知识，内容较复杂。">
@@ -370,24 +370,24 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="与动画相关的类"><a href="#与动画相关的类" class="headerlink" title="与动画相关的类"></a><strong>与动画相关的类</strong></h2><ul>
-<li>Animation，存储动画相关信息</li>
-<li>AnimationCache，动画缓存</li>
-<li>AnimationFrame，动画帧</li>
-<li>Animate，动画动作</li>
-<li>SpriteFrame，精灵帧</li>
-<li>SpriteFrameCache，精灵帧缓存</li>
+<li><code>Animation</code>，存储动画相关信息</li>
+<li><code>AnimationCache</code>，动画缓存</li>
+<li><code>AnimationFrame</code>，动画帧</li>
+<li><code>Animate</code>，动画动作</li>
+<li><code>SpriteFrame</code>，精灵帧</li>
+<li><code>SpriteFrameCache</code>，精灵帧缓存</li>
 </ul>
 <h2 id="3-0版本的改变"><a href="#3-0版本的改变" class="headerlink" title="3.0版本的改变"></a><strong>3.0版本的改变</strong></h2><ul>
-<li>去掉CC</li>
-<li>单例改为getInstance()，销毁单例改为destoryInstance()</li>
-<li>createWithSpriteFrames()中的CCArray参数改为Vector的SpriteFrame指针的引用</li>
-<li>create()、setFrames()/getFrames()中的CCArray参数改为Vector的AnimationFrame指针的引用</li>
-<li>addSpriteFrameWithFileName()改为addSpriteFrameWithFile()</li>
+<li>去掉<code>CC</code></li>
+<li>单例改为<code>getInstance()</code>，销毁单例改为<code>destoryInstance()</code></li>
+<li><code>createWithSpriteFrames()</code>中的<code>CCArray</code>参数改为<code>Vector</code>的<code>SpriteFrame</code>指针的引用</li>
+<li><code>create()</code>、<code>setFrames()</code>、<code>getFrames()</code>中的<code>CCArray</code>参数改为<code>Vector</code>的<code>AnimationFrame</code>指针的引用</li>
+<li><code>addSpriteFrameWithFileName()</code>改为<code>addSpriteFrameWithFile()</code></li>
 </ul>
 <h2 id="动画帧"><a href="#动画帧" class="headerlink" title="动画帧"></a><strong>动画帧</strong></h2><p>所谓的动画帧，就是在精灵帧的基础上，设置每帧之间的间隔帧数。</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CCArray*<span class="built_in"> array </span>=<span class="built_in"> new </span>CCArray();</div><div class="line">char str[] = <span class="string">"xxx.png"</span>;</div><div class="line">         </div><div class="line">CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(str);</div><div class="line">         </div><div class="line">CCAnimationFrame* animationFrame =<span class="built_in"> new </span>CCAnimationFrame();</div><div class="line">         </div><div class="line">animationFrame-&gt;setSpriteFrame(frame);</div><div class="line">animationFrame-&gt;setDelayUnits(i);</div><div class="line">         </div><div class="line">array-&gt;addObject(animationFrame);</div></pre></td></tr></table></figure>
-<p>创建一个数组，将图片加载入精灵帧缓存，同时创建动画帧，使用精灵帧初始化动画帧，设置每帧之间间隔帧数，最后将动画帧加入到数组。无论是动画帧还是精灵帧（实际上动画帧就是精灵帧，精灵帧的内部创建的动画帧间隔为1），一般来讲都是先载入缓存，随后加入到数组中，然后对Animation类进行初始化。</p>
-<h2 id="Animation类实例化"><a href="#Animation类实例化" class="headerlink" title="Animation类实例化"></a><strong>Animation类实例化</strong></h2><p>Animation类的初始化大致有下述三种方法，分别是创建空动画、使用精灵帧创建、使用动画帧创建对象。</p>
+<p>创建一个数组，将图片加载入精灵帧缓存，同时创建动画帧，使用精灵帧初始化动画帧，设置每帧之间间隔帧数，最后将动画帧加入到数组。无论是动画帧还是精灵帧（实际上动画帧就是精灵帧，精灵帧的内部创建的动画帧间隔为1），一般来讲都是先载入缓存，随后加入到数组中，然后对<code>Animation</code>类进行初始化。</p>
+<h2 id="Animation类实例化"><a href="#Animation类实例化" class="headerlink" title="Animation类实例化"></a><strong>Animation类实例化</strong></h2><p><code>Animation</code>类的初始化大致有下述三种方法，分别是创建空动画、使用精灵帧创建、使用动画帧创建对象。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个空动画</span></div><div class="line">CCAnimation::create();</div><div class="line">     </div><div class="line"><span class="comment">// 使用CCSpriteFrame精灵帧数组，单位帧间隔delay秒</span></div><div class="line"><span class="comment">// 实际上在内部创建了动画帧CCAnimationFrame，且间隔帧数为：1</span></div><div class="line">CCAnimation::createWithSpriteFrames(CCArray* arrayOfSpriteFrameNames, <span class="keyword">float</span> delay = <span class="number">0.0f</span>);</div><div class="line">     </div><div class="line"><span class="comment">// 使用CCAnimationFrame动画帧数组，单位帧间隔delayPerUnit秒，重复次数loops</span></div><div class="line"><span class="comment">// 其中loops：0为执行动画；1为执行一次，……，-1为无限循环</span></div><div class="line"><span class="function"><span class="keyword">static</span> CCAnimation* <span class="title">create</span><span class="params">(CCArray *arrayOfAnimationFrameNames, <span class="keyword">float</span> delayPerUnit, <span class="keyword">unsigned</span> <span class="keyword">int</span> loops = <span class="number">1</span>)</span></span>;</div></pre></td></tr></table></figure>
 <p>关于如何添加动画帧，有以下四种方法：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用精灵帧来添加一个动画帧，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrame</span><span class="params">(CCSpriteFrame *pFrame)</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">// 使用图片资源(jpg,png等)来添加一个动画帧，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrameWithFileName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line">     </div><div class="line"><span class="comment">// 从图片纹理中截取CCRect部分区域的图片，间隔帧数：1</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addSpriteFrameWithTexture</span><span class="params">(CCTexture2D* pobTexture, <span class="keyword">const</span> CCRect&amp; rect)</span></span>;</div><div class="line">     </div><div class="line"><span class="comment">// 直接设置动画帧CCAnimationFrames数组</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setFrames</span><span class="params">(CCArray* pAnimationFrames)</span></span>;</div><div class="line"><span class="function">CCArray* <span class="title">getFrames</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
@@ -405,14 +405,14 @@
 <h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a><strong>最后效果</strong></h2><p>如果没问题的话，就能看见小僵尸在愉快的啃空气→_→</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160815154104.gif" alt="效果图"></center>
 
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>这里讲一个内存优化的知识，我们知道，将一张.plist的大图加载进入缓存时，图片越大，那么消耗的资源越多。让我们先看看下面这张图片：</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>这里讲一个内存优化的知识，我们知道，将一张<code>.plist</code>的大图加载进入缓存时，图片越大，那么消耗的资源越多。让我们先看看下面这张图片：</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/20161008170458.png" alt=""></center>
 
 <p>我们可以看到，这张图片有很多空白的地方被浪费了。于是有人可能会问，能不能这么做呢：</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161008171139.png" alt=""></center>
 
-<p>确实，如果按照图中箭头方向进行裁剪，图片无疑被大大的缩小了。但是，这张图片是用TexturePacker软件做出来的，难道这个软件有错误的地方吗？很显然不是，因为TexturePacker这么做是为了符合Cocosdx的要求。</p>
-<p>事实上，Cocos底层加载.plist文件时，规格都是用的2的n次方。比如我们之前用到的僵尸图片，就是<strong>256×512</strong>，而这个植物的图片则是<strong>256×256</strong>。举个例子，如果长和宽为256时无法摆放所有精灵，那么就会尝试长为512的情况。如果还不行，那么就尝试长和宽都为512。这样一来，图片就大了不少。当精灵越多，图片越大时，经常发生这种状况。哪怕你的精灵只多了一个，但只要无法放下，那么就会尝试下一级。我们知道，2的n次方成指数型增长，越到后面数字变化越大，对于内存的消耗自然不用说。因此，我们在制作图片时，应当考虑到这些问题。</p>
+<p>确实，如果按照图中箭头方向进行裁剪，图片无疑被大大的缩小了。但是，这张图片是用<strong>TexturePacker</strong>软件做出来的，难道这个软件有错误的地方吗？很显然不是，因为<strong>TexturePacker</strong>这么做是为了符合Cocosdx的要求。</p>
+<p>事实上，Cocos底层加载<code>.plist</code>文件时，规格都是用的2的n次方。比如我们之前用到的僵尸图片，就是<strong>256×512</strong>，而这个植物的图片则是<strong>256×256</strong>。举个例子，如果长和宽为256时无法摆放所有精灵，那么就会尝试长为512的情况。如果还不行，那么就尝试长和宽都为512。这样一来，图片就大了不少。当精灵越多，图片越大时，经常发生这种状况。哪怕你的精灵只多了一个，但只要无法放下，那么就会尝试下一级。我们知道，2的n次方成指数型增长，越到后面数字变化越大，对于内存的消耗自然不用说。因此，我们在制作图片时，应当考虑到这些问题。</p>
 
       
     </div>
@@ -549,7 +549,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -557,7 +557,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="游戏开发用到了很多小技巧，本章将不断更新，记录一些实用的知识。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/wKioL1QF9iSgsP6CAADe5iZ6hoA754.jpg">
-<meta property="og:updated_time" content="2016-11-03T15:44:22.543Z">
+<meta property="og:updated_time" content="2016-11-05T07:30:32.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（28）——游戏开发小技巧">
 <meta name="twitter:description" content="游戏开发用到了很多小技巧，本章将不断更新，记录一些实用的知识。">
@@ -377,11 +377,14 @@
 <p>我们让圆绕着矩形滚一圈，这个时候可以得到一个圆角矩形。很显然，只要圆心在这个圆角矩形内，那么圆和矩形就发生了碰撞。我们可以将圆角矩形分成四个圆角和十字形，然后判断圆心有没有落在十字形区域内。如果没有，那么再判断圆心是否在四个角，都没有的话证明没有发生碰撞。</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">bool collision_RectWithCircle(CCRect <span class="built_in">rect</span>, CCPoint p, <span class="built_in">float</span> r)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获取矩形信息</span></div><div class="line">    <span class="comment">// 左下角坐标：( lx , ly )</span></div><div class="line">    <span class="comment">// 右上角坐标：( rx , ry )</span></div><div class="line">    <span class="built_in">float</span> lx = <span class="built_in">rect</span>.getMinX();</div><div class="line">    <span class="built_in">float</span> ly = <span class="built_in">rect</span>.getMinY();</div><div class="line">    <span class="built_in">float</span> rx = <span class="built_in">rect</span>.getMaxX();</div><div class="line">    <span class="built_in">float</span> ry = <span class="built_in">rect</span>.getMaxY();</div><div class="line"></div><div class="line">    <span class="comment">// 计算圆心到四个顶点的距离</span></div><div class="line">    <span class="built_in">float</span> d1 = p.getDistance( ccp(lx, ly) );</div><div class="line">    <span class="built_in">float</span> d2 = p.getDistance( ccp(lx, ry) );</div><div class="line">    <span class="built_in">float</span> d3 = p.getDistance( ccp(rx, ly) );</div><div class="line">    <span class="built_in">float</span> d4 = p.getDistance( ccp(rx, ry) );</div><div class="line"></div><div class="line">    <span class="comment">// 判断是否碰撞</span></div><div class="line">    <span class="comment">// 判断距离是否小于半径</span></div><div class="line">    <span class="keyword">if</span>( d1&lt;r || d2&lt;r || d3&lt;r || d4&lt;r ) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="comment">// 是否在圆角矩形的，横向矩形内</span></div><div class="line">    <span class="keyword">if</span>( p.x &gt; (lx-r) &amp;&amp; p.x &lt; (rx+r) &amp;&amp; p.y &gt; ly &amp;&amp; p.y &lt; ry ) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="comment">// 是否在圆角矩形的，纵向矩形内</span></div><div class="line">    <span class="keyword">if</span>( p.x &gt; lx &amp;&amp; p.x &lt; rx &amp;&amp; p.y &gt; (ly-r) &amp;&amp; p.y &lt; (ry+r) ) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 不发生碰撞</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最后要说的一点，这个并不是Box2D物理碰撞，这个只是小游戏中经常用到的技巧。</p>
-<h2 id="头文件相互包含"><a href="#头文件相互包含" class="headerlink" title="头文件相互包含"></a><strong>头文件相互包含</strong></h2><p>除了使用ifndef之外，还可以将头文件的包含放到.cpp中，这样不会发生问题。如果相互包含后出现找不到类的情况，那么可以在头文件中声明这个类。比如A.h和B.h相互包含，如果找不到类B，那么可以在A.h中声明<strong>class B</strong>。</p>
+<h2 id="头文件相互包含"><a href="#头文件相互包含" class="headerlink" title="头文件相互包含"></a><strong>头文件相互包含</strong></h2><p>除了使用<code>ifndef</code>之外，还可以将头文件的包含放到<code>.cpp</code>中，这样不会发生问题。如果相互包含后出现找不到类的情况，那么可以在头文件中声明这个类。比如<code>A.h</code>和<code>B.h</code>相互包含，如果找不到类<code>B</code>，那么可以在<code>A.h</code>中声明<code>class B</code>。</p>
 <h2 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a><strong>获取当前时间</strong></h2><p>我们使用随机函数或者做时钟时，经常要获取当前时间，那么可以使用以下方法：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">// 获取时间戳</div><div class="line"><span class="keyword">int</span> getTimeStamp()</div><div class="line">&#123;</div><div class="line">    timeval tm;</div><div class="line">    gettimeofday(&amp;tm, NULL);</div><div class="line">    <span class="keyword">return</span> tm.tv_sec;   <span class="regexp">//</span> 单位：秒</div><div class="line">    // <span class="keyword">return</span> tm.tv_usec;  <span class="regexp">//</span> 单位：毫秒</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 获取本地时间</div><div class="line">time_t t = <span class="keyword">time</span>(NULL);</div><div class="line">tm* <span class="keyword">lt</span> = <span class="keyword">localtime</span>(&amp;t);</div><div class="line"></div><div class="line"><span class="keyword">int</span> year = <span class="keyword">lt</span>-&gt;tm_year + <span class="number">1900</span>;  <span class="regexp">//</span> 相对<span class="number">1900</span>年的过去的年数</div><div class="line"><span class="keyword">int</span> month = <span class="keyword">lt</span>-&gt;tm_mon + <span class="number">1</span>;     <span class="regexp">//</span> <span class="number">1</span>月份：为<span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> yday = <span class="keyword">lt</span>-&gt;tm_yday;         <span class="regexp">//</span> 年第几天：从<span class="number">1</span>开始</div><div class="line"><span class="keyword">int</span> mday = <span class="keyword">lt</span>-&gt;tm_mday;         <span class="regexp">//</span> 月第几天：从<span class="number">1</span>开始</div><div class="line"><span class="keyword">int</span> wday = <span class="keyword">lt</span>-&gt;tm_wday;         <span class="regexp">//</span> 周第几天：从<span class="number">1</span>开始</div><div class="line"></div><div class="line"><span class="keyword">int</span> hh = <span class="keyword">lt</span>-&gt;tm_hour;           <span class="regexp">//</span> 时</div><div class="line"><span class="keyword">int</span> mm = <span class="keyword">lt</span>-&gt;tm_min;            <span class="regexp">//</span> 分</div><div class="line"><span class="keyword">int</span> ss = <span class="keyword">lt</span>-&gt;tm_sec;            <span class="regexp">//</span> 秒</div><div class="line"></div><div class="line"><span class="keyword">printf</span>(<span class="string">"%d %d\n"</span>, year, month);</div><div class="line"><span class="keyword">printf</span>(<span class="string">"%d %d %d\n"</span>, yday, mday, wday);</div><div class="line"><span class="keyword">printf</span>(<span class="string">"%d %d %d\n"</span>, hh, mm, ss);</div></pre></td></tr></table></figure>
 <p>顺便说一下，随机函数需要设立随机数种子，否则永远都是相同的数：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">srand((<span class="name">unsigned</span> int)time(<span class="name">NULL</span>))<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h2 id="定义文件路径"><a href="#定义文件路径" class="headerlink" title="定义文件路径"></a><strong>定义文件路径</strong></h2><p>每次在加载文件时，总要打上一长串的文件路径，显得很繁琐。我们可以找到<code>applicationDidFinishLaunching()</code>这个方法，然后加上下面的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; paths;  <span class="comment">// 创建一个string型的容器  </span></div><div class="line">paths.push_back(<span class="string">"fonts"</span>);  <span class="comment">// 往容器中添加图片目录所在的路径  </span></div><div class="line">paths.push_back(<span class="string">"image"</span>);  </div><div class="line">paths.push_back(<span class="string">"sounds"</span>);  </div><div class="line">FileUtils::getInstance()-&gt;setSearchResolutionsOrder(paths);</div></pre></td></tr></table></figure>
+<p>这样一来，我们就将<code>fonts</code>、<code>image</code>、<code>sounds</code>三个文件进行了定义，那么输入文件路径的时候也不需要再加上这些。</p>
 
       
     </div>
@@ -420,6 +423,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/05/Python-note-1/" rel="prev" title="Python学习笔记（1）——简单的Python程序">
+                Python学习笔记（1）——简单的Python程序 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -514,7 +521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -522,7 +529,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -531,7 +538,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -598,7 +605,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的碰撞检测"><span class="nav-number">1.</span> <span class="nav-text">简单的碰撞检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形与矩形碰撞"><span class="nav-number">1.1.</span> <span class="nav-text">矩形与矩形碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆与圆碰撞"><span class="nav-number">1.2.</span> <span class="nav-text">圆与圆碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形与圆"><span class="nav-number">1.3.</span> <span class="nav-text">矩形与圆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头文件相互包含"><span class="nav-number">2.</span> <span class="nav-text">头文件相互包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取当前时间"><span class="nav-number">3.</span> <span class="nav-text">获取当前时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的碰撞检测"><span class="nav-number">1.</span> <span class="nav-text">简单的碰撞检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形与矩形碰撞"><span class="nav-number">1.1.</span> <span class="nav-text">矩形与矩形碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆与圆碰撞"><span class="nav-number">1.2.</span> <span class="nav-text">圆与圆碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形与圆"><span class="nav-number">1.3.</span> <span class="nav-text">矩形与圆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头文件相互包含"><span class="nav-number">2.</span> <span class="nav-text">头文件相互包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取当前时间"><span class="nav-number">3.</span> <span class="nav-text">获取当前时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义文件路径"><span class="nav-number">4.</span> <span class="nav-text">定义文件路径</span></a></li></ol></div>
             
           </div>
         </section>

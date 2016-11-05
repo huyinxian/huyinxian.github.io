@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="继续UI的各种控件，让我们来了解一下开关的使用。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/dsapgjosd.gif">
-<meta property="og:updated_time" content="2016-09-25T07:22:09.670Z">
+<meta property="og:updated_time" content="2016-11-05T06:47:06.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（20）——开关控件">
 <meta name="twitter:description" content="继续UI的各种控件，让我们来了解一下开关的使用。">
@@ -367,14 +367,14 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><p>变化可以参考上一章，但是这里要说明一下一个3.x的BUG，那就是关于create函数：</p>
+<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><p>变化可以参考上一章，但是这里要说明一下一个3.x的BUG，那就是关于<code>create()</code>函数：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 参数分别为“底图”，“打开状态图”，“关闭状态图”，“拨动开关图”</div><div class="line">// 这个会出错</div><div class="line">create(Sprite<span class="bullet">* maskSprite, Sprite*</span> onSprite, Sprite<span class="bullet">* offSprite, Sprite*</span> thumbSprite);</div><div class="line">// 应该用这个，必须指定后两个参数，不能为nullptr</div><div class="line">create(Sprite<span class="bullet">* maskSprite, Sprite*</span> onSprite, Sprite<span class="bullet">* offSprite, Sprite*</span> thumbSprite, Label<span class="bullet">* onLabel, Label*</span> offLabel);</div></pre></td></tr></table></figure>
-<h2 id="CCControlSwitch"><a href="#CCControlSwitch" class="headerlink" title="CCControlSwitch"></a><strong>CCControlSwitch</strong></h2><h3 id="绑定控件事件的方法"><a href="#绑定控件事件的方法" class="headerlink" title="绑定控件事件的方法"></a><strong>绑定控件事件的方法</strong></h3><p>其实和CCControlSlider是类似的：</p>
+<h2 id="CCControlSwitch"><a href="#CCControlSwitch" class="headerlink" title="CCControlSwitch"></a><strong>CCControlSwitch</strong></h2><h3 id="绑定控件事件的方法"><a href="#绑定控件事件的方法" class="headerlink" title="绑定控件事件的方法"></a><strong>绑定控件事件的方法</strong></h3><p>其实和<code>CCControlSlider</code>是类似的：</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绑定控件事件</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addTargetWithActionForControlEvents</span><span class="params">(CCObject* <span class="keyword">target</span>, SEL_CCControlHandler action, CCControlEvent controlEvents)</span></span>;</div><div class="line"><span class="comment">// 删除控件事件</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeTargetWithActionForControlEvents</span><span class="params">(CCObject* <span class="keyword">target</span>, SEL_CCControlHandler action, CCControlEvent controlEvents)</span></span>;</div></pre></td></tr></table></figure>
 <h3 id="引用头文件和命名空间"><a href="#引用头文件和命名空间" class="headerlink" title="引用头文件和命名空间"></a><strong>引用头文件和命名空间</strong></h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"cocos-ext.h"</span></span></div><div class="line">USING_NS_CC_EXT<span class="comment">;</span></div></pre></td></tr></table></figure>
 <h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a><strong>常用操作</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setOn</span><span class="params">(<span class="keyword">bool</span> isOn)</span></span>;                 <span class="comment">// 设置开关状态</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setOn</span><span class="params">(<span class="keyword">bool</span> isOn, <span class="keyword">bool</span> animated)</span></span>;  <span class="comment">// 设置开关状态</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isOn</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123; <span class="keyword">return</span> m_bOn; &#125;      <span class="comment">// 获取开关状态</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">hasMoved</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> m_bMoved; &#125;   <span class="comment">// 获取当前开关是否为手动拨动开关（区别于点击拨动）</span></div><div class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setEnabled</span><span class="params">(<span class="keyword">bool</span> enabled)</span></span>; <span class="comment">// 设置开关是否能操作</span></div></pre></td></tr></table></figure>
 <h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a><strong>代码示例</strong></h2><h3 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a><strong>创建方法</strong></h3><p>这里分为两种创建方法：</p>
-<p>第一种是传入四个参数，首先在init()中初始化：</p>
+<p>第一种是传入四个参数，首先在<code>init()</code>中初始化：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CCLabelTTF *label = CCLabelTTF::create(<span class="string">"on"</span>, <span class="string">"Courier new"</span>, <span class="number">20</span>)<span class="comment">;</span></div><div class="line">label-&gt;setPosition(ccp(<span class="number">240</span>, <span class="number">120</span>))<span class="comment">;</span></div><div class="line"></div><div class="line">CCSprite *<span class="keyword">bg </span>= CCSprite::create(<span class="string">"switch-mask.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *on = CCSprite::create(<span class="string">"switch-off.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *off = CCSprite::create(<span class="string">"switch-on.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *thumb = CCSprite::create(<span class="string">"switch-thumb.png"</span>)<span class="comment">;</span></div><div class="line"></div><div class="line">CCControlSwitch *controlSwitch = CCControlSwitch::create(<span class="keyword">bg, </span>on, off, thumb)<span class="comment">;</span></div><div class="line">controlSwitch-&gt;setPosition(ccp(<span class="number">240</span>, <span class="number">160</span>))<span class="comment">;</span></div><div class="line">this-&gt;<span class="keyword">addChild(controlSwitch);</span></div></pre></td></tr></table></figure>
 <p>当然，我们也可以传入六个参数，也就是使用第二种创建方法：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CCSprite *<span class="keyword">bg </span>= CCSprite::create(<span class="string">"switch-mask.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *on = CCSprite::create(<span class="string">"switch-off.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *off = CCSprite::create(<span class="string">"switch-on.png"</span>)<span class="comment">;</span></div><div class="line">CCSprite *thumb = CCSprite::create(<span class="string">"switch-thumb.png"</span>)<span class="comment">;</span></div><div class="line"></div><div class="line">CCLabelTTF *<span class="keyword">switch_on </span>= CCLabelTTF::create(<span class="string">"on"</span>, <span class="string">"Courier new"</span>, <span class="number">20</span>)<span class="comment">;</span></div><div class="line">CCLabelTTF *<span class="keyword">switch_off </span>= CCLabelTTF::create(<span class="string">"off"</span>, <span class="string">"Courier new"</span>, <span class="number">20</span>)<span class="comment">;</span></div><div class="line"></div><div class="line">CCControlSwitch *controlSwitch = CCControlSwitch::create(<span class="keyword">bg, </span>on, off, thumb, <span class="keyword">switch_on, </span><span class="keyword">switch_off);</span></div><div class="line">controlSwitch-&gt;setPosition(ccp(<span class="number">240</span>, <span class="number">160</span>))<span class="comment">;</span></div><div class="line">this-&gt;<span class="keyword">addChild(controlSwitch);</span></div></pre></td></tr></table></figure>
@@ -425,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/27/Cocos2dx-note-21/" rel="prev" title="Cocos2dx学习笔记（22）——点九图">
-                Cocos2dx学习笔记（22）——点九图 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/27/Cocos2dx-note-21/" rel="prev" title="Cocos2dx学习笔记（21）——点九图">
+                Cocos2dx学习笔记（21）——点九图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +522,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -530,7 +530,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -539,7 +539,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

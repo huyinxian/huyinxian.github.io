@@ -86,13 +86,13 @@
 
 <meta name="description" content="继续UI的各种控件，让我们来了解一下按钮的使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（21）——按钮控件">
+<meta property="og:title" content="Cocos2dx学习笔记（22）——按钮控件">
 <meta property="og:url" content="http://yoursite.com/2016/09/27/Cocos2dx-note-22/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="继续UI的各种控件，让我们来了解一下按钮的使用。">
-<meta property="og:updated_time" content="2016-10-21T14:48:55.279Z">
+<meta property="og:updated_time" content="2016-11-05T06:51:50.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（21）——按钮控件">
+<meta name="twitter:title" content="Cocos2dx学习笔记（22）——按钮控件">
 <meta name="twitter:description" content="继续UI的各种控件，让我们来了解一下按钮的使用。">
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/27/Cocos2dx-note-22/"/>
 
-  <title> Cocos2dx学习笔记（21）——按钮控件 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（22）——按钮控件 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Cocos2dx学习笔记（21）——按钮控件
+                Cocos2dx学习笔记（22）——按钮控件
               
             
           </h1>
@@ -365,12 +365,12 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><p>CCControlState改为Control::State：</p>
+<h2 id="3-x版本改变"><a href="#3-x版本改变" class="headerlink" title="3.x版本改变"></a><strong>3.x版本改变</strong></h2><p><code>CCControlState</code>改为<code>Control::State</code>：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">NORMAL</span>            <span class="comment">// 正常</span></div><div class="line">HIGH_LIGHTED      <span class="comment">// 高亮（即在内部触摸状态下）</span></div><div class="line">DISABLED          <span class="comment">// 禁用</span></div><div class="line">SELECTED          <span class="comment">// 选中</span></div></pre></td></tr></table></figure>
-<p>CCControlEvent改为Control::EventType：</p>
+<p><code>CCControlEvent</code>改为<code>Control::EventType</code>：</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">TOUCH_DOWN        <span class="comment">// 刚刚开始触摸按钮时</span></div><div class="line">DRAG_INSIDE       <span class="comment">// 在内部拖动时（保持触摸状态下）</span></div><div class="line">DRAG_OUTSIDE      <span class="comment">// 在外部拖动时（保持触摸状态下）</span></div><div class="line">DRAG_ENTER        <span class="comment">// 拖动刚进入内部时（保持触摸状态下）</span></div><div class="line">DRAG_EXIT         <span class="comment">// 拖动刚离开内部时（保持触摸状态下）</span></div><div class="line">TOUCH_UP_INSIDE   <span class="comment">// 在内部抬起手指（保持触摸状态下）</span></div><div class="line">TOUCH_UP_OUTSIDE  <span class="comment">// 在外部抬起手指（保持触摸状态下）</span></div><div class="line">TOUCH_CANCEL      <span class="comment">// 取消触点</span></div></pre></td></tr></table></figure>
 <p>其他的可以参照之前的文章</p>
-<h2 id="什么是按钮"><a href="#什么是按钮" class="headerlink" title="什么是按钮"></a><strong>什么是按钮</strong></h2><p>其实这个和菜单有点像，菜单中的子选项就类似按钮。按钮采用的是CCScale9Sprite，因为点击按钮时常常有放大的效果，所以使用点九图是为了防止失真。</p>
+<h2 id="什么是按钮"><a href="#什么是按钮" class="headerlink" title="什么是按钮"></a><strong>什么是按钮</strong></h2><p>其实这个和菜单有点像，菜单中的子选项就类似按钮。按钮采用的是<code>CCScale9Sprite</code>，因为点击按钮时常常有放大的效果，所以使用点九图是为了防止失真。</p>
 <h2 id="按钮状态CCControlState"><a href="#按钮状态CCControlState" class="headerlink" title="按钮状态CCControlState"></a><strong>按钮状态CCControlState</strong></h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CCControlStateNormal            <span class="comment">// 正常</span></div><div class="line">CCControlStateHighlighted       <span class="comment">// 高亮（即在内部触摸状态下）</span></div><div class="line">CCControlStateDisabled          <span class="comment">// 禁用</span></div><div class="line">CCControlStateSelected          <span class="comment">// 选中</span></div></pre></td></tr></table></figure>
 <h2 id="按钮事件CCControlEvent"><a href="#按钮事件CCControlEvent" class="headerlink" title="按钮事件CCControlEvent"></a><strong>按钮事件CCControlEvent</strong></h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CCControlEventTouchDown                 <span class="comment">// 刚刚开始触摸按钮时</span></div><div class="line">CCControlEventTouchDragInside           <span class="comment">// 在内部拖动时（保持触摸状态下）</span></div><div class="line">CCControlEventTouchDragOutside          <span class="comment">// 在外部拖动时（保持触摸状态下）</span></div><div class="line">CCControlEventTouchDragEnter            <span class="comment">// 拖动刚进入内部时（保持触摸状态下）</span></div><div class="line">CCControlEventTouchDragExit             <span class="comment">// 拖动刚离开内部时（保持触摸状态下）</span></div><div class="line">CCControlEventTouchUpInside             <span class="comment">// 在内部抬起手指（保持触摸状态下）</span></div><div class="line">CCControlEventTouchUpOutside            <span class="comment">// 在外部抬起手指（保持触摸状态下）</span></div><div class="line">CCControlEventTouchCancel               <span class="comment">// 取消触点</span></div></pre></td></tr></table></figure>
 <h2 id="绑定按钮事件的方法"><a href="#绑定按钮事件的方法" class="headerlink" title="绑定按钮事件的方法"></a><strong>绑定按钮事件的方法</strong></h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绑定控件事件</span></div><div class="line"><span class="comment">// addTargetWithActionForControlEvents(this, cccontrol_selector(HelloWorld::touchDownAction), CCControlEventTouchDown);</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addTargetWithActionForControlEvents</span><span class="params">(CCObject* <span class="keyword">target</span>, SEL_CCControlHandler action, CCControlEvent controlEvents)</span></span>;</div><div class="line">   </div><div class="line"><span class="comment">// 删除控件事件</span></div><div class="line"><span class="comment">// removeTargetWithActionForControlEvents(this, cccontrol_selector(HelloWorld::touchDownAction), CCControlEventTouchDown);</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeTargetWithActionForControlEvents</span><span class="params">(CCObject* <span class="keyword">target</span>, SEL_CCControlHandler action, CCControlEvent controlEvents)</span></span>;</div></pre></td></tr></table></figure>
@@ -407,8 +407,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/27/Cocos2dx-note-21/" rel="next" title="Cocos2dx学习笔记（22）——点九图">
-                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（22）——点九图
+              <a href="/2016/09/27/Cocos2dx-note-21/" rel="next" title="Cocos2dx学习笔记（21）——点九图">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（21）——点九图
               </a>
             
           </div>
@@ -467,7 +467,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/27/Cocos2dx-note-22/"
-           data-title="Cocos2dx学习笔记（21）——按钮控件" data-url="http://yoursite.com/2016/09/27/Cocos2dx-note-22/">
+           data-title="Cocos2dx学习笔记（22）——按钮控件" data-url="http://yoursite.com/2016/09/27/Cocos2dx-note-22/">
       </div>
     
   </div>
@@ -512,7 +512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -520,7 +520,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -529,7 +529,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/03/C++-note-4/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="函数对象能够帮助我们进一步理解C++中的函数概念。">
-<meta property="og:updated_time" content="2016-10-03T09:54:55.353Z">
+<meta property="og:updated_time" content="2016-11-05T07:01:13.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习笔记（4）——函数对象">
 <meta name="twitter:description" content="函数对象能够帮助我们进一步理解C++中的函数概念。">
@@ -365,7 +365,7 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="函数对象与谓词"><a href="#函数对象与谓词" class="headerlink" title="函数对象与谓词"></a><strong>函数对象与谓词</strong></h2><p>函数对象是用作函数的对象，不过一般只是实现了operator()的类的对象。虽然函数和函数指针也可以归为函数对象，但实现了operator()的类的对象才能保存类成员属性的值，可以被用于STL算法。</p>
+<h2 id="函数对象与谓词"><a href="#函数对象与谓词" class="headerlink" title="函数对象与谓词"></a><strong>函数对象与谓词</strong></h2><p>函数对象是用作函数的对象，不过一般只是实现了<code>operator()</code>的类的对象。虽然函数和函数指针也可以归为函数对象，但实现了<code>operator()</code>的类的对象才能保存类成员属性的值，可以被用于STL算法。</p>
 <p>一般来讲，函数对象分为下面两种类型：</p>
 <ul>
 <li>一元函数</li>
@@ -373,11 +373,11 @@
 </ul>
 <p>其实接收几个参数就是几元函数，如果返回布尔值，则该函数被称为谓词。</p>
 <h2 id="一元函数"><a href="#一元函数" class="headerlink" title="一元函数"></a><strong>一元函数</strong></h2><h3 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a><strong>代码实例</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elementType&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FuncDisplayElement</span><span class="params">(<span class="keyword">const</span> elementType &amp;element)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; element &lt;&lt; <span class="string">' '</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面这个函数可以用operator()的形式表现出来：</p>
+<p>上面这个函数可以用<code>operator()</code>的形式表现出来：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elementType&gt;</div><div class="line"><span class="keyword">struct</span> DisplayElement</div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> elementType &amp;element)</span> <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; element &lt;&lt; <span class="string">' '</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>那么这种形式可以直接当做函数来使用。例如：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for_each(<span class="name">vecIntegers</span>.begin(), vecIntegers.end(), DisplayElement&lt;int&gt; ())<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>for_each接受3个参数：第一个参数指定范围起点，第二个参数指定范围的终点，第三个参数是要对指定范围内的每个元素调用的函数。也就是说，这些代码对于vecIntegers中的每个元素调用DisplayElement::operator()。当然，这里使用FuncDisplayElement是一样的。</p>
+<p><code>for_each</code>接受3个参数：第一个参数指定范围起点，第二个参数指定范围的终点，第三个参数是要对指定范围内的每个元素调用的函数。也就是说，这些代码对于<code>vecIntegers</code>中的每个元素调用<code>DisplayElement::operator()</code>。当然，这里使用<code>FuncDisplayElement</code>是一样的。</p>
 <h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a><strong>Lambda表达式</strong></h3><p>当然，我们也可以不定义，使用Lambda表达式（匿名函数对象）。</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for_each(<span class="name">vecIntegers</span>.begin(), vecIntegers.end(), [](<span class="name">int</span> <span class="symbol">&amp;Element</span>) &#123;cout &lt;&lt; element &lt;&lt; ' '<span class="comment">;&#125;);</span></div></pre></td></tr></table></figure>
 <p>Lambda表达式可以很方便地使用函数对象，而不是要像上面那样定义一个函数或者结构。具体的可以查看Lambda表达式一章。</p>
@@ -386,12 +386,12 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> numberType&gt;</div><div class="line"><span class="keyword">struct</span> IsMultiple</div><div class="line">&#123;</div><div class="line">    numberType Divisor;</div><div class="line"></div><div class="line">    IsMultiple(<span class="keyword">const</span> numberType &amp;element)</div><div class="line">    &#123;</div><div class="line">        Divisor = divisor;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> numberType &amp;element)</span> <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> ((element % Divisor) == <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>这里有一个构造函数，存储传入的对象，然后把这个值和将要比较的值进行求余，判断是否能够被整除。如果结果为0，就证明能够被整除。</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">auto iElement = find_if(<span class="name">vecIntegers</span>.begin(), vecIntegers.end(), IsMultiple&lt;int&gt; (<span class="name">Divisor</span>))<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>比如find_if就能够让vecIntegers中的所有元素和Divisor整除，如果operator()返回为true，也就是元素可以被整除时，find_if返回一个指向该元素的迭代器。</p>
+<p>比如<code>find_if</code>就能够让<code>vecIntegers</code>中的所有元素和<code>Divisor</code>整除，如果<code>operator()</code>返回为<code>true</code>，也就是元素可以被整除时，<code>find_if</code>返回一个指向该元素的迭代器。</p>
 <h2 id="二元函数"><a href="#二元函数" class="headerlink" title="二元函数"></a><strong>二元函数</strong></h2><p>二元函数一般针对于加减乘除，下面是一个示例：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elementType&gt;</div><div class="line"><span class="keyword">class</span> Multiply</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">elementType <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> elementType &amp;elem1, <span class="keyword">const</span> elementType &amp;elem2)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> (elem1 * elem2);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>我们可以在transform中来使用二元函数：</p>
+<p>我们可以在<code>transform</code>中来使用二元函数：</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transform(<span class="name">vecMultiplicand</span>.begin(), vecMultiplicand.end(), vecMultiplier.begin(), vecResult.begin(), Multiply&lt;int&gt; ())<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>transform将vecMultiplicand和vecMultiplier内容相乘，并且储存在vecResult中。</p>
+<p><code>transform</code>将<code>vecMultiplicand</code>和<code>vecMultiplier</code>内容相乘，并且储存在<code>vecResult</code>中。</p>
 <h2 id="二元谓词"><a href="#二元谓词" class="headerlink" title="二元谓词"></a><strong>二元谓词</strong></h2><p>接受两个参数并返回一个布尔值的函数是二元谓词，这里也不再举例。</p>
 
       
@@ -529,7 +529,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -537,7 +537,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -546,7 +546,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

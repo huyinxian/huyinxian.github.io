@@ -86,14 +86,14 @@
 
 <meta name="description" content="本章介绍UI控件之一的点九图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（22）——点九图">
+<meta property="og:title" content="Cocos2dx学习笔记（21）——点九图">
 <meta property="og:url" content="http://yoursite.com/2016/09/27/Cocos2dx-note-21/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章介绍UI控件之一的点九图。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/wKiom1P1jjXgE2TMAADVtyZHzc0054.jpg">
-<meta property="og:updated_time" content="2016-10-21T14:48:51.577Z">
+<meta property="og:updated_time" content="2016-11-05T06:49:50.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（22）——点九图">
+<meta name="twitter:title" content="Cocos2dx学习笔记（21）——点九图">
 <meta name="twitter:description" content="本章介绍UI控件之一的点九图。">
 <meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/wKiom1P1jjXgE2TMAADVtyZHzc0054.jpg">
 
@@ -118,7 +118,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/27/Cocos2dx-note-21/"/>
 
-  <title> Cocos2dx学习笔记（22）——点九图 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（21）——点九图 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +297,7 @@
             
             
               
-                Cocos2dx学习笔记（22）——点九图
+                Cocos2dx学习笔记（21）——点九图
               
             
           </h1>
@@ -367,8 +367,8 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="3-x版本"><a href="#3-x版本" class="headerlink" title="3.x版本"></a><strong>3.x版本</strong></h2><p>3.x版本除了去掉CC，其他再无变化。不过在3.3版本之后，出现了新的UI模块，原来的ControlSlider、ControlButton等等都改为了全新的类。当然，这个部分以后再说。</p>
-<h2 id="CCScale9Sprite"><a href="#CCScale9Sprite" class="headerlink" title="CCScale9Sprite"></a><strong>CCScale9Sprite</strong></h2><p>点九图、九宫图、九妹图，总之随便你怎么称呼它，我们的关注点在于它是个什么东西。看看这个类的名字，很显然，这个图由9个精灵构成，而且与缩放密切相关。事实上，我们在使用scale缩放时，图片会失真。为了解决这个问题，cocos采用了点九图的方式来解决。</p>
+<h2 id="3-x版本"><a href="#3-x版本" class="headerlink" title="3.x版本"></a><strong>3.x版本</strong></h2><p>3.x版本除了去掉<code>CC</code>，其他再无变化。不过在3.3版本之后，出现了新的UI模块，原来的<code>ControlSlider</code>、<code>ControlButton</code>等等都改为了全新的类。当然，这个部分以后再说。</p>
+<h2 id="CCScale9Sprite"><a href="#CCScale9Sprite" class="headerlink" title="CCScale9Sprite"></a><strong>CCScale9Sprite</strong></h2><p>点九图、九宫图、九妹图，总之随便你怎么称呼它，我们的关注点在于它是个什么东西。看看这个类的名字，很显然，这个图由9个精灵构成，而且与缩放密切相关。事实上，我们在使用scale缩放时，图片会失真。为了解决这个问题，Cocos采用了点九图的方式来解决。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a><strong>原理</strong></h3><p>点九图将纹理分成九个部分，依据以下步骤：</p>
 <ul>
 <li>保持4个角部分不变形</li>
@@ -380,9 +380,9 @@
 <p>拉伸完毕后，将九个部分拼接在一起，就形成了缩放后的图片。</p>
 <h3 id="头文件和命名空间"><a href="#头文件和命名空间" class="headerlink" title="头文件和命名空间"></a><strong>头文件和命名空间</strong></h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"cocos-ext.h"</span></span></div><div class="line">USING_NS_CC_EXT<span class="comment">;</span></div></pre></td></tr></table></figure>
 <h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a><strong>常用操作</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CCScale9Sprite : <span class="keyword">public</span> CCNodeRGBA</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 使用图片资源名来创建</span></div><div class="line">    <span class="comment">// 参数说明：</span></div><div class="line">    <span class="comment">//       rect是整个图的矩形大小</span></div><div class="line">    <span class="comment">//       capInsets是中间部分区域对应的矩形大小</span></div><div class="line">    <span class="comment">// rect = CCRectMake(0, 0, 80, 80);</span></div><div class="line">    <span class="comment">// capInsets = CCRectMake( 12, 12, 56, 56);</span></div><div class="line">    <span class="comment">// create("sp.png", rect, capInsets);</span></div><div class="line">    <span class="comment">// create(capInsets, "sp.png");</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file, CCRect rect)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* file, CCRect rect,  CCRect capInsets)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">create</span><span class="params">(CCRect capInsets, <span class="keyword">const</span> <span class="keyword">char</span>* file)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 使用精灵帧来创建</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrame</span><span class="params">(CCSpriteFrame* spriteFrame)</span></span>;  </div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrame</span><span class="params">(CCSpriteFrame* spriteFrame, CCRect capInsets)</span></span>; </div><div class="line"> </div><div class="line">    <span class="comment">// 使用精灵帧的名称来创建</span></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrameName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* spriteFrameName)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> CCScale9Sprite* <span class="title">createWithSpriteFrameName</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* spriteFrameName, CCRect capInsets)</span></span>; </div><div class="line"> </div><div class="line">    <span class="comment">// 设置精灵帧</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setSpriteFrame</span><span class="params">(CCSpriteFrame * spriteFrame)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置中间部分区域对应的矩形大小</span></div><div class="line">    CC_PROPERTY(CCRect, m_capInsets, CapInsets);</div><div class="line"> </div><div class="line">    <span class="comment">// 设置需要生成的尺寸大小，默认为精灵图的原始大小</span></div><div class="line">    CC_PROPERTY(CCSize, m_preferredSize, PreferredSize); </div><div class="line"> </div><div class="line">    <span class="comment">// CCScale9Sprite是通过这个来拉伸的，而CCSprtie是通过setScale来拉伸。</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setContentSize</span><span class="params">(<span class="keyword">const</span> CCSize &amp; size)</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置透明度</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setOpacity</span><span class="params">(GLubyte opacity)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> GLubyte <span class="title">getOpacity</span><span class="params">()</span></span>;</div><div class="line"> </div><div class="line">    <span class="comment">// 设置颜色</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(<span class="keyword">const</span> ccColor3B&amp; color)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> ccColor3B&amp; <span class="title">getColor</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="图片拉伸"><a href="#图片拉伸" class="headerlink" title="图片拉伸"></a><strong>图片拉伸</strong></h3><p>点九图不使用setScale()进行缩放，而是使用setContentSize(const CCSize &amp; size)。</p>
+<h3 id="图片拉伸"><a href="#图片拉伸" class="headerlink" title="图片拉伸"></a><strong>图片拉伸</strong></h3><p>点九图不使用<code>setScale()</code>进行缩放，而是使用<code>setContentSize(const CCSize &amp; size)</code>。</p>
 <h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a><strong>代码示例</strong></h2><figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">void HelloWorld::test(const char* file, int index)</div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取可视区域尺寸大小</span></div><div class="line">    CCS<span class="function"><span class="title">ize</span> mysize = CCDirector::sharedDirector()-&gt;</span>getVisibleSize();</div><div class="line">    <span class="comment">// 获取可视区域的原点位置</span></div><div class="line">    CCP<span class="function"><span class="title">oint</span> origin = CCDirector::sharedDirector()-&gt;</span>getVisibleOrigin();</div><div class="line">    <span class="comment">// 屏幕正中心位置</span></div><div class="line">    CCPoint midPos = ccp(mysize.width/<span class="number">2</span>, mysize.height/<span class="number">2</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// CCSprite，精灵拉伸</span></div><div class="line">    CCSprite* sprite1 = CCSprite::create(file);</div><div class="line">    <span class="function"><span class="title">sprite1</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, mysize.height - <span class="number">60</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(sprite1);</div><div class="line"></div><div class="line">    <span class="comment">// 精灵拉伸</span></div><div class="line">    <span class="function"><span class="title">sprite1</span>-&gt;</span>setScale(<span class="number">2.0</span>f);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// scale9Sprite1，不设置capInsets</span></div><div class="line">    CCScale9Sprite* scale9Sprite1 = CCScale9Sprite::create(file);</div><div class="line">    <span class="function"><span class="title">scale9Sprite1</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, mysize.height/<span class="number">2</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(scale9Sprite1);</div><div class="line"></div><div class="line">    <span class="comment">// 不设置capInsets，拉伸</span></div><div class="line">    <span class="function"><span class="title">scale9Sprite1</span>-&gt;</span>setContentSize( CCSizeMake(<span class="number">80</span>, <span class="number">80</span>) );</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// scale9Sprite2，设置capInsets</span></div><div class="line">    CCScale9Sprite* scale9Sprite2 = CCScale9Sprite::create(file);</div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setPosition( ccp(<span class="number">120</span> * index, <span class="number">60</span>) );</div><div class="line">    <span class="function"><span class="title">this</span>-&gt;</span>addChild(scale9Sprite2);</div><div class="line"></div><div class="line">    <span class="comment">// 设置capInsets，并拉伸</span></div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setCapInsets( CCRectMake(<span class="number">3</span>, <span class="number">3</span>, <span class="number">34</span>, <span class="number">34</span>) );</div><div class="line">    <span class="function"><span class="title">scale9Sprite2</span>-&gt;</span>setContentSize( CCSizeMake(<span class="number">80</span>, <span class="number">80</span>) );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>未设置capInsets时，图片九等分。设置了capInsets后，那么中间区域的大小就是capInsets的值。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h2><p>未设置<code>capInsets</code>时，图片九等分。设置了<code>capInsets</code>后，那么中间区域的大小就是<code>capInsets</code>的值。</p>
 
       
     </div>
@@ -422,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/27/Cocos2dx-note-22/" rel="prev" title="Cocos2dx学习笔记（21）——按钮控件">
-                Cocos2dx学习笔记（21）——按钮控件 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/27/Cocos2dx-note-22/" rel="prev" title="Cocos2dx学习笔记（22）——按钮控件">
+                Cocos2dx学习笔记（22）——按钮控件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +474,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/27/Cocos2dx-note-21/"
-           data-title="Cocos2dx学习笔记（22）——点九图" data-url="http://yoursite.com/2016/09/27/Cocos2dx-note-21/">
+           data-title="Cocos2dx学习笔记（21）——点九图" data-url="http://yoursite.com/2016/09/27/Cocos2dx-note-21/">
       </div>
     
   </div>
@@ -519,7 +519,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -527,7 +527,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -536,7 +536,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
