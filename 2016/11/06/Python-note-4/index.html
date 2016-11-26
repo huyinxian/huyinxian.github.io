@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/06/Python-note-4/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="这一章将介绍Python的各种数据类型。">
-<meta property="og:updated_time" content="2016-11-08T09:38:58.835Z">
+<meta property="og:updated_time" content="2016-11-26T03:58:06.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python学习笔记（4）——数据类型">
 <meta name="twitter:description" content="这一章将介绍Python的各种数据类型。">
@@ -367,21 +367,21 @@
 </blockquote>
 <h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a><strong>整数</strong></h2><p>类似于C语言，Python也有整型数，例如：<code>1</code>、<code>100</code>、<code>-1000</code>等等。当然，使用十六进制表示也行：<code>0xff00</code>、<code>0xa5b4c3d2</code>。</p>
 <h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a><strong>浮点数</strong></h2><p>和C语言差不多，浮点数的意思就是可以浮动小数点的数，因为数字较大时，一般使用科学计数法来表示：<code>1.23e9</code>、<code>12.3e8</code>。其实这两个数是一样的，只不过因为小数点的位置，所以看起来有点不同。</p>
-<p>我们知道，C语言中有单精度和双精度浮点数，哪怕是双精度浮点数也只能够精确小数点后十几位。所以，切不可用浮点数来判断是否相等，因为我们无法保证它是否精确。事实上，<code>0.99999…</code>或者<code>1.000…</code>经常被看做是<code>1</code>，而刚刚好等于<code>1</code>其实不怎么常见。总之记住一句话，整数永远是精确的，浮点数可能会四舍五入。</p>
+<p>我们知道，C语言中有单精度和双精度浮点数，但哪怕是双精度浮点数也只能够精确小数点后十几位。所以，切不可用浮点数来判断是否相等，因为我们无法保证它是否精确。事实上，<code>0.99999…</code>或者<code>1.000…</code>经常被看做是<code>1</code>，而刚刚好等于<code>1</code>的浮点数其实不怎么常见。总之记住一句话，整数永远是精确的，浮点数可能会四舍五入。</p>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a><strong>字符串</strong></h2><p>字符串是用<code>‘</code>或<code>“</code>括起来的文本，如果我们想让字符串包含<code>‘</code>，那么可以用<code>“</code>：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"I'm Chinese!"</span>)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">"I'm Chinese!"</span></div></pre></td></tr></table></figure>
 <p>然后就会输出这段话：</p>
 <pre><code>I&apos;m Chinese!
 </code></pre><p>当然，如果你两个符号都想输出，那么可以使用转义字符：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'I\'m \"Chinese\"'</span>)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print <span class="symbol">'I</span>\<span class="symbol">'m</span> \<span class="string">"Chinese\"</span>'</div></pre></td></tr></table></figure>
 <p>输出如下：</p>
 <pre><code>I&apos;m &quot;Chinese&quot;
-</code></pre><p>还有其他诸如：<code>\n</code>、<code>\t</code>、<code>\</code>都是可以用的。当然，如果有很多要转义的字符，我们还可以使用<code>r’’</code>，这个表示<code>‘’</code>中的字符全都不转义，比如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">r'\n\t\\'</span>)</div></pre></td></tr></table></figure>
+</code></pre><p>还有其他诸如：<code>\n</code>、<code>\t</code>、<code>\</code>都是可以用的。当然，如果有很多要转义的字符，为了简化代码，我们还可以使用<code>r’’</code>，这个表示<code>‘’</code>中的字符全都不转义，比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">r'\n\t\\'</span></div></pre></td></tr></table></figure>
 <p>输出如下：</p>
 <pre><code>\n\t\\
 </code></pre><p>如果要输入多行内容，可以使用<code>‘’’…’’’</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">'''line1</span></div><div class="line">line2</div><div class="line">line3''')</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'''line1</span></div><div class="line">line2</div><div class="line">line3'''</div></pre></td></tr></table></figure>
 <p>然后就会打印：</p>
 <pre><code>line1
 line2
@@ -396,7 +396,7 @@ False
 True
 &gt;&gt;&gt;3 &lt; 2
 False
-</code></pre><p>当然，布尔值还可以用<code>and</code>、<code>or</code>、<code>not</code>来运算。注意，<code>and</code>只有当都为<code>True</code>时，结果才为<code>True</code>：</p>
+</code></pre><p>当然，布尔值还可以用<code>and</code>、<code>or</code>、<code>not</code>来运算。<code>and</code>只有当都为<code>True</code>时，结果才为<code>True</code>：</p>
 <pre><code>&gt;&gt;&gt;True and True
 True
 &gt;&gt;&gt;True and False
@@ -410,7 +410,7 @@ True
 True
 &gt;&gt;&gt;False or False
 False
-</code></pre><p><code>not</code>是弹幕运算符，相当于非运算，对结果取反：</p>
+</code></pre><p><code>not</code>是单目运算符，相当于非运算，对结果取反：</p>
 <pre><code>&gt;&gt;&gt;not True
 False
 &gt;&gt;&gt;not False
@@ -419,20 +419,20 @@ True
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h2><p>变量不需要指定类型，与C/C++不同，一个变量名就可以创建一个变量：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># a是整数</span></div><div class="line"><span class="attr">a</span> = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment"># ch是字符串</span></div><div class="line"><span class="attr">ch</span> = <span class="string">'Hello'</span></div><div class="line"></div><div class="line"><span class="comment"># charge是布尔值</span></div><div class="line"><span class="attr">charge</span> = <span class="literal">True</span></div></pre></td></tr></table></figure>
 <p>甚至于下面这样：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(a)</span></span></div><div class="line"><span class="selector-tag">a</span> = <span class="string">'Hello'</span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(a)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> = <span class="number">1</span></div><div class="line">print <span class="selector-tag">a</span></div><div class="line"><span class="selector-tag">a</span> = <span class="string">'Hello'</span></div><div class="line">print a</div></pre></td></tr></table></figure>
 <p>那么结果显而易见：</p>
 <pre><code>1
 Hello
 </code></pre><p>Python不是强类型语言，所以我们无需指定类型。变量其实可以看做是指针，例如：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> = <span class="string">'Hello'</span></div><div class="line"><span class="selector-tag">b</span> = <span class="selector-tag">a</span></div><div class="line"><span class="selector-tag">a</span> = <span class="string">'World'</span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(b,a)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> = <span class="string">'Hello'</span></div><div class="line"><span class="selector-tag">b</span> = <span class="selector-tag">a</span></div><div class="line"><span class="selector-tag">a</span> = <span class="string">'World'</span></div><div class="line">print <span class="selector-tag">b</span>,a</div></pre></td></tr></table></figure>
 <p>输出如下：</p>
 <pre><code>Hello World
 </code></pre><p>也就是说，计算机创建一个字符串<code>‘Hello’</code>，然后创建一个变量<code>a</code>来指向它，随后又创建<code>b</code>来指向<code>a</code>的内容。这个时候再创建字符串<code>‘World’</code>，然后让<code>a</code>指向它。所谓的<code>b = a</code>并不是<code>b</code>指向<code>a</code>，而是指向它的内容，熟悉指针便能理解这个概念。</p>
 <h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a><strong>常量</strong></h2><p>常量一般用大写表示，但是不代表常量不能被更改。Python没有机制来防止常量被改变，所以我们只能人为规定大写的变量为常量，并且不会去改变它的值。</p>
-<h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a><strong>除法</strong></h2><p>类似C/C++，除法都是取整，所以得到的结果永远是精确的整数（可能和你预期结果不符，但绝对是精确的）。除法分为<code>/</code>和<code>//</code>两种，第一种两数相除得到浮点数，第二种就是取整数。所以，整数使用<code>//</code>得到的永远是整数。</p>
-<pre><code>&gt;&gt;&gt;10 / 3
+<h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a><strong>除法</strong></h2><p>类似C/C++，除法都是取整，所以得到的结果永远是精确的整数（可能和你预期结果不符，但绝对是精确的）。如果你需要得到小数，那么就需要把其中的一个数转换成浮点数。</p>
+<pre><code>&gt;&gt;&gt;10.0 / 3
 3.3333333333333335
-&gt;&gt;&gt;10 // 3
+&gt;&gt;&gt;10 / 3
 3
 &gt;&gt;&gt;10 % 3
 1
