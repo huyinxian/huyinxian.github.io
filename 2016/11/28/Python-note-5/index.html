@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Python,字符编码," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="这一章将详细的介绍Python的输入和输出。">
+<meta name="description" content="这一章将着重介绍Python中的字符串知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python学习笔记（3）——输入与输出">
-<meta property="og:url" content="http://yoursite.com/2016/11/06/Python-note-3/index.html">
+<meta property="og:title" content="Python学习笔记（5）——字符串和编码">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/Python-note-5/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="这一章将详细的介绍Python的输入和输出。">
-<meta property="og:updated_time" content="2016-11-26T02:57:15.858Z">
+<meta property="og:description" content="这一章将着重介绍Python中的字符串知识。">
+<meta property="og:updated_time" content="2016-11-28T04:30:58.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python学习笔记（3）——输入与输出">
-<meta name="twitter:description" content="这一章将详细的介绍Python的输入和输出。">
+<meta name="twitter:title" content="Python学习笔记（5）——字符串和编码">
+<meta name="twitter:description" content="这一章将着重介绍Python中的字符串知识。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/06/Python-note-3/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/Python-note-5/"/>
 
-  <title> Python学习笔记（3）——输入与输出 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（5）——字符串和编码 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Python学习笔记（3）——输入与输出
+                Python学习笔记（5）——字符串和编码
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-06T11:23:56+08:00" content="2016-11-06">
-              2016-11-06
+            <time itemprop="dateCreated" datetime="2016-11-28T10:45:36+08:00" content="2016-11-28">
+              2016-11-28
             </time>
           </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/06/Python-note-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/Python-note-3/" itemprop="commentsCount"></span>
+                <a href="/2016/11/28/Python-note-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/Python-note-5/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,39 +361,52 @@
       
 
       
-        <p>这一章将详细的介绍Python的输入和输出。<br><a id="more"></a></p>
+        <p>这一章将着重介绍Python中的字符串知识。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h2><p>之前已经讲过，使用<code>print</code>可以在屏幕上打印指定文字:</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'HelloWorld'</span></div></pre></td></tr></table></figure>
-<p>可以的到下面的结果：</p>
-<pre><code>HelloWorld
-</code></pre><p>如果文字比较多，可以用逗号<code>,</code>隔开：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello'</span>, <span class="string">'world'</span></div></pre></td></tr></table></figure>
-<p>注意，遇到逗号会转换成空格，字符串不会紧贴在一起：</p>
-<pre><code>hello world
-</code></pre><p>当然，<code>print</code>也可以打印结果：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print '<span class="number">100</span> + <span class="number">200</span> =', <span class="number">100</span> + <span class="number">200</span></div></pre></td></tr></table></figure>
-<p>会得到相加之后的结果：</p>
-<pre><code>100 + 200 = 300
-</code></pre><p>不过这里的<code>‘100 + 200 =’</code>是字符串，结果是由后面的<code>100 + 200</code>得出</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h2><p>如果我们想获取一个字符，那么该怎么办呢？Python提供了<code>raw_input()</code>来获取用户的字符输入，并且存储到一个变量中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">name</span> = raw_input()</div></pre></td></tr></table></figure>
-<p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code>&gt;&gt;&gt;</code>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span></div></pre></td></tr></table></figure>
-<p>会得到刚刚输入的名字：</p>
-<pre><code>&apos;hyx&apos;
-</code></pre><p>如果和输出合起来使用，那么就会变成这样：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello,'</span>, name</div></pre></td></tr></table></figure>
-<p>我们会得到下面的结果：</p>
-<pre><code>hello, hyx
-</code></pre><p>当然，如果没有任何提示就让用户输入，那么显然会让别人摸不着头脑，我们可以创建一个文件，编写如下的代码：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span> = raw_input(<span class="string">'Please input your name: '</span>)</div><div class="line">print <span class="string">'hello,'</span>, <span class="built_in">name</span></div></pre></td></tr></table></figure>
-<p>输出如下：</p>
-<pre><code>Please input your name: hyx
-hello, hyx
-</code></pre><p>注意，第一行的<code>hyx</code>是用户输入的，也就是你的名字。</p>
+<h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a><strong>字符编码</strong></h2><h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a><strong>ASCII码</strong></h3><p>学过C语言等高级编程语言，我们对于字符串肯定不陌生。事实上，何止是不陌生，简直是对其深恶痛绝。C++和Java对字符串做了包装，用起来要方便一点。然而，C语言的字符串可是最原始的，用起来那叫一个伤脑筋。</p>
+<p>说到字符串，肯定要先说说<code>ASCII</code>编码。计算机要将文本转换为数字，才能够进行处理，而C语言的<code>char</code>类型是1个字节，ASCII码所包含的文本量也是1个字节，也就对应了英文中的字母以及各种符号。</p>
+<p>不过，中文、韩文等字符就不行了。拿中文做比方，一般的中文字要用到2个字节。比如我们用C语言编写如下代码：</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *<span class="keyword">str</span> = <span class="string">"中"</span>;</div><div class="line">printf(<span class="string">"%c"</span>, <span class="keyword">str</span>[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<p>这么做你肯定会得到一个乱码，因为中文字是两个字节，光打印一个是没用的，你得在这么做：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">printf</span>(<span class="string">"%c%c"</span>, str[<span class="number">0</span>], str[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
+<p>这个其实也就相当于<code>printf(“%s”, str)</code>，所以ASCII码对于英文以外的字是没法处理的。</p>
+<h3 id="Unicode码"><a href="#Unicode码" class="headerlink" title="Unicode码"></a><strong>Unicode码</strong></h3><p>为了不和ASCII码冲突，中文制定了<code>GB2312</code>码，而日文、韩文也制定了相应的编码。但是呢，如果存在多语言混合的文本，那么显然就会出现乱码的情况。为了防止这种情况出现，Unicode码诞生了。</p>
+<p>Unicode码用于存储所有语言，一般来说是两个字节，如果有很偏僻的字那就是4个字节。比如汉字<code>中</code>，用Unicode码表示就是<code>20013</code>，二进制就是<code>01001110 00101101</code>。对于原来存在于ASCII码中的字符，我们只需要补位即可。例如<code>A</code>用Unicode编码，那么就是在它的前面补零即可，也就是<code>00000000 01000001</code></p>
+<h3 id="UTF-8码"><a href="#UTF-8码" class="headerlink" title="UTF-8码"></a><strong>UTF-8码</strong></h3><p>当然，如果你写的文本全是英文，那么Unicode码会浪费大量的空间。因此，为了节省，Unicode码又转变成了<code>UTF-8</code>编码。UTF-8码可以根据文本字符不同的大小，分成1-6个字节，英文字母一般分为1个字节，而汉字一般是3个字节，生僻字分为4-6个字节。另外，哪怕是只支持ASCII编码的软件，也能够在Unicode码下继续工作。</p>
+<h3 id="字符编码工作方式"><a href="#字符编码工作方式" class="headerlink" title="字符编码工作方式"></a><strong>字符编码工作方式</strong></h3><p>计算机内存中统一使用Unicode编码，而需要传输和保存时转换成UTF-8编码。用记事本编辑时，从文件读取UTF-8字符，然后转换成Unicode字符存到内存里。编辑完成并保存时，再把Unicode转换成UTF-8。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a><strong>字符串</strong></h2><p>最早的Python只支持ASCII码，可以使用ord()和chr()函数，对字符和数字进行转换：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ord</span><span class="params">(<span class="string">'H'</span>)</span></span></div><div class="line"><span class="function"><span class="title">chr</span><span class="params">(<span class="number">72</span>)</span></span></div></pre></td></tr></table></figure>
+<p>那么就会得到：</p>
+<pre><code>72
+&apos;H&apos;
+</code></pre><p>Python在支持了Unicode之后，对于Unicode字符用<code>u’’</code>表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">u'我爱中国'</span></div><div class="line"><span class="string">u'中'</span></div></pre></td></tr></table></figure>
+<p>那么就可以得到如下结果：</p>
+<pre><code>我爱中国
+u&apos;\u6211\u7231\u4e2d\u56fd&apos;
+</code></pre><p>对于ASCII码和Unicode码的转换，Python中可以使用<code>encode(‘’)</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">u'ABC'</span>.encode(<span class="string">'utf-8'</span>)</div><div class="line"><span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<p>得到如下输出：</p>
+<pre><code>&apos;ABC&apos;
+&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
+</code></pre><p>ASCII码可以看做是UTF-8码，使用<code>encode(‘utf-8’)</code>转换得到的就是UTF-8码。我们可以看到，英文转换后UTF-8和Unicode是一样的，但是中文转换之后，一个Unicode字符变成了三个UTF-8字符。比如<code>\xe4</code>就是一个字节，是用十六进制表示的。我们用<code>len()</code>方法来查看一下字符串长度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">len(<span class="string">u'ABC'</span>)</div><div class="line">len(<span class="string">'ABC'</span>)</div><div class="line">len(<span class="string">u'中文'</span>)</div><div class="line">len(<span class="string">'\xe4\xb8\xad\xe6\x96\x87'</span>)</div></pre></td></tr></table></figure>
+<p>可以得到：</p>
+<pre><code>3
+3
+2
+6
+</code></pre><p>那么如果要反过来转换，可以使用<code>decode(‘utf-8’)</code>方法：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">'ABC'.decode('utf-8')</div><div class="line">'<span class="symbol">\x</span>e4<span class="symbol">\x</span>b8<span class="symbol">\x</span>ad<span class="symbol">\x</span>e6<span class="symbol">\x</span>96<span class="symbol">\x</span>87'.decode('utf-8')</div><div class="line">print '<span class="symbol">\x</span>e4<span class="symbol">\x</span>b8<span class="symbol">\x</span>ad<span class="symbol">\x</span>e6<span class="symbol">\x</span>96<span class="symbol">\x</span>87'.decode('utf-8')</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<pre><code>u&apos;ABC&apos;
+u&apos;\u4e2d\u6587&apos;
+中文
+</code></pre><p>注意，在编写Python代码时，如果有中文，务必将文本文件的编码格式指定为UTF-8。如果想要Python解释器按照UTF-8来解析代码，那么就要加上这两行注释：</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env python</span></div><div class="line"># -*- coding: utf-<span class="number">8</span> -*-</div></pre></td></tr></table></figure>
+<p>第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释。而第二行则告诉解释器按照UTF-8的格式来读取文件。另外，如果你是用的是Notepad++或者其他文本编辑器，记得调成UTF-8的格式。</p>
 
       
     </div>
@@ -418,6 +431,8 @@ hello, hyx
           
             <a href="/tags/Python/" rel="tag">#Python</a>
           
+            <a href="/tags/字符编码/" rel="tag">#字符编码</a>
+          
         </div>
       
 
@@ -425,17 +440,13 @@ hello, hyx
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/05/Python-note-2/" rel="next" title="Python学习笔记（2）——文本编辑器">
-                <i class="fa fa-chevron-left"></i> Python学习笔记（2）——文本编辑器
+              <a href="/2016/11/23/Cocos2dx-practice-6/" rel="next" title="Cocos2dx项目实战（6）——2048小游戏">
+                <i class="fa fa-chevron-left"></i> Cocos2dx项目实战（6）——2048小游戏
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/06/Python-note-4/" rel="prev" title="Python学习笔记（4）——数据类型">
-                Python学习笔记（4）——数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,8 +495,8 @@ hello, hyx
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/06/Python-note-3/"
-           data-title="Python学习笔记（3）——输入与输出" data-url="http://yoursite.com/2016/11/06/Python-note-3/">
+      <div class="ds-thread" data-thread-key="2016/11/28/Python-note-5/"
+           data-title="Python学习笔记（5）——字符串和编码" data-url="http://yoursite.com/2016/11/28/Python-note-5/">
       </div>
     
   </div>
@@ -614,7 +625,7 @@ hello, hyx
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">1.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符编码"><span class="nav-number">1.</span> <span class="nav-text">字符编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ASCII码"><span class="nav-number">1.1.</span> <span class="nav-text">ASCII码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unicode码"><span class="nav-number">1.2.</span> <span class="nav-text">Unicode码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8码"><span class="nav-number">1.3.</span> <span class="nav-text">UTF-8码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码工作方式"><span class="nav-number">1.4.</span> <span class="nav-text">字符编码工作方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">2.</span> <span class="nav-text">字符串</span></a></li></ol></div>
             
           </div>
         </section>

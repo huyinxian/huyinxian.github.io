@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,15 @@
 
 
 
-<meta name="description" content="这一章将详细的介绍Python的输入和输出。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python学习笔记（3）——输入与输出">
-<meta property="og:url" content="http://yoursite.com/2016/11/06/Python-note-3/index.html">
+<meta name="description" content="保持微笑:)，一切都会好起来的~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="先哥哥<(^ - ^)/">
+<meta property="og:url" content="http://yoursite.com/tags/字符编码/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="这一章将详细的介绍Python的输入和输出。">
-<meta property="og:updated_time" content="2016-11-26T02:57:15.858Z">
+<meta property="og:description" content="保持微笑:)，一切都会好起来的~">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python学习笔记（3）——输入与输出">
-<meta name="twitter:description" content="这一章将详细的介绍Python的输入和输出。">
+<meta name="twitter:title" content="先哥哥<(^ - ^)/">
+<meta name="twitter:description" content="保持微笑:)，一切都会好起来的~">
 
 
 
@@ -114,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/06/Python-note-3/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/字符编码/"/>
 
-  <title> Python学习笔记（3）——输入与输出 | 先哥哥<(^ - ^)/ </title>
+  <title> 标签: 字符编码 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +145,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -274,207 +273,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Python学习笔记（3）——输入与输出
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-06T11:23:56+08:00" content="2016-11-06">
-              2016-11-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/06/Python-note-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/Python-note-3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>这一章将详细的介绍Python的输入和输出。<br><a id="more"></a></p>
-<blockquote>
-<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
-</blockquote>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h2><p>之前已经讲过，使用<code>print</code>可以在屏幕上打印指定文字:</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'HelloWorld'</span></div></pre></td></tr></table></figure>
-<p>可以的到下面的结果：</p>
-<pre><code>HelloWorld
-</code></pre><p>如果文字比较多，可以用逗号<code>,</code>隔开：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello'</span>, <span class="string">'world'</span></div></pre></td></tr></table></figure>
-<p>注意，遇到逗号会转换成空格，字符串不会紧贴在一起：</p>
-<pre><code>hello world
-</code></pre><p>当然，<code>print</code>也可以打印结果：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print '<span class="number">100</span> + <span class="number">200</span> =', <span class="number">100</span> + <span class="number">200</span></div></pre></td></tr></table></figure>
-<p>会得到相加之后的结果：</p>
-<pre><code>100 + 200 = 300
-</code></pre><p>不过这里的<code>‘100 + 200 =’</code>是字符串，结果是由后面的<code>100 + 200</code>得出</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h2><p>如果我们想获取一个字符，那么该怎么办呢？Python提供了<code>raw_input()</code>来获取用户的字符输入，并且存储到一个变量中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">name</span> = raw_input()</div></pre></td></tr></table></figure>
-<p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code>&gt;&gt;&gt;</code>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span></div></pre></td></tr></table></figure>
-<p>会得到刚刚输入的名字：</p>
-<pre><code>&apos;hyx&apos;
-</code></pre><p>如果和输出合起来使用，那么就会变成这样：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello,'</span>, name</div></pre></td></tr></table></figure>
-<p>我们会得到下面的结果：</p>
-<pre><code>hello, hyx
-</code></pre><p>当然，如果没有任何提示就让用户输入，那么显然会让别人摸不着头脑，我们可以创建一个文件，编写如下的代码：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span> = raw_input(<span class="string">'Please input your name: '</span>)</div><div class="line">print <span class="string">'hello,'</span>, <span class="built_in">name</span></div></pre></td></tr></table></figure>
-<p>输出如下：</p>
-<pre><code>Please input your name: hyx
-hello, hyx
-</code></pre><p>注意，第一行的<code>hyx</code>是用户输入的，也就是你的名字。</p>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        字符编码
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/11/28/Python-note-5/" itemprop="url">
+              
+                <span itemprop="name">Python学习笔记（5）——字符串和编码</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-11-28T10:45:36+08:00"
+              content="2016-11-28" >
+          11-28
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag">#Python</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/11/05/Python-note-2/" rel="next" title="Python学习笔记（2）——文本编辑器">
-                <i class="fa fa-chevron-left"></i> Python学习笔记（2）——文本编辑器
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/06/Python-note-4/" rel="prev" title="Python学习笔记（4）——数据类型">
-                Python学习笔记（4）——数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -482,14 +320,6 @@ hello, hyx
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/11/06/Python-note-3/"
-           data-title="Python学习笔记（3）——输入与输出" data-url="http://yoursite.com/2016/11/06/Python-note-3/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -509,17 +339,8 @@ hello, hyx
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
@@ -607,17 +428,6 @@ hello, hyx
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">1.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">2.</span> <span class="nav-text">输入</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -714,10 +524,6 @@ hello, hyx
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
