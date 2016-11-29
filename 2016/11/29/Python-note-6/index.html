@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法,数据结构," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="本章来总结各种有关于字符串的问题。">
+<meta name="description" content="这一章让我们继续学习Python的基础知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法学习笔记（7）——字符串">
-<meta property="og:url" content="http://yoursite.com/2016/11/01/Algorithm-note-7/index.html">
+<meta property="og:title" content="Python学习笔记（6）——list和tuple">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/Python-note-6/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章来总结各种有关于字符串的问题。">
-<meta property="og:updated_time" content="2016-11-05T07:48:38.831Z">
+<meta property="og:description" content="这一章让我们继续学习Python的基础知识。">
+<meta property="og:updated_time" content="2016-11-29T04:21:33.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法学习笔记（7）——字符串">
-<meta name="twitter:description" content="本章来总结各种有关于字符串的问题。">
+<meta name="twitter:title" content="Python学习笔记（6）——list和tuple">
+<meta name="twitter:description" content="这一章让我们继续学习Python的基础知识。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/01/Algorithm-note-7/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/Python-note-6/"/>
 
-  <title> 数据结构与算法学习笔记（7）——字符串 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（6）——list和tuple | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                数据结构与算法学习笔记（7）——字符串
+                Python学习笔记（6）——list和tuple
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T18:12:32+08:00" content="2016-11-01">
-              2016-11-01
+            <time itemprop="dateCreated" datetime="2016-11-29T11:18:36+08:00" content="2016-11-29">
+              2016-11-29
             </time>
           </span>
 
@@ -321,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/01/Algorithm-note-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/Algorithm-note-7/" itemprop="commentsCount"></span>
+                <a href="/2016/11/29/Python-note-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/29/Python-note-6/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,13 +361,85 @@
       
 
       
-        <p>本章来总结各种有关于字符串的问题。<br><a id="more"></a></p>
+        <p>这一章让我们继续学习Python的基础知识。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a><strong>替换空格</strong></h2><p>请实现一个函数，将一个字符串中的空格替换成<code>%20</code>。例如，当字符串为<code>We Are Happy</code>.则经过替换之后的字符串为<code>We%20Are%20Happy</code>。</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">void</span> replaceSpace(<span class="keyword">char</span> *<span class="keyword">str</span>,<span class="keyword">int</span> length)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> pOldNumber = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> pNewNumber = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> newLength = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> spaceCount = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="keyword">str</span>[i] != <span class="string">'\0'</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">str</span>[i] == <span class="string">' '</span>)</div><div class="line">            &#123;</div><div class="line">                spaceCount++;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        newLength = i + spaceCount * <span class="number">2</span>;</div><div class="line">        pOldNumber = i;</div><div class="line">        pNewNumber = newLength;</div><div class="line">        <span class="keyword">while</span>(pOldNumber &gt;= <span class="number">0</span> &amp;&amp; pNewNumber &gt; pOldNumber)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">str</span>[pOldNumber] == <span class="string">' '</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">str</span>[pNewNumber--] = <span class="string">'0'</span>;</div><div class="line">                <span class="keyword">str</span>[pNewNumber--] = <span class="string">'2'</span>;</div><div class="line">                <span class="keyword">str</span>[pNewNumber--] = <span class="string">'%'</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                <span class="keyword">str</span>[pNewNumber--] = <span class="keyword">str</span>[pOldNumber];</div><div class="line">            &#125;</div><div class="line">            pOldNumber--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>从前往后替换是不行的，这样一来每次遇到空格，后面的数字都要移动。我们先判断空格数量，确定好长度，然后将前面的数字对应的往后移，如果遇到空格，就替换成<code>%20</code>即可。用这种方法每个数字只要移动一次，效率高很多。</p>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a><strong>list</strong></h2><p>list是Python中的一种数据结构，作为一种有序集合，list可以随时添加和删除元素：</p>
+<pre><code>&gt;&gt;&gt; classmates = [&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+&gt;&gt;&gt; classmates
+[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+</code></pre><p>如果想要知道列表长度，我们可以使用<code>len()</code>：</p>
+<pre><code>&gt;&gt;&gt; len(classmates)
+3
+</code></pre><p>当然，与其他数据结构类似，索引是从<code>0</code>开始：</p>
+<pre><code>&gt;&gt;&gt; classmates[0]
+&apos;hyx&apos;
+&gt;&gt;&gt; classmates[1]
+&apos;fantastic&apos;
+&gt;&gt;&gt; classmates[2]
+&apos;miao&apos;
+</code></pre><p>当索引为3时，Python就会报错，所以要记住最后一个元素的索引为<code>len(classmates) - 1</code>。</p>
+<p>如果要获取最后一个元素，我们可以直接用<code>-1</code>做索引：</p>
+<pre><code>&gt;&gt;&gt; classmates[-1]
+&apos;miao&apos;
+</code></pre><p>类似的，<code>-2</code>、<code>-3</code>也可以获取倒数第二个、第三个元素，不过同样不要越界。</p>
+<p>list是一个可变有序表，可以向列表尾追加元素：</p>
+<pre><code>&gt;&gt;&gt; classmates.append(&apos;Adam&apos;)
+&gt;&gt;&gt; classmates
+[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;, &apos;Adam&apos;]
+</code></pre><p>我们也可以向指定位置插入元素：</p>
+<pre><code>&gt;&gt;&gt; classmates.insert(1, &apos;huyinx&apos;)
+&gt;&gt;&gt; classmates
+[&apos;hyx&apos;, &apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;, &apos;Adam&apos;]
+</code></pre><p>如果想要删除列表尾的元素，可以使用<code>pop()</code>：</p>
+<pre><code>&gt;&gt;&gt; classmates.pop()
+&apos;Adam&apos;
+&gt;&gt;&gt; classmates
+[&apos;hyx&apos;, &apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+</code></pre><p><code>pop(i)</code>可以删除指定位置的元素，只需要提供相应的索引即可：</p>
+<pre><code>&gt;&gt;&gt; classmates.pop(1)
+&apos;huyinx&apos;
+&gt;&gt;&gt; classmates
+[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+</code></pre><p>如果想要直接替换某位置上的元素，那么直接对其赋值即可：</p>
+<pre><code>&gt;&gt;&gt; classmates[0] = &apos;huyinx&apos;
+&gt;&gt;&gt; classmates
+[&apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+</code></pre><p>当然，list没有规定存储类型，你可以向列表中加入任意类型的元素：</p>
+<pre><code>&gt;&gt;&gt; List = [&apos;huyinx&apos;, 123456, True, 90.1]
+</code></pre><p>甚至可以往里面添加一个list列表：</p>
+<pre><code>&gt;&gt;&gt; List[-1] = [&apos;hyx&apos;, &apos;miao&apos;]
+&gt;&gt;&gt; List
+[&apos;huyinx&apos;, 123456, True, [&apos;hyx&apos;, &apos;miao&apos;]]
+</code></pre><p>类似于C语言的二维数组，<code>List</code>只有四个元素，而它的第四个元素是一个列表，包含了两个元素：</p>
+<pre><code>&gt;&gt;&gt; List[-1]
+[&apos;hyx&apos;, &apos;miao&apos;]
+&gt;&gt;&gt; List[-1][0]
+&apos;hyx&apos;
+</code></pre><p>如果列表为空，那么它的长度为0：</p>
+<pre><code>&gt;&gt;&gt; L = []
+&gt;&gt;&gt; len(L)
+0
+</code></pre><h2 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a><strong>tuple</strong></h2><p>tuple是另外一种有序表，但它是不可变的：</p>
+<pre><code>&gt;&gt;&gt; classmates = (&apos;hyx&apos;, &apos;miao&apos;, &apos;huyinx&apos;)
+&gt;&gt;&gt; classmates
+(&apos;hyx&apos;, &apos;miao&apos;, &apos;huyinx&apos;)
+</code></pre><p>一旦确定下来，它就不能够再被更改。我们可以使用<code>classmates[0]</code>来访问数组，但是不能够改变它的值，也不会有<code>insert()</code>和<code>append()</code>这样的方法。这样做的目的是为了稳定性，代码更加安全。所以，能够使用tuple就不要使用list。</p>
+<p>由于tuple的特殊性，因此也产生了许许多多的陷阱。由于tuple创建时元素就必须确定（当然你也可以定义为空，不过那没有什么意义），当你定义一个元素时，就会出现下面这种情况：</p>
+<pre><code>&gt;&gt;&gt; t = (1)
+&gt;&gt;&gt; t
+1
+</code></pre><p>你会发现，Python将<code>t</code>认作了整数<code>1</code>。这个其实是因为括号可以被认作是tuple，也可以被认作是数学符号，那么这就产生了歧义。由于小括号更常见一点，所以<code>t = (1)</code>就相当于是<code>t = 1</code>。因此，哪怕只有一个元素，我们最好也要加上逗号：</p>
+<pre><code>&gt;&gt;&gt; T = (1,)
+&gt;&gt;&gt; T
+(1,)
+</code></pre><p>Python显示一个元素的tuple时，也会自动加上逗号，免得你误认为是数学符号。</p>
+<p>当然，你可能觉得tuple太死板了，不够方便。那么你可以在tuple中加入list，使得tuple可变：</p>
+<pre><code>&gt;&gt;&gt; Tuple = (1, 2, [&apos;hyx&apos;, &apos;miao&apos;])
+&gt;&gt;&gt; Tuple
+(1, 2, [&apos;hyx&apos;, &apos;miao&apos;])
+</code></pre><p><code>Tuple[-1]</code>就是我们所熟悉的list，我们可以对其进行任意的修改。</p>
 
       
     </div>
@@ -390,9 +462,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag">#算法</a>
-          
-            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
           
         </div>
       
@@ -401,17 +471,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/01/Algorithm-note-6/" rel="next" title="数据结构与算法学习笔记（6）——查找">
-                <i class="fa fa-chevron-left"></i> 数据结构与算法学习笔记（6）——查找
+              <a href="/2016/11/28/Python-note-5/" rel="next" title="Python学习笔记（5）——字符串和编码">
+                <i class="fa fa-chevron-left"></i> Python学习笔记（5）——字符串和编码
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/03/Algorithm-note-8/" rel="prev" title="数据结构与算法学习笔记（8）——队列、栈">
-                数据结构与算法学习笔记（8）——队列、栈 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -460,8 +526,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/01/Algorithm-note-7/"
-           data-title="数据结构与算法学习笔记（7）——字符串" data-url="http://yoursite.com/2016/11/01/Algorithm-note-7/">
+      <div class="ds-thread" data-thread-key="2016/11/29/Python-note-6/"
+           data-title="Python学习笔记（6）——list和tuple" data-url="http://yoursite.com/2016/11/29/Python-note-6/">
       </div>
     
   </div>
@@ -590,7 +656,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换空格"><span class="nav-number">1.</span> <span class="nav-text">替换空格</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">1.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tuple"><span class="nav-number">2.</span> <span class="nav-text">tuple</span></a></li></ol></div>
             
           </div>
         </section>

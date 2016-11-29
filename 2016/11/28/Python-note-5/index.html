@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/28/Python-note-5/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="这一章将着重介绍Python中的字符串知识。">
-<meta property="og:updated_time" content="2016-11-28T04:30:58.893Z">
+<meta property="og:updated_time" content="2016-11-29T03:40:25.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python学习笔记（5）——字符串和编码">
 <meta name="twitter:description" content="这一章将着重介绍Python中的字符串知识。">
@@ -377,31 +377,34 @@
 <h3 id="UTF-8码"><a href="#UTF-8码" class="headerlink" title="UTF-8码"></a><strong>UTF-8码</strong></h3><p>当然，如果你写的文本全是英文，那么Unicode码会浪费大量的空间。因此，为了节省，Unicode码又转变成了<code>UTF-8</code>编码。UTF-8码可以根据文本字符不同的大小，分成1-6个字节，英文字母一般分为1个字节，而汉字一般是3个字节，生僻字分为4-6个字节。另外，哪怕是只支持ASCII编码的软件，也能够在Unicode码下继续工作。</p>
 <h3 id="字符编码工作方式"><a href="#字符编码工作方式" class="headerlink" title="字符编码工作方式"></a><strong>字符编码工作方式</strong></h3><p>计算机内存中统一使用Unicode编码，而需要传输和保存时转换成UTF-8编码。用记事本编辑时，从文件读取UTF-8字符，然后转换成Unicode字符存到内存里。编辑完成并保存时，再把Unicode转换成UTF-8。</p>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a><strong>字符串</strong></h2><p>最早的Python只支持ASCII码，可以使用ord()和chr()函数，对字符和数字进行转换：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ord</span><span class="params">(<span class="string">'H'</span>)</span></span></div><div class="line"><span class="function"><span class="title">chr</span><span class="params">(<span class="number">72</span>)</span></span></div></pre></td></tr></table></figure>
-<p>那么就会得到：</p>
-<pre><code>72
+<pre><code>&gt;&gt;&gt; ord(&apos;H&apos;)
+&gt;&gt;&gt; chr(72)
+72
 &apos;H&apos;
 </code></pre><p>Python在支持了Unicode之后，对于Unicode字符用<code>u’’</code>表示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">u'我爱中国'</span></div><div class="line"><span class="string">u'中'</span></div></pre></td></tr></table></figure>
-<p>那么就可以得到如下结果：</p>
-<pre><code>我爱中国
+<pre><code>&gt;&gt;&gt; print u&apos;我爱中国&apos;
+&gt;&gt;&gt; u&apos;中&apos;
+我爱中国
 u&apos;\u6211\u7231\u4e2d\u56fd&apos;
 </code></pre><p>对于ASCII码和Unicode码的转换，Python中可以使用<code>encode(‘’)</code>方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">u'ABC'</span>.encode(<span class="string">'utf-8'</span>)</div><div class="line"><span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
-<p>得到如下输出：</p>
-<pre><code>&apos;ABC&apos;
+<pre><code>&gt;&gt;&gt; u&apos;ABC&apos;.encode(&apos;utf-8&apos;)
+&gt;&gt;&gt; u&apos;中文&apos;.encode(&apos;utf-8&apos;)
+&apos;ABC&apos;
 &apos;\xe4\xb8\xad\xe6\x96\x87&apos;
 </code></pre><p>ASCII码可以看做是UTF-8码，使用<code>encode(‘utf-8’)</code>转换得到的就是UTF-8码。我们可以看到，英文转换后UTF-8和Unicode是一样的，但是中文转换之后，一个Unicode字符变成了三个UTF-8字符。比如<code>\xe4</code>就是一个字节，是用十六进制表示的。我们用<code>len()</code>方法来查看一下字符串长度：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">len(<span class="string">u'ABC'</span>)</div><div class="line">len(<span class="string">'ABC'</span>)</div><div class="line">len(<span class="string">u'中文'</span>)</div><div class="line">len(<span class="string">'\xe4\xb8\xad\xe6\x96\x87'</span>)</div></pre></td></tr></table></figure>
-<p>可以得到：</p>
-<pre><code>3
+<pre><code>&gt;&gt;&gt; len(u&apos;ABC&apos;)
+&gt;&gt;&gt; len(&apos;ABC&apos;)
+&gt;&gt;&gt; len(u&apos;中文&apos;)
+&gt;&gt;&gt; len(&apos;\xe4\xb8\xad\xe6\x96\x87&apos;)
+3
 3
 2
 6
 </code></pre><p>那么如果要反过来转换，可以使用<code>decode(‘utf-8’)</code>方法：</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">'ABC'.decode('utf-8')</div><div class="line">'<span class="symbol">\x</span>e4<span class="symbol">\x</span>b8<span class="symbol">\x</span>ad<span class="symbol">\x</span>e6<span class="symbol">\x</span>96<span class="symbol">\x</span>87'.decode('utf-8')</div><div class="line">print '<span class="symbol">\x</span>e4<span class="symbol">\x</span>b8<span class="symbol">\x</span>ad<span class="symbol">\x</span>e6<span class="symbol">\x</span>96<span class="symbol">\x</span>87'.decode('utf-8')</div></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<pre><code>u&apos;ABC&apos;
+<pre><code>&gt;&gt;&gt; &apos;ABC&apos;.decode(&apos;utf-8&apos;)
+&gt;&gt;&gt; &apos;\xe4\xb8\xad\xe6\x96\x87&apos;.decode(&apos;utf-8&apos;)
+&gt;&gt;&gt; print &apos;\xe4\xb8\xad\xe6\x96\x87&apos;.decode(&apos;utf-8&apos;)
+u&apos;ABC&apos;
 u&apos;\u4e2d\u6587&apos;
 中文
 </code></pre><p>注意，在编写Python代码时，如果有中文，务必将文本文件的编码格式指定为UTF-8。如果想要Python解释器按照UTF-8来解析代码，那么就要加上这两行注释：</p>
@@ -447,6 +450,10 @@ u&apos;\u4e2d\u6587&apos;
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/Python-note-6/" rel="prev" title="Python学习笔记（6）——list和tuple">
+                Python学习笔记（6）——list和tuple <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -541,7 +548,7 @@ u&apos;\u4e2d\u6587&apos;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

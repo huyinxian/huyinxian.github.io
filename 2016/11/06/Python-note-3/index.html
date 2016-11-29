@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/06/Python-note-3/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="这一章将详细的介绍Python的输入和输出。">
-<meta property="og:updated_time" content="2016-11-26T02:57:15.858Z">
+<meta property="og:updated_time" content="2016-11-29T03:34:53.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python学习笔记（3）——输入与输出">
 <meta name="twitter:description" content="这一章将详细的介绍Python的输入和输出。">
@@ -366,28 +366,23 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h2><p>之前已经讲过，使用<code>print</code>可以在屏幕上打印指定文字:</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'HelloWorld'</span></div></pre></td></tr></table></figure>
-<p>可以的到下面的结果：</p>
-<pre><code>HelloWorld
-</code></pre><p>如果文字比较多，可以用逗号<code>,</code>隔开：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello'</span>, <span class="string">'world'</span></div></pre></td></tr></table></figure>
-<p>注意，遇到逗号会转换成空格，字符串不会紧贴在一起：</p>
-<pre><code>hello world
+<pre><code>&gt;&gt;&gt; print &apos;HelloWorld&apos;
+HelloWorld
+</code></pre><p>如果文字比较多，可以用逗号<code>,</code>隔开。注意，遇到逗号会转换成空格，字符串不会紧贴在一起：</p>
+<pre><code>&gt;&gt;&gt; print &apos;hello&apos;, &apos;world&apos;
+hello world
 </code></pre><p>当然，<code>print</code>也可以打印结果：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print '<span class="number">100</span> + <span class="number">200</span> =', <span class="number">100</span> + <span class="number">200</span></div></pre></td></tr></table></figure>
-<p>会得到相加之后的结果：</p>
-<pre><code>100 + 200 = 300
+<pre><code>&gt;&gt;&gt; print &apos;100 + 200 =&apos;, 100 + 200
+100 + 200 = 300
 </code></pre><p>不过这里的<code>‘100 + 200 =’</code>是字符串，结果是由后面的<code>100 + 200</code>得出</p>
 <h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h2><p>如果我们想获取一个字符，那么该怎么办呢？Python提供了<code>raw_input()</code>来获取用户的字符输入，并且存储到一个变量中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">name</span> = raw_input()</div></pre></td></tr></table></figure>
-<p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code>&gt;&gt;&gt;</code>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span></div></pre></td></tr></table></figure>
-<p>会得到刚刚输入的名字：</p>
-<pre><code>&apos;hyx&apos;
-</code></pre><p>如果和输出合起来使用，那么就会变成这样：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span> <span class="string">'hello,'</span>, name</div></pre></td></tr></table></figure>
-<p>我们会得到下面的结果：</p>
-<pre><code>hello, hyx
+<pre><code>&gt;&gt;&gt; name = raw_input()
+</code></pre><p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code>&gt;&gt;&gt;</code>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</p>
+<pre><code>&gt;&gt;&gt; name
+&apos;hyx&apos;
+</code></pre><p>这样，我们会得到刚刚输入的名字。如果和输出合起来使用，那么就会变成这样：</p>
+<pre><code>&gt;&gt;&gt; print &apos;hello,&apos;, name
+hello, hyx
 </code></pre><p>当然，如果没有任何提示就让用户输入，那么显然会让别人摸不着头脑，我们可以创建一个文件，编写如下的代码：</p>
 <figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">name</span> = raw_input(<span class="string">'Please input your name: '</span>)</div><div class="line">print <span class="string">'hello,'</span>, <span class="built_in">name</span></div></pre></td></tr></table></figure>
 <p>输出如下：</p>
@@ -530,7 +525,7 @@ hello, hyx
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
