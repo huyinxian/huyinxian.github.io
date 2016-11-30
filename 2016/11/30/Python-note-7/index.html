@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="编程语言没有条件判断可不行，让我们来看看Python是怎么做的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记（7）——条件判断与循环">
+<meta property="og:url" content="http://yoursite.com/2016/11/30/Python-note-7/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="编程语言没有条件判断可不行，让我们来看看Python是怎么做的。">
+<meta property="og:updated_time" content="2016-11-30T04:44:50.458Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python学习笔记（7）——条件判断与循环">
+<meta name="twitter:description" content="编程语言没有条件判断可不行，让我们来看看Python是怎么做的。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/30/Python-note-7/"/>
+
+  <title> Python学习笔记（7）——条件判断与循环 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python学习笔记（7）——条件判断与循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T10:22:30+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/30/Python-note-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/30/Python-note-7/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>编程语言没有条件判断可不行，让我们来看看Python是怎么做的。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a><strong>条件判断</strong></h2><p>Python也不例外，if之类的判断语句也是有的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">num</span> = <span class="number">1</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">num</span> &gt;= <span class="number">1</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'num ='</span>, <span class="built_in">num</span></div><div class="line">    <span class="built_in">print</span> <span class="string">'end'</span></div></pre></td></tr></table></figure>
+<p>得到的输出如下：</p>
+<pre><code>num = 1
+end
+</code></pre><p>注意，if后面有一个冒号<code>:</code>，一定要记得打上，不然就会报错。</p>
+<p>当然，加上else也是可以的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">num</span> = <span class="number">0</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">num</span> &gt;= <span class="number">1</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'num ='</span>, <span class="built_in">num</span></div><div class="line">    <span class="built_in">print</span> <span class="string">'end'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'error'</span></div></pre></td></tr></table></figure>
+<p>结果输出如下：</p>
+<pre><code>error
+</code></pre><p>else后面也有冒号，也要记得打上。其实呢，Python不像其他高级编程语言，是不需要用大括号<code>{</code>把代码块包起来。对于if来说，只需要if下面的代码存在缩进，那么就视作一个代码块。比如下面的这种就是错的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">num</span> = <span class="number">1</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">num</span> &gt;= <span class="number">1</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'num ='</span>, <span class="built_in">num</span></div><div class="line"><span class="built_in">print</span> <span class="string">'end'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'error'</span></div></pre></td></tr></table></figure>
+<p>Python会提示你else存在错误，因为第二个<code>print</code>没有缩进，那么if执行完第一条语句后就结束了，else没有办法和if对应起来。换成C语言代码可能好理解一点：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int <span class="built_in">num</span> = <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">num</span> &gt;= <span class="number">1</span>)</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"num = %d\n"</span>, <span class="built_in">num</span>);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"end"</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"error"</span>);</div></pre></td></tr></table></figure>
+<p>这样一来逻辑就很清楚了吧？让我们接着了往下看：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">num</span> = <span class="number">3</span></div><div class="line"><span class="keyword">if</span> <span class="built_in">num</span> &gt;= <span class="number">10</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'num ='</span>, <span class="built_in">num</span></div><div class="line">    <span class="built_in">print</span> <span class="string">'end'</span></div><div class="line">elif <span class="built_in">num</span> &gt;= <span class="number">3</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'num ='</span>, <span class="built_in">num</span></div><div class="line">    <span class="built_in">print</span> <span class="string">'beg'</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">print</span> <span class="string">'error'</span></div></pre></td></tr></table></figure>
+<p><code>elif</code>就相当于<code>else if</code>，只不过Python中是这么写而已。</p>
+<p>其他的地方和C语言是类似的，比如：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">if</span> x:</div><div class="line">    <span class="built_in">print</span> <span class="string">'True'</span></div></pre></td></tr></table></figure>
+<p>如果<code>x</code>是非零数值、非空字符串、非空list等，就判断为<code>True</code>，否则为<code>False</code></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h2><p>Python有两种循环，第一种是<code>for in</code>的结构，用于遍历list和tuple：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'hyx'</span>, <span class="string">'miao'</span>]</div><div class="line"><span class="keyword">for</span> <span class="built_in">name</span> <span class="built_in">in</span> names:</div><div class="line">    print <span class="built_in">name</span></div></pre></td></tr></table></figure>
+<p>打印出来就是这样：</p>
+<pre><code>hyx
+miao
+</code></pre><p>如果把它转换成C++，那么就是这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;name : names)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; name &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，<code>for in</code>也只执行后面的缩进块，所以编写Python时一定要注意缩进。可能有人还是不太懂，那么看看下面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'hyx'</span>, <span class="string">'miao'</span>]</div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names:</div><div class="line">    <span class="built_in">print</span> name</div><div class="line"><span class="built_in">print</span> <span class="string">'yes'</span></div></pre></td></tr></table></figure>
+<p>这个我们之前已经讲过了，<code>print ‘yes’</code>只会执行一次。那么再看看这个：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'hyx'</span>, <span class="string">'miao'</span>]</div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names:</div><div class="line">        <span class="built_in">print</span> name</div><div class="line">    <span class="built_in">print</span> <span class="string">'yes'</span></div></pre></td></tr></table></figure>
+<p>这个会直接报错。所以，Python中的缩进是非常重要的。由于没有使用大括号来表示代码块，那么缩进就成为了识别代码块的重要标志。可能其他的编程语言中缩进只是为了美观，那么在Python中就有着一定的实际意义。</p>
+<p>再比如我们想计算1-10的整数之和，可以用一个sum变量做累加：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span> = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]:</div><div class="line">    <span class="built_in">sum</span> = <span class="built_in">sum</span> + x</div><div class="line"><span class="built_in">print</span> <span class="built_in">sum</span></div></pre></td></tr></table></figure>
+<p>如果要生成1-100的整数和，那么不太可能一个个打上去，我们可以使用<code>range()</code>函数，比如<code>range(5)</code>代表从0到小于5的整数列：</p>
+<pre><code>&gt;&gt;&gt; range(5)
+[0, 1, 2, 3, 4]
+</code></pre><p>所以上面的问题可以这么解决：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span> = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>):</div><div class="line">    <span class="built_in">sum</span> = <span class="built_in">sum</span> + x</div><div class="line"><span class="built_in">print</span> <span class="built_in">sum</span></div></pre></td></tr></table></figure>
+<p>第二种循环就是我们熟悉的<code>while</code>循环，只要满足条件，那么就执行代码块，否则就退出：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sum</span> = <span class="number">0</span></div><div class="line"><span class="built_in">n</span> = <span class="number">99</span></div><div class="line">while <span class="built_in">n</span> &gt; <span class="symbol">0:</span></div><div class="line">    <span class="built_in">sum</span> += <span class="built_in">n</span></div><div class="line">    <span class="built_in">n</span> -= <span class="number">2</span></div><div class="line">print <span class="built_in">sum</span></div></pre></td></tr></table></figure>
+<p>上面的代码计算了100以内的奇数和，结果是<code>2500</code>。</p>
+<h2 id="再谈raw-input"><a href="#再谈raw-input" class="headerlink" title="再谈raw_input()"></a><strong>再谈raw_input()</strong></h2><p>一般来说，我们会用raw_input接收用户输入，然后做一些判断：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">birth = raw_input(<span class="string">'birth: '</span>)</div><div class="line"><span class="built_in">if</span> birth &lt; <span class="number">2000</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'90'</span></div><div class="line"><span class="built_in">else</span>:</div><div class="line">    <span class="built_in">print</span> <span class="string">'00'</span></div></pre></td></tr></table></figure>
+<p>然而如果你运行上面这串代码，结果会是<code>‘00’</code>。这个是因为raw_input返回的是字符串，那么判断结果显然是<code>False</code>。所以为了得到整数，我们应该使用<code>int()</code>进行转换：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">birth = int(<span class="name">raw_input</span>('birth: '))</div></pre></td></tr></table></figure>
+<p>这样一来，如果用户输入的不是数字，Python会自动报错并退出。如果是数字，那么就会被转为整数，从而得到我们想要的结果。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/Python-note-6/" rel="next" title="Python学习笔记（6）——list和tuple">
+                <i class="fa fa-chevron-left"></i> Python学习笔记（6）——list和tuple
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/30/Python-note-7/"
+           data-title="Python学习笔记（7）——条件判断与循环" data-url="http://yoursite.com/2016/11/30/Python-note-7/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件判断"><span class="nav-number">1.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">2.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再谈raw-input"><span class="nav-number">3.</span> <span class="nav-text">再谈raw_input()</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
