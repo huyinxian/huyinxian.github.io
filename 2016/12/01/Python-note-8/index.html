@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="今天开始，就要进入到Python的学习之中啦！">
+<meta name="description" content="这一章来认识一下Python中的字典和键值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python学习笔记（1）——简单的Python程序">
-<meta property="og:url" content="http://yoursite.com/2016/11/05/Python-note-1/index.html">
+<meta property="og:title" content="Python学习笔记（8）——dict和set">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/Python-note-8/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="今天开始，就要进入到Python的学习之中啦！">
-<meta property="og:updated_time" content="2016-11-29T03:35:37.560Z">
+<meta property="og:description" content="这一章来认识一下Python中的字典和键值。">
+<meta property="og:updated_time" content="2016-12-01T09:32:53.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python学习笔记（1）——简单的Python程序">
-<meta name="twitter:description" content="今天开始，就要进入到Python的学习之中啦！">
+<meta name="twitter:title" content="Python学习笔记（8）——dict和set">
+<meta name="twitter:description" content="这一章来认识一下Python中的字典和键值。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/05/Python-note-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/01/Python-note-8/"/>
 
-  <title> Python学习笔记（1）——简单的Python程序 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（8）——dict和set | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Python学习笔记（1）——简单的Python程序
+                Python学习笔记（8）——dict和set
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T10:38:43+08:00" content="2016-11-05">
-              2016-11-05
+            <time itemprop="dateCreated" datetime="2016-12-01T15:00:14+08:00" content="2016-12-01">
+              2016-12-01
             </time>
           </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/05/Python-note-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/Python-note-1/" itemprop="commentsCount"></span>
+                <a href="/2016/12/01/Python-note-8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/01/Python-note-8/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,24 +361,85 @@
       
 
       
-        <p>今天开始，就要进入到Python的学习之中啦！<br><a id="more"></a></p>
+        <p>这一章来认识一下Python中的字典和键值。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="Python有什么用"><a href="#Python有什么用" class="headerlink" title="Python有什么用"></a><strong>Python有什么用</strong></h2><p>Python有很多用处，网络应用，包括网站、后台服务等等都有用到Python，还有就是各种小工具以及脚本也需要这门语言。Python是一门解释型语言，这也就意味着它的代码很简洁。当然，Python也可以实现很复杂的程序，不过我们在编写代码的时候尽量做到简洁、优雅。</p>
-<p>这里推荐一位大神：<a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a></p>
-<h2 id="Python的简单使用"><a href="#Python的简单使用" class="headerlink" title="Python的简单使用"></a><strong>Python的简单使用</strong></h2><p>Python可以在官方网站进行下载，我用的版本是Python2.7，安装完之后，添加系统变量，在<code>path</code>中加入Python的安装路径。打开命令行，输入<code>python</code>，会显示Python版本，并且出现<code>&gt;&gt;&gt;</code>，没有出现的说明你没有把Python加入到路径。</p>
-<p>我们先来写一点简单的代码：</p>
-<pre><code>&gt;&gt;&gt; 100 + 200
-300
-</code></pre><p>或者你可以这么写：</p>
-<pre><code>&gt;&gt;&gt; print &apos;300&apos;
-300
-</code></pre><p>这里要说明一下，单引号和双引号在这里都可以，但是不能够混用。</p>
-<h2 id="命令行和Python交互模式"><a href="#命令行和Python交互模式" class="headerlink" title="命令行和Python交互模式"></a><strong>命令行和Python交互模式</strong></h2><p>我们输入<code>100 + 200</code>就会直接得到结果，是不是很奇怪？不用着急，我们接着往下看</p>
-<h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a><strong>命令行模式</strong></h3><p>命令行模式就是cmd窗口，我们可以执行<code>python</code>进入Python交互模式，也可以执行<code>python hello.py</code>来运行一个<code>.py</code>文件。</p>
-<h3 id="Python交互模式"><a href="#Python交互模式" class="headerlink" title="Python交互模式"></a><strong>Python交互模式</strong></h3><p>我们看到<code>&gt;&gt;&gt;</code>就是进入到了Python交互模式，这种模式下只能输入代码并且立即执行，也就是我们上面看到的那种情况。如果我们把<code>100 + 200</code>写在文件中，那么执行这个文件是看不到结果的。我们只能够加上<code>print</code>函数才行。</p>
-<p>总而言之，Python交互模式下，输入代码就能立即得到结果。</p>
+<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a><strong>dict</strong></h2><p>Python提供了字典<code>dict</code>（也就是dictionary)，其他语言中被称为map，使用键值进行存储，方便查找。</p>
+<p>例如，如果要根据学生姓名查找成绩，那么需要两个list：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">names</span> = [<span class="string">'hyx'</span>, <span class="string">'miao'</span>, <span class="string">'huyinx'</span>]</div><div class="line"><span class="attr">scores</span> = [<span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>]</div></pre></td></tr></table></figure>
+<p>如果是这样的话，那么就要先从名字找，找到之后再取出分数，但是这样会随着list的变长而变得耗时。</p>
+<p>那么字典dict是怎么做的呢？我们往下看：</p>
+<pre><code>&gt;&gt;&gt; d = {&apos;hyx&apos;: 97, &apos;miao&apos;: 98, &apos;huyinx&apos;: 99}
+&gt;&gt;&gt; d[&apos;hyx&apos;]
+97
+</code></pre><p>有人可能会问，这个和上面的不是一样吗？是的，如果单从形式上看，dict也不过是个二维数组而已。然而，既然它被称为字典，那么我们不妨想一想字典是怎么用的。</p>
+<p>我们首先通过部首表，找到相应偏旁，然后锁定我们要的字，之后就翻到指定的页码就可以了。而list相当于从字典第一页开始查找，直到找到我们要的。所以列表越长，效率越低下。dict能够根据我们给的键值，自动转换成相应“页码”，就能很快的锁定我们要的值了。这种模式被称为“key-value”。</p>
+<p>当然，我们也能通过key来创建value：</p>
+<pre><code>&gt;&gt;&gt; d[&apos;fantastic&apos;] = 100
+&gt;&gt;&gt; d[&apos;fantastic&apos;]
+100
+</code></pre><p>如果这个dict中没有相应的key，那么就会新添加一个，不过一个dict中的key不能重复，所以不管你是添加还是修改，每个key只对应唯一的value。</p>
+<p>不过呢，假如这个dict没有这个key，那么Python就会报错。为了确认是否存在相应key，我们可以使用<code>in</code>：</p>
+<pre><code>&gt;&gt;&gt; &apos;qwer&apos; in d
+False
+</code></pre><p>或者呢，可以使用dict中的<code>get</code>方法，如果key不存在，会返回None，当然也可以返回你要的值：</p>
+<pre><code>&gt;&gt;&gt; d.get(&apos;qwer&apos;)
+&gt;&gt;&gt; d.get(&apos;qwer&apos;, 12345)
+12345
+</code></pre><p>注意，如果你是用的是交互式命令行，那么None是不会显示的。</p>
+<p>如果你要删除一个key，那么可以使用<code>pop(key)</code>方法：</p>
+<pre><code>&gt;&gt;&gt; d.pop(&apos;fantastic&apos;)
+100
+&gt;&gt;&gt; d
+{&apos;hyx&apos;: 97, &apos;miao&apos;: 98, &apos;huyinx&apos;: 99}
+</code></pre><p>与list，dict占用的内存多，但是查找和插入速度极快，而且顺序不会产生影响。</p>
+<p>list所占内存小，但是查找和插入时间随着元素增加而增加。</p>
+<p>事实上，key是通过哈希算法来计算位置，由于key必须唯一，所以key不能够产生变动。字符串和整数不会改变，都可以作为key，但是list不行。</p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a><strong>set</strong></h2><p>set和dict类似，唯一的不同就是key不存储value：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s
+set([1, 2, 3])
+</code></pre><p>创建set需要我们提供一个list，不过呢，传入之后set就包含了list的元素，而不是包含list。</p>
+<p>由于key的唯一性，list中的相同元素只会被存储一次：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3])
+&gt;&gt;&gt; s
+set([1, 2, 3])
+</code></pre><p>可以使用<code>add(key)</code>方法加入key，同样的，key不会重复：</p>
+<pre><code>&gt;&gt;&gt; s.add(4)
+&gt;&gt;&gt; s.add(1)
+&gt;&gt;&gt; s
+set([1, 2, 3, 4])
+</code></pre><p>使用<code>remove(key)</code>可以移除key：</p>
+<pre><code>&gt;&gt;&gt; s.remove(4)
+&gt;&gt;&gt; s
+set([1, 2, 3])
+</code></pre><p>set可以视作集合，进行数学上集合的交、并运算：</p>
+<pre><code>&gt;&gt;&gt; s1 = set([1, 2, 3, 4])
+&gt;&gt;&gt; s2 = set([2, 3, 4, 5])
+&gt;&gt;&gt; s1 &amp; s1
+set([2, 3, 4])
+&gt;&gt;&gt; s1 | s2
+set([1, 2, 3, 4, 5])
+</code></pre><p>总之记住，dict和set的区别就是set不存储value。另外，key必须是不可变的。</p>
+<h2 id="不可变对象"><a href="#不可变对象" class="headerlink" title="不可变对象"></a><strong>不可变对象</strong></h2><p>很显然，list是可变对象，那么字符串为什么是不可变对象呢？</p>
+<pre><code>&gt;&gt;&gt; a = &apos;abc&apos;
+&gt;&gt;&gt; b = a.replace(&apos;a&apos;, &apos;A&apos;)
+&gt;&gt;&gt; b
+&apos;Abc&apos;
+&gt;&gt;&gt; a
+&apos;abc&apos;
+</code></pre><p>之前的文章已经说过了，<code>a</code>仅仅只是一个变量，<code>‘abc’</code>才是字符串，变量的指向可以变，但是字符串本身是不会改变的。</p>
+<p>这里用到了<code>replace()</code>方法，但是它并不会改变字符串，而是新创建一个字符串<code>‘Abc’</code>并返回。不变对象的任何方法，都不会改变本身，只会返回一个新的对象。</p>
+<p>至于tuple，它本身是不变的，但是它可以包含可变的list：</p>
+<pre><code>&gt;&gt;&gt; t1 = (1, 2, 3)
+&gt;&gt;&gt; d = {t1: 1}
+&gt;&gt;&gt; d[t1]
+1
+</code></pre><p>如果tuple不包含可变对象，那么它本身可以作为key，注意，仅仅只是tuple整体作为key。我们再看看下面：</p>
+<pre><code>&gt;&gt;&gt; t1 = (1, [2, 3])
+&gt;&gt;&gt; d = {t1: 1}
+</code></pre><p>那么这样是绝对会出错的，所以请牢记，key必须是不可变对象，我们一般使用字符串做key。</p>
 
       
     </div>
@@ -410,17 +471,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/03/Cocos2dx-note-28/" rel="next" title="Cocos2dx学习笔记（28）——游戏开发小技巧">
-                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（28）——游戏开发小技巧
+              <a href="/2016/11/30/Python-note-7/" rel="next" title="Python学习笔记（7）——条件判断与循环">
+                <i class="fa fa-chevron-left"></i> Python学习笔记（7）——条件判断与循环
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/05/Python-note-2/" rel="prev" title="Python学习笔记（2）——文本编辑器">
-                Python学习笔记（2）——文本编辑器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -469,8 +526,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/05/Python-note-1/"
-           data-title="Python学习笔记（1）——简单的Python程序" data-url="http://yoursite.com/2016/11/05/Python-note-1/">
+      <div class="ds-thread" data-thread-key="2016/12/01/Python-note-8/"
+           data-title="Python学习笔记（8）——dict和set" data-url="http://yoursite.com/2016/12/01/Python-note-8/">
       </div>
     
   </div>
@@ -599,7 +656,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python有什么用"><span class="nav-number">1.</span> <span class="nav-text">Python有什么用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python的简单使用"><span class="nav-number">2.</span> <span class="nav-text">Python的简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行和Python交互模式"><span class="nav-number">3.</span> <span class="nav-text">命令行和Python交互模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行模式"><span class="nav-number">3.1.</span> <span class="nav-text">命令行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python交互模式"><span class="nav-number">3.2.</span> <span class="nav-text">Python交互模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dict"><span class="nav-number">1.</span> <span class="nav-text">dict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">2.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变对象"><span class="nav-number">3.</span> <span class="nav-text">不可变对象</span></a></li></ol></div>
             
           </div>
         </section>
