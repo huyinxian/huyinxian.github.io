@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx学习笔记（8）——三大缓存">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/Cocos2dx-note-08/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。">
+<meta property="og:updated_time" content="2016-11-05T04:22:21.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx学习笔记（8）——三大缓存">
+<meta name="twitter:description" content="小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/13/Cocos2dx-note-08/"/>
+
+  <title> Cocos2dx学习笔记（8）——三大缓存 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx学习笔记（8）——三大缓存
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-13T21:25:58+08:00" content="2016-08-13">
+              2016-08-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/13/Cocos2dx-note-08/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/Cocos2dx-note-08/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>小伙伴们可能对缓存不太明白，那么这一章将详细介绍缓存。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a><strong>什么是缓存</strong></h2><p>缓存的目的就是：先将所需资源（如纹理图片）加载到内存中，之后再次使用该资源的时候，就可以直接从内存中取出，而不需要重新加载。从而减少了CPU和GPU的内存占用。</p>
+<h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>如果游戏需要用到大量纹理图片，比如某个界面需要很多图片，那么可以使用<code>TextureCache</code>。一旦纹理加载完成，下次使用时可使用它返回之前加载的纹理。我们所谓的精灵初始化方法，底层的实现都是将图片加入了纹理缓存。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Texture2D *texture = Director::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getTextureCache<span class="function"><span class="params">()</span>-&gt;</span>addImage(filename);</div><div class="line">Texture2D *texture = Director::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getTextureCache<span class="function"><span class="params">()</span>-&gt;</span>getTextureForKey(textureKeyName);</div></pre></td></tr></table></figure>
+<p><code>addImage()</code>返回一个<code>Texture2D</code>的引用，如果加入文件失败，则返回之前加入的图片。<code>getTextureForKey()</code>是通过文件名来获取纹理对象，失败则返回<code>nullptr</code>。</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 释放当前所有引用计数为1的纹理，即目前没有被使用的纹理。</span></div><div class="line"><span class="comment">// 比如新场景创建好后，使用此方法释放没有使用的纹理非常方便。</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeUnusedTextures();</div><div class="line"> </div><div class="line"><span class="comment">// 通过给定的纹理贴图（texture）的关键名（key name）从缓存中删除该纹理贴图</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeTextureForKey(<span class="string">"Images/grossinis.png"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// 清除加载纹理贴图的记录，如果你收到“内存警告”，请调用该方法。 </span></div><div class="line"><span class="comment">// 在短期内 : 会释放一些资源文件来防止你的app出现闪退现象 </span></div><div class="line"><span class="comment">// 在中期内 : 会分配更多资源 </span></div><div class="line"><span class="comment">// 长远来看 : 没有区别</span></div><div class="line">D<span class="function"><span class="title">irector</span>::getInstance()-&gt;</span><span class="function"><span class="title">getTextureCache</span>()-&gt;</span>removeAllTextures();</div></pre></td></tr></table></figure>
+<h2 id="精灵帧缓存"><a href="#精灵帧缓存" class="headerlink" title="精灵帧缓存"></a><strong>精灵帧缓存</strong></h2><p>精灵帧一般用于许多小图合成的大图，处理plist文件。所以，精灵帧的配套文件是一个<code>.plist</code>文件和一张大图。精灵帧获取和销毁单例对象和纹理一样，这里不再赘述。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SpriteFrameCache *frameCache = <span class="symbol">SpriteFrameCache:</span><span class="symbol">:getInstance</span>();</div><div class="line">frameCache-&gt;addSpriteFramesWithFile(<span class="string">"boy.plist"</span>, <span class="string">"boy.png"</span>);</div></pre></td></tr></table></figure>
+<p>其他的方法在精灵帧一章讲的已经很详细了，这里之讲讲清除缓存的方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 从精灵帧缓存中删除一个精灵帧.</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFrameByName(<span class="keyword">const</span> std::string &amp;name);</div><div class="line">     </div><div class="line"><span class="comment">// 清除载入精灵帧的字典。如果接收到“Memory Warning”, 请调用这个方法。</span></div><div class="line"><span class="comment">// 就眼前来说 : 它将释放一些资源来阻止你的应用崩溃掉。</span></div><div class="line"><span class="comment">// 中期的角度 : 它将分配更多的资源。</span></div><div class="line"><span class="comment">// 从长远来说 : 它将变成相同的。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFrames();</div><div class="line"></div><div class="line"><span class="comment">// 从一个.plist文件移除多个精灵帧。即：存储在这个文件的精灵帧将被删除。</span></div><div class="line"><span class="comment">// 当某个特定的纹理需要被删除时候调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFramesFromFile(<span class="keyword">const</span> std::string &amp;plist);</div><div class="line">     </div><div class="line"><span class="comment">// 移除与特定的纹理结合的所有的精灵帧。</span></div><div class="line"><span class="comment">// 当某个特定的纹理需要被删除时候调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeSpriteFramesFromTexture(cocos2d::Texture2D *texture);</div><div class="line">     </div><div class="line"><span class="comment">// 移除没用的精灵帧。保留数为1的精灵帧将被删除。</span></div><div class="line"><span class="comment">// 在开始一个新的场景之后调用这个方法很方便。</span></div><div class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</div></pre></td></tr></table></figure>
+<h2 id="纹理、精灵帧、动画帧"><a href="#纹理、精灵帧、动画帧" class="headerlink" title="纹理、精灵帧、动画帧"></a><strong>纹理、精灵帧、动画帧</strong></h2><p>精灵帧最开始是用于创建动画，而纹理是最底层也是最有效的图片存储。精灵帧实际上只有一张大图片，也就是一个纹理，它的<code>.plist</code>会存储必要的位置信息，方便截取精灵图片。至于精灵帧和动画帧其实区别不大，不过我们最好认为动画帧是动画的属性，精灵帧只是精灵的属性，而不是将二者混为一谈。</p>
+<h2 id="动画缓存"><a href="#动画缓存" class="headerlink" title="动画缓存"></a><strong>动画缓存</strong></h2><p>创建动画时，基本的步骤是创建精灵帧，按顺序添加到数组，用<code>Animation</code>读取数组创建动画，这个过程比较繁琐耗时。对于使用频率较高的动画，可以将它加载到动画缓存，要用时直接调用而不是重新加载。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addAnimation</span><span class="params">(Animation *animation, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addAnimationsWithFile</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; plist)</span></span>;</div><div class="line"><span class="function">Animation* <span class="title">getAnimation</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAnimation</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name)</span></span>;</div></pre></td></tr></table></figure>
+<p><code>addAnimation()</code>添加一段动画，并且为之取名，方便之后在缓存中提取这段动画。<code>addAnimationsWithFile()</code>是通过plist文件来添加动画。<code>getAnimation()</code>可以通过相对应的名字，提取动画，该方法返回<code>Animation</code>类指针。<code>removeAnimation()</code>用于移除指定动画。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Animation* animation = Animation::createWithSpriteFrames(arr, <span class="number">0.04</span>);</div><div class="line">AnimationCache::getInstance<span class="function"><span class="params">()</span>-&gt;</span>addAnimation(animation, <span class="string">"Explosion"</span>);</div><div class="line">Animation* animation = AnimationCache::getInstance<span class="function"><span class="params">()</span>-&gt;</span>getAnimation(<span class="string">"Explosion"</span>);</div></pre></td></tr></table></figure>
+<p>上述代码简要的说明了如何创建动画并加入到缓存，同时从缓存中提取一段动画。</p>
+<h2 id="清理缓存顺序"><a href="#清理缓存顺序" class="headerlink" title="清理缓存顺序"></a><strong>清理缓存顺序</strong></h2><p>按照由高到低来，先动画缓存，再精灵帧缓存，最后纹理缓存。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/12/Cocos2dx-note-07/" rel="next" title="Cocos2dx学习笔记（7）——坐标系总结">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（7）——坐标系总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/14/Cocos2dx-note-09/" rel="prev" title="Cocos2dx学习笔记（9）——序列帧动画">
+                Cocos2dx学习笔记（9）——序列帧动画 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/13/Cocos2dx-note-08/"
+           data-title="Cocos2dx学习笔记（8）——三大缓存" data-url="http://yoursite.com/2016/08/13/Cocos2dx-note-08/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是缓存"><span class="nav-number">1.</span> <span class="nav-text">什么是缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理缓存"><span class="nav-number">2.</span> <span class="nav-text">纹理缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵帧缓存"><span class="nav-number">3.</span> <span class="nav-text">精灵帧缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理、精灵帧、动画帧"><span class="nav-number">4.</span> <span class="nav-text">纹理、精灵帧、动画帧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画缓存"><span class="nav-number">5.</span> <span class="nav-text">动画缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理缓存顺序"><span class="nav-number">6.</span> <span class="nav-text">清理缓存顺序</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

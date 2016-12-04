@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx,项目实战," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章将复刻经典小游戏，一起来看看吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx项目实战（4）——一个都不能死">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/Cocos2dx-practice-04/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章将复刻经典小游戏，一起来看看吧。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif">
+<meta property="og:updated_time" content="2016-11-05T07:33:13.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx项目实战（4）——一个都不能死">
+<meta name="twitter:description" content="本章将复刻经典小游戏，一起来看看吧。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/18/Cocos2dx-practice-04/"/>
+
+  <title> Cocos2dx项目实战（4）——一个都不能死 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx项目实战（4）——一个都不能死
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T10:32:03+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/Cocos2dx-practice-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/Cocos2dx-practice-04/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章将复刻经典小游戏，一起来看看吧。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="游戏效果展示"><a href="#游戏效果展示" class="headerlink" title="游戏效果展示"></a><strong>游戏效果展示</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif" alt=""></center>
+
+<h2 id="游戏流程设计"><a href="#游戏流程设计" class="headerlink" title="游戏流程设计"></a><strong>游戏流程设计</strong></h2><ul>
+<li>开始界面：三个难度选择以及退出按钮</li>
+<li>游戏界面：加载对应的关卡</li>
+<li>关卡生成：只生成一个跑道</li>
+<li>英雄生成：加载英雄的动画</li>
+<li>障碍物：不断地刷新障碍物</li>
+</ul>
+<p>这里要说明一下，由于跑道都是一样的，所以我们只需要编写一条跑道的代码，然后交由游戏主界面进行生成即可。</p>
+<h2 id="LayerStart"><a href="#LayerStart" class="headerlink" title="LayerStart"></a><strong>LayerStart</strong></h2><p>游戏的开始界面，用于选择关卡。</p>
+<h3 id="LayerStart-h"><a href="#LayerStart-h" class="headerlink" title="LayerStart.h"></a><strong>LayerStart.h</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LayerStart__H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __LayerStart__H__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> LayerStart: <span class="keyword">public</span> Layer</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> Scene* <span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">    CREATE_FUNC(LayerStart);</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="keyword">enum</span> DEGREE</div><div class="line">    &#123;</div><div class="line">        CLASS = <span class="number">1</span>,</div><div class="line">        ADVANCE = <span class="number">2</span>,</div><div class="line">        HELL = <span class="number">3</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">classCallBack</span><span class="params">(Ref *ref)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">advanceCallBack</span><span class="params">(Ref *ref)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hellCallBack</span><span class="params">(Ref *ref)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">quitCallBack</span><span class="params">(Ref *ref)</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>游戏开始场景，很简单，生成四个按钮，然后设置对应的回调事件即可。</p>
+<h3 id="LayerStart-cpp"><a href="#LayerStart-cpp" class="headerlink" title="LayerStart.cpp"></a><strong>LayerStart.cpp</strong></h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">#include <span class="string">"LayerStart.h"</span></div><div class="line">#include <span class="string">"LayerMain.h"</span></div><div class="line"></div><div class="line">Scene* LayerStart::scene()</div><div class="line">&#123;</div><div class="line">    Scene *scene = Scene::create();</div><div class="line">    LayerStart *layer = LayerStart::create();</div><div class="line">    scene-&gt;addChild(layer);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool</span> LayerStart::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!Layer::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MenuItemLabel *classItem = MenuItemLabel::create(Label::createWithSystemFont(<span class="string">"Class"</span>, <span class="string">"Arial"</span>, <span class="number">30</span>), CC_CALLBACK_1(LayerStart::classCallBack, this));</div><div class="line">    MenuItemLabel *advanceItem = MenuItemLabel::create(Label::createWithSystemFont(<span class="string">"Advance"</span>, <span class="string">"Arial"</span>, <span class="number">30</span>), CC_CALLBACK_1(LayerStart::advanceCallBack, this));</div><div class="line">    MenuItemLabel *hellItem = MenuItemLabel::create(Label::createWithSystemFont(<span class="string">"Hell"</span>, <span class="string">"Arial"</span>, <span class="number">30</span>), CC_CALLBACK_1(LayerStart::hellCallBack, this));</div><div class="line">    MenuItemLabel *quitItem = MenuItemLabel::create(Label::createWithSystemFont(<span class="string">"Quit"</span>, <span class="string">"Arial"</span>, <span class="number">30</span>), CC_CALLBACK_1(LayerStart::quitCallBack, this));</div><div class="line"></div><div class="line">    Menu *menu = Menu::create(classItem, advanceItem, hellItem, quitItem, NULL);</div><div class="line">    addChild(menu);</div><div class="line">    menu-&gt;alignItemsVerticallyWithPadding(<span class="number">40</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerStart::classCallBack(Ref *<span class="keyword">ref</span>)</div><div class="line">&#123;</div><div class="line">    Scene *scene = LayerMain::scene(CLASS);</div><div class="line">    Director::getInstance()-&gt;replaceScene(scene);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerStart::advanceCallBack(Ref *<span class="keyword">ref</span>)</div><div class="line">&#123;</div><div class="line">    Scene *scene = LayerMain::scene(ADVANCE);</div><div class="line">    Director::getInstance()-&gt;replaceScene(scene);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerStart::hellCallBack(Ref *<span class="keyword">ref</span>)</div><div class="line">&#123;</div><div class="line">    Scene *scene = LayerMain::scene(HELL);</div><div class="line">    Director::getInstance()-&gt;replaceScene(scene);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerStart::quitCallBack(Ref *<span class="keyword">ref</span>)</div><div class="line">&#123;</div><div class="line">    Director::getInstance()-&gt;end();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>LayerMain</code>的创建方法需要我们提供一个参数，在这里就是对应的难度，其他的不再多说。</p>
+<h2 id="LayerMain"><a href="#LayerMain" class="headerlink" title="LayerMain"></a><strong>LayerMain</strong></h2><p>游戏主场景，也是我们玩游戏的界面。</p>
+<h3 id="LayerMain-h"><a href="#LayerMain-h" class="headerlink" title="LayerMain.h"></a><strong>LayerMain.h</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LayerMain__H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __LayerMain__H__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> LayerMain: <span class="keyword">public</span> LayerColor</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> Scene *<span class="title">scene</span><span class="params">(<span class="keyword">int</span> layerCount)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> LayerMain *<span class="title">create</span><span class="params">(<span class="keyword">int</span> layerCount)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> layerCount)</span></span>;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> <span class="number">_l</span>ayerCount;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>这里我们使用的是有参数的创建方法，接受的是<code>LayerStart</code>传递而来的难度系数（1、2、3）。<code>_layerCount</code>用于记录当前所选择的难度。</p>
+<h3 id="LayerMain-cpp"><a href="#LayerMain-cpp" class="headerlink" title="LayerMain.cpp"></a><strong>LayerMain.cpp</strong></h3><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include "LayerMain.h"</span></div><div class="line"><span class="comment">#include "LayerOne.h"</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> LayerMain::_layerCount = <span class="number">0</span>;</div><div class="line"></div><div class="line">Scene *LayerMain::scene(<span class="keyword">int</span> layerCount)</div><div class="line">&#123;</div><div class="line">    Scene *scene = Scene::create();</div><div class="line">    LayerMain *layer = LayerMain::create(layerCount);</div><div class="line">    scene-&gt;addChild(layer);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div><div class="line"></div><div class="line">LayerMain *LayerMain::create(<span class="keyword">int</span> layerCount)</div><div class="line">&#123;</div><div class="line">    LayerMain *pRet = <span class="keyword">new</span> LayerMain();</div><div class="line">    <span class="keyword">if</span> (pRet &amp;&amp; pRet-&gt;init(layerCount))</div><div class="line">    &#123;</div><div class="line">        pRet-&gt;autorelease();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        delete pRet;</div><div class="line">        pRet = <span class="keyword">NULL</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> pRet;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool</span> LayerMain::init(<span class="keyword">int</span> layerCount)</div><div class="line">&#123;</div><div class="line">    LayerColor::initWithColor(ccc4(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>));</div><div class="line"></div><div class="line">    _layerCount = layerCount;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != layerCount; i++)</div><div class="line">    &#123;</div><div class="line">        LayerOne *one = LayerOne::create(i);</div><div class="line">        addChild(one);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的工作其实就是把<code>_layerCount</code>初始化，然后创建对应个数的<code>LayerOne</code>，也就是跑道。<code>LayerMain</code>继承的是<code>LayerColor</code>，这里调用<code>LayerColor</code>的初始化方法，将层的背景颜色改为白色。</p>
+<h2 id="Hero"><a href="#Hero" class="headerlink" title="Hero"></a><strong>Hero</strong></h2><p>用于生成英雄，并且加载动画。</p>
+<h3 id="Hero-h"><a href="#Hero-h" class="headerlink" title="Hero.h"></a><strong>Hero.h</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __Hero_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __Hero_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Hero : <span class="keyword">public</span> CCSprite</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(Hero);</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="Hero-cpp"><a href="#Hero-cpp" class="headerlink" title="Hero.cpp"></a><strong>Hero.cpp</strong></h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">#include <span class="string">"Hero.h"</span></div><div class="line"></div><div class="line"><span class="keyword">bool</span> Hero::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!Sprite::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    setAnchorPoint(Vec2(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line">    </div><div class="line"></div><div class="line">    Animation *animation = Animation::create();</div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">5</span>; i++)</div><div class="line">    &#123;</div><div class="line">        memset(buffer, <span class="number">0</span>, <span class="keyword">sizeof</span>(buffer));</div><div class="line">        sprintf(buffer, <span class="string">"Hero%d.png"</span>, i);</div><div class="line">        animation-&gt;addSpriteFrameWithFile(buffer);</div><div class="line">    &#125;</div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">0.1</span>f);</div><div class="line">    animation-&gt;setLoops(-<span class="number">1</span>);</div><div class="line"></div><div class="line">    Animate *animate = Animate::create(animation);</div><div class="line"></div><div class="line">    this-&gt;runAction(animate);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里只需要一个初始化方法，加载英雄的动画，并且执行这个动画即可。</p>
+<h2 id="Block"><a href="#Block" class="headerlink" title="Block"></a><strong>Block</strong></h2><p>用于生成随机的障碍物。</p>
+<h3 id="Block-h"><a href="#Block-h" class="headerlink" title="Block.h"></a><strong>Block.h</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __Block_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __Block_H__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Block :<span class="keyword">public</span> Sprite</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(Block);</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="Block-cpp"><a href="#Block-cpp" class="headerlink" title="Block.cpp"></a><strong>Block.cpp</strong></h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Block.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">bool</span> Block::init()</div><div class="line">&#123;</div><div class="line">    Sprite::init();</div><div class="line"></div><div class="line">    Size <span class="built_in">size</span> = Size(rand() % <span class="number">30</span> + <span class="number">10</span>, rand() % <span class="number">30</span> + <span class="number">10</span>);</div><div class="line">    setContentSize(<span class="built_in">size</span>);</div><div class="line">    setAnchorPoint(Vec2(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line"></div><div class="line">    setTextureRect(Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">size</span>.<span class="built_in">width</span>, <span class="built_in">size</span>.<span class="built_in">height</span>));</div><div class="line">    setColor(Color3B::BLACK);</div><div class="line">    scheduleUpdate();</div><div class="line"></div><div class="line">    <span class="built_in">return</span> true;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Block::update(<span class="keyword">float</span> dt)</div><div class="line">&#123;</div><div class="line">    setPositionX(getPositionX() - <span class="number">6</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Block</code>的长和高被固定在10-39之间，然后我们将方块设置成黑色，并且调用定时器让这个方块每帧往左移动6。这里我们可以看出，并不是英雄在动，而是方块在不断地往前移，造成了英雄移动的假象。<code>rand()</code>是标准库函数，用于生成随机数。其实我们在使用这个函数时应该设立随机数种子，否则它生成的都是固定的数。</p>
+<h2 id="LayerOne"><a href="#LayerOne" class="headerlink" title="LayerOne"></a><strong>LayerOne</strong></h2><p><code>LayerOne</code>用于生成一个跑道，然后加入英雄和障碍物，并且进行碰撞检测。</p>
+<h3 id="LayerOne-h"><a href="#LayerOne-h" class="headerlink" title="LayerOne.h"></a><strong>LayerOne.h</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LayerOne_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __LayerOne_H__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Block.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"LayerOver.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Hero.h"</span></span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> LayerOne: <span class="keyword">public</span> LayerColor</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> LayerOne *<span class="title">create</span><span class="params">(<span class="keyword">int</span> layerIndex)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> layerIndex)</span></span>;</div><div class="line"></div><div class="line">    Size winSize = Director::getInstance()-&gt;getWinSize();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addGround</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addHero</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addBlocks</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">resetFrameCount</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">onTouchBegan</span><span class="params">(Touch *touch, Event *pEvent)</span></span>;</div><div class="line"></div><div class="line">    Hero *<span class="number">_</span>hero;</div><div class="line">    <span class="keyword">int</span> randFrameCount;</div><div class="line">    <span class="keyword">int</span> curFrameCount;</div><div class="line">    Vector&lt;Block *&gt; <span class="built_in">vector</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p><code>LayerOne</code>的创建方法接受一个参数，不过这个参数不是代表要生成多少个跑道。前面已经说了，<code>LayerOne</code>只生成一条跑道，所以这里代表的是第几条跑道，这样能够方便我们设置跑道所处的位置。<code>randFrameCount</code>和<code>curFrameCount</code>都是和随机生成有关，后面会讲到。</p>
+<h3 id="LayerOne-cpp"><a href="#LayerOne-cpp" class="headerlink" title="LayerOne.cpp"></a><strong>LayerOne.cpp</strong></h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include "LayerOne.h"</span></div><div class="line"></div><div class="line">LayerOne *LayerOne::create(int layerIndex)</div><div class="line">&#123;</div><div class="line">    LayerOne *pRet = new LayerOne()<span class="comment">;</span></div><div class="line">    if (pRet &amp;&amp; pRet-&gt;init(layerIndex))</div><div class="line">    &#123;</div><div class="line">        pRet-&gt;autorelease()<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">        delete pRet<span class="comment">;</span></div><div class="line">        pRet = NULL<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return pRet<span class="comment">;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool </span>LayerOne::init(int layerIndex)</div><div class="line">&#123;</div><div class="line"><span class="symbol">    LayerColor:</span>:initWithColor(Color<span class="number">4B</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))<span class="comment">;</span></div><div class="line"></div><div class="line">    setContentSize(Size(<span class="number">320</span>, <span class="number">150</span>))<span class="comment">;</span></div><div class="line">    setAnchorPoint(Vec2(<span class="number">0</span>, <span class="number">0</span>))<span class="comment">;</span></div><div class="line">    setPositionY(layerIndex * <span class="number">150</span> + <span class="number">20</span>)<span class="comment">;</span></div><div class="line"></div><div class="line">    <span class="keyword">addGround();</span></div><div class="line">    <span class="keyword">addHero();</span></div><div class="line"></div><div class="line">    auto listener = EventListenerTouchOneByOne::create()<span class="comment">;</span></div><div class="line">    listener-&gt;onTouchBegan = CC_CALLBACK_2(LayerOne::onTouchBegan, this)<span class="comment">;</span></div><div class="line">    listener-&gt;setSwallowTouches(true)<span class="comment">;</span></div><div class="line"><span class="symbol">    Director:</span>:getInstance()-&gt;getEventDispatcher()-&gt;<span class="keyword">addEventListenerWithSceneGraphPriority(listener, </span>this)<span class="comment">;</span></div><div class="line"></div><div class="line">    <span class="keyword">scheduleUpdate();</span></div><div class="line">    resetFrameCount()<span class="comment">;</span></div><div class="line"></div><div class="line">    return true<span class="comment">;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerOne::<span class="keyword">addGround()</span></div><div class="line">&#123;</div><div class="line">    Sprite *<span class="keyword">bg </span>= Sprite::create()<span class="comment">;</span></div><div class="line">    <span class="keyword">bg-&gt;setTextureRect(Rect(0, </span><span class="number">0</span>, winSize.width, <span class="number">4</span>))<span class="comment">;</span></div><div class="line">    <span class="keyword">bg-&gt;setColor(Color3B::BLACK);</span></div><div class="line">    <span class="keyword">bg-&gt;setAnchorPoint(Vec2(0, </span><span class="number">0</span>))<span class="comment">;</span></div><div class="line">    <span class="keyword">bg-&gt;setPosition(Vec2(0, </span><span class="number">0</span>))<span class="comment">;</span></div><div class="line">    <span class="keyword">addChild(bg);</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerOne::<span class="keyword">addHero()</span></div><div class="line">&#123;</div><div class="line">    _hero = Hero::create()<span class="comment">;</span></div><div class="line">    _hero-&gt;setPosition(Vec2(<span class="number">50</span>, <span class="number">4</span>))<span class="comment">;</span></div><div class="line">    <span class="keyword">addChild(_hero);</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerOne::<span class="keyword">addBlocks()</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">Block </span>*<span class="keyword">b </span>= <span class="keyword">Block::create();</span></div><div class="line">    <span class="keyword">b-&gt;setPosition(Vec2(320, </span><span class="number">4</span>))<span class="comment">;</span></div><div class="line">    <span class="keyword">addChild(b);</span></div><div class="line">    vector.pushBack(<span class="keyword">b);</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerOne::resetFrameCount()</div><div class="line">&#123;</div><div class="line">    curFrameCount = <span class="number">0</span><span class="comment">;</span></div><div class="line">    randFrameCount = rand() % <span class="number">40</span> + <span class="number">30</span><span class="comment">;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">void LayerOne::update(float dt)</div><div class="line">&#123;</div><div class="line">    curFrameCount++<span class="comment">;</span></div><div class="line">    if (curFrameCount &gt; randFrameCount)</div><div class="line">    &#123;</div><div class="line">        resetFrameCount()<span class="comment">;</span></div><div class="line">        <span class="keyword">addBlocks();</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    for (auto &amp;<span class="keyword">b </span>= vector.rbegin()<span class="comment">; b != vector.rend(); b++)</span></div><div class="line">    &#123;</div><div class="line">        if ((*<span class="keyword">b)-&gt;getPositionX() </span>&lt; <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            (*<span class="keyword">b)-&gt;removeFromParentAndCleanup(true);</span></div><div class="line">        &#125;</div><div class="line">        Rect rect = _hero-&gt;<span class="keyword">boundingBox();</span></div><div class="line">        rect.size.width -= <span class="number">30</span><span class="comment">;</span></div><div class="line">        if (rect.intersectsRect((*<span class="keyword">b)-&gt;boundingBox()))</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">Scene </span>*<span class="keyword">scene </span>= LayerOver::<span class="keyword">scene();</span></div><div class="line"><span class="symbol">            Director:</span>:getInstance()-&gt;replaceScene(<span class="keyword">scene);</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool </span>LayerOne::onTouchBegan(Touch *touch, Event *pEvent)</div><div class="line">&#123;</div><div class="line">    if (_hero-&gt;getPositionY() &gt; <span class="number">4</span>)</div><div class="line">    &#123;</div><div class="line">        return false<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (this-&gt;<span class="keyword">boundingBox().containsPoint(touch-&gt;getLocation()))</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">JumpBy </span>*<span class="keyword">by </span>= <span class="keyword">JumpBy::create(0.5, </span>Vec2(<span class="number">0</span>, <span class="number">0</span>), <span class="number">80</span>, <span class="number">1</span>)<span class="comment">;</span></div><div class="line">        _hero-&gt;runAction(<span class="keyword">by);</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return false<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>LayerOne</code>同样继承自<code>LayerColor</code>，主要是设置背景颜色为白色。这里我们将层的大小设置为长320高150，由于我们需要显示其他的内容，所以不把层的高度设置成窗口高度的1/3。层的位置设置就根据传入的<code>layerCount</code>，从下到上依次设置。<code>addGround()</code>其实就是在层的底部生成一条黑色的跑道，<code>addHero()</code>就是加入<code>Hero</code>类。</p>
+<p>关于触摸事件，这里要说明一下。由于我们只编写了一个<code>LayerOne</code>，当这个类被多次调用时，哪怕生成的跑道处在不同的位置，只要点击其中一条跑道，其他的两个都会执行回调事件。为了避免这种情况，我们对当前触摸点进行了判断，所以，只要触摸点处在当前层中，就会执行跳跃动作，而其他的层由于没有包含触摸点，所以不会有反应。</p>
+<p>其实这里比较关键的是<code>update()</code>，我们用<code>resetFrameCount()</code>生成了一个30到69之间的随机数，然后在<code>update()</code>将<code>curFrameCount</code>不断递增，这样就做到了随机生成障碍物，并且使得障碍物没有那么密集（因为最快也要30帧才能生成一个）。一旦我们的障碍物生成了，就需要再次调用<code>resetFrameCount()</code>，开始新一轮的递增。接下来是英雄的碰撞检测，我在之前的章节已经提到过了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>至此，我们完成了《一个都不能死》的游戏开发。项目实战进行到了第四个，我们会发现游戏开发需要严谨的架构和逻辑。这几个游戏虽然不大，但也不代表我们可以想怎么写就怎么写。这款游戏是一个很好的例子，它的层与层之间都分隔开来，一个层只完成一个工作。我们在编写函数时，也经常被教导说一个函数只完成一个工作。这不是多此一举，而是为了让代码结构清晰明了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+            <a href="/tags/项目实战/" rel="tag">#项目实战</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/Cocos2dx-note-27/" rel="next" title="Cocos2dx学习笔记（27）——音效SimpleAudioEngine">
+                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（27）——音效SimpleAudioEngine
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/21/Cocos2dx-practice-05/" rel="prev" title="Cocos2dx项目实战（5）——微信飞机大战">
+                Cocos2dx项目实战（5）——微信飞机大战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/18/Cocos2dx-practice-04/"
+           data-title="Cocos2dx项目实战（4）——一个都不能死" data-url="http://yoursite.com/2016/10/18/Cocos2dx-practice-04/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏效果展示"><span class="nav-number">1.</span> <span class="nav-text">游戏效果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏流程设计"><span class="nav-number">2.</span> <span class="nav-text">游戏流程设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LayerStart"><span class="nav-number">3.</span> <span class="nav-text">LayerStart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerStart-h"><span class="nav-number">3.1.</span> <span class="nav-text">LayerStart.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerStart-cpp"><span class="nav-number">3.2.</span> <span class="nav-text">LayerStart.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LayerMain"><span class="nav-number">4.</span> <span class="nav-text">LayerMain</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerMain-h"><span class="nav-number">4.1.</span> <span class="nav-text">LayerMain.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerMain-cpp"><span class="nav-number">4.2.</span> <span class="nav-text">LayerMain.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hero"><span class="nav-number">5.</span> <span class="nav-text">Hero</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hero-h"><span class="nav-number">5.1.</span> <span class="nav-text">Hero.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hero-cpp"><span class="nav-number">5.2.</span> <span class="nav-text">Hero.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block"><span class="nav-number">6.</span> <span class="nav-text">Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-h"><span class="nav-number">6.1.</span> <span class="nav-text">Block.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-cpp"><span class="nav-number">6.2.</span> <span class="nav-text">Block.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LayerOne"><span class="nav-number">7.</span> <span class="nav-text">LayerOne</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerOne-h"><span class="nav-number">7.1.</span> <span class="nav-text">LayerOne.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LayerOne-cpp"><span class="nav-number">7.2.</span> <span class="nav-text">LayerOne.cpp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
