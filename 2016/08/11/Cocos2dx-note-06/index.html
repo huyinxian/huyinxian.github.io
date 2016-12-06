@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160811104428.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160811110940.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160811124923.png">
-<meta property="og:updated_time" content="2016-11-05T04:00:43.799Z">
+<meta property="og:updated_time" content="2016-12-06T03:17:58.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（6）——精灵帧">
 <meta name="twitter:description" content="这一章将学习动画的基础准备工作。">
@@ -379,11 +379,11 @@
 
 <p>我们将图片加入到右边的方框中，软件将会自动将图片合成进入一张大图，然后点击上方的<strong>publish</strong>，保存文件即可。这样，我们便得到了两个文件，一个是合成之后的大图，另一个则是<code>.plist</code>的文件。关于这个<code>.plist</code>的文件，它是用于记录大图中各个元素的位置信息，方便我们取用。</p>
 <h2 id="精灵帧"><a href="#精灵帧" class="headerlink" title="精灵帧"></a><strong>精灵帧</strong></h2><p>这里有必要介绍一下精灵帧，它可以用于创建动画，也可以单独的拿出一张静态图片来创建精灵。首先呢，我们来介绍一下精灵帧缓存：</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCSpriteFrameCache::sharedSpriteFrameCache<span class="function"><span class="params">()</span>-&gt;</span>addSpriteFramesWithFile(<span class="string">"sprite/zombie.plist"</span>);</div><div class="line">CCSpriteFrame *sf = CCSpriteFrameCache::sharedSpriteFrameCache<span class="function"><span class="params">()</span>-&gt;</span>spriteFrameByName(<span class="string">"z_1_attack_01.png"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;addSpriteFramesWithFile(<span class="string">"sprite/zombie.plist"</span>);</div><div class="line">CCSpriteFrame *sf = CCSpriteFrameCache::sharedSpriteFrameCache()-&gt;spriteFrameByName(<span class="string">"z_1_attack_01.png"</span>);</div></pre></td></tr></table></figure>
 <p>显然，这个又是一个单例，用于将<code>.plist</code>文件加入精灵帧缓存。当然，该方法还有一个参数，可以将对应的大图加入进来。不过该方法会自动寻找同目录下的大图，所以一般不加。接下来，我们则需要创建一个<code>SpriteFrame</code>指针接收对应的图片元素。<code>sharedSpriteFrameCache()</code>提供了一个用元素名称寻找对应元素的方法，这个名称就是图片元素原来的名称。那么这里我们自然要从第一张图片开始。</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CCSprite *zombie = <span class="symbol">CCSprite:</span><span class="symbol">:createWithSpriteFrame</span>(sf);</div><div class="line">zombie-&gt;setPosition(ccp(<span class="number">400</span>, winsize.height / <span class="number">2</span>));</div><div class="line">addChild(zombie);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CCSprite *zombie = CCSprite::createWithSpriteFrame(sf);</div><div class="line">zombie-&gt;setPosition(ccp(<span class="number">400</span>, winsize.height / <span class="number">2</span>));</div><div class="line">addChild(zombie);</div></pre></td></tr></table></figure>
 <p>上述的代码中，我们使用精灵帧来创建精灵。精灵帧的运用很方便，即可以拿去创建动画，需要的时候也可以取一张图片来创建精灵。</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCSprite *zombie = CCSprite::createWithSpriteFrameName(<span class="string">"sprite/framecache/z_1_attack_01.png"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCSprite *zombie = CCSprite::createWithSpriteFrameName(<span class="string">"sprite/framecache/z_1_attack_01.png"</span>);</div></pre></td></tr></table></figure>
 <p>或者你可以直接一点，不需要创建<code>SpriteFrame</code>，直接用这个方法，效果是一样的，不过我们要提供图片的具体路径。</p>
 <center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160811124923.png" alt="示例图"></center>
 
@@ -522,7 +522,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
