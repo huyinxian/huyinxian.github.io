@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cocos2dx," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="缓冲动作类内容较多，本章单独讨论。">
+<meta name="description" content="本章开始将介绍Python简化代码的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（26）——缓冲动作类">
-<meta property="og:url" content="http://yoursite.com/2016/10/07/Cocos2dx-note-26/index.html">
+<meta property="og:title" content="Python学习笔记（12）——切片">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/Python-note-12/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="缓冲动作类内容较多，本章单独讨论。">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E6%8C%87%E6%95%B0%E7%BC%93%E5%86%B2.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/sine%E7%BC%93%E5%86%B2.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E5%BC%B9%E6%80%A7%E7%BC%93%E5%86%B2.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E8%B7%B3%E8%B7%83%E7%BC%93%E5%86%B2.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E5%9B%9E%E9%9C%87%E7%BC%93%E5%86%B2.png">
-<meta property="og:updated_time" content="2016-11-05T07:27:18.377Z">
+<meta property="og:description" content="本章开始将介绍Python简化代码的方法。">
+<meta property="og:updated_time" content="2016-12-08T06:32:41.808Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（26）——缓冲动作类">
-<meta name="twitter:description" content="缓冲动作类内容较多，本章单独讨论。">
-<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/%E6%8C%87%E6%95%B0%E7%BC%93%E5%86%B2.png">
+<meta name="twitter:title" content="Python学习笔记（12）——切片">
+<meta name="twitter:description" content="本章开始将介绍Python简化代码的方法。">
 
 
 
@@ -120,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/07/Cocos2dx-note-26/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/Python-note-12/"/>
 
-  <title> Cocos2dx学习笔记（26）——缓冲动作类 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（12）——切片 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -301,7 +295,7 @@
             
             
               
-                Cocos2dx学习笔记（26）——缓冲动作类
+                Python学习笔记（12）——切片
               
             
           </h1>
@@ -313,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T20:50:56+08:00" content="2016-10-07">
-              2016-10-07
+            <time itemprop="dateCreated" datetime="2016-12-08T13:19:05+08:00" content="2016-12-08">
+              2016-12-08
             </time>
           </span>
 
@@ -327,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2dx</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -343,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/07/Cocos2dx-note-26/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/Cocos2dx-note-26/" itemprop="commentsCount"></span>
+                <a href="/2016/12/08/Python-note-12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/Python-note-12/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -367,30 +361,48 @@
       
 
       
-        <p>缓冲动作类内容较多，本章单独讨论。<br><a id="more"></a></p>
+        <p>本章开始将介绍Python简化代码的方法。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="CCActionEase"><a href="#CCActionEase" class="headerlink" title="CCActionEase"></a><strong>CCActionEase</strong></h2><p>由于<code>CCSpeed</code>只能够线性地改变动作的速度，所以我们使用<code>CCActionEase</code>系列动作来解决速度变化这个问题。<code>CCActionEase</code>分为几个系列：</p>
-<ul>
-<li>线性变化<code>CCEase</code></li>
-<li>指数缓冲<code>CCEaseExponential</code></li>
-<li>Sine缓冲<code>CCEaseSineSine</code></li>
-<li>弹性缓冲<code>CCEaseBounce</code></li>
-<li>跳跃缓冲<code>CCEaseElastic</code></li>
-<li>回震缓冲<code>CCEaseBack</code></li>
-</ul>
-<p>每个系列都有<code>In</code>、<code>Out</code>、<code>InOut</code>三种后缀，代表着三种状态，下面用图片来解释它们的内容。</p>
-<h2 id="指数缓冲"><a href="#指数缓冲" class="headerlink" title="指数缓冲"></a><strong>指数缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E6%8C%87%E6%95%B0%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a><strong>缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/sine%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="弹性缓冲"><a href="#弹性缓冲" class="headerlink" title="弹性缓冲"></a><strong>弹性缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E5%BC%B9%E6%80%A7%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="跳跃缓冲"><a href="#跳跃缓冲" class="headerlink" title="跳跃缓冲"></a><strong>跳跃缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E8%B7%B3%E8%B7%83%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="回震缓冲"><a href="#回震缓冲" class="headerlink" title="回震缓冲"></a><strong>回震缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E5%9B%9E%E9%9C%87%E7%BC%93%E5%86%B2.png" alt=""></center>
-
+<h2 id="简化代码"><a href="#简化代码" class="headerlink" title="简化代码"></a><strong>简化代码</strong></h2><p>Python的代码追求简洁，越简单越好。那么，为了写出简短的代码，Python中也有很多技巧来帮助我们实现这一目的。</p>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a><strong>切片</strong></h2><p>我们现在有一个list，如果要取它的前三个元素，你会怎么做呢？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'hyx'</span>, <span class="string">'huyinx'</span>, <span class="string">'miao'</span>, <span class="string">'fantastic'</span>]</div><div class="line"><span class="keyword">print</span> [L[<span class="number">0</span>], L[<span class="number">1</span>], L[<span class="number">2</span>]]</div></pre></td></tr></table></figure>
+<p>然而问题扩展一下，比如取前n个元素，我们这个代码就没用了。所以呢，我们可以使用循环来做：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'hyx'</span>, <span class="string">'huyinx'</span>, <span class="string">'miao'</span>, <span class="string">'fantastic'</span>]</div><div class="line">r = []</div><div class="line">n = <span class="number">3</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">    r.append(L[i])</div><div class="line"></div><div class="line"><span class="keyword">print</span> r</div></pre></td></tr></table></figure>
+<p>这样一来，我们只需修改n的值，就能够轻松解决问题。不过，频繁使用循环过于繁琐，所以我们可以使用切片（Slice），能够大大简化操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'hyx'</span>, <span class="string">'huyinx'</span>, <span class="string">'miao'</span>, <span class="string">'fantastic'</span>]</div><div class="line"><span class="keyword">print</span> L[<span class="number">0</span>:<span class="number">3</span>]</div></pre></td></tr></table></figure>
+<p><code>L[0:3]</code>表示索引从0开始，一直到3结束（不包括3）。这个有点类似于C++中的泛型循环<code>for(auto &amp;e : array)</code>，不过这个更加方便一点。</p>
+<p>而且如果第一个索引为0，还可以省略不写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'hyx'</span>, <span class="string">'huyinx'</span>, <span class="string">'miao'</span>, <span class="string">'fantastic'</span>]</div><div class="line"><span class="keyword">print</span> L[:<span class="number">3</span>]</div></pre></td></tr></table></figure>
+<p>当然，我们也可以倒数切片，-1也可以省略：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'hyx'</span>, <span class="string">'huyinx'</span>, <span class="string">'miao'</span>, <span class="string">'fantastic'</span>]</div><div class="line"><span class="keyword">print</span> L[<span class="number">-2</span>:<span class="number">-1</span>]</div><div class="line"><span class="keyword">print</span> L[<span class="number">-2</span>:]</div></pre></td></tr></table></figure>
+<p>切片操作的用法不止这些，比如我们先创建一个数列：</p>
+<pre><code>&gt;&gt;&gt; L = range(100)
+&gt;&gt;&gt; L
+[0, 1, 2, 3, ..., 99]
+</code></pre><p>我们可以快速取出前10个数：</p>
+<pre><code>&gt;&gt;&gt; L[:10]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre><p>取出后10个数：</p>
+<pre><code>&gt;&gt;&gt; L[-10:]
+[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+</code></pre><p>取出11-20：</p>
+<pre><code>&gt;&gt;&gt; L[10:20]
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+</code></pre><p>前10个数，每隔两个取一个：</p>
+<pre><code>&gt;&gt;&gt; L[:10:2]
+[0, 2, 4, 6, 8]
+</code></pre><p>所有数，每十个取一个：</p>
+<pre><code>&gt;&gt;&gt; L[::10]
+[0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+</code></pre><p>如果你只写一个<code>:</code>，那么就相当于复制一个数组。至于tuple也是一样，只不过tuple切片后依旧是tuple。</p>
+<p>另外，字符串也可以看做是一种list，只不过操作结果依旧是字符串：</p>
+<pre><code>&gt;&gt;&gt; &apos;abcdefg&apos;[:5]
+&apos;abcde&apos;
+&gt;&gt;&gt; &apos;abcdefg&apos;[::2]
+&apos;aceg&apos;
+</code></pre>
       
     </div>
 
@@ -412,7 +424,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
           
         </div>
       
@@ -421,17 +433,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/06/Cocos2dx-note-25/" rel="next" title="Cocos2dx学习笔记（25）——回调函数">
-                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（25）——回调函数
+              <a href="/2016/12/07/Python-note-11/" rel="next" title="Python学习笔记（11）——递归函数">
+                <i class="fa fa-chevron-left"></i> Python学习笔记（11）——递归函数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/17/Cocos2dx-note-27/" rel="prev" title="Cocos2dx学习笔记（27）——音效SimpleAudioEngine">
-                Cocos2dx学习笔记（27）——音效SimpleAudioEngine <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,8 +488,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/07/Cocos2dx-note-26/"
-           data-title="Cocos2dx学习笔记（26）——缓冲动作类" data-url="http://yoursite.com/2016/10/07/Cocos2dx-note-26/">
+      <div class="ds-thread" data-thread-key="2016/12/08/Python-note-12/"
+           data-title="Python学习笔记（12）——切片" data-url="http://yoursite.com/2016/12/08/Python-note-12/">
       </div>
     
   </div>
@@ -610,7 +618,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CCActionEase"><span class="nav-number">1.</span> <span class="nav-text">CCActionEase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指数缓冲"><span class="nav-number">2.</span> <span class="nav-text">指数缓冲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲"><span class="nav-number">3.</span> <span class="nav-text">缓冲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弹性缓冲"><span class="nav-number">4.</span> <span class="nav-text">弹性缓冲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳跃缓冲"><span class="nav-number">5.</span> <span class="nav-text">跳跃缓冲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回震缓冲"><span class="nav-number">6.</span> <span class="nav-text">回震缓冲</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简化代码"><span class="nav-number">1.</span> <span class="nav-text">简化代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切片"><span class="nav-number">2.</span> <span class="nav-text">切片</span></a></li></ol></div>
             
           </div>
         </section>
