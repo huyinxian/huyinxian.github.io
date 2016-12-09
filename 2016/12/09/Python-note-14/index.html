@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cocos2dx," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
+<meta name="description" content="本章介绍如何快速生成有序列表。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（2）——精灵的创建">
-<meta property="og:url" content="http://yoursite.com/2016/08/08/Cocos2dx-note-02/index.html">
+<meta property="og:title" content="Python学习笔记（14）——列表生成式">
+<meta property="og:url" content="http://yoursite.com/2016/12/09/Python-note-14/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
-<meta property="og:updated_time" content="2016-12-06T03:18:31.214Z">
+<meta property="og:description" content="本章介绍如何快速生成有序列表。">
+<meta property="og:updated_time" content="2016-12-09T09:50:33.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（2）——精灵的创建">
-<meta name="twitter:description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
+<meta name="twitter:title" content="Python学习笔记（14）——列表生成式">
+<meta name="twitter:description" content="本章介绍如何快速生成有序列表。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/08/Cocos2dx-note-02/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/09/Python-note-14/"/>
 
-  <title> Cocos2dx学习笔记（2）——精灵的创建 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（14）——列表生成式 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Cocos2dx学习笔记（2）——精灵的创建
+                Python学习笔记（14）——列表生成式
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T20:11:34+08:00" content="2016-08-08">
-              2016-08-08
+            <time itemprop="dateCreated" datetime="2016-12-09T16:29:21+08:00" content="2016-12-09">
+              2016-12-09
             </time>
           </span>
 
@@ -321,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2dx</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/08/Cocos2dx-note-02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/Cocos2dx-note-02/" itemprop="commentsCount"></span>
+                <a href="/2016/12/09/Python-note-14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/Python-note-14/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,20 +361,43 @@
       
 
       
-        <p>这一章讲学习怎么创建精灵，以及对于精灵的初始化方法<br><a id="more"></a></p>
+        <p>本章介绍如何快速生成有序列表。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="MyLayer-h"><a href="#MyLayer-h" class="headerlink" title="MyLayer.h"></a><strong>MyLayer.h</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MyLayer: <span class="keyword">public</span> CCLayer</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(MyLayer);</div><div class="line">    <span class="comment">//static MyLayer *create();</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScene *<span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>非常简单的一个层，和上一章所讲的<code>HelloWorldScene</code>是一样的。由于是之前写的代码，所以就带上了<code>CC</code>的前缀，在这里就不做赘述。</p>
-<h2 id="MyLayer-cpp"><a href="#MyLayer-cpp" class="headerlink" title="MyLayer.cpp"></a><strong>MyLayer.cpp</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> MyLayer::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!CCLayer::init())  <span class="comment">//如果父类初始化失败，返回false</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//父类初始化成功</span></div><div class="line"></div><div class="line">    <span class="comment">//获取屏幕尺寸</span></div><div class="line">    CCSize winSize = CCDirector::sharedDirector()-&gt;getWinSize();</div><div class="line"></div><div class="line">    <span class="comment">//创建精灵</span></div><div class="line">    CCSprite *spr = CCSprite::create(<span class="string">"bg.png"</span>);</div><div class="line">    spr-&gt;setPosition(ccp(winSize.width / <span class="number">2</span>, winSize.height / <span class="number">2</span>));</div><div class="line">    addChild(spr);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里的<code>init()</code>比之上一章要丰富许多。判断父类初始化不用多说，至于winSize是用于存储窗口的大小。这里可以通过<code>Director</code>的单例来获取窗口大小，即<code>Director::getInstance()-&gt;getWinSize()</code>。接下来便是创建精灵，上一章讲过，除了可以添加CocosStudio中生成的csb文件，一般来说都是通过创建精灵来加入图片等元素。我们创建一个指向精灵的指针，并用<code>bg.png</code>来初始化精灵。这里要注意的是，文件的初始路径指定为工程文件下的<code>Resources</code>。如果还有更深一层的目录，用“/”来隔开。</p>
-<p>初始化了精灵，我们可以使用<code>setPostion()</code>来设定精灵位置。所谓的<code>ccp</code>是一个宏，用于坐标的参数设定，包含长和宽两个参数（也就是x和y）。这里我们利用事先获得的<code>winSize</code>将精灵位置设置为窗口正中央。另外，别忘记将精灵加入层。由于是层的<code>init()</code>方法，直接使用<code>addChild()</code>即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CCScene *MyLayer::scene()</div><div class="line">&#123;</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    MyLayer *layer = MyLayer::create();</div><div class="line">    scene-&gt;addChild(layer);</div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>至于<code>scene()</code>方法的实现与上一章所讲的<code>createScene()</code>是一样的，同样不多费口舌。</p>
-<p>精灵的创建方法有很多，这里的<code>Sprite::create()</code>自然是最简单的一种，下面介绍几种方法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div></pre></td></tr></table></figure>
-<p>前两种是静态工厂方法，后两种是精灵的初始化方法。另外，<code>rect</code>代表的是精灵显示纹理，至于什么是纹理，以后在单独总结。</p>
+<h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a><strong>列表生成式</strong></h2><p>之前我们讲过<code>range</code>，可以快速生成一个有序列表。但是，如果我们生成不连续的列表呢？我们可以循环：</p>
+<pre><code>&gt;&gt;&gt; for x in range(1, 11):
+...     L.append(x * x)
+...
+&gt;&gt;&gt; L
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</code></pre><p>当然，我们会有更简单的方法：</p>
+<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</code></pre><p>可以看出来，我们把下面的语句放到了for循环前面，整个列表生成式会返回一个list。</p>
+<p>for后面还可以将判断语句，进一步帮助我们生成我们需要的列表：</p>
+<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+</code></pre><p>这样我们就筛选出了所有的偶数。当然，如果我们需要生成全排列（具体请看数据结构与算法），那么可以使用双层循环：</p>
+<pre><code>&gt;&gt;&gt; [m + n for m in &apos;abc&apos; for n in &apos;xyz&apos;]
+[&apos;ax&apos;, &apos;ay&apos;, &apos;az&apos;, &apos;bx&apos;, &apos;by&apos;, &apos;bz&apos;, &apos;cx&apos;, &apos;cy&apos;, &apos;cz&apos;]
+</code></pre><p>那么我们可以做一个简单的练习，列出当前目录下所有的文件和目录名：</p>
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; [d for d in os.listdir(&apos;.&apos;)]
+[&apos;def.py&apos;, &apos;def2.py&apos;, &apos;def3.py&apos;, &apos;for.py&apos;, &apos;for2.py&apos;, &apos;HelloName.py&apos;, &apos;HelloWorld.py&apos;, &apos;ifelse.py&apos;, &apos;qiepian.py&apos;]
+</code></pre><p>之前我们说过，for循环可以使用两个变量来同时迭代索引和元素：</p>
+<pre><code>&gt;&gt;&gt; d = {&apos;x&apos;: &apos;A&apos;, &apos;y&apos;: &apos;B&apos;, &apos;z&apos;: &apos;C&apos; }
+&gt;&gt;&gt; for k, v in d.iteritems():
+...     print k, &apos;=&apos;, v
+... 
+y = B
+x = A
+z = C
+</code></pre><p>列表生成式也可以使用两个变量来生成list：</p>
+<pre><code>&gt;&gt;&gt; d = {&apos;x&apos;: &apos;A&apos;, &apos;y&apos;: &apos;B&apos;, &apos;z&apos;: &apos;C&apos;}
+&gt;&gt;&gt; [k + &apos;=&apos; + v for k, v in d.iteritems()]
+[&apos;y=B&apos;, &apos;x=A&apos;, &apos;z=C&apos;]
+</code></pre><p>这里我们演示用的都是dict，因为dict可以让key和value一一对应，这里我们也知道了如何使用两个变量来获取dict的key和value。</p>
 
       
     </div>
@@ -397,7 +420,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
           
         </div>
       
@@ -406,17 +429,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/Cocos2dx-note-01/" rel="next" title="Cocos2dx学习笔记（1）——认识HelloWorld">
-                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（1）——认识HelloWorld
+              <a href="/2016/12/09/Python-note-13/" rel="next" title="Python学习笔记（13）——迭代">
+                <i class="fa fa-chevron-left"></i> Python学习笔记（13）——迭代
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/08/Cocos2dx-note-03/" rel="prev" title="Cocos2dx学习笔记（3）——锚点">
-                Cocos2dx学习笔记（3）——锚点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +484,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/08/Cocos2dx-note-02/"
-           data-title="Cocos2dx学习笔记（2）——精灵的创建" data-url="http://yoursite.com/2016/08/08/Cocos2dx-note-02/">
+      <div class="ds-thread" data-thread-key="2016/12/09/Python-note-14/"
+           data-title="Python学习笔记（14）——列表生成式" data-url="http://yoursite.com/2016/12/09/Python-note-14/">
       </div>
     
   </div>
@@ -595,7 +614,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyLayer-h"><span class="nav-number">1.</span> <span class="nav-text">MyLayer.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyLayer-cpp"><span class="nav-number">2.</span> <span class="nav-text">MyLayer.cpp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表生成式"><span class="nav-number">1.</span> <span class="nav-text">列表生成式</span></a></li></ol></div>
             
           </div>
         </section>

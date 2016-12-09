@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cocos2dx," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
+<meta name="description" content="本章介绍迭代的简化代码方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（2）——精灵的创建">
-<meta property="og:url" content="http://yoursite.com/2016/08/08/Cocos2dx-note-02/index.html">
+<meta property="og:title" content="Python学习笔记（13）——迭代">
+<meta property="og:url" content="http://yoursite.com/2016/12/09/Python-note-13/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
-<meta property="og:updated_time" content="2016-12-06T03:18:31.214Z">
+<meta property="og:description" content="本章介绍迭代的简化代码方法。">
+<meta property="og:updated_time" content="2016-12-09T08:24:07.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（2）——精灵的创建">
-<meta name="twitter:description" content="这一章讲学习怎么创建精灵，以及对于精灵的初始化方法">
+<meta name="twitter:title" content="Python学习笔记（13）——迭代">
+<meta name="twitter:description" content="本章介绍迭代的简化代码方法。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/08/Cocos2dx-note-02/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/09/Python-note-13/"/>
 
-  <title> Cocos2dx学习笔记（2）——精灵的创建 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（13）——迭代 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Cocos2dx学习笔记（2）——精灵的创建
+                Python学习笔记（13）——迭代
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T20:11:34+08:00" content="2016-08-08">
-              2016-08-08
+            <time itemprop="dateCreated" datetime="2016-12-09T11:31:19+08:00" content="2016-12-09">
+              2016-12-09
             </time>
           </span>
 
@@ -321,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2dx</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/08/Cocos2dx-note-02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/Cocos2dx-note-02/" itemprop="commentsCount"></span>
+                <a href="/2016/12/09/Python-note-13/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/Python-note-13/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,20 +361,53 @@
       
 
       
-        <p>这一章讲学习怎么创建精灵，以及对于精灵的初始化方法<br><a id="more"></a></p>
+        <p>本章介绍迭代的简化代码方法。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="MyLayer-h"><a href="#MyLayer-h" class="headerlink" title="MyLayer.h"></a><strong>MyLayer.h</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MyLayer: <span class="keyword">public</span> CCLayer</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(MyLayer);</div><div class="line">    <span class="comment">//static MyLayer *create();</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScene *<span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>非常简单的一个层，和上一章所讲的<code>HelloWorldScene</code>是一样的。由于是之前写的代码，所以就带上了<code>CC</code>的前缀，在这里就不做赘述。</p>
-<h2 id="MyLayer-cpp"><a href="#MyLayer-cpp" class="headerlink" title="MyLayer.cpp"></a><strong>MyLayer.cpp</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> MyLayer::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!CCLayer::init())  <span class="comment">//如果父类初始化失败，返回false</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//父类初始化成功</span></div><div class="line"></div><div class="line">    <span class="comment">//获取屏幕尺寸</span></div><div class="line">    CCSize winSize = CCDirector::sharedDirector()-&gt;getWinSize();</div><div class="line"></div><div class="line">    <span class="comment">//创建精灵</span></div><div class="line">    CCSprite *spr = CCSprite::create(<span class="string">"bg.png"</span>);</div><div class="line">    spr-&gt;setPosition(ccp(winSize.width / <span class="number">2</span>, winSize.height / <span class="number">2</span>));</div><div class="line">    addChild(spr);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里的<code>init()</code>比之上一章要丰富许多。判断父类初始化不用多说，至于winSize是用于存储窗口的大小。这里可以通过<code>Director</code>的单例来获取窗口大小，即<code>Director::getInstance()-&gt;getWinSize()</code>。接下来便是创建精灵，上一章讲过，除了可以添加CocosStudio中生成的csb文件，一般来说都是通过创建精灵来加入图片等元素。我们创建一个指向精灵的指针，并用<code>bg.png</code>来初始化精灵。这里要注意的是，文件的初始路径指定为工程文件下的<code>Resources</code>。如果还有更深一层的目录，用“/”来隔开。</p>
-<p>初始化了精灵，我们可以使用<code>setPostion()</code>来设定精灵位置。所谓的<code>ccp</code>是一个宏，用于坐标的参数设定，包含长和宽两个参数（也就是x和y）。这里我们利用事先获得的<code>winSize</code>将精灵位置设置为窗口正中央。另外，别忘记将精灵加入层。由于是层的<code>init()</code>方法，直接使用<code>addChild()</code>即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CCScene *MyLayer::scene()</div><div class="line">&#123;</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    MyLayer *layer = MyLayer::create();</div><div class="line">    scene-&gt;addChild(layer);</div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>至于<code>scene()</code>方法的实现与上一章所讲的<code>createScene()</code>是一样的，同样不多费口舌。</p>
-<p>精灵的创建方法有很多，这里的<code>Sprite::create()</code>自然是最简单的一种，下面介绍几种方法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pszFileName, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div></pre></td></tr></table></figure>
-<p>前两种是静态工厂方法，后两种是精灵的初始化方法。另外，<code>rect</code>代表的是精灵显示纹理，至于什么是纹理，以后在单独总结。</p>
+<h2 id="传统迭代"><a href="#传统迭代" class="headerlink" title="传统迭代"></a><strong>传统迭代</strong></h2><p>说得简单点就是使用循环，不管你是用for还是用while。Python中是使用<code>for in</code>来实现迭代，而其他语言比如C++，是使用下标来完成的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i != <span class="number">4</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; arr[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不过呢，Python的迭代要更加强大一点，因为迭代不一定要用于list或者tuple，还可以用在其他的对象上。</p>
+<p>虽然说list有下标，但是哪怕是没有下标的对象，比如说dict，也是可以使用迭代的：</p>
+<pre><code>&gt;&gt;&gt; dic = {&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 3}
+&gt;&gt;&gt; for key in dic:
+...     print key
+...
+a
+c
+b
+</code></pre><p>因为dict并不是按照顺序存储，所以读出来的顺序可能不一样。一般来说，list按照key来进行迭代，如果要迭代的是value，那么可以使用<code>for value in dic.itervalues()</code>。如果同时迭代key和value，那么可以用<code>for k, v in d.iteritems()</code>。</p>
+<p>另外，字符串也可以使用for循环：</p>
+<pre><code>&gt;&gt;&gt; for ch in &apos;abc&apos;:
+...     print ch
+...
+a
+b
+c
+</code></pre><p>那么，哪些是可迭代对象呢？我们可以通过<code>collections</code>的<code>Iterable</code>进行判断：</p>
+<pre><code>&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterable)
+True
+&gt;&gt;&gt; isinstance([1, 2, 3], Iterable)
+True
+&gt;&gt;&gt; isinstance(123, Iterable)
+False
+</code></pre><p>当然，如果你一定要下标迭代，那么可以使用<code>enumerate</code>函数，它可以把一个list转变成索引+元素的类型，那么这样就可以使用下标迭代：</p>
+<pre><code>&gt;&gt;&gt; for i, value in enumerate([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]):
+...     print i, value
+...
+0 a
+1 b
+2 c
+</code></pre><p>这样一来，就可以同时迭代索引和元素本身。</p>
+<p>当然，如果我们不需要下标，我们同样可以使用两个变量来迭代，比如：</p>
+<pre><code>&gt;&gt;&gt; for x, y in [(1, 2), (3, 4), (5, 6)]:
+...     print x, y
+...
+1 2
+3 4
+5 6
+</code></pre><p>如果list中的元素时tuple，那么我们就可以使用两个变量来获取每个元素。</p>
 
       
     </div>
@@ -397,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
           
         </div>
       
@@ -406,16 +439,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/Cocos2dx-note-01/" rel="next" title="Cocos2dx学习笔记（1）——认识HelloWorld">
-                <i class="fa fa-chevron-left"></i> Cocos2dx学习笔记（1）——认识HelloWorld
+              <a href="/2016/12/08/CSharp-note-01/" rel="next" title="C#学习笔记（1）——HelloWorld">
+                <i class="fa fa-chevron-left"></i> C#学习笔记（1）——HelloWorld
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/08/Cocos2dx-note-03/" rel="prev" title="Cocos2dx学习笔记（3）——锚点">
-                Cocos2dx学习笔记（3）——锚点 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Python-note-14/" rel="prev" title="Python学习笔记（14）——列表生成式">
+                Python学习笔记（14）——列表生成式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,8 +498,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/08/Cocos2dx-note-02/"
-           data-title="Cocos2dx学习笔记（2）——精灵的创建" data-url="http://yoursite.com/2016/08/08/Cocos2dx-note-02/">
+      <div class="ds-thread" data-thread-key="2016/12/09/Python-note-13/"
+           data-title="Python学习笔记（13）——迭代" data-url="http://yoursite.com/2016/12/09/Python-note-13/">
       </div>
     
   </div>
@@ -595,7 +628,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyLayer-h"><span class="nav-number">1.</span> <span class="nav-text">MyLayer.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyLayer-cpp"><span class="nav-number">2.</span> <span class="nav-text">MyLayer.cpp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统迭代"><span class="nav-number">1.</span> <span class="nav-text">传统迭代</span></a></li></ol></div>
             
           </div>
         </section>
