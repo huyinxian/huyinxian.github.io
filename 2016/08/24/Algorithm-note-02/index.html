@@ -86,13 +86,13 @@
 
 <meta name="description" content="本章讲一讲动态规划的基础。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法学习笔记（2）——背包问题">
+<meta property="og:title" content="数据结构与算法学习笔记（2）——动态规划">
 <meta property="og:url" content="http://yoursite.com/2016/08/24/Algorithm-note-02/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章讲一讲动态规划的基础。">
-<meta property="og:updated_time" content="2016-12-06T03:22:21.769Z">
+<meta property="og:updated_time" content="2017-04-01T07:41:01.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法学习笔记（2）——背包问题">
+<meta name="twitter:title" content="数据结构与算法学习笔记（2）——动态规划">
 <meta name="twitter:description" content="本章讲一讲动态规划的基础。">
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/08/24/Algorithm-note-02/"/>
 
-  <title> 数据结构与算法学习笔记（2）——背包问题 | 先哥哥<(^ - ^)/ </title>
+  <title> 数据结构与算法学习笔记（2）——动态规划 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                数据结构与算法学习笔记（2）——背包问题
+                数据结构与算法学习笔记（2）——动态规划
               
             
           </h1>
@@ -365,14 +365,14 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a><strong>问题引入</strong></h2><p>话说一天晚上，有一个小偷悄悄地进入了一家珠宝店，珠宝店里有着各式各样的宝石。但是呢，<strong>由于他的背包体积有限</strong>，所以他只能带走一部分宝石。那么，如何选择才能使小偷带走的宝石是价值最高的呢？有的人可能会说，我只挑那些价值最高的宝石不就可以了吗？然而，价值高的宝石并不代表着它是最好的选择。这个问题有一个限制条件，那就是小偷的背包有体积限制。所以，我们在考虑问题时必须同时考虑价值和体积两个方面。</p>
-<h2 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a><strong>如何选择</strong></h2><p>事实上，如果宝石价值高同时体积也大，那么它每一体积所占的价值并不是最高的，这里我用一个词来描述这个概念，那就是<strong>性价比</strong>。我们最好的选择并不一定是价值最高的宝石，而可能那些性价比最高的宝石。那么问题来了，我们是不是只装性价比最高的宝石呢？这看起来确实是一种明智的选择，但是，还是那个问题，小偷的背包体积有限，而且并不一定能够刚好装满。我们遇到的问题有下面几个：</p>
+<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a><strong>背包问题</strong></h2><p>话说一天晚上，有一个小偷悄悄地进入了一家珠宝店，珠宝店里有着各式各样的宝石。但是呢，<strong>由于他的背包体积有限</strong>，所以他只能带走一部分宝石。那么，如何选择才能使小偷带走的宝石是价值最高的呢？有的人可能会说，我只挑那些价值最高的宝石不就可以了吗？然而，价值高的宝石并不代表着它是最好的选择。这个问题有一个限制条件，那就是小偷的背包有体积限制。所以，我们在考虑问题时必须同时考虑价值和体积两个方面。</p>
+<h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a><strong>如何选择</strong></h3><p>事实上，如果宝石价值高同时体积也大，那么它每一体积所占的价值并不是最高的，这里我用一个词来描述这个概念，那就是<strong>性价比</strong>。我们最好的选择并不一定是价值最高的宝石，而可能那些性价比最高的宝石。那么问题来了，我们是不是只装性价比最高的宝石呢？这看起来确实是一种明智的选择，但是，还是那个问题，小偷的背包体积有限，而且并不一定能够刚好装满。我们遇到的问题有下面几个：</p>
 <ul>
 <li>到底是选择性价比高的宝石还是价值高的宝石</li>
 <li>把背包装满好还是不装满好</li>
 </ul>
 <p>我之所以用可能这个词，是因为全部选择性价比高的宝石并不一定是最好的选择。你可能又会奇怪，性价比高不是最好吗？但是呢，宝石的体积不同，我们如果全部选择性价比高的宝石，不一定能将背包刚好装满。那么，如果我们选择体积大价值大的宝石，可能会比选择几个性价比高的宝石要更好。仔细思考你会发现，这个问题很复杂，直接想是很难得出答案的。因此，我们最好将大的问题缩小成一个同类型的问题，那么这也就是动态规划的核心。</p>
-<h2 id="动态规划方程"><a href="#动态规划方程" class="headerlink" title="动态规划方程"></a><strong>动态规划方程</strong></h2><p>假如有<code>i</code>个宝石，宝石从<code>0</code>到<code>i-1</code>编号，背包的体积为<code>j</code>，<code>w[i]</code>表示第i号宝石的价值，<code>v[i]</code>表示第<code>i</code>号宝石的体积。我们规定<code>d[i][j]</code>代表的是用<code>j</code>体积的背包装入<code>i</code>个宝石所能得到的最大价值。我们现在试着将问题缩小，考虑装入第<code>i-1</code>号宝石的情况：</p>
+<h3 id="动态规划方程"><a href="#动态规划方程" class="headerlink" title="动态规划方程"></a><strong>动态规划方程</strong></h3><p>假如有<code>i</code>个宝石，宝石从<code>0</code>到<code>i-1</code>编号，背包的体积为<code>j</code>，<code>w[i]</code>表示第i号宝石的价值，<code>v[i]</code>表示第<code>i</code>号宝石的体积。我们规定<code>d[i][j]</code>代表的是用<code>j</code>体积的背包装入<code>i</code>个宝石所能得到的最大价值。我们现在试着将问题缩小，考虑装入第<code>i-1</code>号宝石的情况：</p>
 <ul>
 <li>如果不装第<code>i-1</code>号宝石，那么<code>d[i][j]</code>就等于<code>d[i - 1][j]</code></li>
 <li>如果装入第<code>i-1</code>号宝石，那么<code>d[i][j]</code>就等于<code>d[i - 1][j - v[i - 1]] + w[i - 1]</code></li>
@@ -422,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/26/Algorithm-note-03/" rel="prev" title="数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索">
-                数据结构与算法学习笔记（3）——广度优先搜索与深度优先搜索 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/26/Algorithm-note-03/" rel="prev" title="数据结构与算法学习笔记（3）——搜索">
+                数据结构与算法学习笔记（3）——搜索 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +474,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/08/24/Algorithm-note-02/"
-           data-title="数据结构与算法学习笔记（2）——背包问题" data-url="http://yoursite.com/2016/08/24/Algorithm-note-02/">
+           data-title="数据结构与算法学习笔记（2）——动态规划" data-url="http://yoursite.com/2016/08/24/Algorithm-note-02/">
       </div>
     
   </div>
@@ -519,7 +519,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -603,7 +603,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题引入"><span class="nav-number">1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择"><span class="nav-number">2.</span> <span class="nav-text">如何选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划方程"><span class="nav-number">3.</span> <span class="nav-text">动态规划方程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背包问题"><span class="nav-number">1.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择"><span class="nav-number">1.1.</span> <span class="nav-text">如何选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划方程"><span class="nav-number">1.2.</span> <span class="nav-text">动态规划方程</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

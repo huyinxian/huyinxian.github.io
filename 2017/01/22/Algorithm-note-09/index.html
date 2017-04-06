@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法,数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="许久未更新，继续将数据结构的知识整理一遍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法学习笔记（9）——排序">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/Algorithm-note-09/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="许久未更新，继续将数据结构的知识整理一遍。">
+<meta property="og:updated_time" content="2017-04-06T08:21:08.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法学习笔记（9）——排序">
+<meta name="twitter:description" content="许久未更新，继续将数据结构的知识整理一遍。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/22/Algorithm-note-09/"/>
+
+  <title> 数据结构与算法学习笔记（9）——排序 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构与算法学习笔记（9）——排序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T15:41:14+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/22/Algorithm-note-09/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/Algorithm-note-09/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>许久未更新，继续将数据结构的知识整理一遍。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="O-N²-复杂度"><a href="#O-N²-复杂度" class="headerlink" title="O(N²)复杂度"></a><strong>O(N²)复杂度</strong></h2><p>有冒泡排序、选择排序、插入排序三种。</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h3><ul>
+<li>设i=0，那么比较i和i+1的大小，大的放后面</li>
+<li>++i，重复上述过程</li>
+<li>当完成一轮排序后，设i=1，进行第二轮排序</li>
+<li>若数列长度为n，当进行完n-1次排序后，所得数列便是由小到大排布</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a><strong>选择排序</strong></h3><ul>
+<li>设数列长度为n，从0~n-1中选出最小的数，放到索引0处</li>
+<li>从1~n-1中选出最小的数，放到索引1处</li>
+<li>重复上述过程，直到数列结束</li>
+</ul>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a><strong>插入排序</strong></h3><ul>
+<li>设i=0，比较i与i+1，若i小于i+1，那么二者交换位置</li>
+<li>++i，将i+1与0~i进行比较，当某个数小于i+1时，将i+1插在它的后面，否则将i+1放在第一位</li>
+<li>重复上述过程，直到数列结束</li>
+</ul>
+<h2 id="O-N-logN-复杂度"><a href="#O-N-logN-复杂度" class="headerlink" title="O(N*logN)复杂度"></a><strong>O(N*logN)复杂度</strong></h2><p>有归并排序、快速排序、堆排序、希尔排序四种</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><strong>归并排序</strong></h3><ul>
+<li>将数列划分为长度为1的多个小块</li>
+<li>相邻的两个块进行合并，合并时按照由小到大的顺序</li>
+<li>当前块的长度都为2，合并相邻两个块，按照由小到大排序</li>
+<li>重复上述过程，直到剩下一个块</li>
+</ul>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><strong>快速排序</strong></h3><ul>
+<li>将数列最左边的数作为基准数flag，i和j的初始值为数列左右两边的位置索引</li>
+<li>–j，从右往左进行查找，直到找到一个小于基准数的数</li>
+<li>++i，从左往右进行查找，直到找到一个大于基准数的数</li>
+<li>交换a[i]和a[j]的位置</li>
+<li>交换a[i]和a[left]，并将a[i]作为新的基准数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i, j, t, flag;</div><div class="line">    <span class="keyword">if</span>(left &gt; right)  <span class="comment">//如果左边值大于右边值，证明排序结束</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    i = left;</div><div class="line">    j = right;</div><div class="line">    flag = a[left];  <span class="comment">//flag即为基准数</span></div><div class="line"></div><div class="line">    <span class="keyword">while</span>(i != j)  <span class="comment">//该循环一直到i和j重合为止，使得结束循环时，基准数大于等于左边小于等于右边</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span>(a[j] &gt;= flag &amp;&amp; i &lt; j)  <span class="comment">//先从右往左找，找到一个比基准数小的数停下，同时也要保证i&lt;j</span></div><div class="line">            j--;</div><div class="line">        <span class="keyword">while</span>(a[i] &lt;= flag &amp;&amp; i &lt; j)  <span class="comment">//从左往右找到一个比基准数大的数停下</span></div><div class="line">            i++;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(i &lt; j)  <span class="comment">//一定要保证i&lt;j，也就是没有重合，重合就应该退出，否则没有意义</span></div><div class="line">        &#123;</div><div class="line">            t = a[i];</div><div class="line">            a[i] = a[j];</div><div class="line">            a[j] = t;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    a[left] = a[i];  <span class="comment">//将基准数调整位置</span></div><div class="line">    a[i] = flag;</div><div class="line"></div><div class="line">    quicksort(left, right - <span class="number">1</span>);  <span class="comment">//将基准数左边的数列排序</span></div><div class="line">    quicksort(left + <span class="number">1</span>, right);  <span class="comment">//将基准数右边的数列排序</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><strong>堆排序</strong></h3><p>堆排序首先要知道如何生成最小堆，具体的我会在二叉树一章讲解。</p>
+<ul>
+<li>将数列调整为最小堆</li>
+<li>将顶部结点删除，并记录到数组中</li>
+<li>将末尾结点移至顶部，并调整为最小堆</li>
+<li>重复上述过程，直至堆为空</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span>  <span class="comment">//交换x和y的数据</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> t;</div><div class="line">    t = h[x];</div><div class="line">    h[x] = h[y];</div><div class="line">    h[y] = t;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">siftdown</span><span class="params">(<span class="keyword">int</span> i)</span>  <span class="comment">//传入一个需要向下调整的节点编号i</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> t, flag = <span class="number">0</span>;  <span class="comment">//flag标记是否要继续向下调整，t主要用来记录当前需要调整的编号</span></div><div class="line">    <span class="keyword">while</span>(i * <span class="number">2</span> &lt;= n &amp;&amp; flag == <span class="number">0</span>)  <span class="comment">//i*2是i的左子节点，当至少有左子节点并且还需要调整时，执行循环</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(h[i] &lt; h[i * <span class="number">2</span>])  <span class="comment">//这里是调整为最大堆</span></div><div class="line">            t = i * <span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            t = i;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(i * <span class="number">2</span> + <span class="number">1</span> &lt;= n)  <span class="comment">//如果存在右子节点，将之与t比较，得出三个节点中的最大值</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(h[t] &lt; h[i * <span class="number">2</span> + <span class="number">1</span>])</div><div class="line">                t = i * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(t != i)  <span class="comment">//如果最大的节点不是自己，那么将i与t换位，也就是向下调整</span></div><div class="line">        &#123;</div><div class="line">            swap(t, i);  <span class="comment">//交换最大节点和i的数据</span></div><div class="line">            i = t;  <span class="comment">//将i改为最大节点，进入堆的下一层</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            flag = <span class="number">1</span>;  <span class="comment">//如果最大的节点是i，证明往下的都比i小，不需要调整</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat</span><span class="params">()</span>  <span class="comment">//初始化堆</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span>(i = n / <span class="number">2</span>; i &gt;= <span class="number">1</span>; i--)  <span class="comment">//从第n-1层的最右边开始处理堆，使其符合堆的规则</span></div><div class="line">        siftdown(i);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapsort</span><span class="params">()</span>  <span class="comment">//堆排序</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>(n &gt; <span class="number">1</span>)  <span class="comment">//由于是从小到大排序，那么先将堆顶与n交换，将其出堆，然后调整堆顶使其符合规则，一直循环到只剩下堆顶，也就是最小的数。每次交换都能保证最后的数n能够是当前堆中最大的数</span></div><div class="line">    &#123;</div><div class="line">        swap(<span class="number">1</span>, n);</div><div class="line">        n--;</div><div class="line">        siftdown(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><strong>希尔排序</strong></h3><p>进行插入排序时，每次都是和前面的一个数进行比较，步长为1。希尔排序的步长是不断变化的，并且步长都在逐渐减小，到1时便结束。<br>简单来说，希尔排序将数列分为若干个子列，然后对这些子列分别进行插入排序，随后依次缩小步长进行排序。一般来说，希尔排序的步长每次都是取数列长度的一半，当然也有其他更高效的办法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> i, j, gap;  </div><div class="line">  </div><div class="line">    <span class="keyword">for</span> (gap = n / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>) <span class="comment">//步长  </span></div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; gap; i++)        <span class="comment">//直接插入排序  </span></div><div class="line">        &#123;  </div><div class="line">            <span class="keyword">for</span> (j = i + gap; j &lt; n; j += gap)   </div><div class="line">                <span class="keyword">if</span> (a[j] &lt; a[j - gap])  </div><div class="line">                &#123;  </div><div class="line">                    <span class="keyword">int</span> temp = a[j];  </div><div class="line">                    <span class="keyword">int</span> k = j - gap;  </div><div class="line">                    <span class="keyword">while</span> (k &gt;= <span class="number">0</span> &amp;&amp; a[k] &gt; temp)  </div><div class="line">                    &#123;  </div><div class="line">                        a[k + gap] = a[k];  </div><div class="line">                        k -= gap;  </div><div class="line">                    &#125;  </div><div class="line">                    a[k + gap] = temp;  </div><div class="line">                &#125;  </div><div class="line">        &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="O-N-复杂度"><a href="#O-N-复杂度" class="headerlink" title="O(N)复杂度"></a><strong>O(N)复杂度</strong></h2><p>此类算法不在于进行数之间的比较，而是运用巧妙的思想，并且算法思路都是建立在捅排序的基础上。</p>
+<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a><strong>计数排序</strong></h3><ul>
+<li>建立一个数组，数组长度即为数列中的最大值加一</li>
+<li>对数列进行遍历，设当前的数值为i，那么<code>++a[i]</code></li>
+<li>遍历结束后，数组中就记录了数列中各个数的出现次数</li>
+</ul>
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a><strong>基数排序</strong></h3><ul>
+<li>若所排序的数为十进制（所有数的位数应该相同，不同的在前面补零），例如101、011、014等</li>
+<li>建立0~9等十个桶</li>
+<li>按照数值的个位数，将所有的数放进对应的桶中</li>
+<li>按顺序倒出所有的数，组成新的数列</li>
+<li>按照数值的十位数，将所有的数放进对应的桶中</li>
+<li>按顺序倒出所有的数，组成新的数列</li>
+<li>重复上述过程，直到最大数值的每一位都遍历完成</li>
+</ul>
+<p>如果最大数为3位数，总共有5个数，那么就需要进行3*5次操作，效率比与之前的算法要高很多。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>稳定的排序算法：冒泡排序、插入排序、归并排序、计数排序、基数排序<br>不稳定排序算法：选择排序、快速排序、希尔排序、堆排序</p>
+<p>排序算法无优劣之分，看似快速的算法其实运用的环境比较少。一般来说，假如对时间要求不高，我们可以使用插入排序。如果要求了时间，那么便可以使用归并排序。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a><strong>例题</strong></h2><h3 id="几乎有序数组"><a href="#几乎有序数组" class="headerlink" title="几乎有序数组"></a><strong>几乎有序数组</strong></h3><p><strong>问：</strong>已知一个几乎有序的数组，请问用什么方法排序比较好？（注：几乎有序是指当数组排序完毕时，每个元素移动的距离不超过k，而k相对于数组长度来说很小）</p>
+<p>首先来看看简单的算法：冒泡排序、选择排序、插入排序。首先，冒泡排序和选择排序与数列的原始排列无关，而对于插入排序而言，原始序列越有序，所花费的时间越少。</p>
+<p>至于速度更快的算法，其中归并排序与原始序列无关，其他的也不够稳定，所以我们必须要对算法稍作改进。那么，我便介绍一下改进的堆排序：</p>
+<ul>
+<li>取0~k-1，建立一个小根堆</li>
+<li>弹出栈顶并记录，随后加入下一个数k，调整为小根堆</li>
+<li>重复上述过程</li>
+</ul>
+<p>显然，出栈顺序就是排列完毕的数组，由于题目说明了每个元素的移动距离不超过k。那么，如果按照从小到大来排列的话，最小数必在0~k-1中。如此一来，便能够更快得到排序好的数组。</p>
+<h3 id="判断重复数"><a href="#判断重复数" class="headerlink" title="判断重复数"></a><strong>判断重复数</strong></h3><p><strong>问：</strong>判断数组中是否有重复的数，必须保证额外空间复杂度为O(1)。</p>
+<p>哈希表可以在遍历数组的过程中，统计所有数出现的次数。不过既然要求了空间复杂度，那么就不能用哈希表了。这里我们还是使用堆排序，不过也得做一些修改，那就是将递归实现的堆排序转变为非递归实现的堆排序。</p>
+<h3 id="合并有序数组"><a href="#合并有序数组" class="headerlink" title="合并有序数组"></a><strong>合并有序数组</strong></h3><p><strong>问：</strong>将两个有序数组合并为一个数组，且第一个数组空间正好可以容纳两个数组的元素。</p>
+<p>举个例子：<br>    数组A：1 3 5<br>    数组B：2 4 6</p>
+<p>我们将A最大的数和B最大的数进行比较（显然数组A的大小为6），然后将数组B的6拷贝到<code>A[5]</code>。随后再将A最大的数和B最大的数进行比较，然后将数组A的5拷贝到<code>A[4]</code>。重复上述过程，直到数组A全部更新完毕，就会得到两个数组合并之后的结果。</p>
+<p>这个方法的主要思想就是从后往前拷贝，这样就不用担心拷贝时替换了重要的数据。</p>
+<h3 id="荷兰国旗问题"><a href="#荷兰国旗问题" class="headerlink" title="荷兰国旗问题"></a><strong>荷兰国旗问题</strong></h3><p><strong>问：</strong>对只包含0、1、2的数组进行排序，要求只能使用交换和原地排序，不能用计数排序。</p>
+<p>其实这个问题与快速排序很像，我们只需要在数组的两边设置一个0区域和一个2区域，随后遍历整个数组，遇到1就跳到下个数，遇到0和2就放到两边对应的位置。</p>
+<h3 id="二维数组查找"><a href="#二维数组查找" class="headerlink" title="二维数组查找"></a><strong>二维数组查找</strong></h3><p><strong>问：</strong>给定一个排序完毕二维数组，查找数组中是否包含k。</p>
+<p>二维数组展开后就是一个矩阵，我们从右上角开始找，如果当前数大于要找的数，那么向左移动一格；如果当前数小于要找到的数，那么向下移动一格。</p>
+<h3 id="最短排序数组"><a href="#最短排序数组" class="headerlink" title="最短排序数组"></a><strong>最短排序数组</strong></h3><p><strong>问：</strong>给定一个数组，查找数组中需要排列的最短子数组长度。</p>
+<ul>
+<li>从左到右遍历数组，记录当前数的最大值。当某个数小于最大值时，记录这个位置。</li>
+<li>从右往左遍历数组，记录当前数的最小值。当某个数大于最小值时，记录这个位置。</li>
+</ul>
+<p>例如：现在有数列1、5、4、3、2、6、7。从左往右不断的更新最大值，那么4、3、2显然小于5，而6、7大于5，所以记录2的位置。从右往左不断的更新最小值，那么3、4、5显然大于2，而1小于2，所以记录5的位置。</p>
+<p>那么5和2中间的5、4、3、2，就是需要排序的最短子数组长度。</p>
+<h3 id="最大差值"><a href="#最大差值" class="headerlink" title="最大差值"></a><strong>最大差值</strong></h3><p><strong>问：</strong>给定一个数组，排序完毕后，返回相邻两数的最大差值。</p>
+<p>先找出数组的最小值min和最大值max，然后根据数组的元素个数n，将区间[min, max)分成n个桶，最大值额外放在一个桶中。分完之后，第一个桶中绝对有最小值，最后一个桶中只有最大值。</p>
+<p>由于有n+1个桶，只有n的元素，那么必然会在中间出现空桶。事实上，空桶两边的数的差值是最大的，同一个桶中的差值绝对不会大于这个数，所以不用考虑同一个桶的相邻数，只用考虑桶间的相邻数。我们取每一个桶的最小值，减去上一个非空桶的最大值，记录其中的最大差值即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/16/C&C++Review-note/" rel="next" title="C&C++相关问题汇总">
+                <i class="fa fa-chevron-left"></i> C&C++相关问题汇总
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/12/Cocos2dx-practice-07/" rel="prev" title="Cocos2dx项目实战（7）——中国象棋">
+                Cocos2dx项目实战（7）——中国象棋 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/22/Algorithm-note-09/"
+           data-title="数据结构与算法学习笔记（9）——排序" data-url="http://yoursite.com/2017/01/22/Algorithm-note-09/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#O-N²-复杂度"><span class="nav-number">1.</span> <span class="nav-text">O(N²)复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">1.2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">1.3.</span> <span class="nav-text">插入排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-N-logN-复杂度"><span class="nav-number">2.</span> <span class="nav-text">O(N*logN)复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">2.1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">2.2.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序"><span class="nav-number">2.3.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔排序"><span class="nav-number">2.4.</span> <span class="nav-text">希尔排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-N-复杂度"><span class="nav-number">3.</span> <span class="nav-text">O(N)复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计数排序"><span class="nav-number">3.1.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基数排序"><span class="nav-number">3.2.</span> <span class="nav-text">基数排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几乎有序数组"><span class="nav-number">5.1.</span> <span class="nav-text">几乎有序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断重复数"><span class="nav-number">5.2.</span> <span class="nav-text">判断重复数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并有序数组"><span class="nav-number">5.3.</span> <span class="nav-text">合并有序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#荷兰国旗问题"><span class="nav-number">5.4.</span> <span class="nav-text">荷兰国旗问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组查找"><span class="nav-number">5.5.</span> <span class="nav-text">二维数组查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最短排序数组"><span class="nav-number">5.6.</span> <span class="nav-text">最短排序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最大差值"><span class="nav-number">5.7.</span> <span class="nav-text">最大差值</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
