@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="本章来总结各种有关于查找的问题。">
+<meta name="description" content="本章来总结各种有关于树的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法学习笔记（6）——查找">
+<meta property="og:title" content="数据结构与算法学习笔记（6）——树">
 <meta property="og:url" content="http://yoursite.com/2016/11/01/Algorithm-note-06/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章来总结各种有关于查找的问题。">
-<meta property="og:updated_time" content="2017-01-22T07:42:34.173Z">
+<meta property="og:description" content="本章来总结各种有关于树的问题。">
+<meta property="og:updated_time" content="2017-04-07T08:40:56.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法学习笔记（6）——查找">
-<meta name="twitter:description" content="本章来总结各种有关于查找的问题。">
+<meta name="twitter:title" content="数据结构与算法学习笔记（6）——树">
+<meta name="twitter:description" content="本章来总结各种有关于树的问题。">
 
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/01/Algorithm-note-06/"/>
 
-  <title> 数据结构与算法学习笔记（6）——查找 | 先哥哥<(^ - ^)/ </title>
+  <title> 数据结构与算法学习笔记（6）——树 | 先哥哥<(^ - ^)/ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                数据结构与算法学习笔记（6）——查找
+                数据结构与算法学习笔记（6）——树
               
             
           </h1>
@@ -361,13 +361,10 @@
       
 
       
-        <p>本章来总结各种有关于查找的问题。<br><a id="more"></a></p>
+        <p>本章来总结各种有关于树的问题。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a><strong>二维数组中的查找</strong></h2><p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Find</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">array</span>,<span class="keyword">int</span> target)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> sizeCount = <span class="built_in">array</span>.size();</div><div class="line">        <span class="keyword">int</span> lineCount = <span class="built_in">array</span>[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">int</span> i, j;</div><div class="line">        <span class="keyword">for</span> (i = sizeCount - <span class="number">1</span>, j = <span class="number">0</span>; (i != <span class="number">-1</span>) &amp;&amp; (j != lineCount);)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[i][j] &gt; target)</div><div class="line">            &#123;</div><div class="line">                i--;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[i][j] &lt; target)</div><div class="line">            &#123;</div><div class="line">                j++;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[i][j] == target)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>由于二维数组递增，那么很显然，往右增大，往下增大。如何快速找到我们要的数值呢？我们不妨看看左下角。当数组的数较大时，我们往上一行。当数组的数较小时，我们往右一列。当超出范围时，证明没有这个数。比起从左上角开始找，左下角提供了一条岔路，我们根据值的大小可以快速寻找到我们想要的值。</p>
 
       
     </div>
@@ -461,7 +458,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/11/01/Algorithm-note-06/"
-           data-title="数据结构与算法学习笔记（6）——查找" data-url="http://yoursite.com/2016/11/01/Algorithm-note-06/">
+           data-title="数据结构与算法学习笔记（6）——树" data-url="http://yoursite.com/2016/11/01/Algorithm-note-06/">
       </div>
     
   </div>
@@ -590,7 +587,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维数组中的查找"><span class="nav-number">1.</span> <span class="nav-text">二维数组中的查找</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
