@@ -1,0 +1,778 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cocos2dx,项目实战," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这次将模仿谷歌浏览器上的一个精品小游戏。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2dx项目实战（8）——万圣节小猫">
+<meta property="og:url" content="http://yoursite.com/2017/09/30/Cocos2dx-practice-08/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="这次将模仿谷歌浏览器上的一个精品小游戏。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif">
+<meta property="og:updated_time" content="2017-10-27T01:58:25.945Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2dx项目实战（8）——万圣节小猫">
+<meta name="twitter:description" content="这次将模仿谷歌浏览器上的一个精品小游戏。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/30/Cocos2dx-practice-08/"/>
+
+  <title> Cocos2dx项目实战（8）——万圣节小猫 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocos2dx项目实战（8）——万圣节小猫
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-30T10:33:35+08:00" content="2017-09-30">
+              2017-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Cocos2dx项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2dx项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/30/Cocos2dx-practice-08/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/30/Cocos2dx-practice-08/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次将模仿谷歌浏览器上的一个精品小游戏。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>由于这次的小游戏没那么简单，所以我会边做边写，顺便记录一些错误问题。同样，最终完成的项目源码会上传到GitHub上。</p>
+<p>首先看一下这个游戏：<a href="https://www.google.com/doodles/halloween-2016" target="_blank" rel="external">https://www.google.com/doodles/halloween-2016</a></p>
+<p>如果看不了的话，就直接看看下面这张图：</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png" alt=""></center>
+
+<h2 id="主场景设计"><a href="#主场景设计" class="headerlink" title="主场景设计"></a><strong>主场景设计</strong></h2><p>游戏的场景很简单，分为三个要素：背景、小猫、幽灵。背景部分主要是背景图和几个会动的小物品，实现起来很简单。而由于幽灵部分其实和小猫类似，所以我们第一步就是要编写游戏的主角：小猫。</p>
+<p>身为主角，最主要的任务就是画符号消灭幽灵，而这也需要执行不同的动作，同时进行动作之间的组合与切换。</p>
+<h2 id="动作设计"><a href="#动作设计" class="headerlink" title="动作设计"></a><strong>动作设计</strong></h2><h3 id="炸毛动作"><a href="#炸毛动作" class="headerlink" title="炸毛动作"></a><strong>炸毛动作</strong></h3><p>先来做个简单的动作，也就是小猫遇到幽灵会做出炸毛的表情。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 炸毛动作</span></div><div class="line">Sequence *Cat::getActionScare()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 炸毛动作</span></div><div class="line">    Animation *animation1 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i != <span class="number">3</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-scared-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation1-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation1-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">10.0</span>);</div><div class="line">    Animate *animate1 = Animate::create(animation1);</div><div class="line"></div><div class="line">    <span class="comment">// 恢复原状</span></div><div class="line">    Animation *animation2 = Animation::create();</div><div class="line">    animation2-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-scared-3.png"</span>);</div><div class="line">    animation2-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-right-0.png"</span>);</div><div class="line">    animation2-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">10.0</span>);</div><div class="line">    Animate *animate2 = Animate::create(animation2);</div><div class="line"></div><div class="line">    <span class="comment">// 炸毛延长一秒+组合动作</span></div><div class="line">    DelayTime *delay = DelayTime::create(<span class="number">1.0</span>);</div><div class="line">    Sequence *scareSequence = Sequence::create(animate1, delay, animate2, <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> scareSequence;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif" alt=""></center>
+
+<p>为了做出比较好的效果，这里特意用了<code>Sequence</code>来拆分炸毛动作，将小猫的炸毛状态延长一秒。其实不拆分的我也试过，只是动作太快，效果并不是很好。</p>
+<h3 id="摆头"><a href="#摆头" class="headerlink" title="摆头"></a><strong>摆头</strong></h3><p>接下来就是编写一个比较重要的摆头动作，不仅帧数多，而且还有上下左右四个方向的摆动，当然做出来效果也很棒。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 摆头动作</span></div><div class="line">RepeatForever *Cat::getActionStand()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 向右看，脑袋向上摆</span></div><div class="line">    Animation *animation1 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">4</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-right-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation1-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation1-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate1 = Animate::create(animation1);</div><div class="line"></div><div class="line">    <span class="comment">// 向右看，脑袋向下摆</span></div><div class="line">    Animate *animate2 = animate1-&gt;reverse();</div><div class="line"></div><div class="line">    <span class="comment">// 向左看，脑袋向上摆</span></div><div class="line">    Animation *animation3 = Animation::create();</div><div class="line">    animation3-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-leftToRight.png"</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">4</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-left-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation3-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation3-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate3 = Animate::create(animation3);</div><div class="line"></div><div class="line">    <span class="comment">// 向左看，脑袋向下摆</span></div><div class="line">    Animation *animation4 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i != <span class="number">0</span>; i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-left-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation4-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation4-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-leftToRight.png"</span>);</div><div class="line">    animation4-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-right-0.png"</span>);</div><div class="line">    animation4-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate4 = Animate::create(animation4);</div><div class="line"></div><div class="line">    DelayTime *delay = DelayTime::create(<span class="number">0.5</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 永久的组合动作</span></div><div class="line">    Sequence *seq = Sequence::create(animate1, animate2, animate3, animate4, delay, <span class="literal">NULL</span>);</div><div class="line">    RepeatForever *standForever = RepeatForever::create(seq);</div><div class="line"></div><div class="line">    CCLOG(<span class="string">"done"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> standForever;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif" alt=""></center>
+
+<p>效果还是很不错的，代码虽然看起来长，但实际就是把摆头动作拆分为四步，并且加入到序列动作中执行即可。</p>
+<h3 id="动作组合"><a href="#动作组合" class="headerlink" title="动作组合"></a><strong>动作组合</strong></h3><p>炸毛和摆头动作都做完了，实现起来是不是很容易？那么，不妨思考一个问题：如何让小猫在炸毛之后继续做摆头动作？</p>
+<p>一般来说，多个动作同时执行，我们可以使用<code>Spawn</code>，而多个动作先后执行，我们可以使用<code>Sequence</code>。这里显然也是用<code>Sequence</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> Level1Layer::onTouchBegan(Touch *touch, Event *event)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 先停止站立的动作</span></div><div class="line">    <span class="number">_</span>cat-&gt;stopAllActions();</div><div class="line"></div><div class="line">    Sequence *seq = Sequence::create(<span class="number">_</span>cat-&gt;getActionScare(), <span class="number">_</span>cat-&gt;getActionStand(), <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 执行炸毛动作</span></div><div class="line">    <span class="number">_</span>cat-&gt;runAction(seq);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是不是想的一样呢？然而问题来了，当我们真正执行这段代码之后，却会出现另一种情况：小猫并不会执行摆头动作，而是在炸毛之后处于静止状态。无论再怎么点击，小猫也只会做炸毛动作。</p>
+<p>为了解决这个问题，可以先将小猫的动作进行分解：<strong>摆头</strong>——<strong>点击屏幕后炸毛</strong>——<strong>摆头</strong>。</p>
+<p>看下这段代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// seq将先后执行炸毛和摆头动作</span></div><div class="line">Sequence *seq = Sequence::create(<span class="number">_</span>cat-&gt;getActionScare(), <span class="number">_</span>cat-&gt;getActionStand(), <span class="literal">NULL</span>);</div></pre></td></tr></table></figure>
+<p>游戏在刚开始时，小猫便执行了摆头动作，这说明动作本身没有问题。另外，我也尝试过炸毛和摆头同时执行，虽然有点鬼畜，但依旧还是正常执行。排除这两种可能后，显然就是说明了摆头动作和序列动作存在冲突。</p>
+<p>查看<code>Sequence</code>的源码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Sequence* Sequence::createWithVariableList(FiniteTimeAction *action1, va_list args)</div><div class="line">&#123;</div><div class="line">    FiniteTimeAction *now;</div><div class="line">    FiniteTimeAction *prev = action1;</div><div class="line">    <span class="keyword">bool</span> bOneAction = <span class="literal">true</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (action1)</div><div class="line">    &#123;</div><div class="line">        now = va_arg(args, FiniteTimeAction*);</div><div class="line">        <span class="keyword">if</span> (now)</div><div class="line">        &#123;</div><div class="line">            prev = createWithTwoActions(prev, now);</div><div class="line">            bOneAction = <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">// If only one action is added to Sequence, make up a Sequence by adding a simplest finite time action.</span></div><div class="line">            <span class="keyword">if</span> (bOneAction)</div><div class="line">            &#123;</div><div class="line">                prev = createWithTwoActions(prev, ExtraAction::create());</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ((Sequence*)prev);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里其实是个递归，如果有action1、action2、action3三个动作时，首先会将前两个动作合成，然后再与第三个动作合成。递归的效率虽不高，但是代码足够的简洁。另外，<code>Spawn</code>也是调用了<code>Sequence</code>，将两个动作合并为同一个，所以同样会与摆头动作冲突。</p>
+<p>在创建动作时，会有一个变量<code>duration</code>来记录动画的长度。比如动画一长为0.5s，动画二长为1s，那么<code>duration</code>为便1.5s。那么摆头动作呢？回头再去看时，会发现摆头动作是个<code>RepeatForever</code>，而这个动作的<code>duration</code>其实是0，并不是动画之间的间隔时间。这样，在它合成序列动作时，就只会执行前一个动作，之后便会忽略摆头动作。</p>
+<p>解决办法很简单，对于<code>Spawn</code>，我们可以分开执行动作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">_</span>cat-&gt;runAction(action1);</div><div class="line"><span class="number">_</span>cat-&gt;runAction(action2);</div></pre></td></tr></table></figure>
+<p>对于<code>Sequence</code>，我们可以将摆头动作加入回调函数，让回调函数执行动作，最后再合并成序列动作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> standCallFunc = CallFunc::create(CC_CALLBACK_0(Level1Layer::standCallBack, <span class="keyword">this</span>));</div><div class="line">Sequence *seq = Sequence::create(<span class="number">_</span>cat-&gt;getActionScare(), standCallFunc, <span class="literal">NULL</span>);</div></pre></td></tr></table></figure>
+<p>回调函数如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Level1Layer::standCallBack()</div><div class="line">&#123;</div><div class="line">    <span class="number">_</span>cat-&gt;runAction(<span class="number">_</span>cat-&gt;getActionStand());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，两个动作的切换便十分流畅了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+          
+            <a href="/tags/项目实战/" rel="tag">#项目实战</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/Cocos2dx-practice-07/" rel="next" title="Cocos2dx项目实战（7）——中国象棋">
+                <i class="fa fa-chevron-left"></i> Cocos2dx项目实战（7）——中国象棋
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/30/Cocos2dx-practice-08/"
+           data-title="Cocos2dx项目实战（8）——万圣节小猫" data-url="http://yoursite.com/2017/09/30/Cocos2dx-practice-08/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主场景设计"><span class="nav-number">2.</span> <span class="nav-text">主场景设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作设计"><span class="nav-number">3.</span> <span class="nav-text">动作设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#炸毛动作"><span class="nav-number">3.1.</span> <span class="nav-text">炸毛动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摆头"><span class="nav-number">3.2.</span> <span class="nav-text">摆头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动作组合"><span class="nav-number">3.3.</span> <span class="nav-text">动作组合</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

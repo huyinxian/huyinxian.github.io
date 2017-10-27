@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/01/Algorithm-note-07/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章来总结各种有关于字符串的问题。">
-<meta property="og:updated_time" content="2017-04-08T10:23:08.974Z">
+<meta property="og:updated_time" content="2017-05-11T08:28:40.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法学习笔记（7）——字符串">
 <meta name="twitter:description" content="本章来总结各种有关于字符串的问题。">
@@ -418,7 +418,31 @@
 </code></pre><p>如果没有那个字符，那就跳到那个字符的下一个位置。Sunday算法相比于其他算法，速度够快，而且简单易懂。</p>
 <h2 id="判断子树"><a href="#判断子树" class="headerlink" title="判断子树　"></a><strong>判断子树</strong>　</h2><p><strong>问：</strong>给定彼此独立的两棵树头节点分别为t1和t2，判断t1中是否有与t2树拓扑结构完全相同的子树。</p>
 <p>一般的解法是考察t1中以每个节点为头的子树是否与t2一致，不过如果这么做的话，那就是二叉树的解法了，这里介绍一种更好的方法：首先将t1和t2两棵树转化成字符串str1和str2，判断str1中是否包含str2。</p>
-<p>至于如何把二叉树转换为字符串，具体的可以看看二叉树一章。至于字符串的匹配，可以使用上面介绍的算法。</p>
+<p>至于如何把二叉树转换为字符串，具体的可以看看二叉树一章。而关于字符串的匹配，可以使用上面介绍的算法。</p>
+<h2 id="旋转词"><a href="#旋转词" class="headerlink" title="旋转词"></a><strong>旋转词</strong></h2><p><strong>问：</strong>给定一个字符串str，把字符串str前面任意的部分挪到后面去形成的字符串叫做str的旋转词。比如str=”1234”，str的旋转词有”1234”、”2341”、”3412”、”4123”。现给定两个字符串a和b，请判断a和b是否互为旋转词。</p>
+<p>最优解时间复杂度为O(N)：</p>
+<ul>
+<li>判断str1与str2是否长度相等</li>
+<li>如果长度相等，生成str1+str1的大字符串</li>
+<li>用字符匹配的算法判断大字符串中是否含有str2</li>
+</ul>
+<p>我们会发现，在str1+str1中，任意与str1长度相等的字符串都是str1的旋转词。</p>
+<h2 id="逆序调整"><a href="#逆序调整" class="headerlink" title="逆序调整"></a><strong>逆序调整</strong></h2><p><strong>问：</strong>给定一个字符串str，请在单词间做逆序调整</p>
+<p>解法如下：</p>
+<ul>
+<li>实现一个函数，其功能为将字符串局部的所有字符进行逆序</li>
+<li>利用该函数将字符串所有字符逆序</li>
+<li>找到逆序后的字符串中每一个单词的区域，利用函数将每一个单词的区域逆序</li>
+</ul>
+<p>例如，”Hello World!”进行所有字符逆序，变为”!dlroW olleH”。随后，找到逆序后的字符串中每一个单词的区域，并且将每个单词区域进行逆序，至于单词的区域则可用空格来判断，得到的结果为”World! Hello”。</p>
+<h2 id="字符串插入"><a href="#字符串插入" class="headerlink" title="字符串插入"></a><strong>字符串插入</strong></h2><p><strong>问：</strong>给定一个字符串str，和一个整数i。i代表str中的位置，现将str[0…i]移到右侧，str[i+1…N-1]移到左侧。</p>
+<p>解法如下：</p>
+<ul>
+<li>将str[0…i]部分的字符逆序</li>
+<li>将str[i+1…N-1]部分的字符逆序</li>
+<li>将str整体的字符逆序</li>
+</ul>
+<p>该题解法与上一题类似，是将各个部分的字符串进行逆序，最后整体进行调整。这种做法只需要单纯地执行逆序操作，无需进行真正意义上的插入。</p>
 
       
     </div>
@@ -557,7 +581,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-count">74</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -641,7 +665,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换空格"><span class="nav-number">1.</span> <span class="nav-text">替换空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回文字符串"><span class="nav-number">2.</span> <span class="nav-text">回文字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找重复字符"><span class="nav-number">3.</span> <span class="nav-text">查找重复字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加法计算器"><span class="nav-number">4.</span> <span class="nav-text">加法计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大整数排序"><span class="nav-number">5.</span> <span class="nav-text">大整数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另一种A-B"><span class="nav-number">6.</span> <span class="nav-text">另一种A+B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日历"><span class="nav-number">7.</span> <span class="nav-text">日历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串匹配"><span class="nav-number">8.</span> <span class="nav-text">字符串匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BF算法"><span class="nav-number">8.1.</span> <span class="nav-text">BF算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KMP算法"><span class="nav-number">8.2.</span> <span class="nav-text">KMP算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horspool算法"><span class="nav-number">8.3.</span> <span class="nav-text">Horspool算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sunday算法"><span class="nav-number">8.4.</span> <span class="nav-text">Sunday算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断子树"><span class="nav-number">9.</span> <span class="nav-text">判断子树　</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换空格"><span class="nav-number">1.</span> <span class="nav-text">替换空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回文字符串"><span class="nav-number">2.</span> <span class="nav-text">回文字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找重复字符"><span class="nav-number">3.</span> <span class="nav-text">查找重复字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加法计算器"><span class="nav-number">4.</span> <span class="nav-text">加法计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大整数排序"><span class="nav-number">5.</span> <span class="nav-text">大整数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另一种A-B"><span class="nav-number">6.</span> <span class="nav-text">另一种A+B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日历"><span class="nav-number">7.</span> <span class="nav-text">日历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串匹配"><span class="nav-number">8.</span> <span class="nav-text">字符串匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BF算法"><span class="nav-number">8.1.</span> <span class="nav-text">BF算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KMP算法"><span class="nav-number">8.2.</span> <span class="nav-text">KMP算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horspool算法"><span class="nav-number">8.3.</span> <span class="nav-text">Horspool算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sunday算法"><span class="nav-number">8.4.</span> <span class="nav-text">Sunday算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断子树"><span class="nav-number">9.</span> <span class="nav-text">判断子树　</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转词"><span class="nav-number">10.</span> <span class="nav-text">旋转词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆序调整"><span class="nav-number">11.</span> <span class="nav-text">逆序调整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串插入"><span class="nav-number">12.</span> <span class="nav-text">字符串插入</span></a></li></ol></div>
             
           </div>
         </section>
