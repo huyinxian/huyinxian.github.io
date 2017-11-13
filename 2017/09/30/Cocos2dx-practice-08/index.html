@@ -93,7 +93,8 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif">
-<meta property="og:updated_time" content="2017-10-27T01:58:25.945Z">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollweencat-death.gif">
+<meta property="og:updated_time" content="2017-10-27T07:22:34.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx项目实战（8）——万圣节小猫">
 <meta name="twitter:description" content="这次将模仿谷歌浏览器上的一个精品小游戏。">
@@ -405,6 +406,10 @@
 <p>回调函数如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Level1Layer::standCallBack()</div><div class="line">&#123;</div><div class="line">    <span class="number">_</span>cat-&gt;runAction(<span class="number">_</span>cat-&gt;getActionStand());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样，两个动作的切换便十分流畅了。</p>
+<h3 id="死亡动作"><a href="#死亡动作" class="headerlink" title="死亡动作"></a><strong>死亡动作</strong></h3><p>死亡动作的帧数有点多，切图的时候累死人。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Animate *Cat::getActionDeath()</div><div class="line">&#123;</div><div class="line">    Animation *animation = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">15</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"cat/cat-death-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">10.0</span>);</div><div class="line">    Animate *animate = Animate::create(animation);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> animate;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/hollweencat-death.gif" alt=""></p>
+<p>传说中的死亡一指，一点就挂。</p>
 
       
     </div>
@@ -623,7 +628,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主场景设计"><span class="nav-number">2.</span> <span class="nav-text">主场景设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作设计"><span class="nav-number">3.</span> <span class="nav-text">动作设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#炸毛动作"><span class="nav-number">3.1.</span> <span class="nav-text">炸毛动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摆头"><span class="nav-number">3.2.</span> <span class="nav-text">摆头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动作组合"><span class="nav-number">3.3.</span> <span class="nav-text">动作组合</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主场景设计"><span class="nav-number">2.</span> <span class="nav-text">主场景设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作设计"><span class="nav-number">3.</span> <span class="nav-text">动作设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#炸毛动作"><span class="nav-number">3.1.</span> <span class="nav-text">炸毛动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摆头"><span class="nav-number">3.2.</span> <span class="nav-text">摆头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动作组合"><span class="nav-number">3.3.</span> <span class="nav-text">动作组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死亡动作"><span class="nav-number">3.4.</span> <span class="nav-text">死亡动作</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
