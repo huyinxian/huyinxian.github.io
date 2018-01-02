@@ -1,0 +1,781 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="游戏开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章将开始学习游戏编程相关的各种知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏编程算法与技巧笔记（1）——游戏编程概述">
+<meta property="og:url" content="http://yoursite.com/2017/12/17/GameProAlgorTechniques-note-01/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章将开始学习游戏编程相关的各种知识。">
+<meta property="og:updated_time" content="2018-01-02T08:37:21.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="游戏编程算法与技巧笔记（1）——游戏编程概述">
+<meta name="twitter:description" content="本章将开始学习游戏编程相关的各种知识。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/17/GameProAlgorTechniques-note-01/"/>
+
+  <title> 游戏编程算法与技巧笔记（1）——游戏编程概述 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                游戏编程算法与技巧笔记（1）——游戏编程概述
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-17T12:10:37+08:00" content="2017-12-17">
+              2017-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/游戏编程算法与技巧笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏编程算法与技巧笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/17/GameProAlgorTechniques-note-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/17/GameProAlgorTechniques-note-01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章将开始学习游戏编程相关的各种知识。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>其实在不久之前，我还只是一个懂得些C++、能够用Cocos2dx做出游戏原型的普通学生。当然了，我并不是说那些游戏做的不好，像是飞机大战这种游戏，在外人看来已经算是真正的游戏作品了。不过高兴之余，我的内心里也有些惴惴不安，毕竟这些游戏都算是我的“临摹品”，并不能够作为我自豪的资本。思来想去，我决定更深入地学习游戏开发的相关知识，权且将制作新游戏的念头放在一旁。</p>
+<h2 id="为什么要做这个笔记"><a href="#为什么要做这个笔记" class="headerlink" title="为什么要做这个笔记"></a><strong>为什么要做这个笔记</strong></h2><p>现如今的游戏产业正在蓬勃发展之中，对于游戏开发人员的需求也是十分的多。不过比较尴尬的一点是，想要从事游戏开发行业的学生们总找不到合适的入门点。虽说有的大学开放了游戏相关的课程，但这些课程大多都处于停课状态，就算开课了也无非是讲些皮毛知识，草草地考完了事。</p>
+<p>本人最初的入门点是Cocos2dx引擎。不得不说，这款国人制作的游戏引擎的确是十分出色，相关的层次结构清晰明了，也有对应的博客文档供我学习阅读，实在是难得。本想着学完Cocos再去学Unity，或者更进一步学Unreal，开发更厉害的3D游戏。但不知道是什么原因，硬生生地把我从幻想中拖了出来，认清了一个现实：只学引擎是远远不够的。</p>
+<p>为什么这么说呢？先不说国外，国内的公司通常也会开发出一套属于自己的游戏引擎。这并不是什么“抵制洋货”的可笑思想，而是实实在在的需求。不管市面上的游戏引擎再怎么出色，它也总会有自己的局限性。对于某一种游戏以及某一种需求，游戏开发者通常要添加额外的组件和功能，有时候干脆重写一遍，将原本的游戏引擎改的面目全非，从而达到自己想要的效果。这种时候，如果不了解引擎本身的架构和原则，是无法做出修改的。至此，我才想要老老实实地从底层开始学起，做一款小小的属于自己的游戏引擎。</p>
+<p>PS：同时开了三个坑，这个主要讲游戏编程相关知识，帮助新手建立起全面的概念。而《3D游戏编程技巧》和《3D数学基础》分别讲的是如何制作游戏引擎以及相关数学基础，内容上重复的地方我都会选择跳过。</p>
+<h2 id="游戏循环"><a href="#游戏循环" class="headerlink" title="游戏循环"></a><strong>游戏循环</strong></h2><p>这个很好理解，控制整个游戏程序的就是游戏循环。可以简单地理解为以下步骤：</p>
+<ul>
+<li>检测玩家输入</li>
+<li>更新游戏世界</li>
+<li>游戏输出</li>
+<li>重复上述步骤直至游戏结束</li>
+</ul>
+<p>首先要注意一点，游戏是不断地在更新的，它会执行一系列动作直到玩家结束游戏。每一次游戏循环被称为1帧，一般的游戏帧率都在30~60帧每秒，过少会影响游戏体验，过多则没有太大的意义。至于循环的步骤，每一个阶段都有各自的含义：</p>
+<ul>
+<li>玩家输入：不仅仅是键盘、鼠标，还有可能是其他的诸如手柄、方向盘乃至VR设备。数据的种类多种多样，所有的输入都得在这一步完成。</li>
+<li>更新游戏世界：会执行所有激活并需要更新的对象，这个数量可能会达到成千上万个。</li>
+<li>游戏输出：是游戏中最为重要的一部分。除了将图形渲染为2D和3D，还有音频、震动等输出。关于图形渲染的部分，我会在《3D游戏编程》以及之后会更新的《OpenGL编程》中介绍。</li>
+</ul>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a><strong>多线程</strong></h2><p>传统的游戏循环虽然简单明了，但由于如今的CPU已经具有多个核，这也意味着游戏必须采用多线程的模式来运行。举个简单的例子，某一台游戏机的CPU有3个核，而游戏仅仅只是用了其中的一个核，效率上就远远不及将三个核充分利用的多线程循环。大型游戏（3A级游戏）的图形渲染是十分耗时的，如果将渲染和更新同时放到一个线程里，最终也将导致低帧率，这也可以解释说为什么有的游戏优化好，而有的优化很差。当然，其中的原因有很多，这里只是为了说明多线程的重要性。</p>
+<p>基于这个想法，如果主线程必须处理输入、更新游戏世界、处理图形以外的输出，那么它可以让第二条线程来渲染所有的图像。</p>
+<p>同样，这里也有个问题：当其他线程在渲染时，主线程应该干什么？如果只是简单地等待，那这样比单线程还要慢。解决办法之一就是让渲染线程比主线程慢一帧。</p>
+<p>假设玩家在某一帧按下攻击键，按照多线程的游戏循环，输入会在下一帧时才开始处理，之后再过一帧才能播放攻击动画。这种情况会导致输入延迟，对于即使战斗类游戏来说会有不小的影响，不过对于其他的类型影响不大。而且基于其他的因素（显示器延迟等），同样也会造成输入延迟，但这就不是我们要关心的范围了。</p>
+<h2 id="时间概念"><a href="#时间概念" class="headerlink" title="时间概念"></a><strong>时间概念</strong></h2><p>大部分的游戏都会有时间的概念，一般可分为<strong>真实时间</strong>和<strong>游戏时间</strong>。</p>
+<h3 id="真实时间与游戏时间"><a href="#真实时间与游戏时间" class="headerlink" title="真实时间与游戏时间"></a><strong>真实时间与游戏时间</strong></h3><p>所谓的真实时间，就是现实世界的时间，而游戏时间则是指游戏世界所流逝的时间。你可以认为它们是1:1的关系，但一般来说都不是这样的。</p>
+<p>举几个例子，足球比赛的时长为90分钟，而足球游戏会将这个时间缩小到10-20分钟，让玩家体验到一场紧张刺激的体育竞技。其他类型的游戏像是《时间幻境》，主角能够自由地操控时间，甚至可以做到时间倒流。</p>
+<p>综上所述，真实时间与游戏时间其实是对不上的，不同的游戏类型对于时间的要求也不太一样。</p>
+<h3 id="时间增量"><a href="#时间增量" class="headerlink" title="时间增量"></a><strong>时间增量</strong></h3><p>我们在编写游戏程序时，可能会用到下面这种代码：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enemy.position.x += <span class="number">10</span></div></pre></td></tr></table></figure>
+<p>游戏如果运行在一个8MHZ的处理器上，那么敌人的移动速度将取决于处理器的速度。但当玩家把它搬到16MHZ的处理器上后，我们可以简单地认为游戏循环会多执行一次，也就是说敌人的移动速度会快上一倍。显然，这并不是我们想要的结果，敌人的移动速度不应该与帧率挂钩。</p>
+<p>为了解决这个问题，我们需要引入<strong>增量时间</strong>的概念，也就是从上一帧起流逝的时间。如果游戏的帧率提高，那么每帧敌人移动的距离必须要短一点；若是游戏的帧率降低，那么敌人的移动距离应该更多一点。假设理想的移动速度是每秒20像素，那么代码可以这样：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enemy.position.x += <span class="number">20</span> * deltaTime</div></pre></td></tr></table></figure>
+<p>运行上面的代码，敌人的速度将固定在20像素/每秒，不会因为帧率的变化而做出改变。虽然从视觉的角度来说，高帧率下的敌人移动得更加流畅，但无论哪种情况，敌人的移动速度都是一样的。</p>
+<p>那么如何获得增量时间呢？这个主要取决于游戏框架，每帧间隔的时间其实都是可以计算的。只要得到这个数值，我们便能固定住敌人的移动速度。</p>
+<p>虽然解决了速度的问题，但并不代表所有的状态都能用这个方法解决。首先是所有与物理相关的游戏在帧率上的表现都不一样，比如低帧率跳得高等等，这些会在“物理”中详细解释。</p>
+<p>解决办法当然也有，比如最粗暴的方法：限制帧率。PS4上面的游戏基本都锁定为30帧，原因有很多，除了机能上的限制，还有就是上面所说的物理问题。如果游戏的循环本身只用了30ms，那么还要等待额外的3.3ms才能开始下一次游戏循环。注意，哪怕限制了帧数也需要处理增量时间。</p>
+<p>还有一种情况：游戏突然遇上了复杂的情形，导致某帧的渲染时间延长，这时候怎么办呢？其实很简单，直接丢掉这一帧就好，而这种做法导致的结果就是<strong>卡顿</strong>。显然，视觉上的卡顿会给玩家带来极其糟糕的体验。</p>
+<h2 id="游戏对象"><a href="#游戏对象" class="headerlink" title="游戏对象"></a><strong>游戏对象</strong></h2><p>相信各位在看过我之前写的《Cocos2dx学习笔记》后，应该会对游戏对象有一个清晰的认知。游戏对象就是每一帧都需要更新或者绘制的对象，不管它是以什么形式存在，游戏都必须跟踪管理这些对象。</p>
+<h3 id="游戏对象的类型"><a href="#游戏对象的类型" class="headerlink" title="游戏对象的类型"></a><strong>游戏对象的类型</strong></h3><p>第一种常见的就是需要更新和绘制的对象，比如游戏中的角色、任何敌人以及会动的方块。</p>
+<p>第二种是只绘制不更新的对象，称为<strong>静态对象</strong>。它可以是游戏背景之类的东西。</p>
+<p>第三种游戏对象是那些需要更新，但不需要绘制的对象。比较常见的例子就是摄像机。一般来说，游戏需要移动摄像机来改变视角，但玩家并不需要看到摄像机。另一种情况就是<strong>触发器</strong>。许多游戏都会有这样的设计，当玩家走到某个位置时，就会触发某件事情。触发器需要不断地检测与玩家的碰撞行为，但并不需要生成实体。</p>
+<h3 id="游戏循环中的游戏对象"><a href="#游戏循环中的游戏对象" class="headerlink" title="游戏循环中的游戏对象"></a><strong>游戏循环中的游戏对象</strong></h3><p>游戏对象有很多种实现方式，其中一种就是面向对象中的接口。如果某个类需要使用这个接口，那么就必须要按照规定去实现这个接口中的所有方法。</p>
+<p>类似C++之类的语言，都会有集成的概念。需要注意的是，继承虽然好用，但我们应该尽量避免<strong>菱形继承</strong>，同时善用<strong>虚函数</strong>的概念。当游戏对象被创建出来之后，需要将它添加到相应的列表之中，统一进行管理，不用时再从列表中删除：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class GameWorld</div><div class="line">    List updateableObjects</div><div class="line">    List drawableObjects</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这样，我们就完成了游戏循环中的<strong>更新世界</strong>：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> game is running</div><div class="line">    realDeltaTime = time since last time</div><div class="line">    gameDeltaTime = realDeltaTime * gameTimeFactor</div><div class="line"></div><div class="line">    // 处理输入</div><div class="line">    ...</div><div class="line"></div><div class="line">    // 更新游戏世界</div><div class="line">    foreach Updateable o <span class="keyword">in</span> GameWorld.updateableObjects</div><div class="line">        o.Update(gameDeltaTime)</div><div class="line">    loop</div><div class="line"></div><div class="line">    // 渲染输出</div><div class="line">    foreach Drawable o <span class="keyword">in</span> GameWorld.drawableObjects</div><div class="line">        o.Draw()</div><div class="line">    loop</div><div class="line"></div><div class="line">    // 帧数限制代码</div><div class="line">    ...</div><div class="line">loop</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/游戏开发/" rel="tag">#游戏开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/11/3DGameProgramming-note-01/" rel="next" title="3D游戏编程大师技巧笔记（1）——3D编程入门">
+                <i class="fa fa-chevron-left"></i> 3D游戏编程大师技巧笔记（1）——3D编程入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/17/GameProAlgorTechniques-note-01/"
+           data-title="游戏编程算法与技巧笔记（1）——游戏编程概述" data-url="http://yoursite.com/2017/12/17/GameProAlgorTechniques-note-01/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要做这个笔记"><span class="nav-number">2.</span> <span class="nav-text">为什么要做这个笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏循环"><span class="nav-number">3.</span> <span class="nav-text">游戏循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">4.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间概念"><span class="nav-number">5.</span> <span class="nav-text">时间概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#真实时间与游戏时间"><span class="nav-number">5.1.</span> <span class="nav-text">真实时间与游戏时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间增量"><span class="nav-number">5.2.</span> <span class="nav-text">时间增量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象"><span class="nav-number">6.</span> <span class="nav-text">游戏对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏对象的类型"><span class="nav-number">6.1.</span> <span class="nav-text">游戏对象的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏循环中的游戏对象"><span class="nav-number">6.2.</span> <span class="nav-text">游戏循环中的游戏对象</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
