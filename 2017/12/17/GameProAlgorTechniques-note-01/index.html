@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="游戏开发," />
+  <meta name="keywords" content="计算机图形学,游戏开发基础," />
 
 
 
@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/17/GameProAlgorTechniques-note-01/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章将开始学习游戏编程相关的各种知识。">
-<meta property="og:updated_time" content="2018-01-02T08:37:21.752Z">
+<meta property="og:updated_time" content="2018-01-30T10:59:19.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏编程算法与技巧笔记（1）——游戏编程概述">
 <meta name="twitter:description" content="本章将开始学习游戏编程相关的各种知识。">
@@ -366,10 +366,7 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>其实在不久之前，我还只是一个懂得些C++、能够用Cocos2dx做出游戏原型的普通学生。当然了，我并不是说那些游戏做的不好，像是飞机大战这种游戏，在外人看来已经算是真正的游戏作品了。不过高兴之余，我的内心里也有些惴惴不安，毕竟这些游戏都算是我的“临摹品”，并不能够作为我自豪的资本。思来想去，我决定更深入地学习游戏开发的相关知识，权且将制作新游戏的念头放在一旁。</p>
-<h2 id="为什么要做这个笔记"><a href="#为什么要做这个笔记" class="headerlink" title="为什么要做这个笔记"></a><strong>为什么要做这个笔记</strong></h2><p>现如今的游戏产业正在蓬勃发展之中，对于游戏开发人员的需求也是十分的多。不过比较尴尬的一点是，想要从事游戏开发行业的学生们总找不到合适的入门点。虽说有的大学开放了游戏相关的课程，但这些课程大多都处于停课状态，就算开课了也无非是讲些皮毛知识，草草地考完了事。</p>
-<p>本人最初的入门点是Cocos2dx引擎。不得不说，这款国人制作的游戏引擎的确是十分出色，相关的层次结构清晰明了，也有对应的博客文档供我学习阅读，实在是难得。本想着学完Cocos再去学Unity，或者更进一步学Unreal，开发更厉害的3D游戏。但不知道是什么原因，硬生生地把我从幻想中拖了出来，认清了一个现实：只学引擎是远远不够的。</p>
-<p>为什么这么说呢？先不说国外，国内的公司通常也会开发出一套属于自己的游戏引擎。这并不是什么“抵制洋货”的可笑思想，而是实实在在的需求。不管市面上的游戏引擎再怎么出色，它也总会有自己的局限性。对于某一种游戏以及某一种需求，游戏开发者通常要添加额外的组件和功能，有时候干脆重写一遍，将原本的游戏引擎改的面目全非，从而达到自己想要的效果。这种时候，如果不了解引擎本身的架构和原则，是无法做出修改的。至此，我才想要老老实实地从底层开始学起，做一款小小的属于自己的游戏引擎。</p>
-<p>PS：同时开了三个坑，这个主要讲游戏编程相关知识，帮助新手建立起全面的概念。而《3D游戏编程技巧》和《3D数学基础》分别讲的是如何制作游戏引擎以及相关数学基础，内容上重复的地方我都会选择跳过。</p>
+<p>PS：从本文的Tag就能看出来，这本《游戏编程算法与技巧》只能算入门级，内容浅显易懂，但对于从没接触过游戏开发的人来说（哪怕只是一时兴起想要做游戏）是非常有用的。</p>
 <h2 id="游戏循环"><a href="#游戏循环" class="headerlink" title="游戏循环"></a><strong>游戏循环</strong></h2><p>这个很好理解，控制整个游戏程序的就是游戏循环。可以简单地理解为以下步骤：</p>
 <ul>
 <li>检测玩家输入</li>
@@ -398,9 +395,9 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enemy.position.x += <span class="number">20</span> * deltaTime</div></pre></td></tr></table></figure>
 <p>运行上面的代码，敌人的速度将固定在20像素/每秒，不会因为帧率的变化而做出改变。虽然从视觉的角度来说，高帧率下的敌人移动得更加流畅，但无论哪种情况，敌人的移动速度都是一样的。</p>
 <p>那么如何获得增量时间呢？这个主要取决于游戏框架，每帧间隔的时间其实都是可以计算的。只要得到这个数值，我们便能固定住敌人的移动速度。</p>
-<p>虽然解决了速度的问题，但并不代表所有的状态都能用这个方法解决。首先是所有与物理相关的游戏在帧率上的表现都不一样，比如低帧率跳得高等等，这些会在“物理”中详细解释。</p>
+<p>然而，增量时间并不能够解决所有问题。首先是所有与物理相关的游戏在帧率上的表现都不一样，比如低帧率跳得高等等，这些会在“物理”一节中详细解释。</p>
 <p>解决办法当然也有，比如最粗暴的方法：限制帧率。PS4上面的游戏基本都锁定为30帧，原因有很多，除了机能上的限制，还有就是上面所说的物理问题。如果游戏的循环本身只用了30ms，那么还要等待额外的3.3ms才能开始下一次游戏循环。注意，哪怕限制了帧数也需要处理增量时间。</p>
-<p>还有一种情况：游戏突然遇上了复杂的情形，导致某帧的渲染时间延长，这时候怎么办呢？其实很简单，直接丢掉这一帧就好，而这种做法导致的结果就是<strong>卡顿</strong>。显然，视觉上的卡顿会给玩家带来极其糟糕的体验。</p>
+<p>还有一种情况：游戏突然遇上了复杂的情形，导致某帧的渲染时间延长，这时候怎么办呢？其实很简单，直接丢掉这一帧就好，而这种做法导致的结果就是<strong>卡顿</strong>。视觉上的卡顿会给玩家带来极其糟糕的体验。</p>
 <h2 id="游戏对象"><a href="#游戏对象" class="headerlink" title="游戏对象"></a><strong>游戏对象</strong></h2><p>相信各位在看过我之前写的《Cocos2dx学习笔记》后，应该会对游戏对象有一个清晰的认知。游戏对象就是每一帧都需要更新或者绘制的对象，不管它是以什么形式存在，游戏都必须跟踪管理这些对象。</p>
 <h3 id="游戏对象的类型"><a href="#游戏对象的类型" class="headerlink" title="游戏对象的类型"></a><strong>游戏对象的类型</strong></h3><p>第一种常见的就是需要更新和绘制的对象，比如游戏中的角色、任何敌人以及会动的方块。</p>
 <p>第二种是只绘制不更新的对象，称为<strong>静态对象</strong>。它可以是游戏背景之类的东西。</p>
@@ -432,7 +429,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/游戏开发/" rel="tag">#游戏开发</a>
+            <a href="/tags/计算机图形学/" rel="tag">#计算机图形学</a>
+          
+            <a href="/tags/游戏开发基础/" rel="tag">#游戏开发基础</a>
           
         </div>
       
@@ -448,6 +447,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/02/GameProAlgorTechniques-note-02/" rel="prev" title="游戏编程算法与技巧笔记（2）——2D图形">
+                游戏编程算法与技巧笔记（2）——2D图形 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -542,7 +545,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-count">78</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -559,7 +562,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -626,7 +629,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要做这个笔记"><span class="nav-number">2.</span> <span class="nav-text">为什么要做这个笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏循环"><span class="nav-number">3.</span> <span class="nav-text">游戏循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">4.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间概念"><span class="nav-number">5.</span> <span class="nav-text">时间概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#真实时间与游戏时间"><span class="nav-number">5.1.</span> <span class="nav-text">真实时间与游戏时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间增量"><span class="nav-number">5.2.</span> <span class="nav-text">时间增量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象"><span class="nav-number">6.</span> <span class="nav-text">游戏对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏对象的类型"><span class="nav-number">6.1.</span> <span class="nav-text">游戏对象的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏循环中的游戏对象"><span class="nav-number">6.2.</span> <span class="nav-text">游戏循环中的游戏对象</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏循环"><span class="nav-number">2.</span> <span class="nav-text">游戏循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间概念"><span class="nav-number">4.</span> <span class="nav-text">时间概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#真实时间与游戏时间"><span class="nav-number">4.1.</span> <span class="nav-text">真实时间与游戏时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间增量"><span class="nav-number">4.2.</span> <span class="nav-text">时间增量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象"><span class="nav-number">5.</span> <span class="nav-text">游戏对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏对象的类型"><span class="nav-number">5.1.</span> <span class="nav-text">游戏对象的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏循环中的游戏对象"><span class="nav-number">5.2.</span> <span class="nav-text">游戏循环中的游戏对象</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

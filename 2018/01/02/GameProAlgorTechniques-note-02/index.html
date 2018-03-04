@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计算机图形学,游戏开发基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本章将介绍2D游戏相关的图形知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏编程算法与技巧笔记（2）——2D图形">
+<meta property="og:url" content="http://yoursite.com/2018/01/02/GameProAlgorTechniques-note-02/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="本章将介绍2D游戏相关的图形知识。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png">
+<meta property="og:updated_time" content="2018-02-22T08:49:42.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="游戏编程算法与技巧笔记（2）——2D图形">
+<meta name="twitter:description" content="本章将介绍2D游戏相关的图形知识。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/02/GameProAlgorTechniques-note-02/"/>
+
+  <title> 游戏编程算法与技巧笔记（2）——2D图形 | 先哥哥<(^ - ^)/ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">二年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                游戏编程算法与技巧笔记（2）——2D图形
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-02T17:21:16+08:00" content="2018-01-02">
+              2018-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/游戏编程算法与技巧笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏编程算法与技巧笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/01/02/GameProAlgorTechniques-note-02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/02/GameProAlgorTechniques-note-02/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章将介绍2D游戏相关的图形知识。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="2D渲染基础"><a href="#2D渲染基础" class="headerlink" title="2D渲染基础"></a><strong>2D渲染基础</strong></h2><p>虽然我们现在是在学3D，但如果跳过2D的话，反而会有些得不偿失。在本章的开头，我还是推荐没看过的各位去看一看我写过的《Cocos2dx学习笔记》，粗略地了解一遍还是很有帮助的。</p>
+<h3 id="CRT显示器基础"><a href="#CRT显示器基础" class="headerlink" title="CRT显示器基础"></a><strong>CRT显示器基础</strong></h3><p><strong>阴极射线管（CRT）</strong>显示器曾是多年前的主流产品，而CRT里的图像元素就是<strong>像素</strong>。一般来说，彩色显示器的颜色由RGB（红、绿、蓝）构成，而显示器的分辨率就决定了像素的数量。比如一个300X200的显示器有200行像素，叫做<strong>扫描线</strong>，每个扫描线可以有300个像素，所以总共会有60000个像素。</p>
+<center><img src="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png" alt=""></center>
+
+<p>如上图，绘制图像是由电子枪发射电子流完成的。电子枪从左上角开始沿第一条扫描线进行绘制，当它完成之后就继续下一条扫描线，然后不断的重复，直到完成所有扫描线就算是一帧。当电子枪刚刚完成一帧时，它的枪头在右下角，而从右下角移动到左上角的路径便被称为垂直回归线，所花费的时间叫做<strong>场消隐期</strong>。</p>
+<h3 id="像素缓冲区和垂直同步"><a href="#像素缓冲区和垂直同步" class="headerlink" title="像素缓冲区和垂直同步"></a><strong>像素缓冲区和垂直同步</strong></h3><p>早期的游戏硬件比较差，没有足够的内存存储完整的像素数据。现代硬件已经拥有了足够的内存容量，完全可以将所有颜色保存在<strong>像素缓冲区</strong>中，比之旧硬件要方便许多。但这并不代表游戏循环就可以完全无视CRT喷枪。假设喷枪在屏幕上绘制到一半时，刚好到了要输出画面的阶段。它开始为新的一帧往像素缓冲区中写像素时，CRT还在上一帧的绘制过程中。这就导致了<strong>画面撕裂</strong>，具体来说就是屏幕上同时显示了不同两帧的各自一半画面。</p>
+<p>当然，更有可能出现的是新一帧的数据提交时，上一帧还没有开始，那么游戏将会出现画面丢失的情况。</p>
+<p>解决方法有两个，第一个是同步游戏循环，等到场消隐期期间才开始渲染，但这样限制了游戏帧数，对于现在的游戏是行不通的。第二个就是<strong>双缓冲技术</strong>，游戏交替地在两块像素缓冲区中绘制。在1帧内，游戏循环可能会将颜色写入A区，而CRT正在显示B区。到了下一帧，CRT显示A区，而游戏循环写入B区。这样，就不会出现CRT绘制不完整的风险。</p>
+<p>那么为了完全消灭画面撕裂，缓冲区的交换就必须在场消隐期进行，而这就是游戏中常见的<strong>垂直同步</strong>。相比于渲染一帧所花费的时间，缓冲区的交换要快上很多，所以在场消隐期交换缓冲区完全消除了画面撕裂的风险。值得注意的是，垂直同步虽然防止了画面撕裂，但同时也会降低游戏的帧数，玩家应该根据自己的电脑配置进行取舍。</p>
+<p>现在虽然已经淘汰了CRT显示器，但双缓冲甚至是三缓冲技术都在沿用中，可以有效地解决画面撕裂问题，而与之伴随的则是无法忽视的输入延迟。</p>
+<h2 id="精灵"><a href="#精灵" class="headerlink" title="精灵"></a><strong>精灵</strong></h2><p>看过Cocos2dx的人应该会有所了解，精灵就是游戏中所有可见的2D图像（当然看不见的也可以算作是精灵，但那样就失去了精灵的存在意义，只能算作是对象）。精灵采取图片的形式存储，而图片的格式一般取决于平台需求。PNG格式占用空间小，但是通常硬件都不支持PNG格式直接绘制，因此加载到游戏内存中会被转换成其他格式。TGA格式可以直接回执，但占用空间大。在IOS设备上，一般用PVR。</p>
+<h3 id="绘制精灵"><a href="#绘制精灵" class="headerlink" title="绘制精灵"></a><strong>绘制精灵</strong></h3><p>绘制精灵需要按照一定的顺序，而这个步骤叫做<strong>画家算法</strong>。在画家算法中，所有的精灵都是从底层开始往上排列，依序渲染，与Cocos2D中的节点渲染类似（先父节点，再子节点）。对于Cocos2D之类的2D库来说，允许场景中的层次相互组合，比如一个游戏有背景层、角色层、UI层，而每个层中又会有多种元素，绘制时只需按序绘制即可。</p>
+<p>每一个精灵最少有一个绘制顺序，另外还要有图像数据和位置数据：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Sprite</div><div class="line">    ImageFile image</div><div class="line">    int drawOrder</div><div class="line">    int x, y</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Draw</span><span class="params">()</span></span></div><div class="line"></div><div class="line">    // 绘制图像</div><div class="line">    ...</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="动画精灵"><a href="#动画精灵" class="headerlink" title="动画精灵"></a><strong>动画精灵</strong></h3><p>2D游戏的动画其实是由一张张图片快速播放而成。方便起见，我们一般用一组图片去表示一个角色的所有状态。但另一个问题又随之出来，如何分辨出哪些帧表示哪个动画？方法很简单，将所有动画信息封装为一个<strong>AnimFrameData</strong>结构体，指定开始帧和帧长度去表示一个动画:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">struct AnimFrameData</div><div class="line">    // 第<span class="number">1</span>帧动画的索引</div><div class="line">    int startFrame</div><div class="line">    // 动画的所有帧数</div><div class="line">    int numFrames</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>用AnimData保存所有动画信息：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">struct AnimData</div><div class="line">    // 所有动画用到的短片</div><div class="line">    ImageFile images[]</div><div class="line">    // 所有动画用到的帧</div><div class="line">    AnimFrameData frameInfo[]</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>然后需要 AnimatedSprite 类从 Sprite 类继承下来，除了位置和根据绘制顺序进行绘制外，还要能够跟踪当前的动画数量，知道当前帧属于哪一个动画及当前动画需要用到多长时间。另外，FPS 同样也作为一个成员变量被存储了，用于控制动画的播放速度。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class AnimatedSprite inherits Sprite</div><div class="line">    // 所有动画数据</div><div class="line">    AnimData animData</div><div class="line">    // 当前运行中的动画</div><div class="line">    int animNum</div><div class="line">    // 当前运行中的动画的帧数</div><div class="line">    int frameNum</div><div class="line">    // 当前帧播放了多长时间</div><div class="line">    float frameTime</div><div class="line">    // 动画的FPS</div><div class="line">    float animFPS = <span class="number">24.0</span>f</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Initialize</span><span class="params">(AnimData myData, int startingAnimNum)</span></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">UpdateAnim</span><span class="params">(float deltaTime)</span></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ChangeAnim</span><span class="params">(int num)</span></span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Initialize 函数会为 AnimatedSprite 引用 AnimData，这样多个动画精灵能够共享同一份数据，这样也大大节省了内存。函数要求传入需要播放的动画，而后续初始化动作则由 ChangeAnim 函数完成。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AnimatedSprite.Initialize</span><span class="params">(AnimData myData, int startingAnimNum)</span></span></div><div class="line">    animData = myData</div><div class="line">    ChangeAnim(startingAnimNum)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>ChangeAnim 函数主要是用于切换动画，将帧数和时间设为 0，并且设置当前图片为第 1 帧。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AnimatedSprite.ChangeAnim</span><span class="params">(int num)</span></span></div><div class="line">    animNum = num</div><div class="line">    // 当前动画为第<span class="number">0</span>帧的<span class="number">0.0</span>f时间</div><div class="line">    frameNum = <span class="number">0</span></div><div class="line">    animTime = <span class="number">0.0</span>f</div><div class="line">    // 设置当前图像，设置为startFrame</div><div class="line">    int imageNum = animData.frameInfo[animNum].startFrame</div><div class="line">    image = animData.images[imageNum]</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>UpdateAnim 是非常重要的一个函数。原因之一就是不能够假设动画帧率比游戏帧率慢。例如，游戏可以在 30FPS 下运行，某个动画的运行帧率为 48FPS，那就意味着 UpdateAnim 必须得跳过某些帧。这也就是说，如果某一帧比某一动画帧所花费的时间要长，那么就要计算到底要跳过多少帧。像是动画的播放速度太快，就得从第1帧或者第2帧开始。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AnimatedSprite.UpdateAnim</span><span class="params">(float deltaTime)</span></span></div><div class="line">    // 更新当前帧播放时间</div><div class="line">    frameTime += deltaTime</div><div class="line"></div><div class="line">    // 根据frameTime判断是否为下一帧</div><div class="line">    <span class="keyword">if</span> frameTime &gt; (<span class="number">1</span> / animFPS)</div><div class="line">        // 更新当前播放到第几帧</div><div class="line">        // frameTime / (<span class="number">1</span> / animFPS)就相当于frameTime * animFPS</div><div class="line">        frameNum += frameTime * animFps</div><div class="line"></div><div class="line">        // 检查是否跳过最后一帧</div><div class="line">        <span class="keyword">if</span> frameNum &gt;= animData.frameInfo[animNum].numFrames</div><div class="line">            // 取模能够保证帧数循环正确</div><div class="line">            // （比如，<span class="keyword">if</span> numFrames == <span class="number">10</span> <span class="keyword">and</span> frameNum == <span class="number">11</span>,</div><div class="line">            // frameNum会得到<span class="number">11</span> % <span class="number">10</span> = <span class="number">1</span>）</div><div class="line">            frameNum = frameNum % animData.frameInfo[animNum].numFrames</div><div class="line">        <span class="keyword">end</span></div><div class="line"></div><div class="line">        // 更新当前显示图片</div><div class="line">        // （startFrame是相对于所有图片来决定的，而frameNum相对于某个动画来决定）</div><div class="line">        int imageNum = animData.frameInfo[animNum].startFrame + frameNum</div><div class="line">        image = animData.images[imageNum]</div><div class="line"></div><div class="line">        // 我们用fmod（浮点数运算），相当于取模法</div><div class="line">        frameTime = fmod(frameTime, <span class="number">1</span> / animFPS)</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>上面的代码可以参考一下，但切换动画的功能其实并没有实现。Cocos2D 提供了 Animation 类来处理动画，并将其作为一个 Animate 类（动作类）的分支，可以说又是一种不错的模式。</p>
+<h3 id="精灵表单"><a href="#精灵表单" class="headerlink" title="精灵表单"></a><strong>精灵表单</strong></h3><p>为了保证精灵能够对齐，将该精灵所有的图片尺寸设置为一致是可行的（相信我，尺寸不同的图片保证能让你抓狂）。在过去，许多库都要求图片的尺寸为 2 的幂次方，虽然现在的显卡没了这个要求，但在 mipmap 中还是适用的。</p>
+<p>初学者在使用游戏引擎时通常是调用一张张单独的图片。这种做法有助于新手理解引擎的操作方式，但并不利于真正的游戏开发。为了保证尺寸一致，图片中常常会有大面积的空白区域，正确的做法其实是将所有要用到的图片整合到一张大图中，让每个精灵之间的距离尽可能地靠近，节省空间。</p>
+<p>比较流行的精灵表单打包工具是 TexturePacker。它支持很多 2D 库格式，其中就有 Cocos2D。TexturePacker 会将所有导入的图片整合为一张大图，并同时生成一个 .plist 格式的文件，里面记录了每张单独图片的位置信息。</p>
+<p>当然，每张图片的尺寸是有限制的，你不可能把所有的元素全部都整合成一张大图。根据不同的设备，图片的尺寸限制也有所不同。</p>
+<h2 id="滚屏"><a href="#滚屏" class="headerlink" title="滚屏"></a><strong>滚屏</strong></h2><p>滚屏在 2D 游戏中是经常出现的，而如何实现滚屏并达到相应的效果则是我们需要学习的。</p>
+<h3 id="单轴滚屏"><a href="#单轴滚屏" class="headerlink" title="单轴滚屏"></a><strong>单轴滚屏</strong></h3><p>单轴滚屏意味着游戏只沿 x 轴或者 y 轴滚动，像<strong>魂斗罗</strong>就是比较经典的单轴滚屏游戏。由于游戏世界要比屏幕大很多，所以一般不会选择加载整张地图。</p>
+<p>最简单的做法就是把关卡背景按照屏幕大小进行切割，然后将这一系列的片段加入到一张链表，并依序摆放到游戏世界中。链表加载完成后，需要决定那些背景需要绘制及绘制到什么地方。如果背景片段的尺寸与屏幕尺寸一致，那么同时最多只有两张背景图需要绘制。不过按照上述的方法，我们就需要一种能够跟踪背景的手段，方便游戏能够显示正确的背景片段。</p>
+<p>一种常见的方法就是让摄像机也在游戏世界中拥有坐标。关于摄像机，它并不能算是实体，也不需要去绘制它，它的作用仅仅在于控制玩家所能见到的视角。摄像机最开始放在第一张背景的位置。在水平滚屏的过程中，摄像机的 x 位置设置为玩家的 x 位置，只要位置不超过第一张背景和最后一张背景的范围就没问题。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机图形学/" rel="tag">#计算机图形学</a>
+          
+            <a href="/tags/游戏开发基础/" rel="tag">#游戏开发基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/17/GameProAlgorTechniques-note-01/" rel="next" title="游戏编程算法与技巧笔记（1）——游戏编程概述">
+                <i class="fa fa-chevron-left"></i> 游戏编程算法与技巧笔记（1）——游戏编程概述
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/01/02/GameProAlgorTechniques-note-02/"
+           data-title="游戏编程算法与技巧笔记（2）——2D图形" data-url="http://yoursite.com/2018/01/02/GameProAlgorTechniques-note-02/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2D渲染基础"><span class="nav-number">1.</span> <span class="nav-text">2D渲染基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRT显示器基础"><span class="nav-number">1.1.</span> <span class="nav-text">CRT显示器基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#像素缓冲区和垂直同步"><span class="nav-number">1.2.</span> <span class="nav-text">像素缓冲区和垂直同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵"><span class="nav-number">2.</span> <span class="nav-text">精灵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制精灵"><span class="nav-number">2.1.</span> <span class="nav-text">绘制精灵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画精灵"><span class="nav-number">2.2.</span> <span class="nav-text">动画精灵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精灵表单"><span class="nav-number">2.3.</span> <span class="nav-text">精灵表单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚屏"><span class="nav-number">3.</span> <span class="nav-text">滚屏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单轴滚屏"><span class="nav-number">3.1.</span> <span class="nav-text">单轴滚屏</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
