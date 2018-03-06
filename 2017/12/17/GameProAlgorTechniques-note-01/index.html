@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/17/GameProAlgorTechniques-note-01/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章将开始学习游戏编程相关的各种知识。">
-<meta property="og:updated_time" content="2018-01-30T10:59:19.891Z">
+<meta property="og:updated_time" content="2018-03-04T15:49:37.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏编程算法与技巧笔记（1）——游戏编程概述">
 <meta name="twitter:description" content="本章将开始学习游戏编程相关的各种知识。">
@@ -403,7 +403,7 @@
 <p>第二种是只绘制不更新的对象，称为<strong>静态对象</strong>。它可以是游戏背景之类的东西。</p>
 <p>第三种游戏对象是那些需要更新，但不需要绘制的对象。比较常见的例子就是摄像机。一般来说，游戏需要移动摄像机来改变视角，但玩家并不需要看到摄像机。另一种情况就是<strong>触发器</strong>。许多游戏都会有这样的设计，当玩家走到某个位置时，就会触发某件事情。触发器需要不断地检测与玩家的碰撞行为，但并不需要生成实体。</p>
 <h3 id="游戏循环中的游戏对象"><a href="#游戏循环中的游戏对象" class="headerlink" title="游戏循环中的游戏对象"></a><strong>游戏循环中的游戏对象</strong></h3><p>游戏对象有很多种实现方式，其中一种就是面向对象中的接口。如果某个类需要使用这个接口，那么就必须要按照规定去实现这个接口中的所有方法。</p>
-<p>类似C++之类的语言，都会有集成的概念。需要注意的是，继承虽然好用，但我们应该尽量避免<strong>菱形继承</strong>，同时善用<strong>虚函数</strong>的概念。当游戏对象被创建出来之后，需要将它添加到相应的列表之中，统一进行管理，不用时再从列表中删除：</p>
+<p>类似C++之类的语言，都会有继承的概念。需要注意的是，继承虽然好用，但我们应该尽量避免<strong>菱形继承</strong>，同时善用<strong>虚函数</strong>的概念。当游戏对象被创建出来之后，需要将它添加到相应的列表之中，统一进行管理，不用时再从列表中删除：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class GameWorld</div><div class="line">    List updateableObjects</div><div class="line">    List drawableObjects</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>这样，我们就完成了游戏循环中的<strong>更新世界</strong>：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> game is running</div><div class="line">    realDeltaTime = time since last time</div><div class="line">    gameDeltaTime = realDeltaTime * gameTimeFactor</div><div class="line"></div><div class="line">    // 处理输入</div><div class="line">    ...</div><div class="line"></div><div class="line">    // 更新游戏世界</div><div class="line">    foreach Updateable o <span class="keyword">in</span> GameWorld.updateableObjects</div><div class="line">        o.Update(gameDeltaTime)</div><div class="line">    loop</div><div class="line"></div><div class="line">    // 渲染输出</div><div class="line">    foreach Drawable o <span class="keyword">in</span> GameWorld.drawableObjects</div><div class="line">        o.Draw()</div><div class="line">    loop</div><div class="line"></div><div class="line">    // 帧数限制代码</div><div class="line">    ...</div><div class="line">loop</div></pre></td></tr></table></figure>
