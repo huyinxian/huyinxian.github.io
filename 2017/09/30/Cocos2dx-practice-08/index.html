@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/hollweencat-death.gif">
-<meta property="og:updated_time" content="2017-10-27T07:22:34.892Z">
+<meta property="og:updated_time" content="2018-03-08T02:58:40.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx项目实战（8）——万圣节小猫">
 <meta name="twitter:description" content="这次将模仿谷歌浏览器上的一个精品小游戏。">
@@ -121,7 +121,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2017/09/30/Cocos2dx-practice-08/"/>
 
-  <title> Cocos2dx项目实战（8）——万圣节小猫 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx项目实战（8）——万圣节小猫 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -129,7 +129,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -165,7 +165,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -373,19 +373,16 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>由于这次的小游戏没那么简单，所以我会边做边写，顺便记录一些错误问题。同样，最终完成的项目源码会上传到GitHub上。</p>
 <p>首先看一下这个游戏：<a href="https://www.google.com/doodles/halloween-2016" target="_blank" rel="external">https://www.google.com/doodles/halloween-2016</a></p>
 <p>如果看不了的话，就直接看看下面这张图：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/halloween-jiaocheng.png" alt=""></p>
 <h2 id="主场景设计"><a href="#主场景设计" class="headerlink" title="主场景设计"></a><strong>主场景设计</strong></h2><p>游戏的场景很简单，分为三个要素：背景、小猫、幽灵。背景部分主要是背景图和几个会动的小物品，实现起来很简单。而由于幽灵部分其实和小猫类似，所以我们第一步就是要编写游戏的主角：小猫。</p>
 <p>身为主角，最主要的任务就是画符号消灭幽灵，而这也需要执行不同的动作，同时进行动作之间的组合与切换。</p>
 <h2 id="动作设计"><a href="#动作设计" class="headerlink" title="动作设计"></a><strong>动作设计</strong></h2><h3 id="炸毛动作"><a href="#炸毛动作" class="headerlink" title="炸毛动作"></a><strong>炸毛动作</strong></h3><p>先来做个简单的动作，也就是小猫遇到幽灵会做出炸毛的表情。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 炸毛动作</span></div><div class="line">Sequence *Cat::getActionScare()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 炸毛动作</span></div><div class="line">    Animation *animation1 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i != <span class="number">3</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-scared-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation1-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation1-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">10.0</span>);</div><div class="line">    Animate *animate1 = Animate::create(animation1);</div><div class="line"></div><div class="line">    <span class="comment">// 恢复原状</span></div><div class="line">    Animation *animation2 = Animation::create();</div><div class="line">    animation2-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-scared-3.png"</span>);</div><div class="line">    animation2-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-right-0.png"</span>);</div><div class="line">    animation2-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">10.0</span>);</div><div class="line">    Animate *animate2 = Animate::create(animation2);</div><div class="line"></div><div class="line">    <span class="comment">// 炸毛延长一秒+组合动作</span></div><div class="line">    DelayTime *delay = DelayTime::create(<span class="number">1.0</span>);</div><div class="line">    Sequence *scareSequence = Sequence::create(animate1, delay, animate2, <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> scareSequence;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/hollween-scare.gif" alt=""></p>
 <p>为了做出比较好的效果，这里特意用了<code>Sequence</code>来拆分炸毛动作，将小猫的炸毛状态延长一秒。其实不拆分的我也试过，只是动作太快，效果并不是很好。</p>
 <h3 id="摆头"><a href="#摆头" class="headerlink" title="摆头"></a><strong>摆头</strong></h3><p>接下来就是编写一个比较重要的摆头动作，不仅帧数多，而且还有上下左右四个方向的摆动，当然做出来效果也很棒。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 摆头动作</span></div><div class="line">RepeatForever *Cat::getActionStand()</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 向右看，脑袋向上摆</span></div><div class="line">    Animation *animation1 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">4</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-right-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation1-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation1-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate1 = Animate::create(animation1);</div><div class="line"></div><div class="line">    <span class="comment">// 向右看，脑袋向下摆</span></div><div class="line">    Animate *animate2 = animate1-&gt;reverse();</div><div class="line"></div><div class="line">    <span class="comment">// 向左看，脑袋向上摆</span></div><div class="line">    Animation *animation3 = Animation::create();</div><div class="line">    animation3-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-leftToRight.png"</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">4</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-left-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation3-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation3-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate3 = Animate::create(animation3);</div><div class="line"></div><div class="line">    <span class="comment">// 向左看，脑袋向下摆</span></div><div class="line">    Animation *animation4 = Animation::create();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i != <span class="number">0</span>; i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">        <span class="built_in">sprintf</span>(str, <span class="string">"level1/cat-stand-left-%d.png"</span>, i);</div><div class="line"></div><div class="line">        animation4-&gt;addSpriteFrameWithFileName(str);</div><div class="line">    &#125;</div><div class="line">    animation4-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-leftToRight.png"</span>);</div><div class="line">    animation4-&gt;addSpriteFrameWithFileName(<span class="string">"level1/cat-stand-right-0.png"</span>);</div><div class="line">    animation4-&gt;setDelayPerUnit(<span class="number">1.0</span> / <span class="number">9.0</span>);</div><div class="line">    Animate *animate4 = Animate::create(animation4);</div><div class="line"></div><div class="line">    DelayTime *delay = DelayTime::create(<span class="number">0.5</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 永久的组合动作</span></div><div class="line">    Sequence *seq = Sequence::create(animate1, animate2, animate3, animate4, delay, <span class="literal">NULL</span>);</div><div class="line">    RepeatForever *standForever = RepeatForever::create(seq);</div><div class="line"></div><div class="line">    CCLOG(<span class="string">"done"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> standForever;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/hollween-baitou.gif" alt=""></p>
 <p>效果还是很不错的，代码虽然看起来长，但实际就是把摆头动作拆分为四步，并且加入到序列动作中执行即可。</p>
 <h3 id="动作组合"><a href="#动作组合" class="headerlink" title="动作组合"></a><strong>动作组合</strong></h3><p>炸毛和摆头动作都做完了，实现起来是不是很容易？那么，不妨思考一个问题：如何让小猫在炸毛之后继续做摆头动作？</p>
 <p>一般来说，多个动作同时执行，我们可以使用<code>Spawn</code>，而多个动作先后执行，我们可以使用<code>Sequence</code>。这里显然也是用<code>Sequence</code>。</p>
@@ -548,7 +545,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -778,6 +775,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

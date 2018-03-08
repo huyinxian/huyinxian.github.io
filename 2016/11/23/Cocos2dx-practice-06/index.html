@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20161120232934.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/background.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20161123181153.png">
-<meta property="og:updated_time" content="2016-12-06T03:00:12.128Z">
+<meta property="og:updated_time" content="2018-03-08T02:58:07.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx项目实战（6）——2048小游戏">
 <meta name="twitter:description" content="这一章将介绍一款特别经典的小游戏，同时也会教大家如何将游戏打包成apk文件">
@@ -120,7 +120,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/23/Cocos2dx-practice-06/"/>
 
-  <title> Cocos2dx项目实战（6）——2048小游戏 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx项目实战（6）——2048小游戏 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +128,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -371,8 +371,7 @@
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>之前的项目实战贴出了所有的源码，而一些游戏的重要部分讲的不是很清楚，代码太多看起来也头晕。所以呢，这一章开始我只会解析一些重要的部分，源码我已开源至<a href="https://github.com/huyinxian/My2048" target="_blank" rel="external">GitHub</a></p>
 <h2 id="游戏设计"><a href="#游戏设计" class="headerlink" title="游戏设计"></a><strong>游戏设计</strong></h2><p>看看下面的游戏界面，其实基本的元素很好判断，先自己想想一下要做什么，再接着往下看。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20161120232934.png" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20161120232934.png" alt=""></p>
 <p>想好了吗？主要分为几个要素：</p>
 <ul>
 <li>总分数记录和变动</li>
@@ -381,8 +380,7 @@
 <li>重来和退出</li>
 </ul>
 <p>其实第一和第四条我们在之前已经做过类似的，实现起来很容易，最主要的还是卡片和游戏结束的判断。游戏的主界面我做成了一张大图：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/background.png" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/background.png" alt=""></p>
 <p>我们只需要设计一个卡片类，然后生成16张卡片放到对应的位置即可。当然，你可能会问，卡片的合并操作怎么办。其实我们只需要按照一下的规则即可：</p>
 <ul>
 <li>朝一个方向滑动时，若前方为空，那么将所有卡片全部顶格</li>
@@ -415,8 +413,7 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>一路看下来，游戏真的不难，就凭我大一上学期学的C语言就能做出来（而且我学的比较差2333），不过真正要实现一个游戏还是没有那么容易的。还是那句话，我们在做游戏之前要做好设计，不要盲目动手，不然你敲了半天代码会发现毫无用处。</p>
 <h2 id="游戏移植安卓平台"><a href="#游戏移植安卓平台" class="headerlink" title="游戏移植安卓平台"></a><strong>游戏移植安卓平台</strong></h2><p>其实移植安卓平台很简单，首先我们要下载NDK、SDK、ANT，下载下来之后解压即可。为了方便起见，我们把文件夹名就改成它们的名字。随后我们启动Cocos2dx目录下的<code>setup.py</code>（需要安装python2.7），也就是在目录下按住shift+右键打开命令行，然后执行<code>python setup.py</code>。然后我们按照所给提示，依次输入NDK、SDK、ANT的文件路径，但是这里ANT需要定位到它里面的<code>bin</code>文件夹，其他两个直接就是根目录即可。</p>
 <p>设置完毕后，我们来到游戏项目下，打开<code>proj.android</code>，找到<code>jni</code>下的<code>Android.mk</code>。打开之后，修改里面的信息，这个是提供用户自定义的文件，不过我们只需要提供cpp文件即可。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20161123181153.png" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20161123181153.png" alt=""></p>
 <p>退回到项目根目录，我们在此打开命令行，执行<code>cocos run -p android</code>，然后等待完成，我们就可以在<code>bin</code>下面找到打包好的apk文件。如果没有成功，我们就需要仔细查看信息，根据对应的信息修改错误。</p>
 
       
@@ -556,7 +553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -786,6 +783,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

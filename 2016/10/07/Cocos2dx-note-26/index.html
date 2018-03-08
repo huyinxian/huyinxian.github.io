@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E5%BC%B9%E6%80%A7%E7%BC%93%E5%86%B2.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E8%B7%B3%E8%B7%83%E7%BC%93%E5%86%B2.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/%E5%9B%9E%E9%9C%87%E7%BC%93%E5%86%B2.png">
-<meta property="og:updated_time" content="2016-11-05T07:27:18.377Z">
+<meta property="og:updated_time" content="2018-03-08T02:49:26.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（26）——缓冲动作类">
 <meta name="twitter:description" content="缓冲动作类内容较多，本章单独讨论。">
@@ -122,7 +122,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/10/07/Cocos2dx-note-26/"/>
 
-  <title> Cocos2dx学习笔记（26）——缓冲动作类 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（26）——缓冲动作类 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -130,7 +130,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -166,7 +166,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -381,15 +381,11 @@
 <li>回震缓冲<code>CCEaseBack</code></li>
 </ul>
 <p>每个系列都有<code>In</code>、<code>Out</code>、<code>InOut</code>三种后缀，代表着三种状态，下面用图片来解释它们的内容。</p>
-<h2 id="指数缓冲"><a href="#指数缓冲" class="headerlink" title="指数缓冲"></a><strong>指数缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E6%8C%87%E6%95%B0%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a><strong>缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/sine%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="弹性缓冲"><a href="#弹性缓冲" class="headerlink" title="弹性缓冲"></a><strong>弹性缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E5%BC%B9%E6%80%A7%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="跳跃缓冲"><a href="#跳跃缓冲" class="headerlink" title="跳跃缓冲"></a><strong>跳跃缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E8%B7%B3%E8%B7%83%E7%BC%93%E5%86%B2.png" alt=""></center>
-
-<h2 id="回震缓冲"><a href="#回震缓冲" class="headerlink" title="回震缓冲"></a><strong>回震缓冲</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/%E5%9B%9E%E9%9C%87%E7%BC%93%E5%86%B2.png" alt=""></center>
+<h2 id="指数缓冲"><a href="#指数缓冲" class="headerlink" title="指数缓冲"></a><strong>指数缓冲</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/%E6%8C%87%E6%95%B0%E7%BC%93%E5%86%B2.png" alt=""></p>
+<h2 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a><strong>缓冲</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/sine%E7%BC%93%E5%86%B2.png" alt=""></p>
+<h2 id="弹性缓冲"><a href="#弹性缓冲" class="headerlink" title="弹性缓冲"></a><strong>弹性缓冲</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/%E5%BC%B9%E6%80%A7%E7%BC%93%E5%86%B2.png" alt=""></p>
+<h2 id="跳跃缓冲"><a href="#跳跃缓冲" class="headerlink" title="跳跃缓冲"></a><strong>跳跃缓冲</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/%E8%B7%B3%E8%B7%83%E7%BC%93%E5%86%B2.png" alt=""></p>
+<h2 id="回震缓冲"><a href="#回震缓冲" class="headerlink" title="回震缓冲"></a><strong>回震缓冲</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/%E5%9B%9E%E9%9C%87%E7%BC%93%E5%86%B2.png" alt=""></p>
 
       
     </div>
@@ -526,7 +522,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -756,6 +752,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

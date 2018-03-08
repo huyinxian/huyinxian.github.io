@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -91,9 +91,8 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章将介绍2D游戏相关的图形知识。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques/02/%E6%AD%BB%E7%A5%9E%E6%9D%A5%E4%BA%86.png">
-<meta property="og:updated_time" content="2018-03-06T07:38:21.059Z">
+<meta property="og:updated_time" content="2018-03-08T02:31:58.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏编程算法与技巧笔记（2）——2D图形">
 <meta name="twitter:description" content="本章将介绍2D游戏相关的图形知识。">
@@ -120,7 +119,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2018/01/02/GameProAlgorTechniques-note-02/"/>
 
-  <title> 游戏编程算法与技巧笔记（2）——2D图形 | 先哥哥<(^ - ^)/ </title>
+  <title> 游戏编程算法与技巧笔记（2）——2D图形 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +127,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -164,7 +163,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -371,8 +370,7 @@
 </blockquote>
 <h2 id="2D渲染基础"><a href="#2D渲染基础" class="headerlink" title="2D渲染基础"></a><strong>2D渲染基础</strong></h2><p>虽然我们现在是在学3D，但如果跳过2D的话，反而会有些得不偿失。在本章的开头，我还是推荐没看过的各位去看一看我写过的《Cocos2dx学习笔记》，粗略地了解一遍还是很有帮助的。</p>
 <h3 id="CRT显示器基础"><a href="#CRT显示器基础" class="headerlink" title="CRT显示器基础"></a><strong>CRT显示器基础</strong></h3><p><strong>阴极射线管（CRT）</strong>显示器曾是多年前的主流产品，而CRT里的图像元素就是<strong>像素</strong>。一般来说，彩色显示器的颜色由RGB（红、绿、蓝）构成，而显示器的分辨率就决定了像素的数量。比如一个300X200的显示器有200行像素，叫做<strong>扫描线</strong>，每个扫描线可以有300个像素，所以总共会有60000个像素。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques%E5%9F%BA%E6%9C%ACCRT%E7%BB%98%E5%88%B6.png" alt=""></p>
 <p>如上图，绘制图像是由电子枪发射电子流完成的。电子枪从左上角开始沿第一条扫描线进行绘制，当它完成之后就继续下一条扫描线，然后不断的重复，直到完成所有扫描线就算是一帧。当电子枪刚刚完成一帧时，它的枪头在右下角，而从右下角移动到左上角的路径便被称为垂直回归线，所花费的时间叫做<strong>场消隐期</strong>。</p>
 <h3 id="像素缓冲区和垂直同步"><a href="#像素缓冲区和垂直同步" class="headerlink" title="像素缓冲区和垂直同步"></a><strong>像素缓冲区和垂直同步</strong></h3><p>早期的游戏硬件比较差，没有足够的内存存储完整的像素数据。现代硬件已经拥有了足够的内存容量，完全可以将所有颜色保存在<strong>像素缓冲区</strong>中，比之旧硬件要方便许多。但这并不代表游戏循环就可以完全无视CRT喷枪。假设喷枪在屏幕上绘制到一半时，刚好到了要输出画面的阶段。它开始为新的一帧往像素缓冲区中写像素时，CRT还在上一帧的绘制过程中。这就导致了<strong>画面撕裂</strong>，具体来说就是屏幕上同时显示了不同两帧的各自一半画面。</p>
 <p>当然，更有可能出现的是新一帧的数据提交时，上一帧还没有开始，那么游戏将会出现画面丢失的情况。</p>
@@ -405,9 +403,6 @@
 <p>最简单的做法就是把关卡背景按照屏幕大小进行切割，然后将这一系列的片段加入到一张链表，并依序摆放到游戏世界中。链表加载完成后，需要决定那些背景需要绘制及绘制到什么地方。如果背景片段的尺寸与屏幕尺寸一致，那么同时最多只有两张背景图需要绘制。不过按照上述的方法，我们就需要一种能够跟踪背景的手段，方便游戏能够显示正确的背景片段。</p>
 <p>一种常见的方法就是让摄像机也在游戏世界中拥有坐标。关于摄像机，它并不能算是实体，也不需要去绘制它，它的作用仅仅在于控制玩家所能见到的视角。摄像机最开始放在第一张背景的位置。在水平滚屏的过程中，摄像机的 x 位置设置为玩家的 x 位置，只要位置不超过第一张背景和最后一张背景的范围就没问题。</p>
 <p>这种方法其实有点麻烦，我们需要计算精灵相对于摄像机的偏移量。而对 Cocos2D 这种具有层级概念的引擎来说，常用的方法是让背景移动。实现效果一样，但代码要简洁很多（当然你可以让游戏角色原地做一些动作，这样看起来就要更加生动一点）。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif" alt=""></center>
-
-<p>比如上面这个游戏，你看起来是小人在往右跑，但其实是背景在向左移动（高中物理的相对运动）。</p>
 <h3 id="无限滚屏"><a href="#无限滚屏" class="headerlink" title="无限滚屏"></a><strong>无限滚屏</strong></h3><p>无限滚屏就是当玩家失败才会停止滚屏的游戏。像《飞机大战》、《Flippy Bird》、《一个都不能死》，都是属于这种类型的游戏。无限滚屏并不代表游戏的背景图片是无限长的，游戏开发者通常会将四五张不同的图片排成一个序列，之后再不断地打乱顺序，即可达到背景图片的连续性和随机性。关于如何用一张背景图实现无限滚屏，有兴趣的可以看看微信飞机大战的那篇实战文章。</p>
 <h3 id="平行滚屏"><a href="#平行滚屏" class="headerlink" title="平行滚屏"></a><strong>平行滚屏</strong></h3><p>平行滚屏是将背景拆分成几个不同深度的层级，每一层都以不同的速度滚动以制造空间感。例如游戏中的云朵和地面，如果云朵比地面滚动得慢，那么就会造成云朵比地面远的感觉。</p>
 <h3 id="四向滚屏"><a href="#四向滚屏" class="headerlink" title="四向滚屏"></a><strong>四向滚屏</strong></h3><p>四向滚屏中，游戏世界会在水平和垂直方向上滚动，这样同一时刻内会显示4个背景片段。这类型的游戏会遇到的问题就是原点的放置，因为大部分 2D 框架坐标系是从左上角开始的（我在 Cocos2dx 学习笔记中讨论过这个问题），那么如果左上角的游戏世界坐标就是 (0,0) 的话，会让问题简单点。</p>
@@ -416,8 +411,7 @@
 <h2 id="砖块地图"><a href="#砖块地图" class="headerlink" title="砖块地图"></a><strong>砖块地图</strong></h2><p>砖块地图，又称瓦片地图。不管你用何种说法，这类型的地图都有一个共同点，那就是背景图都是由一个个等尺寸的小方块组成。像《口袋妖怪》、《牧场物语》、《火焰纹章》等 2D 俯视视角的游戏，会有着大面积的开放式地图。不用说我也知道，大部分人的想法就是做许多张尺寸非常大的地图，到了哪个地方就加载哪张图，简单粗暴。但这样一来，就会产生大量的重复，比如石头和树木就会在一个场景中重复多次出现，造成了大量的内存浪费。</p>
 <p>为什么不将这些相同的精灵统一做成一张图片呢？像是石头和树木，只需要单独做出几张图片，然后根据需要把它们随意组合在一起，就能够形成一座石山或者一片树林，而做到这一点仅仅只需要几张小图片。另外，我们可以事先将所有方块加入到精灵表单中，这样更易于管理。像是树木在砖块集合中的索引为0，那么所有表示树木的方块都可以用0表示。</p>
 <p>虽然正方形是砖块地图的常见形式，但某些游戏也会采用六边形和平行四边形来形成不同的视角。</p>
-<h3 id="斜视等视角砖块地图"><a href="#斜视等视角砖块地图" class="headerlink" title="斜视等视角砖块地图"></a><strong>斜视等视角砖块地图</strong></h3><center><img src="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques/02/%E6%AD%BB%E7%A5%9E%E6%9D%A5%E4%BA%86.png" alt=""></center>
-
+<h3 id="斜视等视角砖块地图"><a href="#斜视等视角砖块地图" class="headerlink" title="斜视等视角砖块地图"></a><strong>斜视等视角砖块地图</strong></h3><p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/GameProAlgorTechniques/02/%E6%AD%BB%E7%A5%9E%E6%9D%A5%E4%BA%86.png" alt=""></p>
 <p>上图是游戏《死神来了》，一款非常不错的 2D 像素风格解密游戏。该游戏采用的视角是斜视，比起传统的俯视视角更具有立体感。与正方形不同的是，这些砖块要么是六边形，要么是平行四边形。当然，为了整体的效果，斜视视角砖块地图需要使用多个层次去组织砖块，把相邻的砖块作为一组。</p>
 
       
@@ -557,7 +551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -787,6 +781,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

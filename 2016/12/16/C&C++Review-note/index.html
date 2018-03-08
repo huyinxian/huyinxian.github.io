@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/12/16/C&C++Review-note/"/>
 
-  <title> C&C++相关问题汇总 | 先哥哥<(^ - ^)/ </title>
+  <title> C&C++相关问题汇总 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -453,7 +453,8 @@
 <h2 id="extern-“C”"><a href="#extern-“C”" class="headerlink" title="extern “C”"></a><strong>extern “C”</strong></h2><p>在C++程序中调用被C编译后的函数，为什么要加上<code>extern “C”</code>？</p>
 <h3 id="extern"><a href="#extern" class="headerlink" title="extern"></a><strong>extern</strong></h3><p>我们先看一个例子：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file1.c:</span></div><div class="line">    <span class="keyword">int</span> x=<span class="number">1</span>;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>&#123;<span class="keyword">do</span> something here&#125;</div><div class="line"><span class="comment">// file2.c:</span></div><div class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> x;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> </span>&#123;x = f();&#125;</div></pre></td></tr></table></figure>
-<p><code>file2.c</code>中使用的<code>x</code>和<code>f()</code>都是定义在<code>file1.c</code>中，而<code>extern</code>语句仅仅只是一个变量的声明（C++严格区分定义与声明）。由于变量<code>x<br></code>是全局变量，可以声明多次（类型必须一致），但是在一个项目中只能被定义一次（除非你定义的是一个局部变量）：</p>
+<p><code>file2.c</code>中使用的<code>x</code>和<code>f()</code>都是定义在<code>file1.c</code>中，而<code>extern</code>语句仅仅只是一个变量的声明（C++严格区分定义与声明）。由于变量<code>x
+</code>是全局变量，可以声明多次（类型必须一致），但是在一个项目中只能被定义一次（除非你定义的是一个局部变量）：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file1.c:</span></div><div class="line">    <span class="keyword">int</span> x=<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> b=<span class="number">1</span>;</div><div class="line">    <span class="keyword">extern</span> c;</div><div class="line"><span class="comment">// file2.c:</span></div><div class="line">    <span class="keyword">int</span> x;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">extern</span> <span class="keyword">double</span> b;</div><div class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> c;</div></pre></td></tr></table></figure>
 <p>上面的代码存在着错误：</p>
 <ul>
@@ -679,7 +680,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -909,6 +910,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

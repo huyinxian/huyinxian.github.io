@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png">
-<meta property="og:updated_time" content="2016-12-06T03:18:07.912Z">
+<meta property="og:updated_time" content="2018-03-08T02:36:54.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（5）——纹理">
 <meta name="twitter:description" content="哟嚯，新的知识又来了，小伙伴们快坐下！">
@@ -120,7 +120,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/08/09/Cocos2dx-note-05/"/>
 
-  <title> Cocos2dx学习笔记（5）——纹理 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（5）——纹理 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +128,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -372,15 +372,13 @@
 <h2 id="开头补充"><a href="#开头补充" class="headerlink" title="开头补充"></a><strong>开头补充</strong></h2><p>在开始之前，首先要说一下关于窗口设置的问题。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">glview = GLViewImpl::createWithRect(<span class="string">"Practice"</span>, Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">480</span>, <span class="number">320</span>));</div><div class="line">director-&gt;getOpenGLView()-&gt;setDesignResolutionSize(<span class="number">960</span>, <span class="number">640</span>, ResolutionPolicy::SHOW_ALL);</div></pre></td></tr></table></figure>
 <p>第一个方法设定窗口的大小，第二个窗口设置显示内容的大小。如果我们加入一张图片，它无法填满960*640，也就意味着有一大块区域是黑色的。那么我们是否能够改变窗口的大小，让图片刚好占据整个窗口呢？但是要注意，上下两个数值都要更改。假如只改窗口大小，那么会出现下图这样的状况：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png" alt="示例"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png" alt="示例"></p>
 <p>注意，这个窗口是480*320的，但是由于显示的内容大小还是原来的，所以图片会依据比例缩小，看起来和没改变窗口是一个效果。第二个主要是用于当窗口尺寸不一样时，可以根据比例来缩放窗口。因此改变窗口大小时，一定要记得改掉显示内容的大小。</p>
 <p>总而言之，第一个调整窗口大小，第二个调整分辨率。</p>
 <h2 id="了解纹理"><a href="#了解纹理" class="headerlink" title="了解纹理"></a><strong>了解纹理</strong></h2><p>首先，我们先来看看精灵的创建方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCSprite *bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>);</div><div class="line">CCSprite *bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>, CCRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">320</span>));</div></pre></td></tr></table></figure>
 <p>第一种方法我们不陌生，至于第二种方法呢，便是规定图片的显示内容。Rect是矩形的意思，使用了UI坐标系，原点从左上角开始，显示长为400宽为320的内容，如下图所示：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png" alt="示例"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png" alt="示例"></p>
 <p>那么回归正题，什么是纹理？纹理是OpenGL的词汇，我们去查看底层代码就会发现，<code>Sprite::create()</code>其实就是创建了一个纹理。简单来说，纹理就是图片。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CCImage *image = <span class="keyword">new</span> CCImage();</div><div class="line">image-&gt;initWithImageFile(<span class="string">"sprite/plant.png"</span>);</div><div class="line"></div><div class="line">CCTexture2D *texture = <span class="keyword">new</span> CCTexture2D();</div><div class="line">texture-&gt;autorelease();</div><div class="line">texture-&gt;initWithImage(image);</div></pre></td></tr></table></figure>
 <p><code>CCTexture2D</code>没有<code>create()</code>方法，事实上，很多OpenGL的概念都没有<code>create()</code>方法。因此呢，我们需要自己创建对象，并送入自动回收池。至于纹理的初始化则需要图片，这里用到的<code>CCImage</code>同样没有<code>create()</code>方法。</p>
@@ -390,8 +388,7 @@
 <h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>在游戏进行过程中，我们不能够加一张图片就渲染一张，那样重复的动作会占据很多资源。事实上，内存区开辟了一块缓存区域，我们可以把常用的图片加载入缓存，需要用的时候可以直接取用。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CCTexture2D *texture2 = CCTextureCache::sharedTextureCache()-&gt;addImage(<span class="string">"sprite/bullet.png"</span>);</div><div class="line">CCSprite *bullet = CCSprite::createWithTexture(texture2);</div><div class="line">bullet-&gt;setPosition(ccp(<span class="number">200</span>, winsize.height / <span class="number">2</span> + <span class="number">20</span>));</div><div class="line">addChild(bullet);</div></pre></td></tr></table></figure>
 <p><code>sharedTextureCache()</code>是一个单例，用于将图片加入缓存。<code>addImage()</code>直接返回一个<code>CCTexture2D</code>的指针，因此直接创建指针接收。接下用纹理创建精灵，并加入到层中。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png" alt="示例"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png" alt="示例"></p>
 <p>从缓存拿去图片好比是从书架拿书，方便快捷。而如果我们直接加载图片，那么就好比是到图书馆拿书，繁琐耗时。但是呢，由于书架比较小，所以我们不可能把所有的书全部放入，这也就意味着，程序员需要根据图片用到的时间和频率，合理的利用缓存，而不是一股脑地全部塞进去。</p>
 
       
@@ -529,7 +526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -759,6 +756,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

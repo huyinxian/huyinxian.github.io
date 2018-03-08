@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/29/Python-note-06/"/>
 
-  <title> Python学习笔记（6）——list和tuple | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（6）——list和tuple | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -366,65 +366,65 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="list"><a href="#list" class="headerlink" title="list"></a><strong>list</strong></h2><p>list是Python中的一种数据结构，作为一种有序集合，list可以随时添加和删除元素：</p>
-<pre><code>&gt;&gt;&gt; classmates = [&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+<pre><code>&gt;&gt;&gt; classmates = [&#39;hyx&#39;, &#39;fantastic&#39;, &#39;miao&#39;]
 &gt;&gt;&gt; classmates
-[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+[&#39;hyx&#39;, &#39;fantastic&#39;, &#39;miao&#39;]
 </code></pre><p>如果想要知道列表长度，我们可以使用<code>len()</code>：</p>
 <pre><code>&gt;&gt;&gt; len(classmates)
 3
 </code></pre><p>当然，与其他数据结构类似，索引是从<code>0</code>开始：</p>
 <pre><code>&gt;&gt;&gt; classmates[0]
-&apos;hyx&apos;
+&#39;hyx&#39;
 &gt;&gt;&gt; classmates[1]
-&apos;fantastic&apos;
+&#39;fantastic&#39;
 &gt;&gt;&gt; classmates[2]
-&apos;miao&apos;
+&#39;miao&#39;
 </code></pre><p>当索引为3时，Python就会报错，所以要记住最后一个元素的索引为<code>len(classmates) - 1</code>。</p>
 <p>如果要获取最后一个元素，我们可以直接用<code>-1</code>做索引：</p>
 <pre><code>&gt;&gt;&gt; classmates[-1]
-&apos;miao&apos;
+&#39;miao&#39;
 </code></pre><p>类似的，<code>-2</code>、<code>-3</code>也可以获取倒数第二个、第三个元素，不过同样不要越界。</p>
 <p>list是一个可变有序表，可以向列表尾追加元素：</p>
-<pre><code>&gt;&gt;&gt; classmates.append(&apos;Adam&apos;)
+<pre><code>&gt;&gt;&gt; classmates.append(&#39;Adam&#39;)
 &gt;&gt;&gt; classmates
-[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;, &apos;Adam&apos;]
+[&#39;hyx&#39;, &#39;fantastic&#39;, &#39;miao&#39;, &#39;Adam&#39;]
 </code></pre><p>我们也可以向指定位置插入元素：</p>
-<pre><code>&gt;&gt;&gt; classmates.insert(1, &apos;huyinx&apos;)
+<pre><code>&gt;&gt;&gt; classmates.insert(1, &#39;huyinx&#39;)
 &gt;&gt;&gt; classmates
-[&apos;hyx&apos;, &apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;, &apos;Adam&apos;]
+[&#39;hyx&#39;, &#39;huyinx&#39;, &#39;fantastic&#39;, &#39;miao&#39;, &#39;Adam&#39;]
 </code></pre><p>如果想要删除列表尾的元素，可以使用<code>pop()</code>：</p>
 <pre><code>&gt;&gt;&gt; classmates.pop()
-&apos;Adam&apos;
+&#39;Adam&#39;
 &gt;&gt;&gt; classmates
-[&apos;hyx&apos;, &apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+[&#39;hyx&#39;, &#39;huyinx&#39;, &#39;fantastic&#39;, &#39;miao&#39;]
 </code></pre><p><code>pop(i)</code>可以删除指定位置的元素，只需要提供相应的索引即可：</p>
 <pre><code>&gt;&gt;&gt; classmates.pop(1)
-&apos;huyinx&apos;
+&#39;huyinx&#39;
 &gt;&gt;&gt; classmates
-[&apos;hyx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+[&#39;hyx&#39;, &#39;fantastic&#39;, &#39;miao&#39;]
 </code></pre><p>如果想要直接替换某位置上的元素，那么直接对其赋值即可：</p>
-<pre><code>&gt;&gt;&gt; classmates[0] = &apos;huyinx&apos;
+<pre><code>&gt;&gt;&gt; classmates[0] = &#39;huyinx&#39;
 &gt;&gt;&gt; classmates
-[&apos;huyinx&apos;, &apos;fantastic&apos;, &apos;miao&apos;]
+[&#39;huyinx&#39;, &#39;fantastic&#39;, &#39;miao&#39;]
 </code></pre><p>当然，list没有规定存储类型，你可以向列表中加入任意类型的元素：</p>
-<pre><code>&gt;&gt;&gt; List = [&apos;huyinx&apos;, 123456, True, 90.1]
+<pre><code>&gt;&gt;&gt; List = [&#39;huyinx&#39;, 123456, True, 90.1]
 </code></pre><p>甚至可以往里面添加一个list列表：</p>
-<pre><code>&gt;&gt;&gt; List[-1] = [&apos;hyx&apos;, &apos;miao&apos;]
+<pre><code>&gt;&gt;&gt; List[-1] = [&#39;hyx&#39;, &#39;miao&#39;]
 &gt;&gt;&gt; List
-[&apos;huyinx&apos;, 123456, True, [&apos;hyx&apos;, &apos;miao&apos;]]
+[&#39;huyinx&#39;, 123456, True, [&#39;hyx&#39;, &#39;miao&#39;]]
 </code></pre><p>类似于C语言的二维数组，<code>List</code>只有四个元素，而它的第四个元素是一个列表，包含了两个元素：</p>
 <pre><code>&gt;&gt;&gt; List[-1]
-[&apos;hyx&apos;, &apos;miao&apos;]
+[&#39;hyx&#39;, &#39;miao&#39;]
 &gt;&gt;&gt; List[-1][0]
-&apos;hyx&apos;
+&#39;hyx&#39;
 </code></pre><p>如果列表为空，那么它的长度为0：</p>
 <pre><code>&gt;&gt;&gt; L = []
 &gt;&gt;&gt; len(L)
 0
 </code></pre><h2 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a><strong>tuple</strong></h2><p>tuple是另外一种有序表，但它是不可变的：</p>
-<pre><code>&gt;&gt;&gt; classmates = (&apos;hyx&apos;, &apos;miao&apos;, &apos;huyinx&apos;)
+<pre><code>&gt;&gt;&gt; classmates = (&#39;hyx&#39;, &#39;miao&#39;, &#39;huyinx&#39;)
 &gt;&gt;&gt; classmates
-(&apos;hyx&apos;, &apos;miao&apos;, &apos;huyinx&apos;)
+(&#39;hyx&#39;, &#39;miao&#39;, &#39;huyinx&#39;)
 </code></pre><p>一旦确定下来，它就不能够再被更改。我们可以使用<code>classmates[0]</code>来访问数组，但是不能够改变它的值，也不会有<code>insert()</code>和<code>append()</code>这样的方法。这样做的目的是为了稳定性，代码更加安全。所以，能够使用tuple就不要使用list。</p>
 <p>由于tuple的特殊性，因此也产生了许许多多的陷阱。由于tuple创建时元素就必须确定（当然你也可以定义为空，不过那没有什么意义），当你定义一个元素时，就会出现下面这种情况：</p>
 <pre><code>&gt;&gt;&gt; t = (1)
@@ -436,9 +436,9 @@
 (1,)
 </code></pre><p>Python显示一个元素的tuple时，也会自动加上逗号，免得你误认为是数学符号。</p>
 <p>当然，你可能觉得tuple太死板了，不够方便。那么你可以在tuple中加入list，使得tuple可变：</p>
-<pre><code>&gt;&gt;&gt; Tuple = (1, 2, [&apos;hyx&apos;, &apos;miao&apos;])
+<pre><code>&gt;&gt;&gt; Tuple = (1, 2, [&#39;hyx&#39;, &#39;miao&#39;])
 &gt;&gt;&gt; Tuple
-(1, 2, [&apos;hyx&apos;, &apos;miao&apos;])
+(1, 2, [&#39;hyx&#39;, &#39;miao&#39;])
 </code></pre><p><code>Tuple[-1]</code>就是我们所熟悉的list，我们可以对其进行任意的修改。</p>
 
       
@@ -576,7 +576,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -806,6 +806,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

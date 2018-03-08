@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/06/Python-note-04/"/>
 
-  <title> Python学习笔记（4）——数据类型 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（4）——数据类型 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -369,22 +369,22 @@
 <h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a><strong>浮点数</strong></h2><p>和C语言差不多，浮点数的意思就是可以浮动小数点的数，因为数字较大时，一般使用科学计数法来表示：<code>1.23e9</code>、<code>12.3e8</code>。其实这两个数是一样的，只不过因为小数点的位置，所以看起来有点不同。</p>
 <p>我们知道，C语言中有单精度和双精度浮点数，但哪怕是双精度浮点数也只能够精确小数点后十几位。所以，切不可用浮点数来判断是否相等，因为我们无法保证它是否精确。事实上，<code>0.99999…</code>或者<code>1.000…</code>经常被看做是<code>1</code>，而刚刚好等于<code>1</code>的浮点数其实不怎么常见。总之记住一句话，整数永远是精确的，浮点数可能会四舍五入。</p>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a><strong>字符串</strong></h2><p>字符串是用<code>‘</code>或<code>“</code>括起来的文本，如果我们想让字符串包含<code>‘</code>，那么可以用<code>“</code>：</p>
-<pre><code>&gt;&gt;&gt; print &quot;I&apos;m Chinese!&quot;
-I&apos;m Chinese!
+<pre><code>&gt;&gt;&gt; print &quot;I&#39;m Chinese!&quot;
+I&#39;m Chinese!
 </code></pre><p>当然，如果你两个符号都想输出，那么可以使用转义字符：</p>
-<pre><code>&gt;&gt;&gt; print &apos;I\&apos;m \&quot;Chinese\&quot;&apos;
-I&apos;m &quot;Chinese&quot;
-</code></pre><p>还有其他诸如：<code>\n</code>、<code>\t</code>、<code>\</code>都是可以用的。当然，如果有很多要转义的字符，为了简化代码，我们还可以使用<code>r’’</code>，这个表示<code>‘’</code>中的字符全都不转义，比如：</p>
-<pre><code>&gt;&gt;&gt; print r&apos;\n\t\\&apos;
+<pre><code>&gt;&gt;&gt; print &#39;I\&#39;m \&quot;Chinese\&quot;&#39;
+I&#39;m &quot;Chinese&quot;
+</code></pre><p>还有其他诸如：<code>\n</code>、<code>\t</code>、<code>\\</code>都是可以用的。当然，如果有很多要转义的字符，为了简化代码，我们还可以使用<code>r’’</code>，这个表示<code>‘’</code>中的字符全都不转义，比如：</p>
+<pre><code>&gt;&gt;&gt; print r&#39;\n\t\\&#39;
 \n\t\\
 </code></pre><p>如果要输入多行内容，可以使用<code>‘’’…’’’</code>：</p>
-<pre><code>&gt;&gt;&gt; print &apos;&apos;&apos;line1
+<pre><code>&gt;&gt;&gt; print &#39;&#39;&#39;line1
 ... line2
-... line3&apos;&apos;&apos;
+... line3&#39;&#39;&#39;
 line1
 line2
 line3
-</code></pre><p>注意，输入<code>‘’’line1</code>并按下回车后，<code>&gt;&gt;&gt;</code>就会变成<code>…</code>，表示你可以继续输入，一直到你打上<code>‘’’</code>并回车为止。当然，在前面加上<code>r</code>也是可以的。</p>
+</code></pre><p>注意，输入<code>‘’’line1</code>并按下回车后，<code&gt;&gt;&gt;>就会变成<code>…</code>，表示你可以继续输入，一直到你打上<code>‘’’</code>并回车为止。当然，在前面加上<code>r</code>也是可以的。</code&gt;&gt;&gt;></p>
 <h2 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a><strong>布尔值</strong></h2><p>布尔值使用<code>True</code>和<code>False</code>表示：</p>
 <pre><code>&gt;&gt;&gt; True
 True
@@ -419,14 +419,14 @@ True
 <p>甚至于下面这样：</p>
 <pre><code>&gt;&gt;&gt; a = 1
 &gt;&gt;&gt; print a
-&gt;&gt;&gt; a = &apos;Hello&apos;
+&gt;&gt;&gt; a = &#39;Hello&#39;
 &gt;&gt;&gt; print a
 1
 Hello
 </code></pre><p>Python不是强类型语言，所以我们无需指定类型。变量其实可以看做是指针，例如：</p>
-<pre><code>&gt;&gt;&gt; a = &apos;Hello&apos;
+<pre><code>&gt;&gt;&gt; a = &#39;Hello&#39;
 &gt;&gt;&gt; b = a
-&gt;&gt;&gt; a = &apos;World&apos;
+&gt;&gt;&gt; a = &#39;World&#39;
 &gt;&gt;&gt; print b,a
 Hello World
 </code></pre><p>也就是说，计算机创建一个字符串<code>‘Hello’</code>，然后创建一个变量<code>a</code>来指向它，随后又创建<code>b</code>来指向<code>a</code>的内容。这个时候再创建字符串<code>‘World’</code>，然后让<code>a</code>指向它。所谓的<code>b = a</code>并不是<code>b</code>指向<code>a</code>，而是指向它的内容，熟悉指针便能理解这个概念。</p>
@@ -575,7 +575,7 @@ Hello World
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -805,6 +805,43 @@ Hello World
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

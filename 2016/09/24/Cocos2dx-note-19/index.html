@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/dagadsgdg.gif">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20160805.jpg">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20160805205641.jpg">
-<meta property="og:updated_time" content="2016-12-06T03:12:39.653Z">
+<meta property="og:updated_time" content="2018-03-08T03:04:09.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（19）——滑块控件">
 <meta name="twitter:description" content="游戏设置中经常有滑块来控制数值的大小，既方便又美观，那么Cocos是怎么实现的呢？">
@@ -120,7 +120,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/24/Cocos2dx-note-19/"/>
 
-  <title> Cocos2dx学习笔记（19）——滑块控件 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（19）——滑块控件 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +128,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -384,24 +384,22 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ControlSlider *slider = ControlSlider::create(<span class="string">"sliderTrack.png"</span>, <span class="string">"sliderProgress.png"</span>, <span class="string">"sliderThumb.png"</span>);</div></pre></td></tr></table></figure>
 <p>第一个参数代表轨道，第二个参数代表滑块的进度，第三个参数就是拖动按钮。</p>
 <p>然后创建一个标签和回调函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CCLabelTTF* label; <span class="comment">// 显示滑块数值的Label</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">valueChanged</span><span class="params">(CCObject* sender, CCControlEvent controlEvent)</span></span>; <span class="comment">// 当值改变时触发的控件事件</span></div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CCLabelTTF* label; <span class="comment">// 显示滑块数值的Label</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">valueChanged</span><span class="params">(CCObject* sender, CCControlEvent controlEvent)</span></span>; <span class="comment">// 当值改变时触发的控件事件</span></div></pre></td></tr></table></figure>
 <p>下面是一些设置属性：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建显示Slider值的标签</span></div><div class="line">label = CCLabelTTF::create(<span class="string">"20"</span>, <span class="string">"Courier New"</span>, <span class="number">20</span>);</div><div class="line">label-&gt;setPosition( midPos + ccp(<span class="number">0</span>, <span class="number">100</span>) );</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label);</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment">// 创建滑块控件CCControlSlider</span></div><div class="line">CCControlSlider* slider = CCControlSlider::create(<span class="string">"sliderTrack.png"</span>, <span class="string">"sliderProgress.png"</span>, <span class="string">"sliderThumb.png"</span>);</div><div class="line">slider-&gt;setPosition( midPos );</div><div class="line"><span class="keyword">this</span>-&gt;addChild(slider);</div><div class="line"> </div><div class="line"><span class="comment">// 设置属性</span></div><div class="line">slider-&gt;setMinimumValue(<span class="number">0</span>);         <span class="comment">// 设置滑块最小值</span></div><div class="line">slider-&gt;setMaximumValue(<span class="number">100</span>);       <span class="comment">// 设置滑块最大值</span></div><div class="line">slider-&gt;setMinimumAllowedValue(<span class="number">20</span>); <span class="comment">// 设置允许滑动的最小值</span></div><div class="line">slider-&gt;setMaximumAllowedValue(<span class="number">80</span>); <span class="comment">// 设置允许滑动的最大值</span></div><div class="line">slider-&gt;setValue(<span class="number">20</span>);               <span class="comment">// 设置当前滑块的值</span></div><div class="line"> </div><div class="line"><span class="comment">// 绑定事件，当滑块的值改变时触发控件事件</span></div><div class="line">slider-&gt;addTargetWithActionForControlEvents(<span class="keyword">this</span>, cccontrol_selector(HelloWorld::valueChanged), CCControlEventValueChanged);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建显示Slider值的标签</span></div><div class="line">label = CCLabelTTF::create(<span class="string">"20"</span>, <span class="string">"Courier New"</span>, <span class="number">20</span>);</div><div class="line">label-&gt;setPosition( midPos + ccp(<span class="number">0</span>, <span class="number">100</span>) );</div><div class="line"><span class="keyword">this</span>-&gt;addChild(label);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 创建滑块控件CCControlSlider</span></div><div class="line">CCControlSlider* slider = CCControlSlider::create(<span class="string">"sliderTrack.png"</span>, <span class="string">"sliderProgress.png"</span>, <span class="string">"sliderThumb.png"</span>);</div><div class="line">slider-&gt;setPosition( midPos );</div><div class="line"><span class="keyword">this</span>-&gt;addChild(slider);</div><div class="line"></div><div class="line"><span class="comment">// 设置属性</span></div><div class="line">slider-&gt;setMinimumValue(<span class="number">0</span>);         <span class="comment">// 设置滑块最小值</span></div><div class="line">slider-&gt;setMaximumValue(<span class="number">100</span>);       <span class="comment">// 设置滑块最大值</span></div><div class="line">slider-&gt;setMinimumAllowedValue(<span class="number">20</span>); <span class="comment">// 设置允许滑动的最小值</span></div><div class="line">slider-&gt;setMaximumAllowedValue(<span class="number">80</span>); <span class="comment">// 设置允许滑动的最大值</span></div><div class="line">slider-&gt;setValue(<span class="number">20</span>);               <span class="comment">// 设置当前滑块的值</span></div><div class="line"></div><div class="line"><span class="comment">// 绑定事件，当滑块的值改变时触发控件事件</span></div><div class="line">slider-&gt;addTargetWithActionForControlEvents(<span class="keyword">this</span>, cccontrol_selector(HelloWorld::valueChanged), CCControlEventValueChanged);</div></pre></td></tr></table></figure>
 <p>回调函数的实现如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 事件响应函数，值改变时，修改label标签的内容</span></div><div class="line"><span class="keyword">void</span> HelloWorld::valueChanged(CCObject* sender, CCControlEvent controlEvent)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获取事件委托者：滑块控制CCControlSlider</span></div><div class="line">    CCControlSlider* slider = (CCControlSlider*)sender;</div><div class="line"></div><div class="line">    <span class="comment">// 修改label的值，显示滑块的当前值</span></div><div class="line">    <span class="comment">// sprintf为C语言中的字符串格式转换，这里将float转换为字符串</span></div><div class="line">    <span class="keyword">char</span> str[<span class="number">50</span>];</div><div class="line">    <span class="built_in">sprintf</span>(str, <span class="string">"%g"</span>, slider-&gt;getValue() );  <span class="comment">//字符串格式转换</span></div><div class="line">    label-&gt;setString(str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/dagadsgdg.gif" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/dagadsgdg.gif" alt=""></p>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><strong>常见问题</strong></h2><p>3.x版本中会遇到一个问题，那就是包含了<code>cocos-ext.h</code>后，仍然无法找到相关的定义。查看相关的类文件，我们会发现一个问题，那就是提示<code>无法打开源文件extensions/ExtensionExport.h</code>。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20160805.jpg" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20160805.jpg" alt=""></p>
 <p>3.4版本后，首先在你自己的头文件中包含头文件和命名空间：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos-ext.h"</span></span></div><div class="line">USING_NS_CC_EXT;</div></pre></td></tr></table></figure>
 <p>然后选中工程右键<code>属性</code>-&gt;<code>配置属性</code>-&gt;<code>c/c++</code>-&gt;<code>常规</code>-&gt;<code>附加包含目录</code>中添加下列代码：</p>
 <pre><code>$(EngineRoot)
 $(EngineRoot)cocoseditor-support
 $(EngineRoot)cocos
-</code></pre><center><img src="http://obkyr9y96.bkt.clouddn.com/20160805205641.jpg" alt=""></center>
+</code></pre><p><img src="http://obkyr9y96.bkt.clouddn.com/20160805205641.jpg" alt=""></p>
 
       
     </div>
@@ -538,7 +536,7 @@ $(EngineRoot)cocos
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -768,6 +766,43 @@ $(EngineRoot)cocos
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/12/11/CSharp-note-03/"/>
 
-  <title> C#学习笔记（3）——类型转换 | 先哥哥<(^ - ^)/ </title>
+  <title> C#学习笔记（3）——类型转换 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -372,7 +372,8 @@
 <li>指针类型</li>
 </ul>
 <p>下面将分别介绍三个大类。</p>
-<h2 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a><strong>值类型</strong></h2><table>
+<h2 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a><strong>值类型</strong></h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:left">类型</th>
@@ -462,6 +463,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>如果你现在想要得到一个类型的大小（比如你在别的平台），可以使用老方法<code>sizeof</code>，就能够得到类型在当前平台上的大小。</p>
 <p>我们之前已经了解过，只要是强类型语言，那么一个类型就对应一种存储方式，不可能像Python或Lua那样随意修改变量的类型。不过呢，如果我们有时候需要转换类型时，C#还是能够做得到的：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">double</span> d = <span class="number">2.5</span>;</div><div class="line">    <span class="keyword">int</span> x = (<span class="keyword">int</span>)d + <span class="number">1</span>;</div><div class="line">    Console.WriteLine(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -476,7 +478,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dynamic</span> d = <span class="number">20</span>;</div></pre></td></tr></table></figure>
 <h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a><strong>String类型</strong></h3><p>字符串类型可以接受任意的值，并将它们转换成字符串的形式。注意，之前我讲的<code>string</code>是C#中的类，而大写的<code>String</code>是.net Framework的类。</p>
 <p>事实上，如果用string,编译器会把它编译成String，所以如果直接用String就可以让编译器少做一点点工作。不过呢，string毕竟是关键字，而String则可以用作变量的名字。所以呢，用string比较规范一点。</p>
-<p>另外，字符串前面还可以加上<code>@</code>，这样就能够将转义字符当做普通字符对待：</p>
+<p>另外，字符串前面还可以加上&lt;code&gt;@&lt;/code&gt;，这样就能够将转义字符当做普通字符对待：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">string</span> str = <span class="string">@"C:\Windows"</span>;</div></pre></td></tr></table></figure>
 <p>等价于：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">string</span> str = <span class="string">"C:\\Windows"</span>;</div></pre></td></tr></table></figure>
@@ -619,7 +621,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -849,6 +851,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

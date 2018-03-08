@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20160805122812133">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20160805172652327">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/20160805174628410">
-<meta property="og:updated_time" content="2016-12-06T03:18:22.953Z">
+<meta property="og:updated_time" content="2018-03-08T02:35:59.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（3）——锚点">
 <meta name="twitter:description" content="新的知识到来了，什么是锚点呢？灵魂画师先哥哥登场&amp;lt;(￣︶￣)&amp;gt;">
@@ -120,7 +120,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/08/08/Cocos2dx-note-03/"/>
 
-  <title> Cocos2dx学习笔记（3）——锚点 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（3）——锚点 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +128,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -164,7 +164,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -371,8 +371,7 @@
 </blockquote>
 <h2 id="什么是锚点"><a href="#什么是锚点" class="headerlink" title="什么是锚点"></a><strong>什么是锚点</strong></h2><p>当我们插入一张图片时，我们需要调整它的位置。假如一张空白的画布是背景，那么当我们插入一张图片时，我们如何确定图片的位置呢？图片可以看做一个精灵，也就是一个节点。那么对于一个节点的位置很好判断，那就是以背景画布建立坐标系。一般来说，父节点的坐标原点默认为(0, 0)，也就是说，对于一个960*640的游戏窗口，左下角为(0, 0)，右上角为(960, 640)。如果要将图片（也就是子节点）插入到画布上，那么就是设定坐标为(480, 320)。</p>
 <p>但问题是，我们只能确保代表图片元素的这个节点是位于最中间的，我们并不能确保整张图片看起来是位于画布最中间，因为图片本身也有大小。那么这里就涉及到一个问题，图片的哪一个点代表整张图片的位置？这个点呢，也被称作锚点。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20160805122812133" alt="示例图"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20160805122812133" alt="示例图"></p>
 <p>如上图所示，空白代表着背景画布，我们插入的图片是一个蓝色的矩形。如果我们想让矩形看起来位于背景画布的中央，那么我们就应该将锚点设置为矩形的最中央。那么这样一来，只要锚点位于背景中央，自然就代表了矩形位于背景中央。再者，如果将锚点设为矩形左下角，那么当我们设置图片位置为(480, 320)时，矩形其实并没有像我们所想的那样位于画布中间，而是矩形左下角位于(480, 320)这个位置，这样看起来矩形就处于画布的右上部分。值得一提的是，锚点的范围是从(0, 0)到(1, 1)，同时默认锚点值为(0.5, 0.5)。另外，层的锚点默认忽略，各节点的默认位置为(0, 0)。</p>
 <h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a><strong>具体代码</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> T01LayerAnchorPoint: <span class="keyword">public</span> CCLayer</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span>  T01LayerAnchorPoint *<span class="title">create</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> CCScene *<span class="title">scene</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    CCSprite *spr;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>最基本的类的构架，这里的<code>static  T01LayerAnchorPoint *create()</code>可以直接用<code>CREATE_FUNC(T01LayerAnchorPoint)</code>代替。</p>
@@ -383,11 +382,9 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">CCScene *T01LayerAnchorPoint::scene()</div><div class="line">&#123;</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    T01LayerAnchorPoint *layer = T01LayerAnchorPoint::create();</div><div class="line"></div><div class="line">    <span class="comment">// 层的锚点默认为忽略，这里设置为不忽略</span></div><div class="line">    layer-&gt;ignoreAnchorPointForPosition(<span class="literal">false</span>);</div><div class="line"></div><div class="line">    scene-&gt;addChild(layer);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>至于<code>scene()方</code>法，没有什么很特别的地方。<code>ignoreAnchorPointForPosition()</code>方法是用来忽略锚点的，如果传入参数true，那么也就是将层的锚点设置为(0, 0)。</p>
 <p>事实上，仔细分析上述代码，我们建立了一个场景、一个层、一个精灵。我们将精灵。对于层来说，我们一般忽略它的锚点，也就是将层的锚点设置为左下角，让它和场景重合。至于精灵，一般来讲都是不忽略的，默认为(0.5, 0.5)，方便我们调整精灵在层中的位置。我们将精灵的锚点设置为左下角(1, 1)，位置设置为正中央。如果层的锚点忽略，那么我们看到的精灵应该是位于正中央的。由于我们不忽略层的锚点，那么层的锚点将是默认的(0.5, 0.5)。这样一来，我们应该会看到下图所示的样子。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20160805172652327" alt="示例图"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20160805172652327" alt="示例图"></p>
 <p>当然，场景和层中我们并没有插入图片之类的东西，所以看到的应该是一片黑色。唯一看到的就是位于左下角的精灵了。其实很好理解，场景默认忽略锚点，所以锚点为(0, 0)，位置也是(0, 0)。至于层则被我们设置成了不忽略锚点，因此层的锚点为(0.5, 0.5)。由于锚点的位置位于(0, 0)，那么层的中央就相应的移动到了(0, 0)的位置，不再是与场景重合。至于精灵我们就可以根据场景与层的关系来判断。抛开场景，精灵的锚点为左下角(0, 0)，位置为层的正中央。因此，看起来就是处在窗口的左下角，但实际上是处在层的右上部。</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/20160805174628410" alt="这里写图片描述"></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/20160805174628410" alt="这里写图片描述"></p>
 <p>如果不是很清楚，看看上图就应该明白了。场景的大小就是窗口的大小，也就是红线所圈出的范围。超出窗口的部分我们都是看不到的。虽然我们将精灵左下角设置为锚点，并且位置设置成窗口的中央。如果层的锚点没变，那么一切都如我们所想。不过，位置是相对的。我们对于一个节点的位置讨论，都是相对与它的参考物，也就是父节点来讨论的。只要按照一层层的顺序来理解，那么很容易便能判断对象相对应的位置。</p>
 <h2 id="锚点与缩放"><a href="#锚点与缩放" class="headerlink" title="锚点与缩放"></a><strong>锚点与缩放</strong></h2><p>缩放是根据锚点的位置来的。例如，锚点的位置位于中心，那么物体便从中心向四周开始延展。如果位于左下角，那么便从左下角开始向着x轴正向和y轴正向延展。总而言之，就是锚点的位置不变，物体根据锚点的位置进行拉伸。</p>
 
@@ -526,7 +523,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -756,6 +753,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

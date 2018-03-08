@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/13/Cocos2dx-note-18/"/>
 
-  <title> Cocos2dx学习笔记（18）——Cocos数据结构 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（18）——Cocos数据结构 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -427,7 +427,7 @@
 <h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a><strong>其他功能</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> sp5 = sp_map.at(<span class="string">"sp1"</span>);          <span class="comment">// 通过key取出sp1  </span></div><div class="line">sp_map.insert(<span class="string">"10"</span>, sp5);             <span class="comment">// 再将sp1 以三个key值的方式存入map  </span></div><div class="line">sp_map.insert(<span class="string">"20"</span>, sp5);  </div><div class="line">sp_map.insert(<span class="string">"30"</span>, sp5);  </div><div class="line">  </div><div class="line"><span class="keyword">auto</span> <span class="number">_</span>key = sp_map.keys(sp1);         <span class="comment">// 获得sp1对应的key值  </span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;e : <span class="number">_</span>key)  </div><div class="line">&#123;  </div><div class="line">    CCLOG(<span class="string">"_key is %s"</span>, e.c_str());   <span class="comment">// 输出sp1 对应的key值（有四个，分别是：sp1，10，20，30）  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>Map</code>对象的元素是键-值对，也就是每个元素包含两个部分：键以及由键关联的值。这种键和键值组成一个<code>pair</code>类型，它的<code>first</code>元素指向键，<code>second</code>元素则为元素。如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> find_sp = sp_map.find(<span class="string">"10"</span>);                    <span class="comment">// 通过find()查找key为“10”的pair类型。  </span></div><div class="line"><span class="keyword">auto</span> sp6 = find_sp-&gt;second;                          <span class="comment">// 键对应的对象  </span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> find_str = find_sp-&gt;first;</div><div class="line">CCLOG(<span class="string">"sp6 key value is %s"</span>, find_str.c_str());      <span class="comment">// 打印出键  </span></div><div class="line">sp6-&gt;runAction(MoveBy::create(<span class="number">0.3f</span>, Point(<span class="number">200</span>,<span class="number">0</span>)));  <span class="comment">// 让sp6做运动</span></div></pre></td></tr></table></figure>
-<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a><strong>Value</strong></h2><p><code>Value</code>可以保存任意基本类型，而Cocos中的<code>std::vector<value></value></code>、<code>std::unordered_map<std::string, value=""></std::string,>、<code>std::unordered_map<int, value=""></int,>等等也可以存放到<code>Value</code>中。之前的<code>CCBool</code>、<code>CCInt</code>等将被废除，改为统一的变量。</code></code></p>
+<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a><strong>Value</strong></h2><p><code>Value</code>可以保存任意基本类型，而Cocos中的<code>std::vector<value></value></code>、<code>std::unordered_map<std::string, value="">&lt;/std::string,&gt;、<code>std::unordered_map<int, value="">&lt;/int,&gt;等等也可以存放到<code>Value</code>中。之前的<code>CCBool</code>、<code>CCInt</code>等将被废除，改为统一的变量。</int,></code></std::string,></code></p>
 <h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a><strong>内存管理</strong></h3><p><code>Value</code>由它的析构函数释放内存，<code>Value</code>包含以下成员：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">union</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> byteVal;</div><div class="line">    <span class="keyword">int</span> intVal;</div><div class="line">    <span class="keyword">float</span> floatVal;</div><div class="line">    <span class="keyword">double</span> doubleVal;</div><div class="line">    <span class="keyword">bool</span> boolVal;</div><div class="line">&#125;<span class="number">_b</span>aseData;</div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="number">_</span>strData;</div><div class="line">ValueVector* <span class="number">_</span>vectorData;</div><div class="line">ValueMap* <span class="number">_</span>mapData;</div><div class="line">ValueMapIntKey* <span class="number">_</span>intKeyMapData;</div><div class="line"></div><div class="line">Type <span class="number">_</span>type;</div></pre></td></tr></table></figure>
 <p><code>_baseData</code>、<code>_strData</code>和<code>_type</code>是由编译器和它们的析构函数负责释放内存的，而<code>Value</code>的析构函数释放<code>_vectorData</code>、<code>_mapData</code>和<code>intKeyMapData</code>。<code>Value</code>同样不能用引用计数管理内存。</p>
@@ -592,7 +592,7 @@ cocos2d: operator-&gt; The description of val4:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -822,6 +822,43 @@ cocos2d: operator-&gt; The description of val4:
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

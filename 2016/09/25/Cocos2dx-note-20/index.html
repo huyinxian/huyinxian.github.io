@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="继续UI的各种控件，让我们来了解一下开关的使用。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/dsapgjosd.gif">
-<meta property="og:updated_time" content="2016-12-06T03:12:25.144Z">
+<meta property="og:updated_time" content="2018-03-08T03:04:24.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（20）——开关控件">
 <meta name="twitter:description" content="继续UI的各种控件，让我们来了解一下开关的使用。">
@@ -118,7 +118,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/25/Cocos2dx-note-20/"/>
 
-  <title> Cocos2dx学习笔记（20）——开关控件 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（20）——开关控件 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -162,7 +162,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -379,13 +379,12 @@
 <p>当然，我们也可以传入六个参数，也就是使用第二种创建方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CCSprite *bg = CCSprite::create(<span class="string">"switch-mask.png"</span>);</div><div class="line">CCSprite *on = CCSprite::create(<span class="string">"switch-off.png"</span>);</div><div class="line">CCSprite *off = CCSprite::create(<span class="string">"switch-on.png"</span>);</div><div class="line">CCSprite *thumb = CCSprite::create(<span class="string">"switch-thumb.png"</span>);</div><div class="line"></div><div class="line">CCLabelTTF *switch_on = CCLabelTTF::create(<span class="string">"on"</span>, <span class="string">"Courier new"</span>, <span class="number">20</span>);</div><div class="line">CCLabelTTF *switch_off = CCLabelTTF::create(<span class="string">"off"</span>, <span class="string">"Courier new"</span>, <span class="number">20</span>);</div><div class="line"></div><div class="line">CCControlSwitch *controlSwitch = CCControlSwitch::create(bg, on, off, thumb, switch_on, switch_off);</div><div class="line">controlSwitch-&gt;setPosition(ccp(<span class="number">240</span>, <span class="number">160</span>));</div><div class="line"><span class="keyword">this</span>-&gt;addChild(controlSwitch);</div></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/dsapgjosd.gif" alt=""></center>
-
+<p><img src="http://obkyr9y96.bkt.clouddn.com/dsapgjosd.gif" alt=""></p>
 <p>这个是第二种方法的效果，我也推荐使用第二种方法，效果更加出色。</p>
 <h3 id="实现回调函数"><a href="#实现回调函数" class="headerlink" title="实现回调函数"></a><strong>实现回调函数</strong></h3><p>首先，我们要绑定控件事件：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绑定控件事件</span></div><div class="line">controlSwitch-&gt;addTargetWithActionForControlEvents(<span class="keyword">this</span>, cccontrol_selector(HelloWorld::valueChanged), CCControlEventValueChanged);</div></pre></td></tr></table></figure>
 <p>回调函数实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> HelloWorld::valueChanged(CCObject *sender, CCControlEvent controlEvent)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获取事件的传递者CCControlSwitch</span></div><div class="line">    CCControlSwitch *controlSwitch = (CCControlSwitch *)sender;</div><div class="line">     </div><div class="line">    <span class="comment">// 根据开关控件的状态，设置label标签的内容</span></div><div class="line">    <span class="keyword">if</span>(controlSwitch-&gt;isOn())</div><div class="line">    &#123;</div><div class="line">        label-&gt;setString(<span class="string">"on"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> </div><div class="line">    &#123;</div><div class="line">        label-&gt;setString(<span class="string">"off"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> HelloWorld::valueChanged(CCObject *sender, CCControlEvent controlEvent)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获取事件的传递者CCControlSwitch</span></div><div class="line">    CCControlSwitch *controlSwitch = (CCControlSwitch *)sender;</div><div class="line"></div><div class="line">    <span class="comment">// 根据开关控件的状态，设置label标签的内容</span></div><div class="line">    <span class="keyword">if</span>(controlSwitch-&gt;isOn())</div><div class="line">    &#123;</div><div class="line">        label-&gt;setString(<span class="string">"on"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        label-&gt;setString(<span class="string">"off"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -425,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/27/Cocos2dx-note-21/" rel="prev" title="Cocos2dx学习笔记（21）——点九图">
-                Cocos2dx学习笔记（21）——点九图 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/27/Cocos2dx-note-22/" rel="prev" title="Cocos2dx学习笔记（22）——按钮控件">
+                Cocos2dx学习笔记（22）——按钮控件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -752,6 +751,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

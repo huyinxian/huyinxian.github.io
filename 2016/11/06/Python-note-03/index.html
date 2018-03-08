@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/06/Python-note-03/"/>
 
-  <title> Python学习笔记（3）——输入与输出 | 先哥哥<(^ - ^)/ </title>
+  <title> Python学习笔记（3）——输入与输出 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -160,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -366,22 +366,22 @@
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h2><p>之前已经讲过，使用<code>print</code>可以在屏幕上打印指定文字:</p>
-<pre><code>&gt;&gt;&gt; print &apos;HelloWorld&apos;
+<pre><code>&gt;&gt;&gt; print &#39;HelloWorld&#39;
 HelloWorld
 </code></pre><p>如果文字比较多，可以用逗号<code>,</code>隔开。注意，遇到逗号会转换成空格，字符串不会紧贴在一起：</p>
-<pre><code>&gt;&gt;&gt; print &apos;hello&apos;, &apos;world&apos;
+<pre><code>&gt;&gt;&gt; print &#39;hello&#39;, &#39;world&#39;
 hello world
 </code></pre><p>当然，<code>print</code>也可以打印结果：</p>
-<pre><code>&gt;&gt;&gt; print &apos;100 + 200 =&apos;, 100 + 200
+<pre><code>&gt;&gt;&gt; print &#39;100 + 200 =&#39;, 100 + 200
 100 + 200 = 300
 </code></pre><p>不过这里的<code>‘100 + 200 =’</code>是字符串，结果是由后面的<code>100 + 200</code>得出</p>
 <h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h2><p>如果我们想获取一个字符，那么该怎么办呢？Python提供了<code>raw_input()</code>来获取用户的字符输入，并且存储到一个变量中：</p>
 <pre><code>&gt;&gt;&gt; name = raw_input()
-</code></pre><p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code>&gt;&gt;&gt;</code>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</p>
+</code></pre><p><code>name = raw_input()</code>会等待你的输入，回车表示输入结束。当<code&gt;&gt;&gt;>重新出现时，就表示我们输入完毕了，现在我们来看看<code>name</code>是什么。</code&gt;&gt;&gt;></p>
 <pre><code>&gt;&gt;&gt; name
-&apos;hyx&apos;
+&#39;hyx&#39;
 </code></pre><p>这样，我们会得到刚刚输入的名字。如果和输出合起来使用，那么就会变成这样：</p>
-<pre><code>&gt;&gt;&gt; print &apos;hello,&apos;, name
+<pre><code>&gt;&gt;&gt; print &#39;hello,&#39;, name
 hello, hyx
 </code></pre><p>当然，如果没有任何提示就让用户输入，那么显然会让别人摸不着头脑，我们可以创建一个文件，编写如下的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">name = raw_input(<span class="string">'Please input your name: '</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'hello,'</span>, name</div></pre></td></tr></table></figure>
@@ -525,7 +525,7 @@ hello, hyx
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -755,6 +755,43 @@ hello, hyx
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

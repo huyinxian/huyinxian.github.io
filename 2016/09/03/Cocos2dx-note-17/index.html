@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -90,12 +90,10 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/03/Cocos2dx-note-17/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/menu.png">
 <meta property="og:updated_time" content="2017-10-29T09:15:51.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx学习笔记（17）——菜单CCMenuItem">
 <meta name="twitter:description" content="菜单可以说是游戏必不可少的一部分，快来看看怎么使用吧。">
-<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/menu.png">
 
 
 
@@ -118,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/09/03/Cocos2dx-note-17/"/>
 
-  <title> Cocos2dx学习笔记（17）——菜单CCMenuItem | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx学习笔记（17）——菜单CCMenuItem | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -126,7 +124,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -162,7 +160,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -412,7 +410,7 @@
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h2><p>类的实现有些枯燥，我们来实际的创建一个菜单：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> T11CCMenu::init()</div><div class="line">&#123;</div><div class="line">    CCLayer::init();</div><div class="line">    CCMenuItem *fontItem = CCMenuItemFont::create(<span class="string">"fontmenu"</span>);</div><div class="line">    fontItem-&gt;setTarget(<span class="keyword">this</span>, menu_selector(T11CCMenu::menuCallBack));</div><div class="line"></div><div class="line">    CCMenu *menu = CCMenu::create();</div><div class="line">    menu-&gt;addChild(fontItem);</div><div class="line"></div><div class="line">    <span class="keyword">this</span>-&gt;addChild(menu);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> T11CCMenu::menuCallBack()</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是一个很简单的菜单，我们只加入了一个菜单项，同时也没有对回调函数编写其他的功能。不出意外的话，你可以看到屏幕中间出现<code>fontmenu</code>的字样。但是呢，它的结构其实是这样的：</p>
-<center><img src="http://obkyr9y96.bkt.clouddn.com/menu.png" alt=""></center>
+<center>![](http://obkyr9y96.bkt.clouddn.com/menu.png)</center>
 
 <p><code>CCMenu</code>的锚点为(0, 0)，坐标为层的中央。<code>CCMenuItem</code>的锚点为(0.5, 0.5)，坐标为(0, 0)。所以呢，我们就能看到现在的结构。不过为了方便调整菜单项的位置，我们一般将菜单的位置调整为(0, 0)，让它与层重合。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">menu-&gt;getContentSize().width;</div><div class="line">menu-&gt;getContentSize().height;</div></pre></td></tr></table></figure>
@@ -559,7 +557,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -789,6 +787,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 

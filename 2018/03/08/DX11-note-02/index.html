@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="计算机图形学,DirectX,线性代数," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="本章介绍如何快速生成有序列表。">
+<meta name="description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python学习笔记（14）——列表生成式">
-<meta property="og:url" content="http://yoursite.com/2016/12/09/Python-note-14/index.html">
+<meta property="og:title" content="DirectX11龙书学习笔记（2）——长度和单位向量">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/DX11-note-02/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章介绍如何快速生成有序列表。">
-<meta property="og:updated_time" content="2017-01-18T14:04:59.784Z">
+<meta property="og:description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
+<meta property="og:updated_time" content="2018-03-08T11:01:16.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python学习笔记（14）——列表生成式">
-<meta name="twitter:description" content="本章介绍如何快速生成有序列表。">
+<meta name="twitter:title" content="DirectX11龙书学习笔记（2）——长度和单位向量">
+<meta name="twitter:description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/09/Python-note-14/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/08/DX11-note-02/"/>
 
-  <title> Python学习笔记（14）——列表生成式 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> DirectX11龙书学习笔记（2）——长度和单位向量 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Python学习笔记（14）——列表生成式
+                DirectX11龙书学习笔记（2）——长度和单位向量
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-09T16:29:21+08:00" content="2016-12-09">
-              2016-12-09
+            <time itemprop="dateCreated" datetime="2018-03-08T08:44:30+08:00" content="2018-03-08">
+              2018-03-08
             </time>
           </span>
 
@@ -321,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/DirectX11龙书学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">DirectX11龙书学习笔记</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/09/Python-note-14/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/Python-note-14/" itemprop="commentsCount"></span>
+                <a href="/2018/03/08/DX11-note-02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/08/DX11-note-02/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,43 +361,207 @@
       
 
       
-        <p>本章介绍如何快速生成有序列表。<br><a id="more"></a></p>
+        <p>龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a><strong>列表生成式</strong></h2><p>之前我们讲过<code>range</code>，可以快速生成一个有序列表。但是，如果我们生成不连续的列表呢？我们可以循环：</p>
-<pre><code>&gt;&gt;&gt; for x in range(1, 11):
-...     L.append(x * x)
-...
-&gt;&gt;&gt; L
-[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
-</code></pre><p>当然，我们会有更简单的方法：</p>
-<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11)]
-[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
-</code></pre><p>可以看出来，我们把下面的语句放到了for循环前面，整个列表生成式会返回一个list。</p>
-<p>for后面还可以接判断语句，进一步帮助我们生成我们需要的列表：</p>
-<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0]
-[4, 16, 36, 64, 100]
-</code></pre><p>这样我们就筛选出了所有的偶数。当然，如果我们需要生成全排列（具体请看数据结构与算法），那么可以使用双层循环：</p>
-<pre><code>&gt;&gt;&gt; [m + n for m in &#39;abc&#39; for n in &#39;xyz&#39;]
-[&#39;ax&#39;, &#39;ay&#39;, &#39;az&#39;, &#39;bx&#39;, &#39;by&#39;, &#39;bz&#39;, &#39;cx&#39;, &#39;cy&#39;, &#39;cz&#39;]
-</code></pre><p>那么我们可以做一个简单的练习，列出当前目录下所有的文件和目录名：</p>
-<pre><code>&gt;&gt;&gt; import os
-&gt;&gt;&gt; [d for d in os.listdir(&#39;.&#39;)]
-[&#39;def.py&#39;, &#39;def2.py&#39;, &#39;def3.py&#39;, &#39;for.py&#39;, &#39;for2.py&#39;, &#39;HelloName.py&#39;, &#39;HelloWorld.py&#39;, &#39;ifelse.py&#39;, &#39;qiepian.py&#39;]
-</code></pre><p>之前我们说过，for循环可以使用两个变量来同时迭代索引和元素：</p>
-<pre><code>&gt;&gt;&gt; d = {&#39;x&#39;: &#39;A&#39;, &#39;y&#39;: &#39;B&#39;, &#39;z&#39;: &#39;C&#39; }
-&gt;&gt;&gt; for k, v in d.iteritems():
-...     print k, &#39;=&#39;, v
-... 
-y = B
-x = A
-z = C
-</code></pre><p>列表生成式也可以使用两个变量来生成list：</p>
-<pre><code>&gt;&gt;&gt; d = {&#39;x&#39;: &#39;A&#39;, &#39;y&#39;: &#39;B&#39;, &#39;z&#39;: &#39;C&#39;}
-&gt;&gt;&gt; [k + &#39;=&#39; + v for k, v in d.iteritems()]
-[&#39;y=B&#39;, &#39;x=A&#39;, &#39;z=C&#39;]
-</code></pre><p>这里我们演示用的都是dict，因为dict可以让key和value一一对应，这里我们也知道了如何使用两个变量来获取dict的key和value。</p>
+<h2 id="向量的长度"><a href="#向量的长度" class="headerlink" title="向量的长度"></a><strong>向量的长度</strong></h2><p>向量的长度等于有向线段的长度，我们用双竖线来表示向量的大小。现在，给出一个向量 $ \vec{u}=(x,y,z) $，由毕达哥拉斯定理（勾股定理）可得到如下求模公式：</p>
+<script type="math/tex; mode=display">\|\vec{u}\|=\sqrt{y^2+a^2}=\sqrt{y^2+(\sqrt{x^2+z^2})^2}=\sqrt{x^2+y^2+z^2} \tag{1.1}</script><p>不过在某些情况下，我们并不关心向量的长度，只需要用它来表示一个方向。对于这种向量，我们将之称为<strong>单位向量</strong>，其长度为 1。当我们想要让一个向量具有单位长度时，就需要对该向量进行规范化。我们将向量的每个分量除以该向量的模，得到规范化向量：</p>
+<script type="math/tex; mode=display">\|\vec{\hat{u}}\|=\frac{\vec{u}}{\|\vec{u}\|}=\lgroup\frac{x}{\|\vec{u}\|},\frac{y}{\|\vec{u}\|},\frac{z}{\|\vec{u}\|}\rgroup \tag{1.2}</script><p>如果要验证正确性的话，只需要计算$ |\vec{\hat{u}}| $的长度即可：</p>
+<script type="math/tex; mode=display">\|\vec{\hat{u}}\|=\sqrt{(\frac{x}{\|\vec{u}\|})^2+(\frac{y}{\|\vec{u}\|})^2+(\frac{z}{\|\vec{u}\|})^2}=\frac{\sqrt{x^2+y^2+z^2}}{\sqrt{\|\vec{u}\|^2}}=\frac{\vec{u}}{\|\vec{u}\|}=1</script><h2 id="关于如何在Hexo中显示数学公式"><a href="#关于如何在Hexo中显示数学公式" class="headerlink" title="关于如何在Hexo中显示数学公式"></a><strong>关于如何在Hexo中显示数学公式</strong></h2><p>首先把Hexo默认的渲染器卸载了，换个新的。在Hexo目录下输入以下代码：</p>
+<pre><code>npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+</code></pre><p>然后按照 <strong>../node_modules/kramed/lib/rules/inline.js</strong> 的路径，找到 <strong>inline.js</strong> 这个文件，并进行部分修改：</p>
+<pre><code>//escape: /^\\([\\`*{}\[\]()#$+\-.!_&gt;])/,      第11行，将其修改为
+escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,
+//em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,    第20行，将其修改为
+em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+</code></pre><p>它取消了该渲染引擎对 \,{,} 的转义，然后再 hexo clean、hexo g 重新部署，即可解决问题。</p>
+<p>另外注意一点，对于需要用到 MathJax 公式的文章，要在 Front-matter中 打开 MathJax 开关，例如：</p>
+<pre><code>title: DirectX11龙书学习笔记（2）——长度和单位向量
+
+data: 2018-03-08
+
+tags: [DirectX,线性代数,计算机图形学]
+
+mathjax: true
+
+categories: DirectX11龙书学习笔记
+---
+</code></pre><p>如果还不能显示，那么就需要到主题配置文件中修改。这里以 Next 主题的 _config.yml 文件为例：</p>
+<pre><code># MathJax Support
+mathjax:
+  enable: true
+  per_page: true
+  #cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+</code></pre><p>这样，就能够完整的显示出数学公式，不用再添加那些图片了。</p>
+<h2 id="MathJax公式语法"><a href="#MathJax公式语法" class="headerlink" title="MathJax公式语法"></a><strong>MathJax公式语法</strong></h2><p>下面是一些比较常见的公式语法：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">释义</th>
+<th style="text-align:left">测试用例</th>
+<th style="text-align:left">最终效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">上标</td>
+<td style="text-align:left">\$ x^{y^z}=(1+e^x)^{-2xy^w} \$</td>
+<td style="text-align:left">$x^{y^z}=(1+e^x)^{-2xy^w}$</td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:left">下标</td>
+<td style="text-align:left">\$ O_2 \$</td>
+<td style="text-align:left">$O_2$</td>
+</tr>
+<tr>
+<td style="text-align:left">\frac{分子}{分母} or 分子 \over 分母</td>
+<td style="text-align:left">分数</td>
+<td style="text-align:left">\$ f(x,y,z)=3y^2z(3+\frac{7x+5}{1+y^2}) \$</td>
+<td style="text-align:left">$ f(x,y,z)=3y^2z(3+\frac{7x+5}{1+y^2}) $</td>
+</tr>
+<tr>
+<td style="text-align:left">\sqrt[根指数，省略时为2]{被开方数}</td>
+<td style="text-align:left">开方</td>
+<td style="text-align:left">\$ \sqrt{2}、\sqrt[3]{9} \$</td>
+<td style="text-align:left">$ \sqrt{2}、\sqrt[3]{9} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\ldots</td>
+<td style="text-align:left">与文本底线对齐的省略号</td>
+<td style="text-align:left">\$ x_1x_2{\ldots}x_n \$</td>
+<td style="text-align:left">$ x_1x_2{\ldots}x_n $</td>
+</tr>
+<tr>
+<td style="text-align:left">\cdots</td>
+<td style="text-align:left">与文本中线对齐的省略号</td>
+<td style="text-align:left">\$ x_1x_2{\cdots}x_n \$</td>
+<td style="text-align:left">$ x_1x_2{\cdots}x_n $</td>
+</tr>
+<tr>
+<td style="text-align:left">\int_积分下限^积分上限(被积表达式)</td>
+<td style="text-align:left">积分</td>
+<td style="text-align:left">\$ \int_1^n{x^2}dx \$</td>
+<td style="text-align:left">$ \int_1^n{x^2}dx $</td>
+</tr>
+<tr>
+<td style="text-align:left">\sum_{下标表达式}^{上标表达式} {累加表达式}</td>
+<td style="text-align:left">累加</td>
+<td style="text-align:left">\$ \sum_{i=1}^n \frac{1}{i^2} \$</td>
+<td style="text-align:left">$ \sum_{i=1}^n \frac{1}{i^2} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\\, or \; or \quad or \qquad</td>
+<td style="text-align:left">不同宽度的空格</td>
+<td style="text-align:left">\$ a \, b \mid a \; b \mid a \quad b \mid a \qquad b \$</td>
+<td style="text-align:left">$ a \, b \mid a \; b \mid a \quad b \mid a \qquad b $</td>
+</tr>
+<tr>
+<td style="text-align:left">\color{颜色}{文字}</td>
+<td style="text-align:left">更改文字颜色</td>
+<td style="text-align:left">\$ \color{red}{红色} \$</td>
+<td style="text-align:left">$ \color{red}{红色} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\boldsymbol{x}</td>
+<td style="text-align:left">斜体加粗</td>
+<td style="text-align:left">\$ \boldsymbol{ABCD} \$</td>
+<td style="text-align:left">$ \boldsymbol{ABCD} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\vec{w}</td>
+<td style="text-align:left">向量</td>
+<td style="text-align:left">\$ \vec{w} \$</td>
+<td style="text-align:left">$ \vec{w} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\cdot</td>
+<td style="text-align:left">点乘</td>
+<td style="text-align:left">\$ \vec{w}\cdot x_{i} \$</td>
+<td style="text-align:left">$ \vec{w}\cdot x_{i} $</td>
+</tr>
+<tr>
+<td style="text-align:left">\overrightarrow{AB}</td>
+<td style="text-align:left">从A到B的向量</td>
+<td style="text-align:left">\$ \overrightarrow{AB} \$</td>
+<td style="text-align:left">$ \overrightarrow{AB} $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上述公式都是属于<strong>行间公式</strong>，如果想要让公式独占一行，那么就可以用 <code>$$</code> 来表示。</p>
+<h3 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a><strong>分段函数</strong></h3><p>如果你想要写分段函数，那么格式为：<code>f(x)=\begin{cases}语句1\\语句2\...\end{cases}<br>\text{文字}</code>。当然，公式的中间也可以插入其他的表达式来显示更复杂的函数。</p>
+<pre><code>$$
+f(n)=\begin{cases}
+n/2, &amp; \text{如果$ x&lt;=2 $}\\
+3n+1, &amp; \text{如果$ x&gt;2 $}
+\end{cases}
+$$
+</code></pre><p>效果如下：</p>
+<script type="math/tex; mode=display">
+f(n)=\begin{cases}
+n/2, & \text{如果$ x<=2 $}\\
+3n+1, & \text{如果$ x>2 $}
+\end{cases}</script><h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a><strong>矩阵</strong></h3><p>使用<code>$$\begin{matrix}…\end{matrix}$$</code>来生成矩阵，其中 … 表示的是 LaTeX 的矩阵命令，矩阵命令中每一行以 \\ 结束，矩阵的元素之间用 &amp; 来分隔开。</p>
+<p>当然，直接显示其实不太好看，我们可以在矩阵的两旁添加大括号，方法就是将<code>{matrix}
+</code>改为<code>{bmatrix}</code>即可。</p>
+<pre><code>$$
+ \begin{bmatrix}
+   1 &amp; 2 &amp; 3 \\
+   4 &amp; 5 &amp; 6 \\
+   7 &amp; 8 &amp; 9
+ \end{bmatrix} \tag{1}
+$$
+</code></pre><p>效果如下：</p>
+<script type="math/tex; mode=display">
+ \begin{bmatrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6 \\
+   7 & 8 & 9
+ \end{bmatrix} \tag{1}</script><p>当然你也可以用<code>{Bmatrix}</code>：</p>
+<pre><code>$$
+ \begin{Bmatrix}
+   1 &amp; 2 &amp; 3 \\
+   4 &amp; 5 &amp; 6 \\
+   7 &amp; 8 &amp; 9
+ \end{Bmatrix} \tag{2}
+$$
+</code></pre><p>矩阵会多出一对花括号：</p>
+<script type="math/tex; mode=display">
+ \begin{Bmatrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6 \\
+   7 & 8 & 9
+ \end{Bmatrix} \tag{2}</script><p>如果矩阵元素太多，可以使用<code>\cdots</code> $ \cdots $ <code>\ddots</code> $ \ddots $ <code>\vdots</code> $ \vdots $ 等省略符号来定义矩阵。</p>
+<p>例如：</p>
+<pre><code>$$
+ \begin{bmatrix}
+  1      &amp; 2      &amp; \cdots &amp; 4      \\
+  7      &amp; 6      &amp; \cdots &amp; 5      \\
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+  8      &amp; 9      &amp; \cdots &amp; 0
+ \end{bmatrix} \tag{3}
+$$
+</code></pre><p>结果如下：</p>
+<script type="math/tex; mode=display">
+ \begin{bmatrix}
+  1      & 2      & \cdots & 4      \\
+  7      & 6      & \cdots & 5      \\
+  \vdots & \vdots & \ddots & \vdots \\
+  8      & 9      & \cdots & 0
+ \end{bmatrix} \tag{3}</script><p>另外，如果你不想要矩阵单独占一行，你可以使用<code>\bigl(\begin{smallmatrix} … \end{smallmatrix}\bigr)</code>。</p>
+<p>例如：</p>
+<pre><code>我们使用矩阵 $\bigl( \begin{smallmatrix} a &amp; b \\ c &amp; d \end{smallmatrix} \bigr)$ 作为因子矩阵，将其...
+</code></pre><p>效果如下：</p>
+<blockquote>
+<p>使用矩阵 $\bigl( \begin{smallmatrix} a &amp; b \\ c &amp; d \end{smallmatrix} \bigr)$ 作为因子矩阵，将其…</p>
+</blockquote>
 
       
     </div>
@@ -420,7 +584,11 @@ z = C
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag">#Python</a>
+            <a href="/tags/计算机图形学/" rel="tag">#计算机图形学</a>
+          
+            <a href="/tags/DirectX/" rel="tag">#DirectX</a>
+          
+            <a href="/tags/线性代数/" rel="tag">#线性代数</a>
           
         </div>
       
@@ -429,17 +597,13 @@ z = C
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Python-note-13/" rel="next" title="Python学习笔记（13）——迭代">
-                <i class="fa fa-chevron-left"></i> Python学习笔记（13）——迭代
+              <a href="/2018/03/06/DX11-note-01/" rel="next" title="DirectX11龙书学习笔记（1）——向量">
+                <i class="fa fa-chevron-left"></i> DirectX11龙书学习笔记（1）——向量
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/10/CSharp-note-02/" rel="prev" title="C#学习笔记（2）——常量与变量">
-                C#学习笔记（2）——常量与变量 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -488,8 +652,8 @@ z = C
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/09/Python-note-14/"
-           data-title="Python学习笔记（14）——列表生成式" data-url="http://yoursite.com/2016/12/09/Python-note-14/">
+      <div class="ds-thread" data-thread-key="2018/03/08/DX11-note-02/"
+           data-title="DirectX11龙书学习笔记（2）——长度和单位向量" data-url="http://yoursite.com/2018/03/08/DX11-note-02/">
       </div>
     
   </div>
@@ -618,7 +782,7 @@ z = C
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表生成式"><span class="nav-number">1.</span> <span class="nav-text">列表生成式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">1.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于如何在Hexo中显示数学公式"><span class="nav-number">2.</span> <span class="nav-text">关于如何在Hexo中显示数学公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MathJax公式语法"><span class="nav-number">3.</span> <span class="nav-text">MathJax公式语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分段函数"><span class="nav-number">3.1.</span> <span class="nav-text">分段函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

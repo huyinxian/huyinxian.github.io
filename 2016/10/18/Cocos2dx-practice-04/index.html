@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
 <meta property="og:description" content="本章将复刻经典小游戏，一起来看看吧。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif">
-<meta property="og:updated_time" content="2016-12-06T02:59:53.032Z">
+<meta property="og:updated_time" content="2018-03-08T02:57:49.635Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2dx项目实战（4）——一个都不能死">
 <meta name="twitter:description" content="本章将复刻经典小游戏，一起来看看吧。">
@@ -118,7 +118,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/10/18/Cocos2dx-practice-04/"/>
 
-  <title> Cocos2dx项目实战（4）——一个都不能死 | 先哥哥<(^ - ^)/ </title>
+  <title> Cocos2dx项目实战（4）——一个都不能死 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -126,7 +126,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -162,7 +162,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">二年级生~</p>
+  <p class="site-subtitle">三年级生~</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -367,8 +367,7 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="游戏效果展示"><a href="#游戏效果展示" class="headerlink" title="游戏效果展示"></a><strong>游戏效果展示</strong></h2><center><img src="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif" alt=""></center>
-
+<h2 id="游戏效果展示"><a href="#游戏效果展示" class="headerlink" title="游戏效果展示"></a><strong>游戏效果展示</strong></h2><p><img src="http://obkyr9y96.bkt.clouddn.com/asbfkiask.gif" alt=""></p>
 <h2 id="游戏流程设计"><a href="#游戏流程设计" class="headerlink" title="游戏流程设计"></a><strong>游戏流程设计</strong></h2><ul>
 <li>开始界面：三个难度选择以及退出按钮</li>
 <li>游戏界面：加载对应的关卡</li>
@@ -389,7 +388,7 @@
 <p>这里的工作其实就是把<code>_layerCount</code>初始化，然后创建对应个数的<code>LayerOne</code>，也就是跑道。<code>LayerMain</code>继承的是<code>LayerColor</code>，这里调用<code>LayerColor</code>的初始化方法，将层的背景颜色改为白色。</p>
 <h2 id="Hero"><a href="#Hero" class="headerlink" title="Hero"></a><strong>Hero</strong></h2><p>用于生成英雄，并且加载动画。</p>
 <h3 id="Hero-h"><a href="#Hero-h" class="headerlink" title="Hero.h"></a><strong>Hero.h</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __Hero_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __Hero_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Hero : <span class="keyword">public</span> CCSprite</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(Hero);</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
-<h3 id="Hero-cpp"><a href="#Hero-cpp" class="headerlink" title="Hero.cpp"></a><strong>Hero.cpp</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Hero.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">bool</span> Hero::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!Sprite::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    setAnchorPoint(Vec2(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line">    </div><div class="line"></div><div class="line">    Animation *animation = Animation::create();</div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">5</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">memset</span>(buffer, <span class="number">0</span>, <span class="keyword">sizeof</span>(buffer));</div><div class="line">        <span class="built_in">sprintf</span>(buffer, <span class="string">"Hero%d.png"</span>, i);</div><div class="line">        animation-&gt;addSpriteFrameWithFile(buffer);</div><div class="line">    &#125;</div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">0.1f</span>);</div><div class="line">    animation-&gt;setLoops(<span class="number">-1</span>);</div><div class="line"></div><div class="line">    Animate *animate = Animate::create(animation);</div><div class="line"></div><div class="line">    <span class="keyword">this</span>-&gt;runAction(animate);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Hero-cpp"><a href="#Hero-cpp" class="headerlink" title="Hero.cpp"></a><strong>Hero.cpp</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Hero.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">bool</span> Hero::init()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!Sprite::init())</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    setAnchorPoint(Vec2(<span class="number">0</span>, <span class="number">0</span>));</div><div class="line"></div><div class="line"></div><div class="line">    Animation *animation = Animation::create();</div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">5</span>; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">memset</span>(buffer, <span class="number">0</span>, <span class="keyword">sizeof</span>(buffer));</div><div class="line">        <span class="built_in">sprintf</span>(buffer, <span class="string">"Hero%d.png"</span>, i);</div><div class="line">        animation-&gt;addSpriteFrameWithFile(buffer);</div><div class="line">    &#125;</div><div class="line">    animation-&gt;setDelayPerUnit(<span class="number">0.1f</span>);</div><div class="line">    animation-&gt;setLoops(<span class="number">-1</span>);</div><div class="line"></div><div class="line">    Animate *animate = Animate::create(animation);</div><div class="line"></div><div class="line">    <span class="keyword">this</span>-&gt;runAction(animate);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里只需要一个初始化方法，加载英雄的动画，并且执行这个动画即可。</p>
 <h2 id="Block"><a href="#Block" class="headerlink" title="Block"></a><strong>Block</strong></h2><p>用于生成随机的障碍物。</p>
 <h3 id="Block-h"><a href="#Block-h" class="headerlink" title="Block.h"></a><strong>Block.h</strong></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __Block_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __Block_H__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line">USING_NS_CC;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Block :<span class="keyword">public</span> Sprite</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CREATE_FUNC(Block);</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
@@ -541,7 +540,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -771,6 +770,43 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
 
   
 
