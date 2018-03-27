@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CSharp," />
+  <meta name="keywords" content="DirectX,线性代数,计算机图形学," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="貌似又要讲这个东西了。">
+<meta name="description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C#学习笔记（2）——常量与变量">
-<meta property="og:url" content="http://yoursite.com/2016/12/10/CSharp-note-02/index.html">
+<meta property="og:title" content="DirectX11龙书学习笔记（3）——点积与叉乘">
+<meta property="og:url" content="http://yoursite.com/2018/03/10/DX11-note-03/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="貌似又要讲这个东西了。">
-<meta property="og:updated_time" content="2017-05-18T12:46:38.683Z">
+<meta property="og:description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
+<meta property="og:updated_time" content="2018-03-10T07:11:10.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C#学习笔记（2）——常量与变量">
-<meta name="twitter:description" content="貌似又要讲这个东西了。">
+<meta name="twitter:title" content="DirectX11龙书学习笔记（3）——点积与叉乘">
+<meta name="twitter:description" content="龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/10/CSharp-note-02/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/10/DX11-note-03/"/>
 
-  <title> C#学习笔记（2）——常量与变量 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> DirectX11龙书学习笔记（3）——点积与叉乘 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                C#学习笔记（2）——常量与变量
+                DirectX11龙书学习笔记（3）——点积与叉乘
               
             
           </h1>
@@ -307,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-10T11:26:10+08:00" content="2016-12-10">
-              2016-12-10
+            <time itemprop="dateCreated" datetime="2018-03-10T14:41:42+08:00" content="2018-03-10">
+              2018-03-10
             </time>
           </span>
 
@@ -321,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSharp/" itemprop="url" rel="index">
-                    <span itemprop="name">CSharp</span>
+                  <a href="/categories/DirectX11龙书学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">DirectX11龙书学习笔记</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/10/CSharp-note-02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/10/CSharp-note-02/" itemprop="commentsCount"></span>
+                <a href="/2018/03/10/DX11-note-03/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/10/DX11-note-03/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,26 +361,18 @@
       
 
       
-        <p>貌似又要讲这个东西了。<br><a id="more"></a></p>
+        <p>龙书11是一本3D游戏入门级教程，推荐看完这本书之后去看另一本叫做《Real Time Rendering》的书。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a><strong>常量</strong></h2><p>和C语言一样，用<code>const</code>定义即可：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">string</span> NAME = <span class="string">"fantasticmiao"</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> AGE = <span class="number">19</span>;</div><div class="line">    Console.WriteLine(NAME + <span class="string">" age "</span> + AGE);</div><div class="line">    Console.ReadLine();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>WriteLine</code>的用法和Java的<code>prinln</code>差不多，直接用<code>+</code>进行连接就可以把常量和变量转换成字符串进行输出。</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h2><p>变量我也不用多说了，这里只说一说string：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">string</span> name = <span class="string">"fantastic"</span> + <span class="string">"miao"</span>;</div><div class="line">    Console.WriteLine(name);</div><div class="line">    Console.ReadLine();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>C#进行字符串的赋值时，可以执行加法运算，但是C++不同：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">string</span> str = <span class="string">"fantastic"</span> + <span class="string">"miao"</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>和上面的操作是一样的，但是如果你编译就会立马报错：</p>
-<pre><code>C:\Users\70719\Desktop\Untitled1.cpp||In function &#39;int main()&#39;:|
-C:\Users\70719\Desktop\Untitled1.cpp|6|error: invalid operands of types &#39;const char [10]&#39; and &#39;const char [5]&#39; to binary &#39;operator+&#39;|
-||=== Build failed: 1 error(s), 0 warning(s) (0 minute(s), 1 second(s)) ===|
-</code></pre><p>大致的意思就是两个字符串常量无法执行加法运算，这个是因为C++并没有重载有关的运算操作符，如果你一定要使用的话，那就必须要保证其中一个对象是<code>string</code>类型。具体的可以去看我的C++文章。</p>
-<p>至于其他的变量，与C++基本一致，这里就不赘述了。</p>
-<p>另外，除了使用加法运算符进行输出，C#同样可以使用类似于<code>printf</code>的格式化输出：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">string</span> name = <span class="string">"fantastic"</span> + <span class="string">"miao"</span>;</div><div class="line">    <span class="keyword">int</span> age = <span class="number">19</span>;</div><div class="line">    Console.WriteLine(<span class="string">"My name is &#123;0&#125;, I'm &#123;1&#125; years old."</span>, name, age);</div><div class="line">    Console.ReadLine();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>差别基本不大，唯一不同的就是不用再指定输出类型，方便了很多。</p>
+<h2 id="点积"><a href="#点积" class="headerlink" title="点积"></a><strong>点积</strong></h2><p>点积是向量乘法的一种，他的计算结果是一个标量。设 $ \vec{u}=(u_x,u_y,u_z) $，$ \vec{v}=(v_x,v_y,v_z) $，则点积定义如下：</p>
+<script type="math/tex; mode=display">\vec{u}\cdot\vec{v}=u_xv_x+u_yv_y+u_zv_z \tag{1.3}</script><p>点积就是两个向量对应分量的乘积之和，并且还具备了以下关系：</p>
+<script type="math/tex; mode=display">\vec{u}\cdot\vec{v}=\|\vec{u}\|\|\vec{v}\|\cos\theta \tag{1.4}</script><p>这里的θ表示两个向量之间的夹角。根据这条公式，有以下性质：</p>
+<ul>
+<li>如果 $\vec{u}\cdot\vec{v}&gt;0 $，则两向量夹角小于 90°。</li>
+<li>如果 $\vec{u}\cdot\vec{v}&lt;0 $，则两向量夹角大于 90°。</li>
+<li>如果 $\vec{u}\cdot\vec{v}=0 $，则两向量互相垂直</li>
+</ul>
 
       
     </div>
@@ -403,7 +395,11 @@ C:\Users\70719\Desktop\Untitled1.cpp|6|error: invalid operands of types &#39;con
       
         <div class="post-tags">
           
-            <a href="/tags/CSharp/" rel="tag">#CSharp</a>
+            <a href="/tags/DirectX/" rel="tag">#DirectX</a>
+          
+            <a href="/tags/线性代数/" rel="tag">#线性代数</a>
+          
+            <a href="/tags/计算机图形学/" rel="tag">#计算机图形学</a>
           
         </div>
       
@@ -412,17 +408,13 @@ C:\Users\70719\Desktop\Untitled1.cpp|6|error: invalid operands of types &#39;con
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Python-note-14/" rel="next" title="Python学习笔记（14）——列表生成式">
-                <i class="fa fa-chevron-left"></i> Python学习笔记（14）——列表生成式
+              <a href="/2018/03/08/DX11-note-02/" rel="next" title="DirectX11龙书学习笔记（2）——长度和单位向量">
+                <i class="fa fa-chevron-left"></i> DirectX11龙书学习笔记（2）——长度和单位向量
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/11/CSharp-note-03/" rel="prev" title="C#学习笔记（3）——类型转换">
-                C#学习笔记（3）——类型转换 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -471,8 +463,8 @@ C:\Users\70719\Desktop\Untitled1.cpp|6|error: invalid operands of types &#39;con
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/10/CSharp-note-02/"
-           data-title="C#学习笔记（2）——常量与变量" data-url="http://yoursite.com/2016/12/10/CSharp-note-02/">
+      <div class="ds-thread" data-thread-key="2018/03/10/DX11-note-03/"
+           data-title="DirectX11龙书学习笔记（3）——点积与叉乘" data-url="http://yoursite.com/2018/03/10/DX11-note-03/">
       </div>
     
   </div>
@@ -601,7 +593,7 @@ C:\Users\70719\Desktop\Untitled1.cpp|6|error: invalid operands of types &#39;con
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#点积"><span class="nav-number">1.</span> <span class="nav-text">点积</span></a></li></ol></div>
             
           </div>
         </section>
