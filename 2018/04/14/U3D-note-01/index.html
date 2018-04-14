@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unity3D," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="欢迎来到3D世界！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D学习笔记（1）——认识HelloWorld">
+<meta property="og:url" content="http://yoursite.com/2018/04/14/U3D-note-01/index.html">
+<meta property="og:site_name" content="先哥哥<(^ - ^)/">
+<meta property="og:description" content="欢迎来到3D世界！">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/01/%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/01/%E5%8F%91%E5%B8%83%E7%95%8C%E9%9D%A2.png">
+<meta property="og:updated_time" content="2018-04-14T07:23:28.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity3D学习笔记（1）——认识HelloWorld">
+<meta name="twitter:description" content="欢迎来到3D世界！">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/01/%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6316601514345367000,
+      author: '先哥哥'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/14/U3D-note-01/"/>
+
+  <title> Unity3D学习笔记（1）——认识HelloWorld | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82195042-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">先哥哥<(^ - ^)/</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">三年级生~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '6g6uJxAMRsEqayhdJAk5','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Unity3D学习笔记（1）——认识HelloWorld
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-14T14:18:08+08:00" content="2018-04-14">
+              2018-04-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity3D/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity3D</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/14/U3D-note-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/14/U3D-note-01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>欢迎来到3D世界！<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="关于弃用Cocos2dx"><a href="#关于弃用Cocos2dx" class="headerlink" title="关于弃用Cocos2dx"></a><strong>关于弃用Cocos2dx</strong></h2><p>Cocos2dx 对于初学者来说是一款很不错的游戏引擎，简单明了的层级结构能够帮助新手快速了解游戏的整个开发过程。另外，我选用 Cocos2dx 的原因之一就是它采用了 C++ 来编写逻辑，不需要我再额外去学习心得语言（其实就是懒）。</p>
+<p>虽然 Cocos2dx 有诸多的便利，比如上手快、多平台移植，但并不能够掩盖它作为游戏引擎的不成熟。像我之前在做一个小型 demo 时，就发现 Cocos2dx 的组件实在是太少了，很多必要的组件都需要自己去实现。上网百度了一下后，我才知道 Cocos2dx、Cocos2dx-lua、CocosStudio以及最新出的可视化图形引擎 CocosCreator 都是不同的小组开发的（更牛的是这四个小组都是处在不同的城市XD）。</p>
+<p>看到这里，你大概也能够明白为什么 Cocos2dx 的功能如此不齐全了。总是在画大饼，做到一半又跑去做新的，这样的游戏引擎实在是没有什么前途。至于最新的那个 CocosCreator，虽说是按照 U3D 来设计的图形编辑器，但是脚本却是改用 JAVA 开发……总之我是不会用了。</p>
+<h2 id="写在开始前"><a href="#写在开始前" class="headerlink" title="写在开始前"></a><strong>写在开始前</strong></h2><p>U3D 的学习笔记我不会写的很详细，编辑器的基本操作就不细说了，我只会记录一些比较重要的知识。C# 并不需要全部学，了解基本的逻辑就可以开始学习 U3D 了，之后若有需要再自行补充。</p>
+<h2 id="游戏开发流程"><a href="#游戏开发流程" class="headerlink" title="游戏开发流程"></a><strong>游戏开发流程</strong></h2><ul>
+<li>开发之前，要先对市场进行调研</li>
+<li>对于原创游戏，为了规避风险，在投入力量开发之前，可以考虑先进入 Prototype(原型) 开发阶段</li>
+<li>这是一个快速尝试各种想法的阶段，通过较少的投入，开发较少的内容，体现游戏的核心乐趣</li>
+<li>之后对初始的游戏 Demo 做评估，以确定游戏的乐趣是否达到了预期</li>
+<li>如果不好玩，那就要考虑继续修改或停止项目</li>
+</ul>
+<h2 id="游戏开发分工"><a href="#游戏开发分工" class="headerlink" title="游戏开发分工"></a><strong>游戏开发分工</strong></h2><ul>
+<li>游戏开发团队主要包括：游戏策划、程序员、美术制作、项目管理人员</li>
+<li>在游戏开发中美术的工作非常重要</li>
+<li>美术团队的人数非常多，职位也比较多，包括：原画设计、UI 界面设计、3D 角色模型师、3D 场景模型师、3D 动画师等</li>
+<li>unity 几乎支持所有高端的 3D 动画软件，如 3ds Max、Maya、LightWave</li>
+<li>可以根据需要选择 3D 动画软件，将制作的模型和动画导出为 FBX 格式供 Unity 使用</li>
+<li>QA 测试：品质保证 Quality Assurance</li>
+<li>为了保证游戏质量，需要安排 QA 人员对游戏进行全面的测试</li>
+<li>QA 的主要工作是找出游戏中的 BUG，这些 BUG 可能是程序造成的，也可能是关卡编辑错误造成的，还可能是美术资源的问题造成的</li>
+<li>最好能够对 BUG 进行分级管理，比如 A、B、C，并跟踪修改记录，优先去修改较为严重的BUG</li>
+<li>修改 BUG 本身有时会造成出现新的 BUG，所以在完成一个版本的修改后，仍需要对整个游戏进行较全面的测试</li>
+</ul>
+<h2 id="第一个demo"><a href="#第一个demo" class="headerlink" title="第一个demo"></a><strong>第一个demo</strong></h2><h3 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a><strong>界面介绍</strong></h3><p>我用的版本是 2017.4.1f1，先创建一个 3D 项目，得到如下界面：</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/01/%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2.png" alt=""></p>
+<ul>
+<li>Hierarchy：显示游戏场景中的所有物体</li>
+<li>Project：管理游戏资源 Assets</li>
+<li>Scene：当前场景的预览视图</li>
+<li>Game：以摄像机为视角的游戏视图，即玩家视角</li>
+<li>Inspector：显示游戏对象的属性</li>
+</ul>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a><strong>基本操作</strong></h3><ul>
+<li>左键：选择，拖动画布</li>
+<li>右键：调整视角，变换坐标系</li>
+<li>滚轮：拉近、拉远视角</li>
+</ul>
+<h3 id="元素"><a href="#元素" class="headerlink" title="元素"></a><strong>元素</strong></h3><ul>
+<li>GameObject：游戏对象</li>
+<li>Component：组件</li>
+<li>Material：材质</li>
+<li>Texture：纹理</li>
+</ul>
+<p>关于纹理和材质的区别，你可以简单的认为纹理是衣服的布料，而材质是衣服的形状。</p>
+<p>那么下面，我们就来做一个小demo。</p>
+<h3 id="创建自由移动的方块"><a href="#创建自由移动的方块" class="headerlink" title="创建自由移动的方块"></a><strong>创建自由移动的方块</strong></h3><p>首先，我们在 Hierarchy 中点击 Create -&gt; 3D Object -&gt; Cube，创建出一个立方体。然后在 Project 中点击 Create -&gt; C# Script，创建一个 C# 脚本。</p>
+<p>这里的 C# 脚本是采用 U3D 自带的 MonoDevelop 编辑器，如果你想用 Visual Studio 可以在 Edit -&gt; Preferences -&gt; External Tools 中修改。</p>
+<p>在写代码前，首先给脚本改个名字，叫做 CubeMove。注意，脚本名称要与类名一致。</p>
+<p>双击脚本打开编辑器，键入如下代码：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System.Collections;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> UnityEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CubeMove</span> : <span class="title">MonoBehaviour</span> &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> speed;</div><div class="line">    <span class="comment">// Use this for initialization</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        speed = <span class="number">0.01</span>f;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Update is called once per frame</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (Input.GetKey (KeyCode.W)) &#123;</div><div class="line">            transform.Translate (Vector3.up * <span class="number">0.01</span>f);</div><div class="line">        &#125; <span class="function"><span class="keyword">else</span> <span class="title">if</span> (<span class="params">Input.GetKey (KeyCode.S</span>)) </span>&#123;</div><div class="line">            transform.Translate (Vector2.down * <span class="number">0.01</span>f);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (Input.GetKey (KeyCode.A)) &#123;</div><div class="line">            transform.Translate (Vector3.left * speed);</div><div class="line">        &#125; <span class="function"><span class="keyword">else</span> <span class="title">if</span> (<span class="params">Input.GetKey (KeyCode.D</span>)) </span>&#123;</div><div class="line">            transform.Translate (Vector3.right * speed);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>保存之后就可以返回 U3D 了，如果有报错，记得根据信息修改。</p>
+<p>脚本写完了，我们还得将脚本和方块连接到一起，这里有两个方法：</p>
+<ul>
+<li>直接将脚本拖拽到 Cube 对象上</li>
+<li>点击 Cube 对象，在 Inspector 中点击 Add Component -&gt; Scripts -&gt; CubeMove</li>
+</ul>
+<p>这里还是推荐用第一种方式，方便快捷。</p>
+<h3 id="发布至PC平台"><a href="#发布至PC平台" class="headerlink" title="发布至PC平台"></a><strong>发布至PC平台</strong></h3><p>代码写完了，接下来就要生成可执行文件了。点击 File -&gt; Build Setting，便会出现如下界面：</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/01/%E5%8F%91%E5%B8%83%E7%95%8C%E9%9D%A2.png" alt=""></p>
+<p>可以看到，现阶段的 U3D 提供了许多种游戏平台的发布，不过都需要在对应的平台进行调试。这里我们只发布到 PC 平台测试一下。</p>
+<p>看到红线标记处，我们要将 scene1 这个场景加入进来，如有需要也可以在 Player Settings 中设置游戏的相关参数。点击 Build，将生成 .exe 文件。</p>
+<p>运行游戏，按 W S A D 即可让方块上下移动。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity3D/" rel="tag">#Unity3D</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/10/DX11-note-03/" rel="next" title="DirectX11龙书学习笔记（3）——点积与叉乘">
+                <i class="fa fa-chevron-left"></i> DirectX11龙书学习笔记（3）——点积与叉乘
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/14/U3D-note-01/"
+           data-title="Unity3D学习笔记（1）——认识HelloWorld" data-url="http://yoursite.com/2018/04/14/U3D-note-01/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
+               alt="普罗旺斯的猫" />
+          <p class="site-author-name" itemprop="name">普罗旺斯的猫</p>
+          <p class="site-description motion-element" itemprop="description">保持微笑:)，一切都会好起来的~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huyinxian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5817221614" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/hu-yin-xian" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Cappuccino_Java" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于弃用Cocos2dx"><span class="nav-number">1.</span> <span class="nav-text">关于弃用Cocos2dx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开始前"><span class="nav-number">2.</span> <span class="nav-text">写在开始前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏开发流程"><span class="nav-number">3.</span> <span class="nav-text">游戏开发流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏开发分工"><span class="nav-number">4.</span> <span class="nav-text">游戏开发分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个demo"><span class="nav-number">5.</span> <span class="nav-text">第一个demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#界面介绍"><span class="nav-number">5.1.</span> <span class="nav-text">界面介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">5.2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素"><span class="nav-number">5.3.</span> <span class="nav-text">元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建自由移动的方块"><span class="nav-number">5.4.</span> <span class="nav-text">创建自由移动的方块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布至PC平台"><span class="nav-number">5.5.</span> <span class="nav-text">发布至PC平台</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">普罗旺斯的猫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fantasticmiao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+</body>
+</html>
