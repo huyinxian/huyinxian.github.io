@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Unity3D," />
 
 
 
@@ -84,15 +84,23 @@
 
 
 
-<meta name="description" content="保持微笑:)，一切都会好起来的~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="先哥哥<(^ - ^)/">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta name="description" content="本章介绍摄像机的正交投影和透视投影。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity3D学习笔记（3）——摄像机的两种投影">
+<meta property="og:url" content="http://yoursite.com/2018/04/14/U3D-note-03/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="保持微笑:)，一切都会好起来的~">
+<meta property="og:description" content="本章介绍摄像机的正交投影和透视投影。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B11.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B12.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B13.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B11.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B12.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B13.png">
+<meta property="og:updated_time" content="2018-04-14T13:11:50.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="先哥哥<(^ - ^)/">
-<meta name="twitter:description" content="保持微笑:)，一切都会好起来的~">
+<meta name="twitter:title" content="Unity3D学习笔记（3）——摄像机的两种投影">
+<meta name="twitter:description" content="本章介绍摄像机的正交投影和透视投影。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B11.png">
 
 
 
@@ -113,9 +121,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/14/U3D-note-03/"/>
 
-  <title> 归档 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Unity3D学习笔记（3）——摄像机的两种投影 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -145,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,287 +281,188 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 78 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/14/U3D-note-03/" itemprop="url">
-              
-                <span itemprop="name">Unity3D学习笔记（3）——摄像机的两种投影</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-14T21:05:47+08:00"
-              content="2018-04-14" >
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/14/U3D-note-02/" itemprop="url">
-              
-                <span itemprop="name">Unity3D学习笔记（2）——C#脚本</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-14T17:59:26+08:00"
-              content="2018-04-14" >
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/14/U3D-note-01/" itemprop="url">
-              
-                <span itemprop="name">Unity3D学习笔记（1）——认识HelloWorld</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-14T14:18:08+08:00"
-              content="2018-04-14" >
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/10/DX11-note-03/" itemprop="url">
-              
-                <span itemprop="name">DirectX11龙书学习笔记（3）——点积与叉乘</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-10T14:41:42+08:00"
-              content="2018-03-10" >
-          03-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/08/DX11-note-02/" itemprop="url">
-              
-                <span itemprop="name">DirectX11龙书学习笔记（2）——长度和单位向量</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-08T08:44:30+08:00"
-              content="2018-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/DX11-note-01/" itemprop="url">
-              
-                <span itemprop="name">DirectX11龙书学习笔记（1）——向量</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T19:22:36+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/02/GameProAlgorTechniques-note-02/" itemprop="url">
-              
-                <span itemprop="name">游戏编程算法与技巧笔记（2）——2D图形</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-02T17:21:16+08:00"
-              content="2018-01-02" >
-          01-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Unity3D学习笔记（3）——摄像机的两种投影
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-14T21:05:47+08:00" content="2018-04-14">
+              2018-04-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity3D/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity3D</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/14/U3D-note-03/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/14/U3D-note-03/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章介绍摄像机的正交投影和透视投影。<br><a id="more"></a></p>
+<blockquote>
+<p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
+</blockquote>
+<h2 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a><strong>正交投影</strong></h2><p>什么是正交投影呢？简单的来说，就是将 3D 的物体投影到一个平面上，形成 2D 的图像，而这种模式所形成的也将是 2D 的视角。在 U3D 中，我们可以选择 Main Camera 这个对象，然后在属性中将 Projection 一栏调成 Orthographic（即正交投影），得到如下界面：</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B11.png" alt=""></p>
+<p>从场景视图中可看出，摄像机的视角为一个立方体，所有在立方体内的物体都将投影到摄像机的视角平面上，且不管物体是 2D 还是 3D，最终都是以 2D 的形式出现。</p>
+<p>在属性窗口中，我们可以设置摄像机的位置，同时也可以对摄像机的视野（也就是立方体）进行修改。其中，Far 越大，看的也越远，而 Near 越小，平面离摄像机越近。当然，2D 游戏一般可以让 Near 为 -1、Far 为 1，这样摄像机就会处在立方体的中间。</p>
+<p>至于 Size，它可以调整立方体的高度，进行整体上的放大。</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B12.png" alt=""></p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B13.png" alt=""></p>
+<h2 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a><strong>透视投影</strong></h2><p>透视投影其实就相当于我们人眼所见，当我们看东西时，眼睛的视野是发散性的，而不是只接受正面来的光线。</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B11.png" alt=""></p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B12.png" alt=""></p>
+<p>同样的，透视投影也有 Near 和 Far 两个属性，但不同的是 Near 的最小值为 0.01，不能够为负值（毕竟你的视线总不能穿过眼睛吧？）。</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/03/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B13.png" alt=""></p>
+<p>透视投影没有 Size 属性，但多了一个 Field of View（视野）。对比一下上面的图，你会发现视野越大时，方块看起来越小，这是因为你看到的东西变多了，所以就显得物体都变小了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>要想看到某个物体，那么这个物体就必须出现在视野范围中（场景中的立方体），正交投影用于 2D，透视投影多用于 3D，但也可以显示 2D。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity3D/" rel="tag">#Unity3D</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/U3D-note-02/" rel="next" title="Unity3D学习笔记（2）——C#脚本">
+                <i class="fa fa-chevron-left"></i> Unity3D学习笔记（2）——C#脚本
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -561,6 +470,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/14/U3D-note-03/"
+           data-title="Unity3D学习笔记（3）——摄像机的两种投影" data-url="http://yoursite.com/2018/04/14/U3D-note-03/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -580,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://obkyr9y96.bkt.clouddn.com/560f8f43fbf2b2114886d1e3cd8065380dd78eaf.jpg"
@@ -669,6 +595,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正交投影"><span class="nav-number">1.</span> <span class="nav-text">正交投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视投影"><span class="nav-number">2.</span> <span class="nav-text">透视投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -765,11 +702,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
