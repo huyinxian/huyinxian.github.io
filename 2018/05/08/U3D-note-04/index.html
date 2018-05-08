@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cocos2dx," />
+  <meta name="keywords" content="Unity3D," />
 
 
 
@@ -84,20 +84,20 @@
 
 
 
-<meta name="description" content="哟嚯，新的知识又来了，小伙伴们快坐下！">
+<meta name="description" content="本章介绍GUI相关基础知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2dx学习笔记（5）——纹理">
-<meta property="og:url" content="http://yoursite.com/2016/08/09/Cocos2dx-note-05/index.html">
+<meta property="og:title" content="Unity3D学习笔记（4）——GUI">
+<meta property="og:url" content="http://yoursite.com/2018/05/08/U3D-note-04/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="哟嚯，新的知识又来了，小伙伴们快坐下！">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png">
-<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png">
-<meta property="og:updated_time" content="2018-03-08T02:36:54.520Z">
+<meta property="og:description" content="本章介绍GUI相关基础知识。">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/02.png">
+<meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/03.png">
+<meta property="og:updated_time" content="2018-05-08T09:17:13.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2dx学习笔记（5）——纹理">
-<meta name="twitter:description" content="哟嚯，新的知识又来了，小伙伴们快坐下！">
-<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png">
+<meta name="twitter:title" content="Unity3D学习笔记（4）——GUI">
+<meta name="twitter:description" content="本章介绍GUI相关基础知识。">
+<meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png">
 
 
 
@@ -118,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/09/Cocos2dx-note-05/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/08/U3D-note-04/"/>
 
-  <title> Cocos2dx学习笔记（5）——纹理 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Unity3D学习笔记（4）——GUI | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +299,7 @@
             
             
               
-                Cocos2dx学习笔记（5）——纹理
+                Unity3D学习笔记（4）——GUI
               
             
           </h1>
@@ -311,8 +311,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T13:27:25+08:00" content="2016-08-09">
-              2016-08-09
+            <time itemprop="dateCreated" datetime="2018-05-08T16:27:55+08:00" content="2018-05-08">
+              2018-05-08
             </time>
           </span>
 
@@ -325,8 +325,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Cocos2dx/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2dx</span>
+                  <a href="/categories/Unity3D/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity3D</span>
                   </a>
                 </span>
 
@@ -341,8 +341,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/09/Cocos2dx-note-05/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/Cocos2dx-note-05/" itemprop="commentsCount"></span>
+                <a href="/2018/05/08/U3D-note-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/08/U3D-note-04/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -365,31 +365,41 @@
       
 
       
-        <p>哟嚯，新的知识又来了，小伙伴们快坐下！<br><a id="more"></a></p>
+        <p>本章介绍GUI相关基础知识。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="开头补充"><a href="#开头补充" class="headerlink" title="开头补充"></a><strong>开头补充</strong></h2><p>在开始之前，首先要说一下关于窗口设置的问题。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">glview = GLViewImpl::createWithRect(<span class="string">"Practice"</span>, Rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">480</span>, <span class="number">320</span>));</div><div class="line">director-&gt;getOpenGLView()-&gt;setDesignResolutionSize(<span class="number">960</span>, <span class="number">640</span>, ResolutionPolicy::SHOW_ALL);</div></pre></td></tr></table></figure>
-<p>第一个方法设定窗口的大小，第二个窗口设置显示内容的大小。如果我们加入一张图片，它无法填满960*640，也就意味着有一大块区域是黑色的。那么我们是否能够改变窗口的大小，让图片刚好占据整个窗口呢？但是要注意，上下两个数值都要更改。假如只改窗口大小，那么会出现下图这样的状况：</p>
-<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809141407.png" alt="示例"></p>
-<p>注意，这个窗口是480*320的，但是由于显示的内容大小还是原来的，所以图片会依据比例缩小，看起来和没改变窗口是一个效果。第二个主要是用于当窗口尺寸不一样时，可以根据比例来缩放窗口。因此改变窗口大小时，一定要记得改掉显示内容的大小。</p>
-<p>总而言之，第一个调整窗口大小，第二个调整分辨率。</p>
-<h2 id="了解纹理"><a href="#了解纹理" class="headerlink" title="了解纹理"></a><strong>了解纹理</strong></h2><p>首先，我们先来看看精灵的创建方法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCSprite *bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>);</div><div class="line">CCSprite *bg = CCSprite::create(<span class="string">"sprite/background.jpg"</span>, CCRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">320</span>));</div></pre></td></tr></table></figure>
-<p>第一种方法我们不陌生，至于第二种方法呢，便是规定图片的显示内容。Rect是矩形的意思，使用了UI坐标系，原点从左上角开始，显示长为400宽为320的内容，如下图所示：</p>
-<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809142325.png" alt="示例"></p>
-<p>那么回归正题，什么是纹理？纹理是OpenGL的词汇，我们去查看底层代码就会发现，<code>Sprite::create()</code>其实就是创建了一个纹理。简单来说，纹理就是图片。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CCImage *image = <span class="keyword">new</span> CCImage();</div><div class="line">image-&gt;initWithImageFile(<span class="string">"sprite/plant.png"</span>);</div><div class="line"></div><div class="line">CCTexture2D *texture = <span class="keyword">new</span> CCTexture2D();</div><div class="line">texture-&gt;autorelease();</div><div class="line">texture-&gt;initWithImage(image);</div></pre></td></tr></table></figure>
-<p><code>CCTexture2D</code>没有<code>create()</code>方法，事实上，很多OpenGL的概念都没有<code>create()</code>方法。因此呢，我们需要自己创建对象，并送入自动回收池。至于纹理的初始化则需要图片，这里用到的<code>CCImage</code>同样没有<code>create()</code>方法。</p>
-<p>回顾学习笔记(2)，<code>sprite</code>除了可以直接用文件初始化以外，还可以用纹理初始化。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(CCTexture2D *pTexture)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> CCSprite *<span class="title">create</span><span class="params">(CCTexture2D *pTexture, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(CCTexture2D *pTexture)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initWithFile</span><span class="params">(CCTexture2D *pTexture, <span class="keyword">const</span> CCRect &amp;rect)</span></span>;</div></pre></td></tr></table></figure>
-<p>从本质上来说，<code>Sprite</code>的<code>create()</code>方法本质上是创建了一个纹理。</p>
-<h2 id="纹理缓存"><a href="#纹理缓存" class="headerlink" title="纹理缓存"></a><strong>纹理缓存</strong></h2><p>在游戏进行过程中，我们不能够加一张图片就渲染一张，那样重复的动作会占据很多资源。事实上，内存区开辟了一块缓存区域，我们可以把常用的图片加载入缓存，需要用的时候可以直接取用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CCTexture2D *texture2 = CCTextureCache::sharedTextureCache()-&gt;addImage(<span class="string">"sprite/bullet.png"</span>);</div><div class="line">CCSprite *bullet = CCSprite::createWithTexture(texture2);</div><div class="line">bullet-&gt;setPosition(ccp(<span class="number">200</span>, winsize.height / <span class="number">2</span> + <span class="number">20</span>));</div><div class="line">addChild(bullet);</div></pre></td></tr></table></figure>
-<p><code>sharedTextureCache()</code>是一个单例，用于将图片加入缓存。<code>addImage()</code>直接返回一个<code>CCTexture2D</code>的指针，因此直接创建指针接收。接下用纹理创建精灵，并加入到层中。</p>
-<p><img src="http://obkyr9y96.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809152635.png" alt="示例"></p>
-<p>从缓存拿去图片好比是从书架拿书，方便快捷。而如果我们直接加载图片，那么就好比是到图书馆拿书，繁琐耗时。但是呢，由于书架比较小，所以我们不可能把所有的书全部放入，这也就意味着，程序员需要根据图片用到的时间和频率，合理的利用缓存，而不是一股脑地全部塞进去。</p>
+<h2 id="什么是GUI"><a href="#什么是GUI" class="headerlink" title="什么是GUI"></a><strong>什么是GUI</strong></h2><p>举个简单的例子，像是游戏中的血条栏、经验栏等等，都是一直显示在游戏画面上的。不管是玩家走到哪里，或者杀了什么怪，这些元素都不会消失。因此，GUI 永远显示在屏幕上，不受光照、碰撞等因素影响。</p>
+<h2 id="平面坐标系"><a href="#平面坐标系" class="headerlink" title="平面坐标系"></a><strong>平面坐标系</strong></h2><p>由于 GUI 是直接显示在屏幕上的，那么这里就不得不提一下坐标系了：</p>
+<ul>
+<li>屏幕坐标系是以屏幕左下角为(0, 0)点，右上角为(Screen.Width, Screen.Height)</li>
+<li>鼠标位置坐标系与屏幕坐标系一致</li>
+<li>视口（View Port）坐标是以摄像机为准，屏幕左下角为(0, 0)，右上角为(1, 1)</li>
+<li>绘制 GUI 界面时使用的坐标是以屏幕的左上角为(0, 0)点，右下角为(Screen.Width, Screen.Height)</li>
+</ul>
+<p>GUI 是以左上角为原点，其他的则是以左下角为原点，记住这一点即可。</p>
+<h2 id="OnGUI方法"><a href="#OnGUI方法" class="headerlink" title="OnGUI方法"></a><strong>OnGUI方法</strong></h2><p>GUI 的各种方法都应该放到 OnGUI() 中，OnGUI 会在每帧进行擦除、重绘。下面来写一个简单的文本框：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    GUILayout.TextField(<span class="string">"Hello World!"</span>, GUILayout.Width(<span class="number">100</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>新建一个空的对象，将这个脚本连接到对象上后执行，效果如下：</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png" alt=""></p>
+<p>那么这个文本框就会默认显示一段话<code>Hello World!</code>。</p>
+<h3 id="OnGUI的擦除与重绘"><a href="#OnGUI的擦除与重绘" class="headerlink" title="OnGUI的擦除与重绘"></a><strong>OnGUI的擦除与重绘</strong></h3><p>虽然文本框是显示出来了，但当你真正去用它的时候就会有一个问题：不管你输入什么，文本框显示的内容都不变。</p>
+<p>事实上，这涉及到了 OnGUI 方法的擦除与重绘。当你输入字符时，文本框确实是接收到了，但由于 OnGUI 每帧都会进行擦除，你所输入的内容便会在那一帧的结尾被去除掉，而下一帧所绘制的又将是默认的<code>Hello World!</code>。由于一秒有几十帧刷新，所以看起来就像是文本框没有收到输入内容。</p>
+<p>看到这，想必你会有疑问，这种不停地擦除重绘有什么用？我又该如何显示我想要看到的内容？</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h3><p>我们只需要在类中声明一个成员变量，并用它来储存字符串的内容：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">string</span> txt1;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    txt1 = <span class="string">""</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    txt1 = GUILayout.TextField(txt1, GUILayout.Width(<span class="number">100</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上述代码中，我们声明了一个私有的字符串 txt1，并且用它来存储字符串。注意，TextField() 的返回值就是用户在文本框中输入的字符串。</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/02.png" alt=""></p>
+<p>这样，我们就解决了擦除重绘的问题。</p>
+<h3 id="GUILayout布局"><a href="#GUILayout布局" class="headerlink" title="GUILayout布局"></a><strong>GUILayout布局</strong></h3><p>GUILayout 默认垂直布局，如果想要改成水平布局，可以这么做：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 水平布局开始</span></div><div class="line">    GUILayout.BeginHorizontal();</div><div class="line"></div><div class="line">    <span class="comment">// 文本框</span></div><div class="line">    txt1 = GUILayout.TextField(txt1, GUILayout.Width(<span class="number">100</span>));</div><div class="line"></div><div class="line">    <span class="comment">// 按钮，当鼠标从按钮上抬起时，才会返回true</span></div><div class="line">    <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Button"</span>)) &#123;</div><div class="line">        Debug.Log(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 水平布局结束</span></div><div class="line">    GUILayout.EndHorizontal();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码中用到了 BeginHorizontal() 和 EndHorizontal()。显然，所有在这两个方法之间的控件都将以水平方式排布。另外，你可以任意嵌套水平布局与垂直布局，达到自己想要的效果。</p>
+<p><img src="http://obkyr9y96.bkt.clouddn.com/03.png" alt=""></p>
+<p>GUILayout 布局会自动调整控件的尺寸，如果你想要自定义控件的长度，那么 Button 等控件也支持可变参数数组。例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GUILayout.Button(<span class="string">"Test"</span>, GUILayout.Width(<span class="number">500</span>), GUILayout.Height(<span class="number">30</span>))</div></pre></td></tr></table></figure>
+<p><code>GUILayou.Width(30)</code>会返回一个设置空间宽度的 GUILayoutOption 对象，Height、MinWidth、MinHeight 同理，可以随自己的需要调用。</p>
+<p>另外，如果是觉得控件之间太挤，可以使用<code>GUILayout.Space()</code>来调整间隙。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>最后再次强调一遍，OnGUI 是每帧都会进行擦除重绘的。如果想要的内容没有显示出来，可以自己创建一个变量，从而保证文本框中显示的值与返回的值使用同一个变量。</p>
 
       
     </div>
@@ -412,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cocos2dx/" rel="tag">#Cocos2dx</a>
+            <a href="/tags/Unity3D/" rel="tag">#Unity3D</a>
           
         </div>
       
@@ -421,17 +431,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/Time-goes-by-10years/" rel="next" title="游戏十年——感悟与体会">
-                <i class="fa fa-chevron-left"></i> 游戏十年——感悟与体会
+              <a href="/2018/04/14/U3D-note-03/" rel="next" title="Unity3D学习笔记（3）——摄像机的两种投影">
+                <i class="fa fa-chevron-left"></i> Unity3D学习笔记（3）——摄像机的两种投影
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/11/Cocos2dx-note-06/" rel="prev" title="Cocos2dx学习笔记（6）——精灵帧">
-                Cocos2dx学习笔记（6）——精灵帧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,8 +486,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/09/Cocos2dx-note-05/"
-           data-title="Cocos2dx学习笔记（5）——纹理" data-url="http://yoursite.com/2016/08/09/Cocos2dx-note-05/">
+      <div class="ds-thread" data-thread-key="2018/05/08/U3D-note-04/"
+           data-title="Unity3D学习笔记（4）——GUI" data-url="http://yoursite.com/2018/05/08/U3D-note-04/">
       </div>
     
   </div>
@@ -610,7 +616,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开头补充"><span class="nav-number">1.</span> <span class="nav-text">开头补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解纹理"><span class="nav-number">2.</span> <span class="nav-text">了解纹理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纹理缓存"><span class="nav-number">3.</span> <span class="nav-text">纹理缓存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是GUI"><span class="nav-number">1.</span> <span class="nav-text">什么是GUI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平面坐标系"><span class="nav-number">2.</span> <span class="nav-text">平面坐标系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OnGUI方法"><span class="nav-number">3.</span> <span class="nav-text">OnGUI方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OnGUI的擦除与重绘"><span class="nav-number">3.1.</span> <span class="nav-text">OnGUI的擦除与重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">3.2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUILayout布局"><span class="nav-number">3.3.</span> <span class="nav-text">GUILayout布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
