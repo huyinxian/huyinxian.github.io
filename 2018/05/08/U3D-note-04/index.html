@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/02.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/03.png">
-<meta property="og:updated_time" content="2018-05-08T09:17:13.443Z">
+<meta property="og:updated_time" content="2018-05-13T09:36:03.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity3D学习笔记（4）——GUI">
 <meta name="twitter:description" content="本章介绍GUI相关基础知识。">
@@ -378,7 +378,7 @@
 <li>绘制 GUI 界面时使用的坐标是以屏幕的左上角为(0, 0)点，右下角为(Screen.Width, Screen.Height)</li>
 </ul>
 <p>GUI 是以左上角为原点，其他的则是以左下角为原点，记住这一点即可。</p>
-<h2 id="OnGUI方法"><a href="#OnGUI方法" class="headerlink" title="OnGUI方法"></a><strong>OnGUI方法</strong></h2><p>GUI 的各种方法都应该放到 OnGUI() 中，OnGUI 会在每帧进行擦除、重绘。下面来写一个简单的文本框：</p>
+<h2 id="OnGUI方法"><a href="#OnGUI方法" class="headerlink" title="OnGUI方法"></a><strong>OnGUI方法</strong></h2><p>UnityGUI曾经是官方的UI实现方法，不过 4.x 之后便推出了最新的uGUI系统，所以如果是要进行开发的话，还是推荐使用uGUI，本文只用UnityGUI进行测试。UnityGUI提供了一个 OnGUI() 方法，OnGUI 会在每帧进行擦除、重绘，并实现相应的UI。下面来写一个简单的文本框：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    GUILayout.TextField(<span class="string">"Hello World!"</span>, GUILayout.Width(<span class="number">100</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>新建一个空的对象，将这个脚本连接到对象上后执行，效果如下：</p>
 <p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png" alt=""></p>

@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="本章介绍C#相关基础">
+<meta name="description" content="本章介绍脚本相关基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D学习笔记（2）——C#基础">
+<meta property="og:title" content="Unity3D学习笔记（2）——脚本基础">
 <meta property="og:url" content="http://yoursite.com/2018/04/14/U3D-note-02/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章介绍C#相关基础">
-<meta property="og:updated_time" content="2018-04-24T10:41:20.628Z">
+<meta property="og:description" content="本章介绍脚本相关基础">
+<meta property="og:updated_time" content="2018-05-13T10:14:42.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unity3D学习笔记（2）——C#基础">
-<meta name="twitter:description" content="本章介绍C#相关基础">
+<meta name="twitter:title" content="Unity3D学习笔记（2）——脚本基础">
+<meta name="twitter:description" content="本章介绍脚本相关基础">
 
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2018/04/14/U3D-note-02/"/>
 
-  <title> Unity3D学习笔记（2）——C#基础 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Unity3D学习笔记（2）——脚本基础 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +295,7 @@
             
             
               
-                Unity3D学习笔记（2）——C#基础
+                Unity3D学习笔记（2）——脚本基础
               
             
           </h1>
@@ -361,21 +361,20 @@
       
 
       
-        <p>本章介绍C#相关基础<br><a id="more"></a></p>
+        <p>本章介绍脚本相关基础<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
-<h2 id="什么是脚本"><a href="#什么是脚本" class="headerlink" title="什么是脚本"></a><strong>什么是脚本</strong></h2><p>对于 Unity 而言，脚本可以理解为附加在游戏对象上的用于定义游戏对象行为的指令代码。</p>
-<p>Unity 编辑器集成了许多脚本编辑器的能力，像是建立脚本、与游戏对象连接、变量数值的修改以及修改脚本后的实时预览等等。在前一篇笔记中，我编写过一个很简单的脚本，并且把它连接到了方块上，实现了方块的移动。但请注意，我并没有做任何的实例化，这一步骤由 Unity 自动完成的。</p>
+<h2 id="什么是脚本"><a href="#什么是脚本" class="headerlink" title="什么是脚本"></a><strong>什么是脚本</strong></h2><p>对于 Unity 而言，脚本可以理解为附加在游戏对象上的用于定义游戏对象行为的指令代码。Unity 编辑器集成了许多脚本编辑器的能力，像是建立脚本、与游戏对象连接、变量数值的修改以及修改脚本后的实时预览等等。在前一篇笔记中，我编写过一个很简单的脚本，并且把它连接到了方块上，实现了方块的移动。但请注意，我并没有做任何的实例化，这一步骤由 Unity 自动完成的。</p>
 <h2 id="在U3D中创建C-脚本"><a href="#在U3D中创建C-脚本" class="headerlink" title="在U3D中创建C#脚本"></a><strong>在U3D中创建C#脚本</strong></h2><p>创建 C# 脚本要取有意义的名字，类名要与脚本名一致。当你创建了一个新的脚本后，你会看到如下的默认代码：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System.Collections;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> UnityEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NewBehaviourScript</span> : <span class="title">MonoBehaviour</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// Use this for initialization</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Update is called once per frame</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果你修改了脚本的名称（比如改成 CubeMove），那么你必须要把类名也改成 CubeMove，否则就会出错。</p>
-<p>默认代码的含义如下：</p>
+<p>含义如下：</p>
 <ul>
 <li>前三行为调用 Unity 库文件</li>
 <li>NewBehaviourScript 类中含有 Start() 和 Update() 两个方法。Unity 中会有些特定的函数，这些特定的函数在一定条件下会被自动调用，称为必然事件。Start 和 Update 这两个函数是 Unity 中最常用的两个事件，因此新建脚本时 Unity 自动创建了。</li>
 </ul>
-<p>下表为 Unity 中常见的必然事件。</p>
+<p>如果你修改了脚本的名称（比如改成 CubeMove），那么你必须要把类名也改成 CubeMove，否则就会出错。</p>
+<h2 id="MonoBehavior"><a href="#MonoBehavior" class="headerlink" title="MonoBehavior"></a><strong>MonoBehavior</strong></h2><p>继承自 MonoBehavior 的脚本从唤醒到销毁有着完整的生命周期。下面是生命周期的各个阶段：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -389,12 +388,12 @@
 <tr>
 <td style="text-align:left">Awake</td>
 <td style="text-align:left">脚本实例被创建时调用</td>
-<td style="text-align:left">用于游戏对象的初始化，注意 Awake 的执行早于所有脚本的 Start 函数</td>
+<td style="text-align:left">当游戏对象被创建的时候，游戏对象绑定的脚本会在该帧内执行 Awake() 函数，无论脚本是否处于激活状态</td>
 </tr>
 <tr>
 <td style="text-align:left">Start</td>
-<td style="text-align:left">Update 函数第一次运行之前调用</td>
-<td style="text-align:left">用于游戏对象的初始化</td>
+<td style="text-align:left">脚本激活时执行，位于 Awake() 之后</td>
+<td style="text-align:left">该函数用于游戏对象的初始化，不过脚本如果未激活，那么 Start() 不会执行</td>
 </tr>
 <tr>
 <td style="text-align:left">Update</td>
@@ -402,14 +401,34 @@
 <td style="text-align:left">用于更新游戏场景和状态（和物理状态有关的更新应放在 FixedUpdate 里）</td>
 </tr>
 <tr>
+<td style="text-align:left">LateUpdate</td>
+<td style="text-align:left">每帧调用一次（在 Update 调用之后）</td>
+<td style="text-align:left">该函数是在 Update() 执行后被调用的，主要用来调整代码执行的顺序。例如玩家需要一个摄像机来跟随，那么角色的移动逻辑会写在 Update() 中，而摄像机的逻辑则在 LateUpdate() 中，这样可以确保在角色的位置计算完毕后再调整摄像机。</td>
+</tr>
+<tr>
 <td style="text-align:left">FixedUpdate</td>
 <td style="text-align:left">每个固定物理时间间隔（Physics Time Step）调用一次</td>
 <td style="text-align:left">用于物理状态的更新</td>
 </tr>
 <tr>
-<td style="text-align:left">LateUpdate</td>
-<td style="text-align:left">每帧调用一次（在 Update 调用之后）</td>
-<td style="text-align:left">用于更新游戏场景和状态，和相机有关的更新一般放在这里</td>
+<td style="text-align:left">OnGUI</td>
+<td style="text-align:left">绘制界面函数</td>
+<td style="text-align:left">用于测试功能使用，比如创建测试按钮</td>
+</tr>
+<tr>
+<td style="text-align:left">OnDestory</td>
+<td style="text-align:left">当前脚本销毁时调用该函数</td>
+<td style="text-align:left">可以在函数里填写删除时需要处理的逻辑</td>
+</tr>
+<tr>
+<td style="text-align:left">OnEnable</td>
+<td style="text-align:left">激活函数</td>
+<td style="text-align:left">当前脚本被激活时调用</td>
+</tr>
+<tr>
+<td style="text-align:left">OnDisable</td>
+<td style="text-align:left">禁用函数</td>
+<td style="text-align:left">当脚本被禁用时调用</td>
 </tr>
 </tbody>
 </table>
@@ -713,7 +732,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2018/04/14/U3D-note-02/"
-           data-title="Unity3D学习笔记（2）——C#基础" data-url="http://yoursite.com/2018/04/14/U3D-note-02/">
+           data-title="Unity3D学习笔记（2）——脚本基础" data-url="http://yoursite.com/2018/04/14/U3D-note-02/">
       </div>
     
   </div>
@@ -842,7 +861,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">2.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-基本语法"><span class="nav-number">3.</span> <span class="nav-text">C#基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">3.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">3.2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算、比较、逻辑操作符"><span class="nav-number">3.3.</span> <span class="nav-text">运算、比较、逻辑操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句"><span class="nav-number">3.4.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">3.5.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">2.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehavior"><span class="nav-number">3.</span> <span class="nav-text">MonoBehavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-基本语法"><span class="nav-number">4.</span> <span class="nav-text">C#基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">4.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">4.2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算、比较、逻辑操作符"><span class="nav-number">4.3.</span> <span class="nav-text">运算、比较、逻辑操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句"><span class="nav-number">4.4.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">4.5.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
