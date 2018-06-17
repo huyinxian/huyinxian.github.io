@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="本章介绍GUI相关基础知识。">
+<meta name="description" content="本章介绍GUI相关基础知识，使用老版UnityGUI进行测试。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D学习笔记（4）——GUI">
+<meta property="og:title" content="Unity3D学习笔记（4）——GUI基础">
 <meta property="og:url" content="http://yoursite.com/2018/05/08/U3D-note-04/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章介绍GUI相关基础知识。">
+<meta property="og:description" content="本章介绍GUI相关基础知识，使用老版UnityGUI进行测试。">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/02.png">
 <meta property="og:image" content="http://obkyr9y96.bkt.clouddn.com/03.png">
-<meta property="og:updated_time" content="2018-05-13T09:36:03.133Z">
+<meta property="og:updated_time" content="2018-06-16T09:50:40.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unity3D学习笔记（4）——GUI">
-<meta name="twitter:description" content="本章介绍GUI相关基础知识。">
+<meta name="twitter:title" content="Unity3D学习笔记（4）——GUI基础">
+<meta name="twitter:description" content="本章介绍GUI相关基础知识，使用老版UnityGUI进行测试。">
 <meta name="twitter:image" content="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png">
 
 
@@ -120,7 +120,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2018/05/08/U3D-note-04/"/>
 
-  <title> Unity3D学习笔记（4）——GUI | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Unity3D学习笔记（4）——GUI基础 | 先哥哥<(^ - ^)/ </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +299,7 @@
             
             
               
-                Unity3D学习笔记（4）——GUI
+                Unity3D学习笔记（4）——GUI基础
               
             
           </h1>
@@ -365,7 +365,7 @@
       
 
       
-        <p>本章介绍GUI相关基础知识。<br><a id="more"></a></p>
+        <p>本章介绍GUI相关基础知识，使用老版UnityGUI进行测试。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
@@ -378,7 +378,7 @@
 <li>绘制 GUI 界面时使用的坐标是以屏幕的左上角为(0, 0)点，右下角为(Screen.Width, Screen.Height)</li>
 </ul>
 <p>GUI 是以左上角为原点，其他的则是以左下角为原点，记住这一点即可。</p>
-<h2 id="OnGUI方法"><a href="#OnGUI方法" class="headerlink" title="OnGUI方法"></a><strong>OnGUI方法</strong></h2><p>UnityGUI曾经是官方的UI实现方法，不过 4.x 之后便推出了最新的uGUI系统，所以如果是要进行开发的话，还是推荐使用uGUI，本文只用UnityGUI进行测试。UnityGUI提供了一个 OnGUI() 方法，OnGUI 会在每帧进行擦除、重绘，并实现相应的UI。下面来写一个简单的文本框：</p>
+<h2 id="OnGUI方法"><a href="#OnGUI方法" class="headerlink" title="OnGUI方法"></a><strong>OnGUI方法</strong></h2><p>UnityGUI曾经是官方的UI实现方法，不过 4.x 之后便推出了最新的uGUI系统，所以如果是要进行开发的话，还是推荐使用uGUI（之后会讲），这篇文章只用UnityGUI进行测试。UnityGUI提供了一个 OnGUI() 方法，OnGUI 会在每帧进行擦除、重绘，并实现相应的UI。下面来写一个简单的文本框：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    GUILayout.TextField(<span class="string">"Hello World!"</span>, GUILayout.Width(<span class="number">100</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>新建一个空的对象，将这个脚本连接到对象上后执行，效果如下：</p>
 <p><img src="http://obkyr9y96.bkt.clouddn.com/image/post/U3D/04/01.png" alt=""></p>
@@ -439,6 +439,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/06/16/U3D-note-05/" rel="prev" title="Unity3D学习笔记（5）——场景视图的基本概念和操作">
+                Unity3D学习笔记（5）——场景视图的基本概念和操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -487,7 +491,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2018/05/08/U3D-note-04/"
-           data-title="Unity3D学习笔记（4）——GUI" data-url="http://yoursite.com/2018/05/08/U3D-note-04/">
+           data-title="Unity3D学习笔记（4）——GUI基础" data-url="http://yoursite.com/2018/05/08/U3D-note-04/">
       </div>
     
   </div>
@@ -532,7 +536,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

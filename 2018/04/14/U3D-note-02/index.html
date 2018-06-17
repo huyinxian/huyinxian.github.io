@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="本章介绍脚本相关基础">
+<meta name="description" content="本章介绍脚本相关基础，C#相关知识我之后会更新。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity3D学习笔记（2）——脚本基础">
 <meta property="og:url" content="http://yoursite.com/2018/04/14/U3D-note-02/index.html">
 <meta property="og:site_name" content="先哥哥<(^ - ^)/">
-<meta property="og:description" content="本章介绍脚本相关基础">
-<meta property="og:updated_time" content="2018-05-13T10:14:42.868Z">
+<meta property="og:description" content="本章介绍脚本相关基础，C#相关知识我之后会更新。">
+<meta property="og:updated_time" content="2018-06-16T09:53:34.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity3D学习笔记（2）——脚本基础">
-<meta name="twitter:description" content="本章介绍脚本相关基础">
+<meta name="twitter:description" content="本章介绍脚本相关基础，C#相关知识我之后会更新。">
 
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <p>本章介绍脚本相关基础<br><a id="more"></a></p>
+        <p>本章介绍脚本相关基础，C#相关知识我之后会更新。<br><a id="more"></a></p>
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
@@ -434,213 +434,8 @@
 </table>
 </div>
 <p>这里先简单地说一下，Update 所指的“每帧调用一次”，主要取决于机器的运行配置。如果配置不足，那么游戏的运行帧数就会下降，Update 的调用次数也会减少。至于说为什么要把物理状态的更新放到 FixedUpdate 中，各位可以去看看我的《游戏编程算法与技巧笔记》的第二篇，里面详细地分析了这个问题。</p>
-<h2 id="C-基本语法"><a href="#C-基本语法" class="headerlink" title="C#基本语法"></a><strong>C#基本语法</strong></h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h3><p>在 Unity 中，C# 变量声明方式为：</p>
-<pre><code>变量类型 变量名;
-</code></pre><p>例如：</p>
-<pre><code>string player = &quot;tom&quot;;
-</code></pre><p>变量签名可以添加作用于 public、protected、private，其中 public 的变量可以在 Inspector 视图中查看和编辑，不添加作用域则默认为 private（在 JavaScript 中默认为 public）。</p>
-<p>下表是 C# 可以用的变量类型。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">整型</th>
-<th style="text-align:left">举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">整数类型</td>
-<td style="text-align:left">sbyte、byte、short、ushort、int、uint、long、ulong 和 char</td>
-</tr>
-<tr>
-<td style="text-align:left">浮点型</td>
-<td style="text-align:left">float 和 double</td>
-</tr>
-<tr>
-<td style="text-align:left">十进制类型</td>
-<td style="text-align:left">decimal</td>
-</tr>
-<tr>
-<td style="text-align:left">布尔类型</td>
-<td style="text-align:left">true 或 false 值，指定的值</td>
-</tr>
-<tr>
-<td style="text-align:left">空类型</td>
-<td style="text-align:left">可为空值的数据类型</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>C# 允许定义其他值类型的变量，比如 enum，也允许定义引用类型变量，比如 class。这些只是稍微提一下，今后我还会正式整理 C# 学习笔记。</p>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a><strong>数组</strong></h3><p>数组的声明如下：</p>
-<pre><code>数据类型[] 数组名;
-</code></pre><p>例如：</p>
-<pre><code>int[] num;
-</code></pre><p>当然，你可以在声明的时候给数组赋值：</p>
-<pre><code>int[] num = {1, 2, 3};
-</code></pre><p>也可以给数组分配一个空间：</p>
-<pre><code>int[] num = new int[3];
-</code></pre><p>你也可以使用循环来遍历整个数组：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System.Collections;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> UnityEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CSharpArray</span> : <span class="title">MonoBehaviour</span> &#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.Length; i++) &#123;</div><div class="line">            array[i] = i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">foreach</span> (<span class="keyword">int</span> item <span class="keyword">in</span> array)</div><div class="line">            Debug.Log (item);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外，ArrayList、List 等容器自带了一些使用的类方法：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System.Collections;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> UnityEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CSharpArray2</span> : <span class="title">MonoBehaviour</span> &#123;</div><div class="line">    <span class="keyword">public</span> List&lt;<span class="keyword">int</span>&gt; list = <span class="keyword">new</span> List&lt;<span class="keyword">int</span>&gt;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">10</span>; i &gt; <span class="number">0</span>; i--) &#123;</div><div class="line">            list.Add (i);  <span class="comment">// 往容器内添加内容</span></div><div class="line">        &#125;</div><div class="line">        list.Sort ();  <span class="comment">// 排序</span></div><div class="line">        <span class="keyword">foreach</span> (<span class="keyword">int</span> item <span class="keyword">in</span> list)</div><div class="line">            Debug.Log (item);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="运算、比较、逻辑操作符"><a href="#运算、比较、逻辑操作符" class="headerlink" title="运算、比较、逻辑操作符"></a><strong>运算、比较、逻辑操作符</strong></h3><p>算术操作符：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">运算符</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">加法</td>
-<td style="text-align:left">expr1+expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">减法</td>
-<td style="text-align:left">expr1-expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">*</td>
-<td style="text-align:left">乘法</td>
-<td style="text-align:left">expr1*expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">/</td>
-<td style="text-align:left">除法</td>
-<td style="text-align:left">expr1/expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">%</td>
-<td style="text-align:left">取模</td>
-<td style="text-align:left">expr1%expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">++</td>
-<td style="text-align:left">自增</td>
-<td style="text-align:left">++expr1;expr1++;</td>
-</tr>
-<tr>
-<td style="text-align:left">—</td>
-<td style="text-align:left">自减</td>
-<td style="text-align:left">—expr1;expr1—;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>比较运算符：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">比较运算符</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">&lt;</td>
-<td style="text-align:left">小于</td>
-<td style="text-align:left">expr1&lt;expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">&gt;</td>
-<td style="text-align:left">减法</td>
-<td style="text-align:left">expr1&gt;expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">&lt;=</td>
-<td style="text-align:left">乘法</td>
-<td style="text-align:left">expr1&lt;=expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">&gt;=</td>
-<td style="text-align:left">除法</td>
-<td style="text-align:left">expr1&gt;=expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">==</td>
-<td style="text-align:left">取模</td>
-<td style="text-align:left">expr1==expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">!=</td>
-<td style="text-align:left">自增</td>
-<td style="text-align:left">expr1!=expr2;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>逻辑运算符：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">逻辑操作符</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">!</td>
-<td style="text-align:left">非</td>
-<td style="text-align:left">!expr1;</td>
-</tr>
-<tr>
-<td style="text-align:left">&#124;&#124;</td>
-<td style="text-align:left">或</td>
-<td style="text-align:left">expr1&#124;&#124;expr2;</td>
-</tr>
-<tr>
-<td style="text-align:left">&amp;&amp;</td>
-<td style="text-align:left">与</td>
-<td style="text-align:left">expr1expr2;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>条件操作符：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">条件操作符</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">?:</td>
-<td style="text-align:left">条件表达式</td>
-<td style="text-align:left">expr?expr_if_true:expr_if_false;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a><strong>语句</strong></h3><p>首先是最简单的条件语句，有<code>if</code>和<code>if else</code>两种。else 同样也可以加上 if 限制条件。</p>
-<p>接下来是循环语句，有 while、do-while、for、for-in 等。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (i &lt; <span class="number">0</span>) &#123;</div><div class="line">    ;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (; x &lt; <span class="number">0</span>; ++x) &#123;</div><div class="line">    ;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    ;</div><div class="line">&#125; <span class="keyword">while</span> (x &lt; <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> (<span class="keyword">string</span> str <span class="keyword">in</span> nameArray) &#123;</div><div class="line">    Debug.Log (str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后就是 switch 语句，可以基于不同的条件来执行不同的动作，比之 if-else 要简洁不少。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (num) &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">break</span>;</div><div class="line"><span class="keyword">default</span>: <span class="keyword">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a><strong>函数</strong></h3><p>函数的格式为：</p>
-<pre><code>属性 修饰符 返回值类型 函数名 (参数1, 参数2, ...) {
-    语句;
-}
-</code></pre><p>下面展示一个很简单的求和函数：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Sum</span> (<span class="params"><span class="keyword">int</span> num1, <span class="keyword">int</span> num2</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>参数可以使用关键字 ref，意为传递该参数的引用：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">int</span> score = <span class="number">10</span>;</div><div class="line">    ClampScore (<span class="keyword">ref</span> score);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClampScore</span> (<span class="params"><span class="keyword">ref</span> <span class="keyword">int</span> num</span>) </span>&#123;</div><div class="line">    num = Mathf.Clamp (num, <span class="number">0</span>, <span class="number">100</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外，参数前可以使用关键字 out 实现返回多个值：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">float</span> num1 = <span class="number">1</span>f, num2 = <span class="number">2</span>f;</div><div class="line">    <span class="keyword">float</span> multiply, sum;</div><div class="line">    Calculate (num1, num2, <span class="keyword">out</span> multiply, <span class="keyword">out</span> sum);</div><div class="line">    Debug.Log (multiply);</div><div class="line">    Debug.Log (sum);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Calculate</span> (<span class="params"><span class="keyword">float</span> num1, <span class="keyword">float</span> num2, <span class="keyword">out</span> <span class="keyword">float</span> multiply, <span class="keyword">out</span> <span class="keyword">float</span> sum</span>) </span>&#123;</div><div class="line">    multiply = num1 * num2;</div><div class="line">    sum = num1 + num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>至于其他的函数，我会在之后的章节中一一介绍。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>MonoBehavior 是 U3D 中非常重要的类，它有点类似于 Cocos2dx 中的 Ref 类。另外，在 Unity3D 中使用 C# 会略有些不同，所以在学习之前最好是先过一遍基本的 C# 语法。我的话就推荐<strong>菜鸟教程</strong>这个学习网站，它上面的内容很全面很详细。</p>
 
       
     </div>
@@ -777,7 +572,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -861,7 +656,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">2.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehavior"><span class="nav-number">3.</span> <span class="nav-text">MonoBehavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-基本语法"><span class="nav-number">4.</span> <span class="nav-text">C#基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">4.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">4.2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算、比较、逻辑操作符"><span class="nav-number">4.3.</span> <span class="nav-text">运算、比较、逻辑操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句"><span class="nav-number">4.4.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">4.5.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">2.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehavior"><span class="nav-number">3.</span> <span class="nav-text">MonoBehavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
