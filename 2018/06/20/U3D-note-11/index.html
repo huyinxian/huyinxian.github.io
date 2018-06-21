@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/06/20/U3D-note-11/index.html">
 <meta property="og:site_name" content="先哥哥">
 <meta property="og:description" content="本章将对前一章的2D游戏样例进行总结。">
-<meta property="og:updated_time" content="2018-06-20T13:02:12.581Z">
+<meta property="og:updated_time" content="2018-06-21T02:15:21.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity3D学习笔记（11）——2D版乒乓球样例总结与发布">
 <meta name="twitter:description" content="本章将对前一章的2D游戏样例进行总结。">
@@ -368,9 +368,9 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>我写学习笔记更多是为了日后温习，所以某些知识可能就一笔带过了。这里推荐 SiKi 的教学视频：<link rel="stylesheet" type="text/css" href="http://www.taikr.com/user/7"><a href="http://www.taikr.com/user/7" target="_blank" rel="external">http://www.taikr.com/user/7</a></p>
 <p>源码和素材都可以在这个网站上下载，我这里就不上传 GItHub 了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>上一章主要讲了 2D 游戏的基本开发流程，因为我之前学过一段时间的 Cocos2dx，所以对这方面还是有了解的。对于 2D 游戏而言，由于游戏是从下往上渲染，那么就必须要将各项元素的渲染顺序理清楚。Untiy 提供了几种分层方式，Sorting Layer 用于分类，Order Layer 则用于同一层的排列。</p>
-<p>2D 乒乓球同样也用到了碰撞检测，比如 OnCollisionEnter2D()，发生碰撞时就会自动调用这个方法。不过因为游戏本身比较简单，所以不需要用到另外两种形式。</p>
+<p>2D 乒乓球同样也用到了碰撞检测，比如 OnCollisionEnter2D()，发生碰撞时就会自动调用这个方法，不过因为游戏本身比较简单，所以不需要用到另外两种形式。Unity 内置了几种 2D 碰撞器，譬如 Box、Circle，我们在开发时可以根据图片的形状进行自由选择。值得注意的是，3D 建模固然能够做到精确地界定碰撞范围，但 2D 游戏可做不到这一点。事实上，2D 游戏仅仅是由图片构成的，我们不可能对每个图片描边然后确定其碰撞范围，那样是不现实的。对于人形这一类不规则的图片，一般的做法是使用 Box Collider 覆盖人形的主干，而手脚部分则不做碰撞判定。</p>
 <p>关于预制体，在 Roll A Ball 之中我们用预制体创建了多个相同的方块，且对某一预制体的修改将作用到其他的预制体上，非常适用于批量创建。而在 2D 乒乓球中，虽说只存在两个球拍，但它们的组件都是相同的，只是部分的参数存在差异。要注意的是，虽然预制体会同步修改，但对于位置和脚本公共变量等属性是不会同步的（毕竟得有一些差异）。</p>
-<p>此外，这次的代码写得有些乱，对物体的命名存在一些问题。最开始我只是把 Walls 当成围墙对象的集合，然后而写代码时却不知不觉把 Walls 当成了游戏消息的管理对象。事后想想，似乎把它取名为 GameManager 要更合适一些。</p>
+<p>此外，这次的代码写得有些乱，对物体的命名存在一些问题。最开始我只是把 Walls 当成围墙对象的集合，然后而写代码时却不知不觉把 Walls 当成了游戏消息的管理对象。事后想想，似乎把它取名为 Manager 要更合适一些。</p>
 <p>问题基本就这么多，弹性材质、音效等新组件还是比较好理解的，我就不多说了。</p>
 <h2 id="游戏发布"><a href="#游戏发布" class="headerlink" title="游戏发布"></a><strong>游戏发布</strong></h2><p>游戏的发布就不细讲了，Player Settings 里面有很多选项，像是修改游戏图标、游戏开场动画等等，这些日后再说。话说在发布完之后，我又找到了两个 BUG……</p>
 <p>第一个就是 Reset 按钮，记得要将它的锚点设置为正上方，否则窗口尺寸一变按钮就不见了。第二个也是和 Reset 有关的，在 Ball 脚本的 Reset() 中，除了要将小球的位置归零，还要将它的速度归零：</p>
