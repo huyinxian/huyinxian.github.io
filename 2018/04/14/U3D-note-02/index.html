@@ -88,9 +88,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity3D学习笔记（2）——脚本基础">
 <meta property="og:url" content="http://yoursite.com/2018/04/14/U3D-note-02/index.html">
-<meta property="og:site_name" content="先哥哥">
+<meta property="og:site_name" content="个人技术分享">
 <meta property="og:description" content="本章介绍脚本相关基础，C#相关知识我之后会更新。">
-<meta property="og:updated_time" content="2018-06-16T09:53:34.607Z">
+<meta property="og:updated_time" content="2018-06-25T12:52:40.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity3D学习笔记（2）——脚本基础">
 <meta name="twitter:description" content="本章介绍脚本相关基础，C#相关知识我之后会更新。">
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2018/04/14/U3D-note-02/"/>
 
-  <title> Unity3D学习笔记（2）——脚本基础 | 先哥哥 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Unity3D学习笔记（2）——脚本基础 | 个人技术分享 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -156,7 +156,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">先哥哥</span>
+      <span class="site-title">个人技术分享</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -365,6 +365,7 @@
 <blockquote>
 <p><strong>本文仅供个人记录和复习，不用于其他用途</strong></p>
 </blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>所有练习的代码和案例我都挂到了 GitHub 上，笔记请转到——<a href="http://fantasticmiao.cn/Docsify/#/Unity3D-note/Practice-Scripts" target="_blank" rel="external">Untiy脚本基础练习</a></p>
 <h2 id="什么是脚本"><a href="#什么是脚本" class="headerlink" title="什么是脚本"></a><strong>什么是脚本</strong></h2><p>对于 Unity 而言，脚本可以理解为附加在游戏对象上的用于定义游戏对象行为的指令代码。Unity 编辑器集成了许多脚本编辑器的能力，像是建立脚本、与游戏对象连接、变量数值的修改以及修改脚本后的实时预览等等。在前一篇笔记中，我编写过一个很简单的脚本，并且把它连接到了方块上，实现了方块的移动。但请注意，我并没有做任何的实例化，这一步骤由 Unity 自动完成的。</p>
 <h2 id="在U3D中创建C-脚本"><a href="#在U3D中创建C-脚本" class="headerlink" title="在U3D中创建C#脚本"></a><strong>在U3D中创建C#脚本</strong></h2><p>创建 C# 脚本要取有意义的名字，类名要与脚本名一致。当你创建了一个新的脚本后，你会看到如下的默认代码：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System.Collections;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> UnityEngine;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NewBehaviourScript</span> : <span class="title">MonoBehaviour</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// Use this for initialization</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Update is called once per frame</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -435,7 +436,7 @@
 </div>
 <p>这里先简单地说一下，Update 所指的“每帧调用一次”，主要取决于机器的运行配置。如果配置不足，那么游戏的运行帧数就会下降，Update 的调用次数也会减少。至于说为什么要把物理状态的更新放到 FixedUpdate 中，各位可以去看看我的《游戏编程算法与技巧笔记》的第二篇，里面详细地分析了这个问题。</p>
 <p>至于其他的函数，我会在之后的章节中一一介绍。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>MonoBehavior 是 U3D 中非常重要的类，它有点类似于 Cocos2dx 中的 Ref 类。另外，在 Unity3D 中使用 C# 会略有些不同，所以在学习之前最好是先过一遍基本的 C# 语法。我的话就推荐<strong>菜鸟教程</strong>这个学习网站，它上面的内容很全面很详细。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>MonoBehavior 是 U3D 中非常重要的类，它有点类似于 Cocos2dx 中的 Ref 类。另外，在 Unity3D 中使用 C# 会略有些不同，所以在学习之前最好是先过一遍基本的 C# 语法。</p>
 
       
     </div>
@@ -656,7 +657,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">2.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehavior"><span class="nav-number">3.</span> <span class="nav-text">MonoBehavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是脚本"><span class="nav-number">2.</span> <span class="nav-text">什么是脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在U3D中创建C-脚本"><span class="nav-number">3.</span> <span class="nav-text">在U3D中创建C#脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehavior"><span class="nav-number">4.</span> <span class="nav-text">MonoBehavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
@@ -675,7 +676,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -693,6 +694,11 @@
   </a>
 </div>
 
+<div class="record-number">
+  湘ICP备 -
+  <a target="_blank" href="http://www.beian.miit.gov.cn/">18020241-1</a>
+  </a>
+</div
         
 
         
